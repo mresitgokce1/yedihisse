@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using yedihisse.Shared.Entities.Abstract;
+
+namespace yedihisse.Entities.Concrete
+{
+    public class SlaughterhouseJoinType : EntityBase, IEntity
+    {
+        public int HoldingCapacity { get; set; }
+        public int KillingCapacity { get; set; }
+        public int ShreddingCapacity { get; set; }
+
+        public int SlaughterhouseId { get; set; }
+        public Slaughterhouse Slaughterhouse { get; set; }
+
+        public int SlaughterhouseTypeId { get; set; }
+        public SlaughterhouseType SlaughterhouseType { get; set; }
+    }
+}
