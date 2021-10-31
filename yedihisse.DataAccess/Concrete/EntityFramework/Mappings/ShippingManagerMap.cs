@@ -29,6 +29,14 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(s => s.ShippingManagers)
                 .HasForeignKey(s => s.ShippingId);
 
+            builder.HasOne<User>(a => a.UserCreatedById)
+                .WithMany(u => u.ShippingManagerCreatedByIds)
+                .HasForeignKey(a => a.UserCreatedByIdId);
+
+            builder.HasOne<User>(a => a.UserModifiedById)
+                .WithMany(u => u.ShippingManagerModifiedByIds)
+                .HasForeignKey(a => a.UserModifiedByIdId);
+
             builder.ToTable("Shipping.Manager");
         }
     }

@@ -30,6 +30,14 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(b => b.BranchManagers)
                 .HasForeignKey(b => b.BranchId);
 
+            builder.HasOne<User>(a => a.UserCreatedById)
+                .WithMany(u => u.BranchManagerCreatedByIds)
+                .HasForeignKey(a => a.UserCreatedByIdId);
+
+            builder.HasOne<User>(a => a.UserModifiedById)
+                .WithMany(u => u.BranchManagerModifiedByIds)
+                .HasForeignKey(a => a.UserModifiedByIdId);
+
             builder.ToTable("Branch.Manager");
         }
     }

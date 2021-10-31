@@ -27,6 +27,14 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithOne(p => p.PhoneNumber)
                 .HasForeignKey<PhoneNumber>(p => p.PhoneNumberTypeId);
 
+            builder.HasOne<User>(a => a.UserCreatedById)
+                .WithMany(u => u.PhoneNumberCreatedByIds)
+                .HasForeignKey(a => a.UserCreatedByIdId);
+
+            builder.HasOne<User>(a => a.UserModifiedById)
+                .WithMany(u => u.PhoneNumberModifiedByIds)
+                .HasForeignKey(a => a.UserModifiedByIdId);
+
             builder.ToTable("PhoneNumber.PhoneNumber");
         }
     }

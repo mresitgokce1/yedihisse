@@ -29,6 +29,14 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(a => a.ApplicationStatuses)
                 .HasForeignKey(a => a.ApplicationStatusTypeId);
 
+            builder.HasOne<User>(a => a.UserCreatedById)
+                .WithMany(u => u.ApplicationStatusCreatedByIds)
+                .HasForeignKey(a => a.UserCreatedByIdId);
+
+            builder.HasOne<User>(a => a.UserModifiedById)
+                .WithMany(u => u.ApplicationStatusModifiedByIds)
+                .HasForeignKey(a => a.UserModifiedByIdId);
+
             builder.ToTable("Application.Status");
         }
     }

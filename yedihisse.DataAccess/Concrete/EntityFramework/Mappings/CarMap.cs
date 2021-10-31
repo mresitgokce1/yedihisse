@@ -37,6 +37,14 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(s => s.Cars)
                 .HasForeignKey(c => c.ShippingId);
 
+            builder.HasOne<User>(a => a.UserCreatedById)
+                .WithMany(u => u.CarCreatedByIds)
+                .HasForeignKey(a => a.UserCreatedByIdId);
+
+            builder.HasOne<User>(a => a.UserModifiedById)
+                .WithMany(u => u.CarModifiedByIds)
+                .HasForeignKey(a => a.UserModifiedByIdId);
+
             builder.ToTable("Car.Car");
         }
     }

@@ -23,6 +23,13 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(c => c.CreatedById).IsRequired(true);
             builder.Property(c => c.IsActive).IsRequired(true).HasDefaultValue(true);
 
+            builder.HasOne<User>(a => a.UserCreatedById)
+                .WithMany(u => u.CarTypeCreatedByIds)
+                .HasForeignKey(a => a.UserCreatedByIdId);
+
+            builder.HasOne<User>(a => a.UserModifiedById)
+                .WithMany(u => u.CarTypeModifiedByIds)
+                .HasForeignKey(a => a.UserModifiedByIdId);
 
             builder.ToTable("Car.Type");
         }

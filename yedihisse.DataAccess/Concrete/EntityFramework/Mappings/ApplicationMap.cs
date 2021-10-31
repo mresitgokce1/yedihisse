@@ -38,6 +38,14 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(a => a.Applications)
                 .HasForeignKey(a => a.AnimalTypeId);
 
+            builder.HasOne<User>(a => a.UserCreatedById)
+                .WithMany(u => u.ApplicationCreatedByIds)
+                .HasForeignKey(a => a.UserCreatedByIdId);
+
+            builder.HasOne<User>(a => a.UserModifiedById)
+                .WithMany(u => u.ApplicationModifiedByIds)
+                .HasForeignKey(a => a.UserModifiedByIdId);
+
             builder.ToTable("Application.Application");
         }
     }

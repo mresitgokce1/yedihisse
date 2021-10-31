@@ -28,6 +28,14 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.CreatedById).IsRequired(true);
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
 
+            builder.HasOne<User>(a => a.UserCreatedById)
+                .WithMany(u => u.AnimalCreatedByIds)
+                .HasForeignKey(a => a.UserCreatedByIdId);
+
+            builder.HasOne<User>(a => a.UserModifiedById)
+                .WithMany(u => u.AnimalModifiedByIds)
+                .HasForeignKey(a => a.UserModifiedByIdId);
+
             builder.ToTable("Animal.Animal");
         }
     }

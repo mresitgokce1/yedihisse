@@ -29,6 +29,14 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.UserJoinTypes)
                 .HasForeignKey(u => u.UserTypeId);
 
+            builder.HasOne<User>(a => a.UserCreatedById)
+                .WithMany(u => u.UserJoinTypeCreatedByIds)
+                .HasForeignKey(a => a.UserCreatedByIdId);
+
+            builder.HasOne<User>(a => a.UserModifiedById)
+                .WithMany(u => u.UserJoinTypeModifiedByIds)
+                .HasForeignKey(a => a.UserModifiedByIdId);
+
             builder.ToTable("User.JoinType");
         }
     }

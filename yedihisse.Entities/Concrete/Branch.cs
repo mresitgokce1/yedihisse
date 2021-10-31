@@ -22,5 +22,11 @@ namespace yedihisse.Entities.Concrete
 
         public ICollection<BranchManager> BranchManagers { get; set; }
         public ICollection<Application> Applications { get; set; }
+
+        public int UserCreatedByIdId { get; set; }
+        public User UserCreatedById { get; set; }
+
+        public int UserModifiedByIdId { get; set; }
+        public User UserModifiedById { get; set; }
     }
 }

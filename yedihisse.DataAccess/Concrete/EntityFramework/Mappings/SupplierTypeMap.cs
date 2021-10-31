@@ -26,6 +26,14 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithOne(s => s.SupplierType)
                 .HasForeignKey<SupplierType>(s => s.SupplierId);
 
+            builder.HasOne<User>(a => a.UserCreatedById)
+                .WithMany(u => u.SupplierTypeCreatedByIds)
+                .HasForeignKey(a => a.UserCreatedByIdId);
+
+            builder.HasOne<User>(a => a.UserModifiedById)
+                .WithMany(u => u.SupplierTypeModifiedByIds)
+                .HasForeignKey(a => a.UserModifiedByIdId);
+
             builder.ToTable("Supplier.Type");
         }
     }

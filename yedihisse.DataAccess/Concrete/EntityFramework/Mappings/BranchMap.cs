@@ -34,6 +34,14 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(p => p.Branches)
                 .HasForeignKey(b => b.PhoneNumberId);
 
+            builder.HasOne<User>(a => a.UserCreatedById)
+                .WithMany(u => u.BranchCreatedByIds)
+                .HasForeignKey(a => a.UserCreatedByIdId);
+
+            builder.HasOne<User>(a => a.UserModifiedById)
+                .WithMany(u => u.BranchModifiedByIds)
+                .HasForeignKey(a => a.UserModifiedByIdId);
+
             builder.ToTable("Branch.Branch");
         }
     }

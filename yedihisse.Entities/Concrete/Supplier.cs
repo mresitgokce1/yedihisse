@@ -21,5 +21,11 @@ namespace yedihisse.Entities.Concrete
         public SupplierType SupplierType { get; set; }
 
         public ICollection<SupplierManager> SupplierManagers { get; set; }
+
+        public int UserCreatedByIdId { get; set; }
+        public User UserCreatedById { get; set; }
+
+        public int UserModifiedByIdId { get; set; }
+        public User UserModifiedById { get; set; }
     }
 }

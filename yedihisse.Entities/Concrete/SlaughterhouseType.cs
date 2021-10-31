@@ -11,5 +11,11 @@ namespace yedihisse.Entities.Concrete
     {
         public string TypeName { get; set; }
         public ICollection<SlaughterhouseJoinType> SlaughterhouseJoinTypes { get; set; }
+
+        public int UserCreatedByIdId { get; set; }
+        public User UserCreatedById { get; set; }
+
+        public int UserModifiedByIdId { get; set; }
+        public User UserModifiedById { get; set; }
     }
 }

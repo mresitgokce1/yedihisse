@@ -22,6 +22,14 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(u => u.CreatedById).IsRequired(true);
             builder.Property(u => u.IsActive).IsRequired(true).HasDefaultValue(true);
 
+            builder.HasOne<User>(a => a.UserCreatedById)
+                .WithMany(u => u.UserTypeCreatedByIds)
+                .HasForeignKey(a => a.UserCreatedByIdId);
+
+            builder.HasOne<User>(a => a.UserModifiedById)
+                .WithMany(u => u.UserTypeModifiedByIds)
+                .HasForeignKey(a => a.UserModifiedByIdId);
+
             builder.ToTable("User.Type");
         }
     }

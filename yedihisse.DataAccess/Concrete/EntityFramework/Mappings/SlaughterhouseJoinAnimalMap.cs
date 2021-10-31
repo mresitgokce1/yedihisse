@@ -33,6 +33,14 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithOne(a => a.SlaughterhouseJoinAnimal)
                 .HasForeignKey<SlaughterhouseJoinAnimal>(s => s.AnimalId);
 
+            builder.HasOne<User>(a => a.UserCreatedById)
+                .WithMany(u => u.SlaughterhouseJoinAnimalCreatedByIds)
+                .HasForeignKey(a => a.UserCreatedByIdId);
+
+            builder.HasOne<User>(a => a.UserModifiedById)
+                .WithMany(u => u.SlaughterhouseJoinAnimalModifiedByIds)
+                .HasForeignKey(a => a.UserModifiedByIdId);
+
             builder.ToTable("Slaughterhouse.JoinAnimal");
         }
     }

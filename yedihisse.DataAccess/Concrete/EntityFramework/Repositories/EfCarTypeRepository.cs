@@ -10,9 +10,9 @@ using yedihisse.Shared.Data.Concrete.EntityFramework;
 
 namespace yedihisse.DataAccess.Concrete.EntityFramework.Repositories
 {
-    public class AddressRepository :EfEntityRepositoryBase<Address>, IAddressRepository
+    public class EfCarTypeRepository : EfEntityRepositoryBase<CarType>, ICarTypeRepository
     {
-        public AddressRepository(DbContext context) : base(context)
+        public EfCarTypeRepository(DbContext context) : base(context)
         {
         }
     }

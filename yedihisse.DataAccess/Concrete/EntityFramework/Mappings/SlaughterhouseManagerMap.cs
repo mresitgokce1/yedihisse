@@ -30,6 +30,14 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(s => s.SlaughterhouseManagers)
                 .HasForeignKey(s => s.SlaughterhouseId);
 
+            builder.HasOne<User>(a => a.UserCreatedById)
+                .WithMany(u => u.SlaughterhouseManagerCreatedByIds)
+                .HasForeignKey(a => a.UserCreatedByIdId);
+
+            builder.HasOne<User>(a => a.UserModifiedById)
+                .WithMany(u => u.SlaughterhouseManagerModifiedByIds)
+                .HasForeignKey(a => a.UserModifiedByIdId);
+
             builder.ToTable("Slaughterhouse.Manager");
         }
     }

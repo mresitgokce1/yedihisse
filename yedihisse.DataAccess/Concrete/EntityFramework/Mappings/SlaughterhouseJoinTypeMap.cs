@@ -32,6 +32,14 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(s => s.SlaughterhouseJoinTypes)
                 .HasForeignKey(s => s.SlaughterhouseTypeId);
 
+            builder.HasOne<User>(a => a.UserCreatedById)
+                .WithMany(u => u.SlaughterhouseJoinTypeCreatedByIds)
+                .HasForeignKey(a => a.UserCreatedByIdId);
+
+            builder.HasOne<User>(a => a.UserModifiedById)
+                .WithMany(u => u.SlaughterhouseJoinTypeModifiedByIds)
+                .HasForeignKey(a => a.UserModifiedByIdId);
+
             builder.ToTable("Slaughterhouse.JoinType");
         }
     }

@@ -15,5 +15,11 @@ namespace yedihisse.Entities.Concrete
         public ICollection<Car> Cars { get; set; }
         public ICollection<Allotment> Allotments { get; set; }
         public ICollection<ShippingManager> ShippingManagers { get; set; }
+
+        public int UserCreatedByIdId { get; set; }
+        public User UserCreatedById { get; set; }
+
+        public int UserModifiedByIdId { get; set; }
+        public User UserModifiedById { get; set; }
     }
 }

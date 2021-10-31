@@ -23,6 +23,14 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(s => s.CreatedById).IsRequired(true);
             builder.Property(s => s.IsActive).IsRequired(true).HasDefaultValue(true);
 
+            builder.HasOne<User>(a => a.UserCreatedById)
+                .WithMany(u => u.ShippingCreatedByIds)
+                .HasForeignKey(a => a.UserCreatedByIdId);
+
+            builder.HasOne<User>(a => a.UserModifiedById)
+                .WithMany(u => u.ShippingModifiedByIds)
+                .HasForeignKey(a => a.UserModifiedByIdId);
+
             builder.ToTable("Shipping.Shipping");
         }
     }

@@ -27,6 +27,14 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithOne(a => a.AnimalType)
                 .HasForeignKey<AnimalType>(a => a.AnimalId);
 
+            builder.HasOne<User>(a => a.UserCreatedById)
+                .WithMany(u => u.AnimalTypeCreatedByIds)
+                .HasForeignKey(a => a.UserCreatedByIdId);
+
+            builder.HasOne<User>(a => a.UserModifiedById)
+                .WithMany(u => u.AnimalTypeModifiedByIds)
+                .HasForeignKey(a => a.UserModifiedByIdId);
+
             builder.ToTable("Animal.Type");
         }
     }

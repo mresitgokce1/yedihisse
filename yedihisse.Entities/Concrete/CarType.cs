@@ -13,5 +13,11 @@ namespace yedihisse.Entities.Concrete
         public string Description { get; set; }
 
         public ICollection<Car> Cars { get; set; }
+
+        public int UserCreatedByIdId { get; set; }
+        public User UserCreatedById { get; set; }
+
+        public int UserModifiedByIdId { get; set; }
+        public User UserModifiedById { get; set; }
     }
 }

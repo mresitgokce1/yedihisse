@@ -21,5 +21,11 @@ namespace yedihisse.Entities.Concrete
         public ICollection<SlaughterhouseJoinType> SlaughterhouseJoinTypes { get; set; }
         public ICollection<SlaughterhouseManager> SlaughterhouseManagers { get; set; }
         public ICollection<SlaughterhouseJoinAnimal> SlaughterhouseJoinAnimals { get; set; }
+
+        public int UserCreatedByIdId { get; set; }
+        public User UserCreatedById { get; set; }
+
+        public int UserModifiedByIdId { get; set; }
+        public User UserModifiedById { get; set; }
     }
 }

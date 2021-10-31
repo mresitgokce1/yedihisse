@@ -18,5 +18,11 @@ namespace yedihisse.Entities.Concrete
 
         public int SlaughterhouseTypeId { get; set; }
         public SlaughterhouseType SlaughterhouseType { get; set; }
+
+        public int UserCreatedByIdId { get; set; }
+        public User UserCreatedById { get; set; }
+
+        public int UserModifiedByIdId { get; set; }
+        public User UserModifiedById { get; set; }
     }
 }

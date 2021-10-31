@@ -37,6 +37,14 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithOne(a => a.Address)
                 .HasForeignKey<Address>(a => a.AddressTypeId);
 
+            builder.HasOne<User>(a => a.UserCreatedById)
+                .WithMany(u => u.AddressCreatedByIds)
+                .HasForeignKey(a => a.UserCreatedByIdId);
+
+            builder.HasOne<User>(a => a.UserModifiedById)
+                .WithMany(u => u.AddressModifiedByIds)
+                .HasForeignKey(a => a.UserModifiedByIdId);
+
             builder.ToTable("Address.Address");
         }
     }
