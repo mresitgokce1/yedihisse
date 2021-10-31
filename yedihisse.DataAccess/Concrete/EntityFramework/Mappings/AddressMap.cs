@@ -45,6 +45,29 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.AddressModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
+            builder.HasData(new Address
+            {
+                Id = 1,
+                AddressName = "Ev Adresi",
+                Country = "Türkiye",
+                City = "İstanbul",
+                Parish = "Körüklü Mahallesi",
+                Street = "Ateş Caddesi",
+                ApartmentName = "Fırın Apt",
+                ApartmentNo = "25",
+                ApartmentBlokName = "B Blok",
+                FloorNo = "5",
+                FlatNo = "3",
+                AddressDetail = "Köşem Kuruyemişin Yan Tarafı",
+                AddressDirection = null,
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now,
+                CreatedById = 1,
+                ModifiedById = 1,
+                AddressTypeId = 1,
+                IsActive = true
+            });
+
             builder.ToTable("Address.Address");
         }
     }

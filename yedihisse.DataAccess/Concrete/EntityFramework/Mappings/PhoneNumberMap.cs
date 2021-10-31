@@ -35,6 +35,19 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.PhoneNumberModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
+            builder.HasData(new PhoneNumber()
+            {
+                Id = 1,
+                Description = "Telefon açıklaması",
+                Number = "5698545",
+                CreatedById = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedById = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                PhoneNumberTypeId = 1
+            });
+
             builder.ToTable("PhoneNumber.PhoneNumber");
         }
     }

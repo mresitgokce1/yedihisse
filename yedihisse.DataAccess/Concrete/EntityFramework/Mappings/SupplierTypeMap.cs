@@ -22,10 +22,6 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(s => s.CreatedById).IsRequired(true);
             builder.Property(s => s.IsActive).IsRequired(true).HasDefaultValue(true);
 
-            builder.HasOne<Supplier>(s => s.Supplier)
-                .WithOne(s => s.SupplierType)
-                .HasForeignKey<SupplierType>(s => s.SupplierId);
-
             builder.HasOne<User>(a => a.UserCreatedById)
                 .WithMany(u => u.SupplierTypeCreatedByIds)
                 .HasForeignKey(a => a.UserCreatedByIdId);
@@ -33,6 +29,17 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.HasOne<User>(a => a.UserModifiedById)
                 .WithMany(u => u.SupplierTypeModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
+
+            builder.HasData(new SupplierType()
+            {
+                Id = 1,
+                Name = "Büyükbaş Tedarikçisi",
+                CreatedById = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedById = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true
+            });
 
             builder.ToTable("Supplier.Type");
         }

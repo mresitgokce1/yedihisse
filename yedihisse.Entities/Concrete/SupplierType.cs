@@ -11,7 +11,6 @@ namespace yedihisse.Entities.Concrete
     {
         public string Name { get; set; }
 
-        public int SupplierId { get; set; }
         public Supplier Supplier { get; set; }
 
         public int UserCreatedByIdId { get; set; }

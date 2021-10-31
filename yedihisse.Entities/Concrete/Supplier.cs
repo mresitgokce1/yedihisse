@@ -17,7 +17,8 @@ namespace yedihisse.Entities.Concrete
 
         public int AddressId { get; set; }
         public Address Address { get; set; }
-
+        
+        public int SupplierTypeId { get; set; }
         public SupplierType SupplierType { get; set; }
 
         public ICollection<SupplierManager> SupplierManagers { get; set; }

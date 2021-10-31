@@ -18,7 +18,10 @@ namespace yedihisse.Entities.Concrete
         public string BaitCode{ get; set; }
 
         public Allotment Allotment { get; set; }
+
+        public int AnimalTypeId { get; set; }
         public AnimalType AnimalType { get; set; }
+
         public SlaughterhouseJoinAnimal SlaughterhouseJoinAnimal { get; set; }
 
         public int UserCreatedByIdId { get; set; }

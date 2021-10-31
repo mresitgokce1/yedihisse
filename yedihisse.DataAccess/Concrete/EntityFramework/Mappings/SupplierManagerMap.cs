@@ -38,6 +38,19 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.SupplierManagerModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
+            builder.HasData(new SupplierManager()
+            {
+                Id = 1,
+                Description = "Tedarikçi Yöneticisi",
+                CreatedById = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedById = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                SupplierId = 1,
+                UserId = 1
+            });
+
             builder.ToTable("Supplier.Manager");
         }
     }

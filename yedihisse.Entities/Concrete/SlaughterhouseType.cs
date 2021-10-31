@@ -9,7 +9,7 @@ namespace yedihisse.Entities.Concrete
 {
     public class SlaughterhouseType : EntityBase, IEntity
     {
-        public string TypeName { get; set; }
+        public string Name { get; set; }
         public ICollection<SlaughterhouseJoinType> SlaughterhouseJoinTypes { get; set; }
 
         public int UserCreatedByIdId { get; set; }

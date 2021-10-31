@@ -12,8 +12,7 @@ namespace yedihisse.Entities.Concrete
         public string Name { get; set; }
         public bool CanAllotment { get; set; }
 
-        public int AnimalId { get; set; }
-        public Animal Animal { get; set; }
+        public ICollection<Animal> Animals { get; set; }
 
         public ICollection<Application> Applications { get; set; }
 

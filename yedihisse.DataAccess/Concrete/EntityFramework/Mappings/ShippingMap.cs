@@ -31,6 +31,18 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.ShippingModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
+            builder.HasData(new Shipping()
+            {
+                Id = 1,
+                Name = "Taşıyıcı adı",
+                Description = "Taşıyıcı acıklaması",
+                CreatedById = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedById = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+            });
+
             builder.ToTable("Shipping.Shipping");
         }
     }

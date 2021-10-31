@@ -30,6 +30,17 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.UserTypeModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
+            builder.HasData(new UserType()
+            {
+                Id = 1,
+                Name = "Admin",
+                CreatedById = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedById = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true
+            });
+
             builder.ToTable("User.Type");
         }
     }

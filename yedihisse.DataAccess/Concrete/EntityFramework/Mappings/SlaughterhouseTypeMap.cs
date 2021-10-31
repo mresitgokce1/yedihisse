@@ -15,7 +15,7 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
         {
             builder.HasKey(s => s.Id);
             builder.Property(s => s.Id).ValueGeneratedOnAdd().HasColumnName("TypeId");
-            builder.Property(s => s.TypeName).IsRequired(true).HasMaxLength(50);
+            builder.Property(s => s.Name).IsRequired(true).HasMaxLength(50);
             builder.Property(s => s.CreatedDate).IsRequired(true);
             builder.Property(s => s.ModifiedDate).IsRequired(true);
             builder.Property(s => s.ModifiedById).IsRequired(true);
@@ -29,6 +29,17 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.HasOne<User>(a => a.UserModifiedById)
                 .WithMany(u => u.SlaughterhouseTypeModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
+
+            builder.HasData(new SlaughterhouseType()
+            {
+                Id = 1,
+                Name = "Büyükbaş Kesimhanesi",
+                CreatedById = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedById = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true
+            });
 
             builder.ToTable("Slaughterhouse.Type");
         }

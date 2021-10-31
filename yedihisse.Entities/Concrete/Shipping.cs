@@ -12,7 +12,7 @@ namespace yedihisse.Entities.Concrete
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public ICollection<Car> Cars { get; set; }
+        public Car Car { get; set; }
         public ICollection<Allotment> Allotments { get; set; }
         public ICollection<ShippingManager> ShippingManagers { get; set; }
 

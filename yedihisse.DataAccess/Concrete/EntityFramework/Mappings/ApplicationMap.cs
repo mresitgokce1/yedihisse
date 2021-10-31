@@ -46,6 +46,21 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.ApplicationModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
+            builder.HasData(new Application()
+            {
+                Id = 1,
+                AllotmentRate = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now,
+                CreatedById = 1,
+                ModifiedById = 1,
+                IsActive = true,
+                BranchId = 1,
+                AllotmentId = 1,
+                UserId = 1,
+                AnimalTypeId = 1
+            });
+
             builder.ToTable("Application.Application");
         }
     }

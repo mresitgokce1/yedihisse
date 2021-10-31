@@ -44,6 +44,25 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.AllotmentModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
+            builder.HasData(new Allotment()
+            {
+                Id = 1,
+                Description = "Hisse hakkında kısa bilgi",
+                PrePay = 200,
+                PrePayStatus = true,
+                PrePayReceiptNumber = "AF8583KK2302",
+                Price = 10000,
+                PriceStatus = true,
+                PriceReceiptNumber = "F98KASJD78S8D7A",
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now,
+                CreatedById = 1,
+                ModifiedById = 1,
+                AnimalId = 1,
+                ShippingId = 1,
+                IsActive = true
+            });
+
             builder.ToTable("Allotment.Allotment");
         }
     }

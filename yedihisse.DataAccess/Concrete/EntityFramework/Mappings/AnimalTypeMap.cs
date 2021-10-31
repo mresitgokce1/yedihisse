@@ -23,10 +23,6 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.CreatedById).IsRequired(true);
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
 
-            builder.HasOne<Animal>(a => a.Animal)
-                .WithOne(a => a.AnimalType)
-                .HasForeignKey<AnimalType>(a => a.AnimalId);
-
             builder.HasOne<User>(a => a.UserCreatedById)
                 .WithMany(u => u.AnimalTypeCreatedByIds)
                 .HasForeignKey(a => a.UserCreatedByIdId);
@@ -34,6 +30,18 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.HasOne<User>(a => a.UserModifiedById)
                 .WithMany(u => u.AnimalTypeModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
+
+            builder.HasData(new AnimalType()
+            {
+                Id = 1,
+                Name = "Büyükbaş",
+                CanAllotment = true,
+                CreatedById = 1,
+                ModifiedById = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now,
+                IsActive = true
+            });
 
             builder.ToTable("Animal.Type");
         }

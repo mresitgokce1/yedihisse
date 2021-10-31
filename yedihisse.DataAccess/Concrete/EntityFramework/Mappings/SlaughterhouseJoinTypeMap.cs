@@ -40,6 +40,21 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.SlaughterhouseJoinTypeModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
+            builder.HasData(new SlaughterhouseJoinType()
+            {
+                Id = 1,
+                HoldingCapacity = 50,
+                KillingCapacity = 50,
+                ShreddingCapacity = 50,
+                CreatedById = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedById = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                SlaughterhouseId = 1,
+                SlaughterhouseTypeId = 1
+            });
+
             builder.ToTable("Slaughterhouse.JoinType");
         }
     }

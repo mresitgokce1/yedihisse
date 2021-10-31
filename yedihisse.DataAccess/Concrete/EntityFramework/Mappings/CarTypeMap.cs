@@ -31,6 +31,18 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.CarTypeModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
+            builder.HasData(new CarType()
+            {
+                Id = 1,
+                Name = "Kamyonet",
+                Description = "Kamyonet hakkında bilgi, 4 hayvan alır.",
+                CreatedById = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedById = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true
+            });
+
             builder.ToTable("Car.Type");
         }
     }
