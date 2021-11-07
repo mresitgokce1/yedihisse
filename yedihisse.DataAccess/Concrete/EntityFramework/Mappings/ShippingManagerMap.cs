@@ -37,17 +37,17 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.ShippingManagerModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
-            builder.HasData(new ShippingManager()
-            {
-                Id = 1,
-                CreatedById = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedById = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                ShippingId = 1,
-                UserId = 1
-            });
+            //builder.HasData(new ShippingManager()
+            //{
+            //    Id = 1,
+            //    CreatedById = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedById = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    ShippingId = 1,
+            //    UserId = 1
+            //});
 
             builder.ToTable("Shipping.Manager");
         }

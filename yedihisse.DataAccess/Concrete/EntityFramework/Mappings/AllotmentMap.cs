@@ -16,10 +16,10 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.HasKey(a => a.Id);
             builder.Property(a => a.Id).ValueGeneratedOnAdd().HasColumnName("AllotmentId");
             builder.Property(a => a.Description).HasMaxLength(250);
-            builder.Property(a => a.PrePay).IsRequired(true).HasDefaultValue(0).HasPrecision(4, 5);
+            builder.Property(a => a.PrePay).IsRequired(true).HasDefaultValue(0).HasPrecision(4, 4);
             builder.Property(a => a.PrePayStatus).IsRequired(true).HasDefaultValue(false);
             builder.Property(a => a.PrePayReceiptNumber).IsRequired(true).HasMaxLength(100);
-            builder.Property(a => a.Price).IsRequired(true).HasDefaultValue(0).HasPrecision(4, 5);
+            builder.Property(a => a.Price).IsRequired(true).HasDefaultValue(0).HasPrecision(4, 4);
             builder.Property(a => a.PriceStatus).IsRequired(true).HasDefaultValue(false);
             builder.Property(a => a.PriceReceiptNumber).IsRequired(true).HasMaxLength(100);
             builder.Property(a => a.CreatedDate).IsRequired(true);
@@ -44,24 +44,24 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.AllotmentModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
-            builder.HasData(new Allotment()
-            {
-                Id = 1,
-                Description = "Hisse hakkında kısa bilgi",
-                PrePay = 200,
-                PrePayStatus = true,
-                PrePayReceiptNumber = "AF8583KK2302",
-                Price = 10000,
-                PriceStatus = true,
-                PriceReceiptNumber = "F98KASJD78S8D7A",
-                CreatedDate = DateTime.Now,
-                ModifiedDate = DateTime.Now,
-                CreatedById = 1,
-                ModifiedById = 1,
-                AnimalId = 1,
-                ShippingId = 1,
-                IsActive = true
-            });
+            //builder.HasData(new Allotment()
+            //{
+            //    Id = 1,
+            //    Description = "Hisse hakkında kısa bilgi",
+            //    PrePay = 200,
+            //    PrePayStatus = true,
+            //    PrePayReceiptNumber = "AF8583KK2302",
+            //    Price = 10000,
+            //    PriceStatus = true,
+            //    PriceReceiptNumber = "F98KASJD78S8D7A",
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedDate = DateTime.Now,
+            //    CreatedById = 1,
+            //    ModifiedById = 1,
+            //    AnimalId = 1,
+            //    ShippingId = 1,
+            //    IsActive = true
+            //});
 
             builder.ToTable("Allotment.Allotment");
         }

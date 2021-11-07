@@ -41,20 +41,20 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.SlaughterhouseJoinAnimalModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
-            builder.HasData(new SlaughterhouseJoinAnimal()
-            {
-                Id = 1,
-                KillingNumber = 5,
-                KillingPrice = 50,
-                KillingComplate = true,
-                CreatedDate = DateTime.Now,
-                CreatedById = 1,
-                ModifiedById = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                SlaughterhouseId = 1,
-                AnimalId = 1
-            });
+            //builder.HasData(new SlaughterhouseJoinAnimal()
+            //{
+            //    Id = 1,
+            //    KillingNumber = 5,
+            //    KillingPrice = 50,
+            //    KillingComplate = true,
+            //    CreatedDate = DateTime.Now,
+            //    CreatedById = 1,
+            //    ModifiedById = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    SlaughterhouseId = 1,
+            //    AnimalId = 1
+            //});
 
             builder.ToTable("Slaughterhouse.JoinAnimal");
         }

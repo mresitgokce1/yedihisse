@@ -44,20 +44,20 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.SupplierModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
-            builder.HasData(new Supplier()
-            {
-                Id = 1,
-                SupplierName = "Ahmet Eren",
-                Description = "Tedarikçi açıklaması",
-                CreatedById = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedById = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                SupplierTypeId = 1,
-                AddressId = 1,
-                PhoneNumberId = 1
-            });
+            //builder.HasData(new Supplier()
+            //{
+            //    Id = 1,
+            //    SupplierName = "Ahmet Eren",
+            //    Description = "Tedarikçi açıklaması",
+            //    CreatedById = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedById = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    SupplierTypeId = 1,
+            //    AddressId = 1,
+            //    PhoneNumberId = 1
+            //});
 
             builder.ToTable("Supplier.Supplier");
         }

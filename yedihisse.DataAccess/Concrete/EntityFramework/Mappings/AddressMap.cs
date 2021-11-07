@@ -25,8 +25,8 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.ApartmentBlokName).IsRequired(true).HasMaxLength(200);
             builder.Property(a => a.FloorNo).IsRequired(true).HasMaxLength(200);
             builder.Property(a => a.FlatNo).IsRequired(true).HasMaxLength(200);
-            builder.Property(a => a.AddressDetail).IsRequired(true).HasMaxLength(300);
-            builder.Property(a => a.AddressDirection).IsRequired(true).HasMaxLength(300);
+            builder.Property(a => a.AddressDetail).IsRequired(false).HasMaxLength(300);
+            builder.Property(a => a.AddressDirection).IsRequired(false).HasMaxLength(300);
             builder.Property(a => a.CreatedDate).IsRequired(true);
             builder.Property(a => a.ModifiedDate).IsRequired(true);
             builder.Property(a => a.ModifiedById).IsRequired(true);
@@ -45,28 +45,28 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.AddressModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
-            builder.HasData(new Address
-            {
-                Id = 1,
-                AddressName = "Ev Adresi",
-                Country = "Türkiye",
-                City = "İstanbul",
-                Parish = "Körüklü Mahallesi",
-                Street = "Ateş Caddesi",
-                ApartmentName = "Fırın Apt",
-                ApartmentNo = "25",
-                ApartmentBlokName = "B Blok",
-                FloorNo = "5",
-                FlatNo = "3",
-                AddressDetail = "Köşem Kuruyemişin Yan Tarafı",
-                AddressDirection = null,
-                CreatedDate = DateTime.Now,
-                ModifiedDate = DateTime.Now,
-                CreatedById = 1,
-                ModifiedById = 1,
-                AddressTypeId = 1,
-                IsActive = true
-            });
+            //builder.HasData(new Address
+            //{
+            //    Id = 1,
+            //    AddressName = "Ev Adresi",
+            //    Country = "Türkiye",
+            //    City = "İstanbul",
+            //    Parish = "Körüklü Mahallesi",
+            //    Street = "Ateş Caddesi",
+            //    ApartmentName = "Fırın Apt",
+            //    ApartmentNo = "25",
+            //    ApartmentBlokName = "B Blok",
+            //    FloorNo = "5",
+            //    FlatNo = "3",
+            //    AddressDetail = "Köşem Kuruyemişin Yan Tarafı",
+            //    AddressDirection = null,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedDate = DateTime.Now,
+            //    CreatedById = 1,
+            //    ModifiedById = 1,
+            //    AddressTypeId = 1,
+            //    IsActive = true
+            //});
 
             builder.ToTable("Address.Address");
         }

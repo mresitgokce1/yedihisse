@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using yedihisse.DataAccess.Concrete.EntityFramework.Contexts;
 
 namespace yedihisse.API
 {
@@ -32,6 +34,10 @@ namespace yedihisse.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "yedihisse.API", Version = "v1" });
             });
+
+            services.AddDbContext<YediHisseContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"), b=>b.MigrationsAssembly("yedihisse.DataAccess")));
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

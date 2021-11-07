@@ -30,16 +30,16 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.AddressTypeModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
-            builder.HasData(new AddressType()
-            {
-                Id=1,
-                Name = "Ev Adresi",
-                CreatedDate = DateTime.Now,
-                ModifiedDate = DateTime.Now,
-                CreatedById = 1,
-                ModifiedById = 1,
-                IsActive = true
-            });
+            //builder.HasData(new AddressType()
+            //{
+            //    Id=1,
+            //    Name = "Ev Adresi",
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedDate = DateTime.Now,
+            //    CreatedById = 1,
+            //    ModifiedById = 1,
+            //    IsActive = true
+            //});
 
             builder.ToTable("Address.Type");
         }

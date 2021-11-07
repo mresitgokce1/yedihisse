@@ -38,18 +38,18 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.FirmManagerModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
-            builder.HasData(new FirmManager()
-            {
-                Id = 1,
-                Description = "Firma Yöneticisi",
-                CreatedById = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedById = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                FirmId = 1,
-                UserId = 1
-            });
+            //builder.HasData(new FirmManager()
+            //{
+            //    Id = 1,
+            //    Description = "Firma Yöneticisi",
+            //    CreatedById = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedById = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    FirmId = 1,
+            //    UserId = 1
+            //});
 
             builder.ToTable("Firm.Manager");
         }

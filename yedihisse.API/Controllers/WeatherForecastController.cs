@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using yedihisse.DataAccess.Concrete.EntityFramework.Contexts;
 
 namespace yedihisse.API.Controllers
 {
@@ -17,12 +18,14 @@ namespace yedihisse.API.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        private readonly YediHisseContext _yediHisseContext;
+        public WeatherForecastController(ILogger<WeatherForecastController> logger,YediHisseContext yediHissetContext)
         {
             _logger = logger;
+            _yediHisseContext = yediHissetContext;
         }
 
+      
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {

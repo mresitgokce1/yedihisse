@@ -38,18 +38,18 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.BranchManagerModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
-            builder.HasData(new BranchManager()
-            {
-                Id = 1,
-                Description = "Birim Sorumlusu",
-                CreatedById = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedById = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                BranchId = 1,
-                UserId = 1
-            });
+            //builder.HasData(new BranchManager()
+            //{
+            //    Id = 1,
+            //    Description = "Birim Sorumlusu",
+            //    CreatedById = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedById = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    BranchId = 1,
+            //    UserId = 1
+            //});
 
             builder.ToTable("Branch.Manager");
         }

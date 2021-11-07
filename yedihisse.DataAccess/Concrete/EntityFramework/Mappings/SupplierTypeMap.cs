@@ -30,16 +30,16 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.SupplierTypeModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
-            builder.HasData(new SupplierType()
-            {
-                Id = 1,
-                Name = "Büyükbaş Tedarikçisi",
-                CreatedById = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedById = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true
-            });
+            //builder.HasData(new SupplierType()
+            //{
+            //    Id = 1,
+            //    Name = "Büyükbaş Tedarikçisi",
+            //    CreatedById = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedById = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true
+            //});
 
             builder.ToTable("Supplier.Type");
         }

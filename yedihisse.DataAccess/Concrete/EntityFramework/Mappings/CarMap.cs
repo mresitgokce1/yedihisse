@@ -43,19 +43,19 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.CarModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
-            builder.HasData(new Car()
-            {
-                Id = 1,
-                CarName = "Araba Adı",
-                CarNumberPlate = "34-B23-11",
-                CreatedById = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedById = 1,
-                ModifiedDate = DateTime.Now,
-                CarTypeId = 1,
-                ShippingId = 1,
-                PhoneNumberId = 1
-            });
+            //builder.HasData(new Car()
+            //{
+            //    Id = 1,
+            //    CarName = "Araba Adı",
+            //    CarNumberPlate = "34-B23-11",
+            //    CreatedById = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedById = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    CarTypeId = 1,
+            //    ShippingId = 1,
+            //    PhoneNumberId = 1
+            //});
 
             builder.ToTable("Car.Car");
         }

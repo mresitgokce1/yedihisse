@@ -42,19 +42,19 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.BranchModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
-            builder.HasData(new Branch()
-            {
-                Id = 1,
-                BranchName = "Zeytinburnu Şubesi",
-                CreatedById = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedById = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                FirmId = 1,
-                AddressId = 1,
-                PhoneNumberId = 1
-            });
+            //builder.HasData(new Branch()
+            //{
+            //    Id = 1,
+            //    BranchName = "Zeytinburnu Şubesi",
+            //    CreatedById = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedById = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    FirmId = 1,
+            //    AddressId = 1,
+            //    PhoneNumberId = 1
+            //});
 
             builder.ToTable("Branch.Branch");
         }

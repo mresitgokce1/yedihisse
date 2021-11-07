@@ -30,16 +30,16 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.ApplicationStatusTypeModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
-            builder.HasData(new ApplicationStatusType()
-            {
-                Id = 1,
-                Name = "Ödeme Alındı",
-                CreatedById = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedById = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true
-            });
+            //builder.HasData(new ApplicationStatusType()
+            //{
+            //    Id = 1,
+            //    Name = "Ödeme Alındı",
+            //    CreatedById = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedById = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true
+            //});
 
             builder.ToTable("Application.StatusType");
         }

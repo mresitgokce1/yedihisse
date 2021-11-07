@@ -19,12 +19,5 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Contexts
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(YediHisseContext).Assembly);
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql(
-                connectionString:
-                @"Server=localhost;Port=5432;Database=yedihissedb;User Id=postgres;Password=dsa13542010;");
-        }
     }
 }

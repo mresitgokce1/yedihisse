@@ -31,17 +31,17 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.AnimalTypeModifiedByIds)
                 .HasForeignKey(a => a.UserModifiedByIdId);
 
-            builder.HasData(new AnimalType()
-            {
-                Id = 1,
-                Name = "Büyükbaş",
-                CanAllotment = true,
-                CreatedById = 1,
-                ModifiedById = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedDate = DateTime.Now,
-                IsActive = true
-            });
+            //builder.HasData(new AnimalType()
+            //{
+            //    Id = 1,
+            //    Name = "Büyükbaş",
+            //    CanAllotment = true,
+            //    CreatedById = 1,
+            //    ModifiedById = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true
+            //});
 
             builder.ToTable("Animal.Type");
         }
