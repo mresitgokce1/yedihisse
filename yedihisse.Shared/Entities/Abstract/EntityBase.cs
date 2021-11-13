@@ -12,7 +12,6 @@ namespace yedihisse.Shared.Entities.Abstract
         public virtual DateTime CreatedDate { get; set; } = DateTime.Now;
         public virtual DateTime ModifiedDate { get; set; } = DateTime.Now;
         public virtual bool IsActive { get; set; } = true;
-        public virtual int CreatedById { get; set; }
-        public virtual int ModifiedById { get; set; }
+        public virtual bool IsDeleted { get; set; } = false;
     }
 }

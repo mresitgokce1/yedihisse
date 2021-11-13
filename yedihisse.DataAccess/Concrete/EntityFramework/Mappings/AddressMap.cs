@@ -29,21 +29,19 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.AddressDirection).IsRequired(false).HasMaxLength(300);
             builder.Property(a => a.CreatedDate).IsRequired(true);
             builder.Property(a => a.ModifiedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedById).IsRequired(true);
-            builder.Property(a => a.CreatedById).IsRequired(true);
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
 
             builder.HasOne<AddressType>(a => a.AddressType)
                 .WithOne(a => a.Address)
                 .HasForeignKey<Address>(a => a.AddressTypeId);
 
-            builder.HasOne<User>(a => a.UserCreatedById)
-                .WithMany(u => u.AddressCreatedByIds)
-                .HasForeignKey(a => a.UserCreatedByIdId);
+            builder.HasOne<User>(a => a.CreatedByUser)
+                .WithMany(u => u.AddressCreatedByUserIds)
+                .HasForeignKey(a => a.CreatedByUserId);
 
-            builder.HasOne<User>(a => a.UserModifiedById)
-                .WithMany(u => u.AddressModifiedByIds)
-                .HasForeignKey(a => a.UserModifiedByIdId);
+            builder.HasOne<User>(a => a.ModifiedByUser)
+                .WithMany(u => u.AddressModifiedByUserIds)
+                .HasForeignKey(a => a.ModifiedByUserId);
 
             //builder.HasData(new Address
             //{

@@ -21,8 +21,6 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(s => s.KillingComplate).IsRequired(true).HasDefaultValue(false);
             builder.Property(s => s.CreatedDate).IsRequired(true);
             builder.Property(s => s.ModifiedDate).IsRequired(true);
-            builder.Property(s => s.ModifiedById).IsRequired(true);
-            builder.Property(s => s.CreatedById).IsRequired(true);
             builder.Property(s => s.IsActive).IsRequired(true).HasDefaultValue(true);
 
             builder.HasOne<Slaughterhouse>(s => s.Slaughterhouse)
@@ -33,13 +31,13 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithOne(a => a.SlaughterhouseJoinAnimal)
                 .HasForeignKey<SlaughterhouseJoinAnimal>(s => s.AnimalId);
 
-            builder.HasOne<User>(a => a.UserCreatedById)
-                .WithMany(u => u.SlaughterhouseJoinAnimalCreatedByIds)
-                .HasForeignKey(a => a.UserCreatedByIdId);
+            builder.HasOne<User>(a => a.CreatedByUser)
+                .WithMany(u => u.SlaughterhouseJoinAnimalCreatedByUserIds)
+                .HasForeignKey(a => a.CreatedByUserId);
 
-            builder.HasOne<User>(a => a.UserModifiedById)
-                .WithMany(u => u.SlaughterhouseJoinAnimalModifiedByIds)
-                .HasForeignKey(a => a.UserModifiedByIdId);
+            builder.HasOne<User>(a => a.ModifiedByUser)
+                .WithMany(u => u.SlaughterhouseJoinAnimalModifiedByUserIds)
+                .HasForeignKey(a => a.ModifiedByUserId);
 
             //builder.HasData(new SlaughterhouseJoinAnimal()
             //{

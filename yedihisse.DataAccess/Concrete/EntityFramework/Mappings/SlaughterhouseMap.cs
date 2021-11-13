@@ -19,8 +19,6 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(s => s.Description).HasMaxLength(250);
             builder.Property(s => s.CreatedDate).IsRequired(true);
             builder.Property(s => s.ModifiedDate).IsRequired(true);
-            builder.Property(s => s.ModifiedById).IsRequired(true);
-            builder.Property(s => s.CreatedById).IsRequired(true);
             builder.Property(s => s.IsActive).IsRequired(true).HasDefaultValue(true);
 
             builder.HasOne<Address>(b => b.Address)
@@ -31,13 +29,13 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(p => p.Slaughterhouses)
                 .HasForeignKey(s => s.PhoneNumberId);
 
-            builder.HasOne<User>(a => a.UserCreatedById)
-                .WithMany(u => u.SlaughterhouseCreatedByIds)
-                .HasForeignKey(a => a.UserCreatedByIdId);
+            builder.HasOne<User>(a => a.CreatedByUser)
+                .WithMany(u => u.SlaughterhouseCreatedByUserIds)
+                .HasForeignKey(a => a.CreatedByUserId);
 
-            builder.HasOne<User>(a => a.UserModifiedById)
-                .WithMany(u => u.SlaughterhouseModifiedByIds)
-                .HasForeignKey(a => a.UserModifiedByIdId);
+            builder.HasOne<User>(a => a.ModifiedByUser)
+                .WithMany(u => u.SlaughterhouseModifiedByUserIds)
+                .HasForeignKey(a => a.ModifiedByUserId);
 
             //builder.HasData(new Slaughterhouse()
             //{

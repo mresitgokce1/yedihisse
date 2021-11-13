@@ -30,104 +30,104 @@ namespace yedihisse.Entities.Concrete
         public ICollection<ShippingManager> ShippingManagers { get; set; }
         public ICollection<Application> Applications { get; set; }
 
-        public ICollection<Address> AddressCreatedByIds { get; set; }
-        public ICollection<Address> AddressModifiedByIds { get; set; }
+        public ICollection<Address> AddressCreatedByUserIds { get; set; }
+        public ICollection<Address> AddressModifiedByUserIds { get; set; }
 
-        public ICollection<AddressType> AddressTypeCreatedByIds { get; set; }
-        public ICollection<AddressType> AddressTypeModifiedByIds { get; set; }
+        public ICollection<AddressType> AddressTypeCreatedByUserIds { get; set; }
+        public ICollection<AddressType> AddressTypeModifiedByUserIds { get; set; }
 
-        public ICollection<Allotment> AllotmentCreatedByIds { get; set; }
-        public ICollection<Allotment> AllotmentModifiedByIds { get; set; }
+        public ICollection<Allotment> AllotmentCreatedByUserIds { get; set; }
+        public ICollection<Allotment> AllotmentModifiedByUserIds { get; set; }
 
-        public ICollection<Animal> AnimalCreatedByIds { get; set; }
-        public ICollection<Animal> AnimalModifiedByIds { get; set; }
+        public ICollection<Animal> AnimalCreatedByUserIds { get; set; }
+        public ICollection<Animal> AnimalModifiedByUserIds { get; set; }
 
-        public ICollection<AnimalType> AnimalTypeCreatedByIds { get; set; }
-        public ICollection<AnimalType> AnimalTypeModifiedByIds { get; set; }
+        public ICollection<AnimalType> AnimalTypeCreatedByUserIds { get; set; }
+        public ICollection<AnimalType> AnimalTypeModifiedByUserIds { get; set; }
 
-        public ICollection<Application> ApplicationCreatedByIds { get; set; }
-        public ICollection<Application> ApplicationModifiedByIds { get; set; }
+        public ICollection<Application> ApplicationCreatedByUserIds { get; set; }
+        public ICollection<Application> ApplicationModifiedByUserIds { get; set; }
 
-        public ICollection<ApplicationStatus> ApplicationStatusCreatedByIds { get; set; }
-        public ICollection<ApplicationStatus> ApplicationStatusModifiedByIds { get; set; }
+        public ICollection<ApplicationStatus> ApplicationStatusCreatedByUserIds { get; set; }
+        public ICollection<ApplicationStatus> ApplicationStatusModifiedByUserIds { get; set; }
 
-        public ICollection<ApplicationStatusType> ApplicationStatusTypeCreatedByIds { get; set; }
-        public ICollection<ApplicationStatusType> ApplicationStatusTypeModifiedByIds { get; set; }
+        public ICollection<ApplicationStatusType> ApplicationStatusTypeCreatedByUserIds { get; set; }
+        public ICollection<ApplicationStatusType> ApplicationStatusTypeModifiedByUserIds { get; set; }
 
-        public ICollection<Branch> BranchCreatedByIds { get; set; }
-        public ICollection<Branch> BranchModifiedByIds { get; set; }
+        public ICollection<Branch> BranchCreatedByUserIds { get; set; }
+        public ICollection<Branch> BranchModifiedByUserIds { get; set; }
 
-        public ICollection<BranchManager> BranchManagerCreatedByIds { get; set; }
-        public ICollection<BranchManager> BranchManagerModifiedByIds { get; set; }
+        public ICollection<BranchManager> BranchManagerCreatedByUserIds { get; set; }
+        public ICollection<BranchManager> BranchManagerModifiedByUserIds { get; set; }
 
-        public ICollection<Car> CarCreatedByIds { get; set; }
-        public ICollection<Car> CarModifiedByIds { get; set; }
+        public ICollection<Car> CarCreatedByUserIds { get; set; }
+        public ICollection<Car> CarModifiedByUserIds { get; set; }
 
-        public ICollection<CarType> CarTypeCreatedByIds { get; set; }
-        public ICollection<CarType> CarTypeModifiedByIds { get; set; }
+        public ICollection<CarType> CarTypeCreatedByUserIds { get; set; }
+        public ICollection<CarType> CarTypeModifiedByUserIds { get; set; }
 
-        public ICollection<Company> CompanyCreatedByIds { get; set; }
-        public ICollection<Company> CompanyModifiedByIds { get; set; }
+        public ICollection<Company> CompanyCreatedByUserIds { get; set; }
+        public ICollection<Company> CompanyModifiedByUserIds { get; set; }
 
-        public ICollection<CompanyManager> CompanyManagerCreatedByIds { get; set; }
-        public ICollection<CompanyManager> CompanyManagerModifiedByIds { get; set; }
+        public ICollection<CompanyManager> CompanyManagerCreatedByUserIds { get; set; }
+        public ICollection<CompanyManager> CompanyManagerModifiedByUserIds { get; set; }
 
-        public ICollection<Firm> FirmCreatedByIds { get; set; }
-        public ICollection<Firm> FirmModifiedByIds { get; set; }
+        public ICollection<Firm> FirmCreatedByUserIds { get; set; }
+        public ICollection<Firm> FirmModifiedByUserIds { get; set; }
 
-        public ICollection<FirmManager> FirmManagerCreatedByIds { get; set; }
-        public ICollection<FirmManager> FirmManagerModifiedByIds { get; set; }
+        public ICollection<FirmManager> FirmManagerCreatedByUserIds { get; set; }
+        public ICollection<FirmManager> FirmManagerModifiedByUserIds { get; set; }
 
-        public ICollection<PhoneNumber> PhoneNumberCreatedByIds { get; set; }
-        public ICollection<PhoneNumber> PhoneNumberModifiedByIds { get; set; }
+        public ICollection<PhoneNumber> PhoneNumberCreatedByUserIds { get; set; }
+        public ICollection<PhoneNumber> PhoneNumberModifiedByUserIds { get; set; }
 
-        public ICollection<PhoneNumberType> PhoneNumberTypeCreatedByIds { get; set; }
-        public ICollection<PhoneNumberType> PhoneNumberTypeModifiedByIds { get; set; }
+        public ICollection<PhoneNumberType> PhoneNumberTypeCreatedByUserIds { get; set; }
+        public ICollection<PhoneNumberType> PhoneNumberTypeModifiedByUserIds { get; set; }
 
-        public ICollection<Shipping> ShippingCreatedByIds { get; set; }
-        public ICollection<Shipping> ShippingModifiedByIds { get; set; }
+        public ICollection<Shipping> ShippingCreatedByUserIds { get; set; }
+        public ICollection<Shipping> ShippingModifiedByUserIds { get; set; }
 
-        public ICollection<ShippingManager> ShippingManagerCreatedByIds { get; set; }
-        public ICollection<ShippingManager> ShippingManagerModifiedByIds { get; set; }
+        public ICollection<ShippingManager> ShippingManagerCreatedByUserIds { get; set; }
+        public ICollection<ShippingManager> ShippingManagerModifiedByUserIds { get; set; }
 
-        public ICollection<Slaughterhouse> SlaughterhouseCreatedByIds { get; set; }
-        public ICollection<Slaughterhouse> SlaughterhouseModifiedByIds { get; set; }
+        public ICollection<Slaughterhouse> SlaughterhouseCreatedByUserIds { get; set; }
+        public ICollection<Slaughterhouse> SlaughterhouseModifiedByUserIds { get; set; }
 
-        public ICollection<SlaughterhouseJoinAnimal> SlaughterhouseJoinAnimalCreatedByIds { get; set; }
-        public ICollection<SlaughterhouseJoinAnimal> SlaughterhouseJoinAnimalModifiedByIds { get; set; }
+        public ICollection<SlaughterhouseJoinAnimal> SlaughterhouseJoinAnimalCreatedByUserIds { get; set; }
+        public ICollection<SlaughterhouseJoinAnimal> SlaughterhouseJoinAnimalModifiedByUserIds { get; set; }
 
-        public ICollection<SlaughterhouseJoinType> SlaughterhouseJoinTypeCreatedByIds { get; set; }
-        public ICollection<SlaughterhouseJoinType> SlaughterhouseJoinTypeModifiedByIds { get; set; }
+        public ICollection<SlaughterhouseJoinType> SlaughterhouseJoinTypeCreatedByUserIds { get; set; }
+        public ICollection<SlaughterhouseJoinType> SlaughterhouseJoinTypeModifiedByUserIds { get; set; }
 
-        public ICollection<SlaughterhouseManager> SlaughterhouseManagerCreatedByIds { get; set; }
-        public ICollection<SlaughterhouseManager> SlaughterhouseManagerModifiedByIds { get; set; }
+        public ICollection<SlaughterhouseManager> SlaughterhouseManagerCreatedByUserIds { get; set; }
+        public ICollection<SlaughterhouseManager> SlaughterhouseManagerModifiedByUserIds { get; set; }
 
-        public ICollection<SlaughterhouseType> SlaughterhouseTypeCreatedByIds { get; set; }
-        public ICollection<SlaughterhouseType> SlaughterhouseTypeModifiedByIds { get; set; }
+        public ICollection<SlaughterhouseType> SlaughterhouseTypeCreatedByUserIds { get; set; }
+        public ICollection<SlaughterhouseType> SlaughterhouseTypeModifiedByUserIds { get; set; }
 
-        public ICollection<Supplier> SupplierCreatedByIds { get; set; }
-        public ICollection<Supplier> SupplierModifiedByIds { get; set; }
+        public ICollection<Supplier> SupplierCreatedByUserIds { get; set; }
+        public ICollection<Supplier> SupplierModifiedByUserIds { get; set; }
 
-        public ICollection<SupplierManager> SupplierManagerCreatedByIds { get; set; }
-        public ICollection<SupplierManager> SupplierManagerModifiedByIds { get; set; }
+        public ICollection<SupplierManager> SupplierManagerCreatedByUserIds { get; set; }
+        public ICollection<SupplierManager> SupplierManagerModifiedByUserIds { get; set; }
 
-        public ICollection<SupplierType> SupplierTypeCreatedByIds { get; set; }
-        public ICollection<SupplierType> SupplierTypeModifiedByIds { get; set; }
+        public ICollection<SupplierType> SupplierTypeCreatedByUserIds { get; set; }
+        public ICollection<SupplierType> SupplierTypeModifiedByUserIds { get; set; }
 
-        public ICollection<UserJoinType> UserJoinTypeCreatedByIds { get; set; }
-        public ICollection<UserJoinType> UserJoinTypeModifiedByIds { get; set; }
+        public ICollection<UserJoinType> UserJoinTypeCreatedByUserIds { get; set; }
+        public ICollection<UserJoinType> UserJoinTypeModifiedByUserIds { get; set; }
 
-        public ICollection<UserType> UserTypeCreatedByIds { get; set; }
-        public ICollection<UserType> UserTypeModifiedByIds { get; set; }
+        public ICollection<UserType> UserTypeCreatedByUserIds { get; set; }
+        public ICollection<UserType> UserTypeModifiedByUserIds { get; set; }
 
-        public ICollection<User> UserCreatedByIds { get; set; }
-        public ICollection<User> UserModifiedByIds { get; set; }
+        public ICollection<User> UserCreatedByUserIds { get; set; }
+        public ICollection<User> UserModifiedByUserIds { get; set; }
 
-        public int UserCreatedByIdId { get; set; }
-        public User UserCreatedById { get; set; }
+        public int CreatedByUserId { get; set; }
+        public User CreatedByUser { get; set; }
 
-        public int UserModifiedByIdId { get; set; }
-        public User UserModifiedById { get; set; }
+        public int ModifiedByUserId { get; set; }
+        public User ModifiedByUser { get; set; }
 
     }
 }

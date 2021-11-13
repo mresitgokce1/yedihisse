@@ -18,8 +18,6 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(f => f.Description).IsRequired(false).HasMaxLength(50);
             builder.Property(f => f.CreatedDate).IsRequired(true);
             builder.Property(f => f.ModifiedDate).IsRequired(true);
-            builder.Property(f => f.ModifiedById).IsRequired(true);
-            builder.Property(f => f.CreatedById).IsRequired(true);
             builder.Property(f => f.IsActive).IsRequired(true).HasDefaultValue(true);
 
             builder.HasOne<User>(f => f.User)
@@ -30,13 +28,13 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(f => f.FirmManagers)
                 .HasForeignKey(f => f.FirmId);
 
-            builder.HasOne<User>(a => a.UserCreatedById)
-                .WithMany(u => u.FirmManagerCreatedByIds)
-                .HasForeignKey(a => a.UserCreatedByIdId);
+            builder.HasOne<User>(a => a.CreatedByUser)
+                .WithMany(u => u.FirmManagerCreatedByUserIds)
+                .HasForeignKey(a => a.CreatedByUserId);
 
-            builder.HasOne<User>(a => a.UserModifiedById)
-                .WithMany(u => u.FirmManagerModifiedByIds)
-                .HasForeignKey(a => a.UserModifiedByIdId);
+            builder.HasOne<User>(a => a.ModifiedByUser)
+                .WithMany(u => u.FirmManagerModifiedByUserIds)
+                .HasForeignKey(a => a.ModifiedByUserId);
 
             //builder.HasData(new FirmManager()
             //{

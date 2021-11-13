@@ -18,17 +18,15 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(s => s.Name).IsRequired(true).HasMaxLength(50);
             builder.Property(s => s.CreatedDate).IsRequired(true);
             builder.Property(s => s.ModifiedDate).IsRequired(true);
-            builder.Property(s => s.ModifiedById).IsRequired(true);
-            builder.Property(s => s.CreatedById).IsRequired(true);
             builder.Property(s => s.IsActive).IsRequired(true).HasDefaultValue(true);
 
-            builder.HasOne<User>(a => a.UserCreatedById)
-                .WithMany(u => u.SlaughterhouseTypeCreatedByIds)
-                .HasForeignKey(a => a.UserCreatedByIdId);
+            builder.HasOne<User>(a => a.CreatedByUser)
+                .WithMany(u => u.SlaughterhouseTypeCreatedByUserIds)
+                .HasForeignKey(a => a.CreatedByUserId);
 
-            builder.HasOne<User>(a => a.UserModifiedById)
-                .WithMany(u => u.SlaughterhouseTypeModifiedByIds)
-                .HasForeignKey(a => a.UserModifiedByIdId);
+            builder.HasOne<User>(a => a.ModifiedByUser)
+                .WithMany(u => u.SlaughterhouseTypeModifiedByUserIds)
+                .HasForeignKey(a => a.ModifiedByUserId);
 
             //builder.HasData(new SlaughterhouseType()
             //{

@@ -19,21 +19,19 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(p => p.Number).IsRequired(true).HasMaxLength(25);
             builder.Property(p => p.CreatedDate).IsRequired(true);
             builder.Property(p => p.ModifiedDate).IsRequired(true);
-            builder.Property(p => p.ModifiedById).IsRequired(true);
-            builder.Property(p => p.CreatedById).IsRequired(true);
             builder.Property(p => p.IsActive).IsRequired(true).HasDefaultValue(true);
 
             builder.HasOne<PhoneNumberType>(p => p.PhoneNumberType)
                 .WithOne(p => p.PhoneNumber)
                 .HasForeignKey<PhoneNumber>(p => p.PhoneNumberTypeId);
 
-            builder.HasOne<User>(a => a.UserCreatedById)
-                .WithMany(u => u.PhoneNumberCreatedByIds)
-                .HasForeignKey(a => a.UserCreatedByIdId);
+            builder.HasOne<User>(a => a.CreatedByUser)
+                .WithMany(u => u.PhoneNumberCreatedByUserIds)
+                .HasForeignKey(a => a.CreatedByUserId);
 
-            builder.HasOne<User>(a => a.UserModifiedById)
-                .WithMany(u => u.PhoneNumberModifiedByIds)
-                .HasForeignKey(a => a.UserModifiedByIdId);
+            builder.HasOne<User>(a => a.ModifiedByUser)
+                .WithMany(u => u.PhoneNumberModifiedByUserIds)
+                .HasForeignKey(a => a.ModifiedByUserId);
 
             //builder.HasData(new PhoneNumber()
             //{

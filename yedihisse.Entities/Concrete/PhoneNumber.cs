@@ -23,10 +23,10 @@ namespace yedihisse.Entities.Concrete
         public ICollection<User> Users { get; set; }
         public ICollection<Car> Cars { get; set; }
 
-        public int UserCreatedByIdId { get; set; }
-        public User UserCreatedById { get; set; }
+        public int CreatedByUserId { get; set; }
+        public User CreatedByUser { get; set; }
 
-        public int UserModifiedByIdId { get; set; }
-        public User UserModifiedById { get; set; }
+        public int ModifiedByUserId { get; set; }
+        public User ModifiedByUser { get; set; }
     }
 }

@@ -24,8 +24,6 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.PriceReceiptNumber).IsRequired(true).HasMaxLength(100);
             builder.Property(a => a.CreatedDate).IsRequired(true);
             builder.Property(a => a.ModifiedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedById).IsRequired(true);
-            builder.Property(a => a.CreatedById).IsRequired(true);
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
 
             builder.HasOne<Animal>(a => a.Animal)
@@ -36,13 +34,13 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(s => s.Allotments)
                 .HasForeignKey(a => a.ShippingId);
 
-            builder.HasOne<User>(a => a.UserCreatedById)
-                .WithMany(u => u.AllotmentCreatedByIds)
-                .HasForeignKey(a => a.UserCreatedByIdId);
+            builder.HasOne<User>(a => a.CreatedByUser)
+                .WithMany(u => u.AllotmentCreatedByUserIds)
+                .HasForeignKey(a => a.CreatedByUserId);
 
-            builder.HasOne<User>(a => a.UserModifiedById)
-                .WithMany(u => u.AllotmentModifiedByIds)
-                .HasForeignKey(a => a.UserModifiedByIdId);
+            builder.HasOne<User>(a => a.ModifiedByUser)
+                .WithMany(u => u.AllotmentModifiedByUserIds)
+                .HasForeignKey(a => a.ModifiedByUserId);
 
             //builder.HasData(new Allotment()
             //{

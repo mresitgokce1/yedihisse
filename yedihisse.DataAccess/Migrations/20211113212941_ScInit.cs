@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace yedihisse.DataAccess.Migrations
 {
-    public partial class InitialCreate2 : Migration
+    public partial class ScInit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,13 +18,12 @@ namespace yedihisse.DataAccess.Migrations
                     PhoneNumberId = table.Column<int>(type: "integer", nullable: false),
                     FirmId = table.Column<int>(type: "integer", nullable: false),
                     AddressId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -40,13 +39,12 @@ namespace yedihisse.DataAccess.Migrations
                     CompanyName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     PhoneNumberId = table.Column<int>(type: "integer", nullable: false),
                     AddressId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -63,13 +61,12 @@ namespace yedihisse.DataAccess.Migrations
                     PhoneNumberId = table.Column<int>(type: "integer", nullable: false),
                     CompanyId = table.Column<int>(type: "integer", nullable: false),
                     AddressId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -92,13 +89,12 @@ namespace yedihisse.DataAccess.Migrations
                     Description = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     PhoneNumberId = table.Column<int>(type: "integer", nullable: false),
                     AddressId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -116,13 +112,12 @@ namespace yedihisse.DataAccess.Migrations
                     PhoneNumberId = table.Column<int>(type: "integer", nullable: false),
                     AddressId = table.Column<int>(type: "integer", nullable: false),
                     SupplierTypeId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -143,26 +138,25 @@ namespace yedihisse.DataAccess.Migrations
                     PasswordHash = table.Column<byte[]>(type: "BYTEA", nullable: false),
                     AddressId = table.Column<int>(type: "integer", nullable: false),
                     PhoneNumberId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User.User", x => x.UserId);
                     table.ForeignKey(
-                        name: "FK_User.User_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_User.User_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_User.User_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
+                        name: "FK_User.User_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -175,26 +169,25 @@ namespace yedihisse.DataAccess.Migrations
                     TypeId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Address.Type", x => x.TypeId);
                     table.ForeignKey(
-                        name: "FK_Address.Type_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_Address.Type_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Address.Type_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
+                        name: "FK_Address.Type_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -208,26 +201,25 @@ namespace yedihisse.DataAccess.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     CanAllotment = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Animal.Type", x => x.TypeId);
                     table.ForeignKey(
-                        name: "FK_Animal.Type_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_Animal.Type_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Animal.Type_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
+                        name: "FK_Animal.Type_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -240,26 +232,25 @@ namespace yedihisse.DataAccess.Migrations
                     StatusTypeId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Application.StatusType", x => x.StatusTypeId);
                     table.ForeignKey(
-                        name: "FK_Application.StatusType_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_Application.StatusType_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Application.StatusType_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
+                        name: "FK_Application.StatusType_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -274,13 +265,12 @@ namespace yedihisse.DataAccess.Migrations
                     Description = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     BranchId = table.Column<int>(type: "integer", nullable: false),
                     UserId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -292,20 +282,20 @@ namespace yedihisse.DataAccess.Migrations
                         principalColumn: "BranchId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Branch.Manager_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_Branch.Manager_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
+                        principalTable: "User.User",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Branch.Manager_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Branch.Manager_User.User_UserId",
                         column: x => x.UserId,
-                        principalTable: "User.User",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Branch.Manager_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -319,26 +309,25 @@ namespace yedihisse.DataAccess.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Car.Type", x => x.TypeId);
                     table.ForeignKey(
-                        name: "FK_Car.Type_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_Car.Type_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Car.Type_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
+                        name: "FK_Car.Type_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -353,13 +342,12 @@ namespace yedihisse.DataAccess.Migrations
                     Description = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: true),
                     CompanyId = table.Column<int>(type: "integer", nullable: false),
                     UserId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -371,20 +359,20 @@ namespace yedihisse.DataAccess.Migrations
                         principalColumn: "CompanyId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Company.Manager_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_Company.Manager_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
+                        principalTable: "User.User",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Company.Manager_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Company.Manager_User.User_UserId",
                         column: x => x.UserId,
-                        principalTable: "User.User",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Company.Manager_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -399,13 +387,12 @@ namespace yedihisse.DataAccess.Migrations
                     Description = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     FirmId = table.Column<int>(type: "integer", nullable: false),
                     UserId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -417,20 +404,20 @@ namespace yedihisse.DataAccess.Migrations
                         principalColumn: "FirmId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Firm.Manager_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_Firm.Manager_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
+                        principalTable: "User.User",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Firm.Manager_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Firm.Manager_User.User_UserId",
                         column: x => x.UserId,
-                        principalTable: "User.User",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Firm.Manager_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -443,26 +430,25 @@ namespace yedihisse.DataAccess.Migrations
                     TypeId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PhoneNumber.Type", x => x.TypeId);
                     table.ForeignKey(
-                        name: "FK_PhoneNumber.Type_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_PhoneNumber.Type_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PhoneNumber.Type_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
+                        name: "FK_PhoneNumber.Type_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -476,26 +462,25 @@ namespace yedihisse.DataAccess.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Shipping.Shipping", x => x.ShippingId);
                     table.ForeignKey(
-                        name: "FK_Shipping.Shipping_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_Shipping.Shipping_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Shipping.Shipping_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
+                        name: "FK_Shipping.Shipping_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -510,13 +495,12 @@ namespace yedihisse.DataAccess.Migrations
                     Description = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     SlaughterhouseId = table.Column<int>(type: "integer", nullable: false),
                     UserId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -528,20 +512,20 @@ namespace yedihisse.DataAccess.Migrations
                         principalColumn: "SlaughterhouseId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Slaughterhouse.Manager_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_Slaughterhouse.Manager_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
+                        principalTable: "User.User",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Slaughterhouse.Manager_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Slaughterhouse.Manager_User.User_UserId",
                         column: x => x.UserId,
-                        principalTable: "User.User",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Slaughterhouse.Manager_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -554,26 +538,25 @@ namespace yedihisse.DataAccess.Migrations
                     TypeId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Slaughterhouse.Type", x => x.TypeId);
                     table.ForeignKey(
-                        name: "FK_Slaughterhouse.Type_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_Slaughterhouse.Type_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Slaughterhouse.Type_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
+                        name: "FK_Slaughterhouse.Type_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -588,13 +571,12 @@ namespace yedihisse.DataAccess.Migrations
                     Description = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     SupplierId = table.Column<int>(type: "integer", nullable: false),
                     UserId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -606,20 +588,20 @@ namespace yedihisse.DataAccess.Migrations
                         principalColumn: "SupplierId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Supplier.Manager_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_Supplier.Manager_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
+                        principalTable: "User.User",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Supplier.Manager_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Supplier.Manager_User.User_UserId",
                         column: x => x.UserId,
-                        principalTable: "User.User",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Supplier.Manager_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -632,26 +614,25 @@ namespace yedihisse.DataAccess.Migrations
                     TypeId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Supplier.Type", x => x.TypeId);
                     table.ForeignKey(
-                        name: "FK_Supplier.Type_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_Supplier.Type_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Supplier.Type_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
+                        name: "FK_Supplier.Type_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -664,26 +645,25 @@ namespace yedihisse.DataAccess.Migrations
                     TypeId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User.Type", x => x.TypeId);
                     table.ForeignKey(
-                        name: "FK_User.Type_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_User.Type_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_User.Type_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
+                        name: "FK_User.Type_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -708,13 +688,12 @@ namespace yedihisse.DataAccess.Migrations
                     AddressDetail = table.Column<string>(type: "character varying(300)", maxLength: 300, nullable: true),
                     AddressDirection = table.Column<string>(type: "character varying(300)", maxLength: 300, nullable: true),
                     AddressTypeId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -726,14 +705,14 @@ namespace yedihisse.DataAccess.Migrations
                         principalColumn: "TypeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Address.Address_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_Address.Address_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Address.Address_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
+                        name: "FK_Address.Address_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -753,13 +732,12 @@ namespace yedihisse.DataAccess.Migrations
                     EarCode = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     BaitCode = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     AnimalTypeId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -771,14 +749,14 @@ namespace yedihisse.DataAccess.Migrations
                         principalColumn: "TypeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Animal.Animal_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_Animal.Animal_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Animal.Animal_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
+                        name: "FK_Animal.Animal_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -793,13 +771,12 @@ namespace yedihisse.DataAccess.Migrations
                     Description = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     Number = table.Column<string>(type: "character varying(25)", maxLength: 25, nullable: false),
                     PhoneNumberTypeId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -811,14 +788,14 @@ namespace yedihisse.DataAccess.Migrations
                         principalColumn: "TypeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PhoneNumber.PhoneNumber_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_PhoneNumber.PhoneNumber_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PhoneNumber.PhoneNumber_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
+                        name: "FK_PhoneNumber.PhoneNumber_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -832,13 +809,12 @@ namespace yedihisse.DataAccess.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserId = table.Column<int>(type: "integer", nullable: false),
                     ShippingId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -850,20 +826,20 @@ namespace yedihisse.DataAccess.Migrations
                         principalColumn: "ShippingId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Shipping.Manager_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_Shipping.Manager_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
+                        principalTable: "User.User",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Shipping.Manager_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Shipping.Manager_User.User_UserId",
                         column: x => x.UserId,
-                        principalTable: "User.User",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Shipping.Manager_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -880,13 +856,12 @@ namespace yedihisse.DataAccess.Migrations
                     ShreddingCapacity = table.Column<int>(type: "integer", nullable: false, defaultValue: 0),
                     SlaughterhouseId = table.Column<int>(type: "integer", nullable: false),
                     SlaughterhouseTypeId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -904,14 +879,14 @@ namespace yedihisse.DataAccess.Migrations
                         principalColumn: "TypeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Slaughterhouse.JoinType_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_Slaughterhouse.JoinType_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Slaughterhouse.JoinType_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
+                        name: "FK_Slaughterhouse.JoinType_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -925,13 +900,12 @@ namespace yedihisse.DataAccess.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserId = table.Column<int>(type: "integer", nullable: false),
                     UserTypeId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -943,20 +917,20 @@ namespace yedihisse.DataAccess.Migrations
                         principalColumn: "TypeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_User.JoinType_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_User.JoinType_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
+                        principalTable: "User.User",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_User.JoinType_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_User.JoinType_User.User_UserId",
                         column: x => x.UserId,
-                        principalTable: "User.User",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_User.JoinType_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -977,13 +951,12 @@ namespace yedihisse.DataAccess.Migrations
                     PriceReceiptNumber = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     AnimalId = table.Column<int>(type: "integer", nullable: false),
                     ShippingId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1001,14 +974,14 @@ namespace yedihisse.DataAccess.Migrations
                         principalColumn: "ShippingId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Allotment.Allotment_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_Allotment.Allotment_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Allotment.Allotment_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
+                        name: "FK_Allotment.Allotment_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -1025,13 +998,12 @@ namespace yedihisse.DataAccess.Migrations
                     KillingComplate = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     SlaughterhouseId = table.Column<int>(type: "integer", nullable: false),
                     AnimalId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1049,14 +1021,14 @@ namespace yedihisse.DataAccess.Migrations
                         principalColumn: "SlaughterhouseId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Slaughterhouse.JoinAnimal_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_Slaughterhouse.JoinAnimal_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Slaughterhouse.JoinAnimal_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
+                        name: "FK_Slaughterhouse.JoinAnimal_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -1068,18 +1040,17 @@ namespace yedihisse.DataAccess.Migrations
                 {
                     CarId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CarName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    CarName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     CarNumberPlate = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     CarTypeId = table.Column<int>(type: "integer", nullable: false),
                     PhoneNumberId = table.Column<int>(type: "integer", nullable: false),
                     ShippingId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1103,14 +1074,14 @@ namespace yedihisse.DataAccess.Migrations
                         principalColumn: "ShippingId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Car.Car_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_Car.Car_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Car.Car_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
+                        name: "FK_Car.Car_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -1127,13 +1098,12 @@ namespace yedihisse.DataAccess.Migrations
                     BranchId = table.Column<int>(type: "integer", nullable: false),
                     AllotmentId = table.Column<int>(type: "integer", nullable: false),
                     AnimalTypeId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1157,20 +1127,20 @@ namespace yedihisse.DataAccess.Migrations
                         principalColumn: "BranchId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Application.Application_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_Application.Application_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
+                        principalTable: "User.User",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Application.Application_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Application.Application_User.User_UserId",
                         column: x => x.UserId,
-                        principalTable: "User.User",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Application.Application_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -1184,13 +1154,12 @@ namespace yedihisse.DataAccess.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ApplicationId = table.Column<int>(type: "integer", nullable: false),
                     ApplicationStatusTypeId = table.Column<int>(type: "integer", nullable: false),
-                    UserCreatedByIdId = table.Column<int>(type: "integer", nullable: false),
-                    UserModifiedByIdId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "integer", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    CreatedById = table.Column<int>(type: "integer", nullable: false),
-                    ModifiedById = table.Column<int>(type: "integer", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1208,14 +1177,14 @@ namespace yedihisse.DataAccess.Migrations
                         principalColumn: "StatusTypeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Application.Status_User.User_UserCreatedByIdId",
-                        column: x => x.UserCreatedByIdId,
+                        name: "FK_Application.Status_User.User_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Application.Status_User.User_UserModifiedByIdId",
-                        column: x => x.UserModifiedByIdId,
+                        name: "FK_Application.Status_User.User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
                         principalTable: "User.User",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -1228,24 +1197,24 @@ namespace yedihisse.DataAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Address.Address_UserCreatedByIdId",
+                name: "IX_Address.Address_CreatedByUserId",
                 table: "Address.Address",
-                column: "UserCreatedByIdId");
+                column: "CreatedByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Address.Address_UserModifiedByIdId",
+                name: "IX_Address.Address_ModifiedByUserId",
                 table: "Address.Address",
-                column: "UserModifiedByIdId");
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Address.Type_UserCreatedByIdId",
+                name: "IX_Address.Type_CreatedByUserId",
                 table: "Address.Type",
-                column: "UserCreatedByIdId");
+                column: "CreatedByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Address.Type_UserModifiedByIdId",
+                name: "IX_Address.Type_ModifiedByUserId",
                 table: "Address.Type",
-                column: "UserModifiedByIdId");
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Allotment.Allotment_AnimalId",
@@ -1254,19 +1223,19 @@ namespace yedihisse.DataAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Allotment.Allotment_CreatedByUserId",
+                table: "Allotment.Allotment",
+                column: "CreatedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Allotment.Allotment_ModifiedByUserId",
+                table: "Allotment.Allotment",
+                column: "ModifiedByUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Allotment.Allotment_ShippingId",
                 table: "Allotment.Allotment",
                 column: "ShippingId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Allotment.Allotment_UserCreatedByIdId",
-                table: "Allotment.Allotment",
-                column: "UserCreatedByIdId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Allotment.Allotment_UserModifiedByIdId",
-                table: "Allotment.Allotment",
-                column: "UserModifiedByIdId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Animal.Animal_AnimalTypeId",
@@ -1274,24 +1243,24 @@ namespace yedihisse.DataAccess.Migrations
                 column: "AnimalTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Animal.Animal_UserCreatedByIdId",
+                name: "IX_Animal.Animal_CreatedByUserId",
                 table: "Animal.Animal",
-                column: "UserCreatedByIdId");
+                column: "CreatedByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Animal.Animal_UserModifiedByIdId",
+                name: "IX_Animal.Animal_ModifiedByUserId",
                 table: "Animal.Animal",
-                column: "UserModifiedByIdId");
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Animal.Type_UserCreatedByIdId",
+                name: "IX_Animal.Type_CreatedByUserId",
                 table: "Animal.Type",
-                column: "UserCreatedByIdId");
+                column: "CreatedByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Animal.Type_UserModifiedByIdId",
+                name: "IX_Animal.Type_ModifiedByUserId",
                 table: "Animal.Type",
-                column: "UserModifiedByIdId");
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Application.Application_AllotmentId",
@@ -1309,19 +1278,19 @@ namespace yedihisse.DataAccess.Migrations
                 column: "BranchId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Application.Application_UserCreatedByIdId",
+                name: "IX_Application.Application_CreatedByUserId",
                 table: "Application.Application",
-                column: "UserCreatedByIdId");
+                column: "CreatedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Application.Application_ModifiedByUserId",
+                table: "Application.Application",
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Application.Application_UserId",
                 table: "Application.Application",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Application.Application_UserModifiedByIdId",
-                table: "Application.Application",
-                column: "UserModifiedByIdId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Application.Status_ApplicationId",
@@ -1334,24 +1303,24 @@ namespace yedihisse.DataAccess.Migrations
                 column: "ApplicationStatusTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Application.Status_UserCreatedByIdId",
+                name: "IX_Application.Status_CreatedByUserId",
                 table: "Application.Status",
-                column: "UserCreatedByIdId");
+                column: "CreatedByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Application.Status_UserModifiedByIdId",
+                name: "IX_Application.Status_ModifiedByUserId",
                 table: "Application.Status",
-                column: "UserModifiedByIdId");
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Application.StatusType_UserCreatedByIdId",
+                name: "IX_Application.StatusType_CreatedByUserId",
                 table: "Application.StatusType",
-                column: "UserCreatedByIdId");
+                column: "CreatedByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Application.StatusType_UserModifiedByIdId",
+                name: "IX_Application.StatusType_ModifiedByUserId",
                 table: "Application.StatusType",
-                column: "UserModifiedByIdId");
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Branch.Branch_AddressId",
@@ -1360,9 +1329,19 @@ namespace yedihisse.DataAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Branch.Branch_CreatedByUserId",
+                table: "Branch.Branch",
+                column: "CreatedByUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Branch.Branch_FirmId",
                 table: "Branch.Branch",
                 column: "FirmId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Branch.Branch_ModifiedByUserId",
+                table: "Branch.Branch",
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Branch.Branch_PhoneNumberId",
@@ -1370,24 +1349,19 @@ namespace yedihisse.DataAccess.Migrations
                 column: "PhoneNumberId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Branch.Branch_UserCreatedByIdId",
-                table: "Branch.Branch",
-                column: "UserCreatedByIdId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Branch.Branch_UserModifiedByIdId",
-                table: "Branch.Branch",
-                column: "UserModifiedByIdId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Branch.Manager_BranchId",
                 table: "Branch.Manager",
                 column: "BranchId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Branch.Manager_UserCreatedByIdId",
+                name: "IX_Branch.Manager_CreatedByUserId",
                 table: "Branch.Manager",
-                column: "UserCreatedByIdId");
+                column: "CreatedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Branch.Manager_ModifiedByUserId",
+                table: "Branch.Manager",
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Branch.Manager_UserId",
@@ -1395,14 +1369,19 @@ namespace yedihisse.DataAccess.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Branch.Manager_UserModifiedByIdId",
-                table: "Branch.Manager",
-                column: "UserModifiedByIdId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Car.Car_CarTypeId",
                 table: "Car.Car",
                 column: "CarTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Car.Car_CreatedByUserId",
+                table: "Car.Car",
+                column: "CreatedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Car.Car_ModifiedByUserId",
+                table: "Car.Car",
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Car.Car_PhoneNumberId",
@@ -1416,24 +1395,14 @@ namespace yedihisse.DataAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Car.Car_UserCreatedByIdId",
-                table: "Car.Car",
-                column: "UserCreatedByIdId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Car.Car_UserModifiedByIdId",
-                table: "Car.Car",
-                column: "UserModifiedByIdId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Car.Type_UserCreatedByIdId",
+                name: "IX_Car.Type_CreatedByUserId",
                 table: "Car.Type",
-                column: "UserCreatedByIdId");
+                column: "CreatedByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Car.Type_UserModifiedByIdId",
+                name: "IX_Car.Type_ModifiedByUserId",
                 table: "Car.Type",
-                column: "UserModifiedByIdId");
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Company.Company_AddressId",
@@ -1442,19 +1411,19 @@ namespace yedihisse.DataAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Company.Company_CreatedByUserId",
+                table: "Company.Company",
+                column: "CreatedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Company.Company_ModifiedByUserId",
+                table: "Company.Company",
+                column: "ModifiedByUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Company.Company_PhoneNumberId",
                 table: "Company.Company",
                 column: "PhoneNumberId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Company.Company_UserCreatedByIdId",
-                table: "Company.Company",
-                column: "UserCreatedByIdId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Company.Company_UserModifiedByIdId",
-                table: "Company.Company",
-                column: "UserModifiedByIdId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Company.Manager_CompanyId",
@@ -1462,19 +1431,19 @@ namespace yedihisse.DataAccess.Migrations
                 column: "CompanyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Company.Manager_UserCreatedByIdId",
+                name: "IX_Company.Manager_CreatedByUserId",
                 table: "Company.Manager",
-                column: "UserCreatedByIdId");
+                column: "CreatedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Company.Manager_ModifiedByUserId",
+                table: "Company.Manager",
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Company.Manager_UserId",
                 table: "Company.Manager",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Company.Manager_UserModifiedByIdId",
-                table: "Company.Manager",
-                column: "UserModifiedByIdId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Firm.Firm_AddressId",
@@ -1488,19 +1457,24 @@ namespace yedihisse.DataAccess.Migrations
                 column: "CompanyId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Firm.Firm_CreatedByUserId",
+                table: "Firm.Firm",
+                column: "CreatedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Firm.Firm_ModifiedByUserId",
+                table: "Firm.Firm",
+                column: "ModifiedByUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Firm.Firm_PhoneNumberId",
                 table: "Firm.Firm",
                 column: "PhoneNumberId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Firm.Firm_UserCreatedByIdId",
-                table: "Firm.Firm",
-                column: "UserCreatedByIdId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Firm.Firm_UserModifiedByIdId",
-                table: "Firm.Firm",
-                column: "UserModifiedByIdId");
+                name: "IX_Firm.Manager_CreatedByUserId",
+                table: "Firm.Manager",
+                column: "CreatedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Firm.Manager_FirmId",
@@ -1508,9 +1482,9 @@ namespace yedihisse.DataAccess.Migrations
                 column: "FirmId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Firm.Manager_UserCreatedByIdId",
+                name: "IX_Firm.Manager_ModifiedByUserId",
                 table: "Firm.Manager",
-                column: "UserCreatedByIdId");
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Firm.Manager_UserId",
@@ -1518,9 +1492,14 @@ namespace yedihisse.DataAccess.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Firm.Manager_UserModifiedByIdId",
-                table: "Firm.Manager",
-                column: "UserModifiedByIdId");
+                name: "IX_PhoneNumber.PhoneNumber_CreatedByUserId",
+                table: "PhoneNumber.PhoneNumber",
+                column: "CreatedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PhoneNumber.PhoneNumber_ModifiedByUserId",
+                table: "PhoneNumber.PhoneNumber",
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PhoneNumber.PhoneNumber_PhoneNumberTypeId",
@@ -1529,24 +1508,24 @@ namespace yedihisse.DataAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_PhoneNumber.PhoneNumber_UserCreatedByIdId",
-                table: "PhoneNumber.PhoneNumber",
-                column: "UserCreatedByIdId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PhoneNumber.PhoneNumber_UserModifiedByIdId",
-                table: "PhoneNumber.PhoneNumber",
-                column: "UserModifiedByIdId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PhoneNumber.Type_UserCreatedByIdId",
+                name: "IX_PhoneNumber.Type_CreatedByUserId",
                 table: "PhoneNumber.Type",
-                column: "UserCreatedByIdId");
+                column: "CreatedByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PhoneNumber.Type_UserModifiedByIdId",
+                name: "IX_PhoneNumber.Type_ModifiedByUserId",
                 table: "PhoneNumber.Type",
-                column: "UserModifiedByIdId");
+                column: "ModifiedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Shipping.Manager_CreatedByUserId",
+                table: "Shipping.Manager",
+                column: "CreatedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Shipping.Manager_ModifiedByUserId",
+                table: "Shipping.Manager",
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Shipping.Manager_ShippingId",
@@ -1554,29 +1533,19 @@ namespace yedihisse.DataAccess.Migrations
                 column: "ShippingId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Shipping.Manager_UserCreatedByIdId",
-                table: "Shipping.Manager",
-                column: "UserCreatedByIdId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Shipping.Manager_UserId",
                 table: "Shipping.Manager",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Shipping.Manager_UserModifiedByIdId",
-                table: "Shipping.Manager",
-                column: "UserModifiedByIdId");
+                name: "IX_Shipping.Shipping_CreatedByUserId",
+                table: "Shipping.Shipping",
+                column: "CreatedByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Shipping.Shipping_UserCreatedByIdId",
+                name: "IX_Shipping.Shipping_ModifiedByUserId",
                 table: "Shipping.Shipping",
-                column: "UserCreatedByIdId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Shipping.Shipping_UserModifiedByIdId",
-                table: "Shipping.Shipping",
-                column: "UserModifiedByIdId");
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Slaughterhouse.JoinAnimal_AnimalId",
@@ -1585,10 +1554,20 @@ namespace yedihisse.DataAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Slaughterhouse.JoinAnimal_CreatedByUserId",
+                table: "Slaughterhouse.JoinAnimal",
+                column: "CreatedByUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Slaughterhouse.JoinAnimal_KillingNumber",
                 table: "Slaughterhouse.JoinAnimal",
                 column: "KillingNumber",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Slaughterhouse.JoinAnimal_ModifiedByUserId",
+                table: "Slaughterhouse.JoinAnimal",
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Slaughterhouse.JoinAnimal_SlaughterhouseId",
@@ -1596,14 +1575,14 @@ namespace yedihisse.DataAccess.Migrations
                 column: "SlaughterhouseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Slaughterhouse.JoinAnimal_UserCreatedByIdId",
-                table: "Slaughterhouse.JoinAnimal",
-                column: "UserCreatedByIdId");
+                name: "IX_Slaughterhouse.JoinType_CreatedByUserId",
+                table: "Slaughterhouse.JoinType",
+                column: "CreatedByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Slaughterhouse.JoinAnimal_UserModifiedByIdId",
-                table: "Slaughterhouse.JoinAnimal",
-                column: "UserModifiedByIdId");
+                name: "IX_Slaughterhouse.JoinType_ModifiedByUserId",
+                table: "Slaughterhouse.JoinType",
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Slaughterhouse.JoinType_SlaughterhouseId",
@@ -1616,14 +1595,14 @@ namespace yedihisse.DataAccess.Migrations
                 column: "SlaughterhouseTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Slaughterhouse.JoinType_UserCreatedByIdId",
-                table: "Slaughterhouse.JoinType",
-                column: "UserCreatedByIdId");
+                name: "IX_Slaughterhouse.Manager_CreatedByUserId",
+                table: "Slaughterhouse.Manager",
+                column: "CreatedByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Slaughterhouse.JoinType_UserModifiedByIdId",
-                table: "Slaughterhouse.JoinType",
-                column: "UserModifiedByIdId");
+                name: "IX_Slaughterhouse.Manager_ModifiedByUserId",
+                table: "Slaughterhouse.Manager",
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Slaughterhouse.Manager_SlaughterhouseId",
@@ -1631,19 +1610,9 @@ namespace yedihisse.DataAccess.Migrations
                 column: "SlaughterhouseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Slaughterhouse.Manager_UserCreatedByIdId",
-                table: "Slaughterhouse.Manager",
-                column: "UserCreatedByIdId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Slaughterhouse.Manager_UserId",
                 table: "Slaughterhouse.Manager",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Slaughterhouse.Manager_UserModifiedByIdId",
-                table: "Slaughterhouse.Manager",
-                column: "UserModifiedByIdId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Slaughterhouse.Slaughterhouse_AddressId",
@@ -1652,29 +1621,39 @@ namespace yedihisse.DataAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Slaughterhouse.Slaughterhouse_CreatedByUserId",
+                table: "Slaughterhouse.Slaughterhouse",
+                column: "CreatedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Slaughterhouse.Slaughterhouse_ModifiedByUserId",
+                table: "Slaughterhouse.Slaughterhouse",
+                column: "ModifiedByUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Slaughterhouse.Slaughterhouse_PhoneNumberId",
                 table: "Slaughterhouse.Slaughterhouse",
                 column: "PhoneNumberId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Slaughterhouse.Slaughterhouse_UserCreatedByIdId",
-                table: "Slaughterhouse.Slaughterhouse",
-                column: "UserCreatedByIdId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Slaughterhouse.Slaughterhouse_UserModifiedByIdId",
-                table: "Slaughterhouse.Slaughterhouse",
-                column: "UserModifiedByIdId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Slaughterhouse.Type_UserCreatedByIdId",
+                name: "IX_Slaughterhouse.Type_CreatedByUserId",
                 table: "Slaughterhouse.Type",
-                column: "UserCreatedByIdId");
+                column: "CreatedByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Slaughterhouse.Type_UserModifiedByIdId",
+                name: "IX_Slaughterhouse.Type_ModifiedByUserId",
                 table: "Slaughterhouse.Type",
-                column: "UserModifiedByIdId");
+                column: "ModifiedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Supplier.Manager_CreatedByUserId",
+                table: "Supplier.Manager",
+                column: "CreatedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Supplier.Manager_ModifiedByUserId",
+                table: "Supplier.Manager",
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Supplier.Manager_SupplierId",
@@ -1682,25 +1661,25 @@ namespace yedihisse.DataAccess.Migrations
                 column: "SupplierId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Supplier.Manager_UserCreatedByIdId",
-                table: "Supplier.Manager",
-                column: "UserCreatedByIdId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Supplier.Manager_UserId",
                 table: "Supplier.Manager",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Supplier.Manager_UserModifiedByIdId",
-                table: "Supplier.Manager",
-                column: "UserModifiedByIdId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Supplier.Supplier_AddressId",
                 table: "Supplier.Supplier",
                 column: "AddressId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Supplier.Supplier_CreatedByUserId",
+                table: "Supplier.Supplier",
+                column: "CreatedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Supplier.Supplier_ModifiedByUserId",
+                table: "Supplier.Supplier",
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Supplier.Supplier_PhoneNumberId",
@@ -1714,29 +1693,24 @@ namespace yedihisse.DataAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Supplier.Supplier_UserCreatedByIdId",
-                table: "Supplier.Supplier",
-                column: "UserCreatedByIdId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Supplier.Supplier_UserModifiedByIdId",
-                table: "Supplier.Supplier",
-                column: "UserModifiedByIdId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Supplier.Type_UserCreatedByIdId",
+                name: "IX_Supplier.Type_CreatedByUserId",
                 table: "Supplier.Type",
-                column: "UserCreatedByIdId");
+                column: "CreatedByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Supplier.Type_UserModifiedByIdId",
+                name: "IX_Supplier.Type_ModifiedByUserId",
                 table: "Supplier.Type",
-                column: "UserModifiedByIdId");
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_User.JoinType_UserCreatedByIdId",
+                name: "IX_User.JoinType_CreatedByUserId",
                 table: "User.JoinType",
-                column: "UserCreatedByIdId");
+                column: "CreatedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User.JoinType_ModifiedByUserId",
+                table: "User.JoinType",
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_User.JoinType_UserId",
@@ -1744,24 +1718,19 @@ namespace yedihisse.DataAccess.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_User.JoinType_UserModifiedByIdId",
-                table: "User.JoinType",
-                column: "UserModifiedByIdId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_User.JoinType_UserTypeId",
                 table: "User.JoinType",
                 column: "UserTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_User.Type_UserCreatedByIdId",
+                name: "IX_User.Type_CreatedByUserId",
                 table: "User.Type",
-                column: "UserCreatedByIdId");
+                column: "CreatedByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_User.Type_UserModifiedByIdId",
+                name: "IX_User.Type_ModifiedByUserId",
                 table: "User.Type",
-                column: "UserModifiedByIdId");
+                column: "ModifiedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_User.User_AddressId",
@@ -1770,25 +1739,25 @@ namespace yedihisse.DataAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_User.User_CreatedByUserId",
+                table: "User.User",
+                column: "CreatedByUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_User.User_EmailAddress",
                 table: "User.User",
                 column: "EmailAddress",
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_User.User_ModifiedByUserId",
+                table: "User.User",
+                column: "ModifiedByUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_User.User_PhoneNumberId",
                 table: "User.User",
                 column: "PhoneNumberId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_User.User_UserCreatedByIdId",
-                table: "User.User",
-                column: "UserCreatedByIdId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_User.User_UserModifiedByIdId",
-                table: "User.User",
-                column: "UserModifiedByIdId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_User.User_UserPhoneNumber",
@@ -1821,17 +1790,17 @@ namespace yedihisse.DataAccess.Migrations
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Branch.Branch_User.User_UserCreatedByIdId",
+                name: "FK_Branch.Branch_User.User_CreatedByUserId",
                 table: "Branch.Branch",
-                column: "UserCreatedByIdId",
+                column: "CreatedByUserId",
                 principalTable: "User.User",
                 principalColumn: "UserId",
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Branch.Branch_User.User_UserModifiedByIdId",
+                name: "FK_Branch.Branch_User.User_ModifiedByUserId",
                 table: "Branch.Branch",
-                column: "UserModifiedByIdId",
+                column: "ModifiedByUserId",
                 principalTable: "User.User",
                 principalColumn: "UserId",
                 onDelete: ReferentialAction.Cascade);
@@ -1853,17 +1822,17 @@ namespace yedihisse.DataAccess.Migrations
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Company.Company_User.User_UserCreatedByIdId",
+                name: "FK_Company.Company_User.User_CreatedByUserId",
                 table: "Company.Company",
-                column: "UserCreatedByIdId",
+                column: "CreatedByUserId",
                 principalTable: "User.User",
                 principalColumn: "UserId",
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Company.Company_User.User_UserModifiedByIdId",
+                name: "FK_Company.Company_User.User_ModifiedByUserId",
                 table: "Company.Company",
-                column: "UserModifiedByIdId",
+                column: "ModifiedByUserId",
                 principalTable: "User.User",
                 principalColumn: "UserId",
                 onDelete: ReferentialAction.Cascade);
@@ -1885,17 +1854,17 @@ namespace yedihisse.DataAccess.Migrations
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Firm.Firm_User.User_UserCreatedByIdId",
+                name: "FK_Firm.Firm_User.User_CreatedByUserId",
                 table: "Firm.Firm",
-                column: "UserCreatedByIdId",
+                column: "CreatedByUserId",
                 principalTable: "User.User",
                 principalColumn: "UserId",
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Firm.Firm_User.User_UserModifiedByIdId",
+                name: "FK_Firm.Firm_User.User_ModifiedByUserId",
                 table: "Firm.Firm",
-                column: "UserModifiedByIdId",
+                column: "ModifiedByUserId",
                 principalTable: "User.User",
                 principalColumn: "UserId",
                 onDelete: ReferentialAction.Cascade);
@@ -1917,17 +1886,17 @@ namespace yedihisse.DataAccess.Migrations
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Slaughterhouse.Slaughterhouse_User.User_UserCreatedByIdId",
+                name: "FK_Slaughterhouse.Slaughterhouse_User.User_CreatedByUserId",
                 table: "Slaughterhouse.Slaughterhouse",
-                column: "UserCreatedByIdId",
+                column: "CreatedByUserId",
                 principalTable: "User.User",
                 principalColumn: "UserId",
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Slaughterhouse.Slaughterhouse_User.User_UserModifiedByIdId",
+                name: "FK_Slaughterhouse.Slaughterhouse_User.User_ModifiedByUserId",
                 table: "Slaughterhouse.Slaughterhouse",
-                column: "UserModifiedByIdId",
+                column: "ModifiedByUserId",
                 principalTable: "User.User",
                 principalColumn: "UserId",
                 onDelete: ReferentialAction.Cascade);
@@ -1957,17 +1926,17 @@ namespace yedihisse.DataAccess.Migrations
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Supplier.Supplier_User.User_UserCreatedByIdId",
+                name: "FK_Supplier.Supplier_User.User_CreatedByUserId",
                 table: "Supplier.Supplier",
-                column: "UserCreatedByIdId",
+                column: "CreatedByUserId",
                 principalTable: "User.User",
                 principalColumn: "UserId",
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Supplier.Supplier_User.User_UserModifiedByIdId",
+                name: "FK_Supplier.Supplier_User.User_ModifiedByUserId",
                 table: "Supplier.Supplier",
-                column: "UserModifiedByIdId",
+                column: "ModifiedByUserId",
                 principalTable: "User.User",
                 principalColumn: "UserId",
                 onDelete: ReferentialAction.Cascade);
@@ -1996,27 +1965,27 @@ namespace yedihisse.DataAccess.Migrations
                 table: "Address.Address");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Address.Address_User.User_UserCreatedByIdId",
+                name: "FK_Address.Address_User.User_CreatedByUserId",
                 table: "Address.Address");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Address.Address_User.User_UserModifiedByIdId",
+                name: "FK_Address.Address_User.User_ModifiedByUserId",
                 table: "Address.Address");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_PhoneNumber.PhoneNumber_User.User_UserCreatedByIdId",
+                name: "FK_PhoneNumber.PhoneNumber_User.User_CreatedByUserId",
                 table: "PhoneNumber.PhoneNumber");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_PhoneNumber.PhoneNumber_User.User_UserModifiedByIdId",
+                name: "FK_PhoneNumber.PhoneNumber_User.User_ModifiedByUserId",
                 table: "PhoneNumber.PhoneNumber");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_PhoneNumber.Type_User.User_UserCreatedByIdId",
+                name: "FK_PhoneNumber.Type_User.User_CreatedByUserId",
                 table: "PhoneNumber.Type");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_PhoneNumber.Type_User.User_UserModifiedByIdId",
+                name: "FK_PhoneNumber.Type_User.User_ModifiedByUserId",
                 table: "PhoneNumber.Type");
 
             migrationBuilder.DropTable(

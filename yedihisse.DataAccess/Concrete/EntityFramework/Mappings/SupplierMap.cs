@@ -20,8 +20,6 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(s => s.Description).HasMaxLength(250);
             builder.Property(s => s.CreatedDate).IsRequired(true);
             builder.Property(s => s.ModifiedDate).IsRequired(true);
-            builder.Property(s => s.ModifiedById).IsRequired(true);
-            builder.Property(s => s.CreatedById).IsRequired(true);
             builder.Property(s => s.IsActive).IsRequired(true).HasDefaultValue(true);
 
             builder.HasOne<SupplierType>(s => s.SupplierType)
@@ -36,13 +34,13 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(p => p.Suppliers)
                 .HasForeignKey(s => s.PhoneNumberId);
 
-            builder.HasOne<User>(a => a.UserCreatedById)
-                .WithMany(u => u.SupplierCreatedByIds)
-                .HasForeignKey(a => a.UserCreatedByIdId);
+            builder.HasOne<User>(a => a.CreatedByUser)
+                .WithMany(u => u.SupplierCreatedByUserIds)
+                .HasForeignKey(a => a.CreatedByUserId);
 
-            builder.HasOne<User>(a => a.UserModifiedById)
-                .WithMany(u => u.SupplierModifiedByIds)
-                .HasForeignKey(a => a.UserModifiedByIdId);
+            builder.HasOne<User>(a => a.ModifiedByUser)
+                .WithMany(u => u.SupplierModifiedByUserIds)
+                .HasForeignKey(a => a.ModifiedByUserId);
 
             //builder.HasData(new Supplier()
             //{

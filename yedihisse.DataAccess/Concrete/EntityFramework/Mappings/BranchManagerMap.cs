@@ -18,8 +18,6 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(b => b.Description).IsRequired(false).HasMaxLength(50);
             builder.Property(b => b.CreatedDate).IsRequired(true);
             builder.Property(b => b.ModifiedDate).IsRequired(true);
-            builder.Property(b => b.ModifiedById).IsRequired(true);
-            builder.Property(b => b.CreatedById).IsRequired(true);
             builder.Property(b => b.IsActive).IsRequired(true).HasDefaultValue(true);
 
             builder.HasOne<User>(b => b.User)
@@ -30,13 +28,13 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(b => b.BranchManagers)
                 .HasForeignKey(b => b.BranchId);
 
-            builder.HasOne<User>(a => a.UserCreatedById)
-                .WithMany(u => u.BranchManagerCreatedByIds)
-                .HasForeignKey(a => a.UserCreatedByIdId);
+            builder.HasOne<User>(a => a.CreatedByUser)
+                .WithMany(u => u.BranchManagerCreatedByUserIds)
+                .HasForeignKey(a => a.CreatedByUserId);
 
-            builder.HasOne<User>(a => a.UserModifiedById)
-                .WithMany(u => u.BranchManagerModifiedByIds)
-                .HasForeignKey(a => a.UserModifiedByIdId);
+            builder.HasOne<User>(a => a.ModifiedByUser)
+                .WithMany(u => u.BranchManagerModifiedByUserIds)
+                .HasForeignKey(a => a.ModifiedByUserId);
 
             //builder.HasData(new BranchManager()
             //{

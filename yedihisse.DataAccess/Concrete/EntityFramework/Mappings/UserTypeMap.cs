@@ -18,17 +18,15 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(u => u.Name).IsRequired(true).HasMaxLength(50);
             builder.Property(u => u.CreatedDate).IsRequired(true);
             builder.Property(u => u.ModifiedDate).IsRequired(true);
-            builder.Property(u => u.ModifiedById).IsRequired(true);
-            builder.Property(u => u.CreatedById).IsRequired(true);
             builder.Property(u => u.IsActive).IsRequired(true).HasDefaultValue(true);
 
-            builder.HasOne<User>(a => a.UserCreatedById)
-                .WithMany(u => u.UserTypeCreatedByIds)
-                .HasForeignKey(a => a.UserCreatedByIdId);
+            builder.HasOne<User>(a => a.CreatedByUser)
+                .WithMany(u => u.UserTypeCreatedByUserIds)
+                .HasForeignKey(a => a.CreatedByUserId);
 
-            builder.HasOne<User>(a => a.UserModifiedById)
-                .WithMany(u => u.UserTypeModifiedByIds)
-                .HasForeignKey(a => a.UserModifiedByIdId);
+            builder.HasOne<User>(a => a.ModifiedByUser)
+                .WithMany(u => u.UserTypeModifiedByUserIds)
+                .HasForeignKey(a => a.ModifiedByUserId);
 
             //builder.HasData(new UserType()
             //{

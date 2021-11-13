@@ -19,17 +19,15 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.CanAllotment).IsRequired(true).HasDefaultValue(false);
             builder.Property(a => a.CreatedDate).IsRequired(true);
             builder.Property(a => a.ModifiedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedById).IsRequired(true);
-            builder.Property(a => a.CreatedById).IsRequired(true);
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
 
-            builder.HasOne<User>(a => a.UserCreatedById)
-                .WithMany(u => u.AnimalTypeCreatedByIds)
-                .HasForeignKey(a => a.UserCreatedByIdId);
+            builder.HasOne<User>(a => a.CreatedByUser)
+                .WithMany(u => u.AnimalTypeCreatedByUserIds)
+                .HasForeignKey(a => a.CreatedByUserId);
 
-            builder.HasOne<User>(a => a.UserModifiedById)
-                .WithMany(u => u.AnimalTypeModifiedByIds)
-                .HasForeignKey(a => a.UserModifiedByIdId);
+            builder.HasOne<User>(a => a.ModifiedByUser)
+                .WithMany(u => u.AnimalTypeModifiedByUserIds)
+                .HasForeignKey(a => a.ModifiedByUserId);
 
             //builder.HasData(new AnimalType()
             //{

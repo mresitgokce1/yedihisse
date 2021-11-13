@@ -26,8 +26,6 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(u => u.PasswordHash).HasColumnType("BYTEA");
             builder.Property(u => u.CreatedDate).IsRequired(true);
             builder.Property(u => u.ModifiedDate).IsRequired(true);
-            builder.Property(u => u.ModifiedById).IsRequired(true);
-            builder.Property(u => u.CreatedById).IsRequired(true);
             builder.Property(u => u.IsActive).IsRequired(true).HasDefaultValue(true);
 
             builder.HasOne<Address>(b => b.Address)
@@ -38,13 +36,13 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(p => p.Users)
                 .HasForeignKey(u => u.PhoneNumberId);
 
-            builder.HasOne<User>(a => a.UserCreatedById)
-                .WithMany(u => u.UserCreatedByIds)
-                .HasForeignKey(a => a.UserCreatedByIdId);
+            builder.HasOne<User>(a => a.CreatedByUser)
+                .WithMany(u => u.UserCreatedByUserIds)
+                .HasForeignKey(a => a.CreatedByUserId);
 
-            builder.HasOne<User>(a => a.UserModifiedById)
-                .WithMany(u => u.UserModifiedByIds)
-                .HasForeignKey(a => a.UserModifiedByIdId);
+            builder.HasOne<User>(a => a.ModifiedByUser)
+                .WithMany(u => u.UserModifiedByUserIds)
+                .HasForeignKey(a => a.ModifiedByUserId);
 
             //builder.HasData(new User()
             //{

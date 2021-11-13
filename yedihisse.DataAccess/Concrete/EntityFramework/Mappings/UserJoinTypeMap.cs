@@ -17,8 +17,6 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(u => u.Id).ValueGeneratedOnAdd().HasColumnName("JoinTypeId");
             builder.Property(u => u.CreatedDate).IsRequired(true);
             builder.Property(u => u.ModifiedDate).IsRequired(true);
-            builder.Property(u => u.ModifiedById).IsRequired(true);
-            builder.Property(u => u.CreatedById).IsRequired(true);
             builder.Property(u => u.IsActive).IsRequired(true).HasDefaultValue(true);
 
             builder.HasOne<User>(u => u.User)
@@ -29,13 +27,13 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.UserJoinTypes)
                 .HasForeignKey(u => u.UserTypeId);
 
-            builder.HasOne<User>(a => a.UserCreatedById)
-                .WithMany(u => u.UserJoinTypeCreatedByIds)
-                .HasForeignKey(a => a.UserCreatedByIdId);
+            builder.HasOne<User>(a => a.CreatedByUser)
+                .WithMany(u => u.UserJoinTypeCreatedByUserIds)
+                .HasForeignKey(a => a.CreatedByUserId);
 
-            builder.HasOne<User>(a => a.UserModifiedById)
-                .WithMany(u => u.UserJoinTypeModifiedByIds)
-                .HasForeignKey(a => a.UserModifiedByIdId);
+            builder.HasOne<User>(a => a.ModifiedByUser)
+                .WithMany(u => u.UserJoinTypeModifiedByUserIds)
+                .HasForeignKey(a => a.ModifiedByUserId);
 
             //builder.HasData(new UserJoinType()
             //{

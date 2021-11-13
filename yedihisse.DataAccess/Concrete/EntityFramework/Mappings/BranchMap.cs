@@ -18,8 +18,6 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(b => b.BranchName).IsRequired(true).HasMaxLength(50);
             builder.Property(b => b.CreatedDate).IsRequired(true);
             builder.Property(b => b.ModifiedDate).IsRequired(true);
-            builder.Property(b => b.ModifiedById).IsRequired(true);
-            builder.Property(b => b.CreatedById).IsRequired(true);
             builder.Property(b => b.IsActive).IsRequired(true).HasDefaultValue(true);
 
             builder.HasOne<Firm>(b => b.Firm)
@@ -34,13 +32,13 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(p => p.Branches)
                 .HasForeignKey(b => b.PhoneNumberId);
 
-            builder.HasOne<User>(a => a.UserCreatedById)
-                .WithMany(u => u.BranchCreatedByIds)
-                .HasForeignKey(a => a.UserCreatedByIdId);
+            builder.HasOne<User>(a => a.CreatedByUser)
+                .WithMany(u => u.BranchCreatedByUserIds)
+                .HasForeignKey(a => a.CreatedByUserId);
 
-            builder.HasOne<User>(a => a.UserModifiedById)
-                .WithMany(u => u.BranchModifiedByIds)
-                .HasForeignKey(a => a.UserModifiedByIdId);
+            builder.HasOne<User>(a => a.ModifiedByUser)
+                .WithMany(u => u.BranchModifiedByUserIds)
+                .HasForeignKey(a => a.ModifiedByUserId);
 
             //builder.HasData(new Branch()
             //{

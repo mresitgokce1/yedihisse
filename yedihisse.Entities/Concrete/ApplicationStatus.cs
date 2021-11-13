@@ -15,10 +15,10 @@ namespace yedihisse.Entities.Concrete
         public int ApplicationStatusTypeId { get; set; }
         public ApplicationStatusType ApplicationStatusType { get; set; }
 
-        public int UserCreatedByIdId { get; set; }
-        public User UserCreatedById { get; set; }
+        public int CreatedByUserId { get; set; }
+        public User CreatedByUser { get; set; }
 
-        public int UserModifiedByIdId { get; set; }
-        public User UserModifiedById { get; set; }
+        public int ModifiedByUserId { get; set; }
+        public User ModifiedByUser { get; set; }
     }
 }
