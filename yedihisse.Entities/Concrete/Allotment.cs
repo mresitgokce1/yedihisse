@@ -10,12 +10,9 @@ namespace yedihisse.Entities.Concrete
     public class Allotment : EntityBase, IEntity
     {
         public string Description { get; set; }
-        public decimal PrePay { get; set; }
-        public bool PrePayStatus { get; set; }
-        public string PrePayReceiptNumber { get; set; }
-        public decimal Price { get; set; }
-        public bool PriceStatus { get; set; }
-        public string PriceReceiptNumber { get; set; }
+        public decimal AllotmentPrePay { get; set; }
+        public decimal AllotmentPayment { get; set; }
+        public decimal AllotmentKillingPrice { get; set; }
 
 
         public int AnimalId { get; set; }
@@ -25,6 +22,7 @@ namespace yedihisse.Entities.Concrete
         public Shipping Shipping { get; set; }
 
         public ICollection<Application> Applications { get; set; }
+        public ICollection<Payment> Payments { get; set; }
 
         public int CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }

@@ -15,13 +15,20 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
         {
             builder.HasKey(s => s.Id);
             builder.Property(s => s.Id).ValueGeneratedOnAdd().HasColumnName("JoinAnimalId");
+
             builder.Property(s => s.KillingNumber).IsRequired(true);
             builder.HasIndex(s => s.KillingNumber).IsUnique(true);
-            builder.Property(s => s.KillingPrice).IsRequired(true).HasDefaultValue(0);
             builder.Property(s => s.KillingComplate).IsRequired(true).HasDefaultValue(false);
-            builder.Property(s => s.CreatedDate).IsRequired(true);
-            builder.Property(s => s.ModifiedDate).IsRequired(true);
-            builder.Property(s => s.IsActive).IsRequired(true).HasDefaultValue(true);
+
+            builder.Property(s => s.SlaughterhouseId).IsRequired(true);
+            builder.Property(s => s.AnimalId).IsRequired(true);
+
+            builder.Property(a => a.CreatedByUserId).IsRequired(true);
+            builder.Property(a => a.CreatedDate).IsRequired(true);
+            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
+            builder.Property(a => a.ModifiedDate).IsRequired(true);
+            builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
+            builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<Slaughterhouse>(s => s.Slaughterhouse)
                 .WithMany(s => s.SlaughterhouseJoinAnimals)

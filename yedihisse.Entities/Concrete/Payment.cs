@@ -7,21 +7,22 @@ using yedihisse.Shared.Entities.Abstract;
 
 namespace yedihisse.Entities.Concrete
 {
-    public class SlaughterhouseJoinAnimal : EntityBase, IEntity
+    public class Payment : EntityBase, IEntity
     {
-        public ushort KillingNumber { get; set; }
-        public bool KillingComplate { get; set; }
+        public string PaymentMade { get; set; }
+        public string ReceiptNumber { get; set; }
 
-        public int SlaughterhouseId { get; set; }
-        public Slaughterhouse Slaughterhouse { get; set; }
+        public int PaymentTypeId { get; set; }
+        public PaymentType PaymentType { get; set; }
 
-        public int AnimalId { get; set; }
-        public Animal Animal { get; set; }
+        public int AllotmentId { get; set; }
+        public Allotment Allotment { get; set; }
 
         public int CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }
 
         public int ModifiedByUserId { get; set; }
         public User ModifiedByUser { get; set; }
+
     }
 }

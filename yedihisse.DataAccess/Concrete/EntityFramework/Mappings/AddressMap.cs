@@ -15,6 +15,7 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
         {
             builder.HasKey(a => a.Id);
             builder.Property(a => a.Id).ValueGeneratedOnAdd().HasColumnName("AddressId");
+
             builder.Property(a => a.AddressName).IsRequired(true).HasMaxLength(50);
             builder.Property(a => a.Country).IsRequired(true).HasMaxLength(200);
             builder.Property(a => a.City).IsRequired(true).HasMaxLength(200);
@@ -27,9 +28,15 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.FlatNo).IsRequired(true).HasMaxLength(200);
             builder.Property(a => a.AddressDetail).IsRequired(false).HasMaxLength(300);
             builder.Property(a => a.AddressDirection).IsRequired(false).HasMaxLength(300);
+
+            builder.Property(a => a.AddressTypeId).IsRequired(true);
+
+            builder.Property(a => a.CreatedByUserId).IsRequired(true);
             builder.Property(a => a.CreatedDate).IsRequired(true);
+            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
             builder.Property(a => a.ModifiedDate).IsRequired(true);
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
+            builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<AddressType>(a => a.AddressType)
                 .WithOne(a => a.Address)

@@ -15,10 +15,19 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
         {
             builder.HasKey(b => b.Id);
             builder.Property(b => b.Id).ValueGeneratedOnAdd().HasColumnName("BranchId");
+
             builder.Property(b => b.BranchName).IsRequired(true).HasMaxLength(50);
-            builder.Property(b => b.CreatedDate).IsRequired(true);
-            builder.Property(b => b.ModifiedDate).IsRequired(true);
-            builder.Property(b => b.IsActive).IsRequired(true).HasDefaultValue(true);
+
+            builder.Property(b => b.FirmId).IsRequired(true);
+            builder.Property(b => b.AddressId).IsRequired(false);
+            builder.Property(b => b.PhoneNumberId).IsRequired(false);
+
+            builder.Property(a => a.CreatedByUserId).IsRequired(true);
+            builder.Property(a => a.CreatedDate).IsRequired(true);
+            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
+            builder.Property(a => a.ModifiedDate).IsRequired(true);
+            builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
+            builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<Firm>(b => b.Firm)
                 .WithMany(f => f.Branches)

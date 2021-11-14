@@ -15,11 +15,19 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
         {
             builder.HasKey(s => s.Id);
             builder.Property(s => s.Id).ValueGeneratedOnAdd().HasColumnName("SlaughterhouseId");
+
             builder.Property(s => s.SlaughterhouseName).IsRequired(true).HasMaxLength(50);
             builder.Property(s => s.Description).HasMaxLength(250);
-            builder.Property(s => s.CreatedDate).IsRequired(true);
-            builder.Property(s => s.ModifiedDate).IsRequired(true);
-            builder.Property(s => s.IsActive).IsRequired(true).HasDefaultValue(true);
+
+            builder.Property(s => s.AddressId).IsRequired(false);
+            builder.Property(s => s.PhoneNumberId).IsRequired(false);
+
+            builder.Property(a => a.CreatedByUserId).IsRequired(true);
+            builder.Property(a => a.CreatedDate).IsRequired(true);
+            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
+            builder.Property(a => a.ModifiedDate).IsRequired(true);
+            builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
+            builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<Address>(b => b.Address)
                 .WithOne(a => a.Slaughterhouse)

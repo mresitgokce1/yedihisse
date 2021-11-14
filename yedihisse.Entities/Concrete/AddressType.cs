@@ -9,7 +9,7 @@ namespace yedihisse.Entities.Concrete
 {
     public class AddressType : EntityBase, IEntity
     {
-        public string Name { get; set; }
+        public string AddressTypeName { get; set; }
 
         public Address Address { get; set; }
 

@@ -15,9 +15,16 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
         {
             builder.HasKey(a => a.Id);
             builder.Property(a => a.Id).ValueGeneratedOnAdd().HasColumnName("StatusId");
+
+            builder.Property(a => a.ApplicationId).IsRequired(true);
+            builder.Property(a => a.ApplicationStatusTypeId).IsRequired(true);
+
+            builder.Property(a => a.CreatedByUserId).IsRequired(true);
             builder.Property(a => a.CreatedDate).IsRequired(true);
+            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
             builder.Property(a => a.ModifiedDate).IsRequired(true);
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
+            builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<Application>(a => a.Application)
                 .WithMany(a => a.ApplicationStatuses)

@@ -15,9 +15,16 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
         {
             builder.HasKey(u => u.Id);
             builder.Property(u => u.Id).ValueGeneratedOnAdd().HasColumnName("JoinTypeId");
-            builder.Property(u => u.CreatedDate).IsRequired(true);
-            builder.Property(u => u.ModifiedDate).IsRequired(true);
-            builder.Property(u => u.IsActive).IsRequired(true).HasDefaultValue(true);
+
+            builder.Property(u => u.UserId).IsRequired(true);
+            builder.Property(u => u.UserTypeId).IsRequired(true);
+
+            builder.Property(a => a.CreatedByUserId).IsRequired(true);
+            builder.Property(a => a.CreatedDate).IsRequired(true);
+            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
+            builder.Property(a => a.ModifiedDate).IsRequired(true);
+            builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
+            builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<User>(u => u.User)
                 .WithMany(u => u.UserJoinTypes)

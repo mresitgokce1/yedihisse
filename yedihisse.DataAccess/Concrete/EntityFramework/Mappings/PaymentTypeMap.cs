@@ -9,14 +9,14 @@ using yedihisse.Entities.Concrete;
 
 namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 {
-    public class SupplierTypeMap : IEntityTypeConfiguration<SupplierType>
+    public class PaymentTypeMap : IEntityTypeConfiguration<PaymentType>
     {
-        public void Configure(EntityTypeBuilder<SupplierType> builder)
+        public void Configure(EntityTypeBuilder<PaymentType> builder)
         {
-            builder.HasKey(s => s.Id);
-            builder.Property(s => s.Id).ValueGeneratedOnAdd().HasColumnName("TypeId");
+            builder.HasKey(a => a.Id);
+            builder.Property(a => a.Id).ValueGeneratedOnAdd().HasColumnName("PaymentTypeId");
 
-            builder.Property(s => s.Name).IsRequired(true).HasMaxLength(50);
+            builder.Property(p => p.PaymentTypeName).IsRequired(true).HasMaxLength(100);
 
             builder.Property(a => a.CreatedByUserId).IsRequired(true);
             builder.Property(a => a.CreatedDate).IsRequired(true);
@@ -26,25 +26,14 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<User>(a => a.CreatedByUser)
-                .WithMany(u => u.SupplierTypeCreatedByUserIds)
+                .WithMany(u => u.PaymentTypeCreatedByUserIds)
                 .HasForeignKey(a => a.CreatedByUserId);
 
             builder.HasOne<User>(a => a.ModifiedByUser)
-                .WithMany(u => u.SupplierTypeModifiedByUserIds)
+                .WithMany(u => u.PaymentTypeModifiedByUserIds)
                 .HasForeignKey(a => a.ModifiedByUserId);
 
-            //builder.HasData(new SupplierType()
-            //{
-            //    Id = 1,
-            //    Name = "Büyükbaş Tedarikçisi",
-            //    CreatedById = 1,
-            //    CreatedDate = DateTime.Now,
-            //    ModifiedById = 1,
-            //    ModifiedDate = DateTime.Now,
-            //    IsActive = true
-            //});
-
-            builder.ToTable("Supplier.Type");
+            builder.ToTable("Payment.Type");
         }
     }
 }

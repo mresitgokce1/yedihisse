@@ -9,14 +9,18 @@ using yedihisse.Entities.Concrete;
 
 namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 {
-    public class AddressTypeMap : IEntityTypeConfiguration<AddressType>
+    public class PaymentMap : IEntityTypeConfiguration<Payment>
     {
-        public void Configure(EntityTypeBuilder<AddressType> builder)
+        public void Configure(EntityTypeBuilder<Payment> builder)
         {
             builder.HasKey(a => a.Id);
-            builder.Property(a => a.Id).ValueGeneratedOnAdd().HasColumnName("TypeId");
+            builder.Property(a => a.Id).ValueGeneratedOnAdd().HasColumnName("PaymentId");
 
-            builder.Property(a => a.AddressTypeName).IsRequired(true).HasMaxLength(50);
+            builder.Property(a => a.PaymentMade).IsRequired(true).HasPrecision(4, 4);
+            builder.Property(a => a.ReceiptNumber).IsRequired(false).HasMaxLength(100);
+
+            builder.Property(p => p.AllotmentId).IsRequired(true);
+            builder.Property(p => p.PaymentTypeId).IsRequired(true);
 
             builder.Property(a => a.CreatedByUserId).IsRequired(true);
             builder.Property(a => a.CreatedDate).IsRequired(true);
@@ -25,26 +29,23 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
             builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
+            builder.HasOne<Allotment>(p => p.Allotment)
+                .WithMany(a => a.Payments)
+                .HasForeignKey(p => p.AllotmentId);
+
+            builder.HasOne<PaymentType>(p => p.PaymentType)
+                .WithMany(a => a.Payments)
+                .HasForeignKey(p => p.PaymentTypeId);
+
             builder.HasOne<User>(a => a.CreatedByUser)
-                .WithMany(u => u.AddressTypeCreatedByUserIds)
+                .WithMany(u => u.PaymentCreatedByUserIds)
                 .HasForeignKey(a => a.CreatedByUserId);
 
             builder.HasOne<User>(a => a.ModifiedByUser)
-                .WithMany(u => u.AddressTypeModifiedByUserIds)
+                .WithMany(u => u.PaymentModifiedByUserIds)
                 .HasForeignKey(a => a.ModifiedByUserId);
 
-            //builder.HasData(new AddressType()
-            //{
-            //    Id=1,
-            //    Name = "Ev Adresi",
-            //    CreatedDate = DateTime.Now,
-            //    ModifiedDate = DateTime.Now,
-            //    CreatedById = 1,
-            //    ModifiedById = 1,
-            //    IsActive = true
-            //});
-
-            builder.ToTable("Address.Type");
+            builder.ToTable("Payment.Payment");
         }
     }
 }

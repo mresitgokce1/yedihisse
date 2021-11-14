@@ -123,6 +123,12 @@ namespace yedihisse.Entities.Concrete
         public ICollection<User> UserCreatedByUserIds { get; set; }
         public ICollection<User> UserModifiedByUserIds { get; set; }
 
+        public ICollection<Payment> PaymentCreatedByUserIds { get; set; }
+        public ICollection<Payment> PaymentModifiedByUserIds { get; set; }
+
+        public ICollection<PaymentType> PaymentTypeCreatedByUserIds { get; set; }
+        public ICollection<PaymentType> PaymentTypeModifiedByUserIds { get; set; }
+
         public int CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }
 

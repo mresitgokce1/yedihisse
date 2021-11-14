@@ -15,10 +15,18 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
         {
             builder.HasKey(b => b.Id);
             builder.Property(b => b.Id).ValueGeneratedOnAdd().HasColumnName("ManagerId");
+
             builder.Property(b => b.Description).IsRequired(false).HasMaxLength(50);
-            builder.Property(b => b.CreatedDate).IsRequired(true);
-            builder.Property(b => b.ModifiedDate).IsRequired(true);
-            builder.Property(b => b.IsActive).IsRequired(true).HasDefaultValue(true);
+
+            builder.Property(b => b.UserId).IsRequired(true);
+            builder.Property(b => b.BranchId).IsRequired(true);
+
+            builder.Property(a => a.CreatedByUserId).IsRequired(true);
+            builder.Property(a => a.CreatedDate).IsRequired(true);
+            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
+            builder.Property(a => a.ModifiedDate).IsRequired(true);
+            builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
+            builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<User>(b => b.User)
                 .WithMany(u => u.BranchManagers)

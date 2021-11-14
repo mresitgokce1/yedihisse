@@ -15,16 +15,21 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
         {
             builder.HasKey(a => a.Id);
             builder.Property(a => a.Id).ValueGeneratedOnAdd().HasColumnName("AllotmentId");
-            builder.Property(a => a.Description).HasMaxLength(250);
-            builder.Property(a => a.PrePay).IsRequired(true).HasDefaultValue(0).HasPrecision(4, 4);
-            builder.Property(a => a.PrePayStatus).IsRequired(true).HasDefaultValue(false);
-            builder.Property(a => a.PrePayReceiptNumber).IsRequired(true).HasMaxLength(100);
-            builder.Property(a => a.Price).IsRequired(true).HasDefaultValue(0).HasPrecision(4, 4);
-            builder.Property(a => a.PriceStatus).IsRequired(true).HasDefaultValue(false);
-            builder.Property(a => a.PriceReceiptNumber).IsRequired(true).HasMaxLength(100);
+
+            builder.Property(a => a.Description).IsRequired(false).HasMaxLength(250);
+            builder.Property(a => a.AllotmentPrePay).IsRequired(false).HasDefaultValue(0).HasPrecision(4, 4);
+            builder.Property(a => a.AllotmentPayment).IsRequired(false).HasDefaultValue(0).HasPrecision(4, 4);
+            builder.Property(a => a.AllotmentKillingPrice).IsRequired(false).HasDefaultValue(0).HasPrecision(4, 4);
+
+            builder.Property(a => a.AnimalId).IsRequired(true);
+            builder.Property(a => a.ShippingId).IsRequired(false);
+
+            builder.Property(a => a.CreatedByUserId).IsRequired(true);
             builder.Property(a => a.CreatedDate).IsRequired(true);
+            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
             builder.Property(a => a.ModifiedDate).IsRequired(true);
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
+            builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<Animal>(a => a.Animal)
                 .WithOne(a => a.Allotment)

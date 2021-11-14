@@ -10,6 +10,7 @@ namespace yedihisse.Entities.Concrete
     public class Application : EntityBase, IEntity
     {
         public byte AllotmentRate { get; set; }
+        public string Description { get; set; }
 
         public int UserId { get; set; }
         public User User { get; set; }

@@ -15,11 +15,20 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
         {
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Id).ValueGeneratedOnAdd().HasColumnName("CarId");
+
             builder.Property(c => c.CarName).HasMaxLength(50).IsRequired(true);
             builder.Property(c => c.CarNumberPlate).IsRequired().HasMaxLength(20);
-            builder.Property(c => c.CreatedDate).IsRequired(true);
-            builder.Property(c => c.ModifiedDate).IsRequired(true);
-            builder.Property(c => c.IsActive).IsRequired(true).HasDefaultValue(true);
+
+            builder.Property(c => c.CarTypeId).IsRequired(true);
+            builder.Property(c => c.PhoneNumberId).IsRequired(false);
+            builder.Property(c => c.ShippingId).IsRequired(false);
+
+            builder.Property(a => a.CreatedByUserId).IsRequired(true);
+            builder.Property(a => a.CreatedDate).IsRequired(true);
+            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
+            builder.Property(a => a.ModifiedDate).IsRequired(true);
+            builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
+            builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<CarType>(c => c.CarType)
                 .WithMany(c => c.Cars)

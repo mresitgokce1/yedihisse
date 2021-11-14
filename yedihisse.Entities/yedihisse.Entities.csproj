@@ -8,4 +8,29 @@
     <ProjectReference Include="..\yedihisse.Shared\yedihisse.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\ApplicationStatusTypeDto\" />
+    <Folder Include="Dtos\BranchDto\" />
+    <Folder Include="Dtos\BranchManagerDto\" />
+    <Folder Include="Dtos\CarTypeDto\" />
+    <Folder Include="Dtos\CompanyDto\" />
+    <Folder Include="Dtos\CompanyManagerDto\" />
+    <Folder Include="Dtos\FirmDto\" />
+    <Folder Include="Dtos\FirmManagerDto\" />
+    <Folder Include="Dtos\UserTypeDto\" />
+    <Folder Include="Dtos\UserJoinTypeDto\" />
+    <Folder Include="Dtos\UserDto\" />
+    <Folder Include="Dtos\SupplierTypeDto\" />
+    <Folder Include="Dtos\SupplierManagerDto\" />
+    <Folder Include="Dtos\SupplierDto\" />
+    <Folder Include="Dtos\SlaughterhouseManagerDto\" />
+    <Folder Include="Dtos\SlaughterhouseJoinTypeDto\" />
+    <Folder Include="Dtos\SlaughterhouseJoinAnimalDto\" />
+    <Folder Include="Dtos\SlaughterhouseDto\" />
+    <Folder Include="Dtos\ShippingManagerDto\" />
+    <Folder Include="Dtos\ShippingDto\" />
+    <Folder Include="Dtos\PhoneNumberTypeDto\" />
+    <Folder Include="Dtos\PhoneNumberDto\" />
+  </ItemGroup>
+
 </Project>

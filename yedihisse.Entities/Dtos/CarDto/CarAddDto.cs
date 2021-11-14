@@ -6,17 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace yedihisse.Entities.Dtos
+namespace yedihisse.Entities.Dtos.CarDto
 {
-    public class CarUpdateDto
+    public class CarAddDto
     {
-        [Required]
-        public int Id { get; set; }
-
         [DisplayName("Araç Adı")]
         [Required(ErrorMessage = "{0} boş olmamalıdır.")]
-        [MaxLength(50, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
-        [MinLength(3, ErrorMessage = "{0} {1} karakterden küçük olmamalıdır.")]
+        [MaxLength(50,ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
+        [MinLength(3,ErrorMessage = "{0} {1} karakterden küçük olmamalıdır.")]
         public string CarName { get; set; }
 
         [DisplayName("Araç Plakası")]
@@ -29,10 +26,6 @@ namespace yedihisse.Entities.Dtos
         [Required(ErrorMessage = "{0} boş olmamalıdır.")]
         public bool IsActive { get; set; }
 
-        [DisplayName("Araç Silindi Mi?")]
-        [Required(ErrorMessage = "{0} boş olmamalıdır.")]
-        public bool IsDeleted { get; set; }
-
         [DisplayName("Araç Tipi")]
         public int CarTypeId { get; set; }
 
@@ -43,4 +36,3 @@ namespace yedihisse.Entities.Dtos
         public int ShippingId { get; set; }
     }
 }
-
