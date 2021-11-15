@@ -9,7 +9,7 @@ namespace yedihisse.Entities.Concrete
 {
     public class ApplicationStatusType : EntityBase, IEntity
     {
-        public string Name { get; set; }
+        public string ApplicationStatusTypeName { get; set; }
 
         public ICollection<ApplicationStatus> ApplicationStatuses { get; set; }
 

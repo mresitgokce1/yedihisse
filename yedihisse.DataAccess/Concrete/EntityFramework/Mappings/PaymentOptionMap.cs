@@ -9,14 +9,14 @@ using yedihisse.Entities.Concrete;
 
 namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 {
-    public class PhoneNumberTypeMap : IEntityTypeConfiguration<PhoneNumberType>
+    public class PaymentOptionMap : IEntityTypeConfiguration<PaymentOption>
     {
-        public void Configure(EntityTypeBuilder<PhoneNumberType> builder)
+        public void Configure(EntityTypeBuilder<PaymentOption> builder)
         {
-            builder.HasKey(p => p.Id);
-            builder.Property(p => p.Id).ValueGeneratedOnAdd().HasColumnName("TypeId");
+            builder.HasKey(a => a.Id);
+            builder.Property(a => a.Id).ValueGeneratedOnAdd().HasColumnName("PaymentOptionId");
 
-            builder.Property(p => p.PhoneNumberTypeName).IsRequired(true).HasMaxLength(50);
+            builder.Property(p => p.PaymentOptionName).IsRequired(true).HasMaxLength(100);
 
             builder.Property(a => a.CreatedByUserId).IsRequired(true);
             builder.Property(a => a.CreatedDate).IsRequired(true);
@@ -26,25 +26,14 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<User>(p => p.CreatedByUser)
-                .WithMany(u => u.PhoneNumberTypeCreatedByUserIds)
+                .WithMany(u => u.PaymentOptionCreatedByUserIds)
                 .HasForeignKey(p => p.CreatedByUserId);
 
             builder.HasOne<User>(p => p.ModifiedByUser)
-                .WithMany(u => u.PhoneNumberTypeModifiedByUserIds)
+                .WithMany(u => u.PaymentOptionModifiedByUserIds)
                 .HasForeignKey(p => p.ModifiedByUserId);
 
-            //builder.HasData(new PhoneNumberType()
-            //{
-            //    Id = 1,
-            //    Name = "Ev Telefonu",
-            //    CreatedById = 1,
-            //    CreatedDate = DateTime.Now,
-            //    ModifiedById = 1,
-            //    ModifiedDate = DateTime.Now,
-            //    IsActive = true
-            //});
-
-            builder.ToTable("PhoneNumber.Type");
+            builder.ToTable("Payment.Option");
         }
     }
 }

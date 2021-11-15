@@ -33,21 +33,21 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(c => c.Firms)
                 .HasForeignKey(f => f.CompanyId);
 
-            builder.HasOne<Address>(b => b.Address)
+            builder.HasOne<Address>(f => f.Address)
                 .WithOne(a => a.Firm)
-                .HasForeignKey<Firm>(b => b.AddressId);
+                .HasForeignKey<Firm>(f => f.AddressId);
 
             builder.HasOne<PhoneNumber>(f => f.PhoneNumber)
                 .WithMany(p => p.Firms)
                 .HasForeignKey(f => f.PhoneNumberId);
 
-            builder.HasOne<User>(a => a.CreatedByUser)
+            builder.HasOne<User>(f => f.CreatedByUser)
                 .WithMany(u => u.FirmCreatedByUserIds)
-                .HasForeignKey(a => a.CreatedByUserId);
+                .HasForeignKey(f => f.CreatedByUserId);
 
-            builder.HasOne<User>(a => a.ModifiedByUser)
+            builder.HasOne<User>(f => f.ModifiedByUser)
                 .WithMany(u => u.FirmModifiedByUserIds)
-                .HasForeignKey(a => a.ModifiedByUserId);
+                .HasForeignKey(f => f.ModifiedByUserId);
 
             //builder.HasData(new Firm()
             //{

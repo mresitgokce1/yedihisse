@@ -129,6 +129,9 @@ namespace yedihisse.Entities.Concrete
         public ICollection<PaymentType> PaymentTypeCreatedByUserIds { get; set; }
         public ICollection<PaymentType> PaymentTypeModifiedByUserIds { get; set; }
 
+        public ICollection<PaymentOption> PaymentOptionCreatedByUserIds { get; set; }
+        public ICollection<PaymentOption> PaymentOptionModifiedByUserIds { get; set; }
+
         public int CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }
 

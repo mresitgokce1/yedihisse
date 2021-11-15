@@ -25,13 +25,13 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
             builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
-            builder.HasOne<User>(a => a.CreatedByUser)
+            builder.HasOne<User>(p => p.CreatedByUser)
                 .WithMany(u => u.PaymentTypeCreatedByUserIds)
-                .HasForeignKey(a => a.CreatedByUserId);
+                .HasForeignKey(p => p.CreatedByUserId);
 
-            builder.HasOne<User>(a => a.ModifiedByUser)
+            builder.HasOne<User>(p => p.ModifiedByUser)
                 .WithMany(u => u.PaymentTypeModifiedByUserIds)
-                .HasForeignKey(a => a.ModifiedByUserId);
+                .HasForeignKey(p => p.ModifiedByUserId);
 
             builder.ToTable("Payment.Type");
         }

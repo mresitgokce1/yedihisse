@@ -16,7 +16,7 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.HasKey(a => a.Id);
             builder.Property(a => a.Id).ValueGeneratedOnAdd().HasColumnName("TypeId");
 
-            builder.Property(a => a.Name).IsRequired(true).HasMaxLength(50);
+            builder.Property(a => a.AnimalTypeName).IsRequired(true).HasMaxLength(50);
             builder.Property(a => a.CanAllotment).IsRequired(true).HasDefaultValue(false);
 
             builder.Property(a => a.CreatedByUserId).IsRequired(true);

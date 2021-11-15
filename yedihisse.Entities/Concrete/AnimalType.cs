@@ -9,7 +9,7 @@ namespace yedihisse.Entities.Concrete
 {
     public class AnimalType : EntityBase, IEntity
     {
-        public string Name { get; set; }
+        public string AnimalTypeName { get; set; }
         public bool CanAllotment { get; set; }
 
         public ICollection<Animal> Animals { get; set; }

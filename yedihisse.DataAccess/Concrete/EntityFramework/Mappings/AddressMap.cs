@@ -19,13 +19,14 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.AddressName).IsRequired(true).HasMaxLength(50);
             builder.Property(a => a.Country).IsRequired(true).HasMaxLength(200);
             builder.Property(a => a.City).IsRequired(true).HasMaxLength(200);
+            builder.Property(a => a.District).IsRequired(true).HasMaxLength(200);
             builder.Property(a => a.Parish).IsRequired(true).HasMaxLength(200);
-            builder.Property(a => a.Street).IsRequired(true).HasMaxLength(200);
-            builder.Property(a => a.ApartmentName).IsRequired(true).HasMaxLength(200);
-            builder.Property(a => a.ApartmentNo).IsRequired(true).HasMaxLength(200);
-            builder.Property(a => a.ApartmentBlokName).IsRequired(true).HasMaxLength(200);
-            builder.Property(a => a.FloorNo).IsRequired(true).HasMaxLength(200);
-            builder.Property(a => a.FlatNo).IsRequired(true).HasMaxLength(200);
+            builder.Property(a => a.Street).IsRequired(false).HasMaxLength(200);
+            builder.Property(a => a.ApartmentName).IsRequired(false).HasMaxLength(200);
+            builder.Property(a => a.ApartmentNo).IsRequired(false).HasMaxLength(200);
+            builder.Property(a => a.ApartmentBlokName).IsRequired(false).HasMaxLength(200);
+            builder.Property(a => a.FloorNo).IsRequired(false).HasMaxLength(200);
+            builder.Property(a => a.FlatNo).IsRequired(false).HasMaxLength(200);
             builder.Property(a => a.AddressDetail).IsRequired(false).HasMaxLength(300);
             builder.Property(a => a.AddressDirection).IsRequired(false).HasMaxLength(300);
 

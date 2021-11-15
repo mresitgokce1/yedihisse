@@ -16,7 +16,7 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.HasKey(a => a.Id);
             builder.Property(a => a.Id).ValueGeneratedOnAdd().HasColumnName("ApplicationId");
 
-            builder.Property(a => a.AllotmentRate).IsRequired(true).HasDefaultValue(0);
+            builder.Property(a => a.AllotmentRate).IsRequired(true).HasDefaultValue(1).HasMaxLength(7);
             builder.Property(a => a.Description).IsRequired(false).HasMaxLength(250);
 
             builder.Property(a => a.UserId).IsRequired(true);

@@ -12,6 +12,7 @@ namespace yedihisse.Entities.Concrete
         public string AddressName { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
+        public string District { get; set; }
         public string Parish { get; set; }
         public string Street { get; set; }
         public string ApartmentName { get; set; }

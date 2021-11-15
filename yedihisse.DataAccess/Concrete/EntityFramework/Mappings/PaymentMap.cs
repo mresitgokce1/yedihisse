@@ -18,9 +18,11 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.Property(a => a.PaymentMade).IsRequired(true).HasPrecision(4, 4);
             builder.Property(a => a.ReceiptNumber).IsRequired(false).HasMaxLength(100);
-
+            builder.Property(a => a.Description).IsRequired(false).HasMaxLength(250);
+            
             builder.Property(p => p.AllotmentId).IsRequired(true);
             builder.Property(p => p.PaymentTypeId).IsRequired(true);
+            builder.Property(p => p.PaymentOptionId).IsRequired(true);
 
             builder.Property(a => a.CreatedByUserId).IsRequired(true);
             builder.Property(a => a.CreatedDate).IsRequired(true);
@@ -34,16 +36,20 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .HasForeignKey(p => p.AllotmentId);
 
             builder.HasOne<PaymentType>(p => p.PaymentType)
-                .WithMany(a => a.Payments)
+                .WithMany(ap => p.Payments)
                 .HasForeignKey(p => p.PaymentTypeId);
 
-            builder.HasOne<User>(a => a.CreatedByUser)
-                .WithMany(u => u.PaymentCreatedByUserIds)
-                .HasForeignKey(a => a.CreatedByUserId);
+            builder.HasOne<PaymentOption>(p => p.PaymentOption)
+                .WithMany(p => p.Payments)
+                .HasForeignKey(p => p.PaymentOptionId);
 
-            builder.HasOne<User>(a => a.ModifiedByUser)
+            builder.HasOne<User>(p => p.CreatedByUser)
+                .WithMany(u => u.PaymentCreatedByUserIds)
+                .HasForeignKey(p => p.CreatedByUserId);
+
+            builder.HasOne<User>(p => p.ModifiedByUser)
                 .WithMany(u => u.PaymentModifiedByUserIds)
-                .HasForeignKey(a => a.ModifiedByUserId);
+                .HasForeignKey(p => p.ModifiedByUserId);
 
             builder.ToTable("Payment.Payment");
         }

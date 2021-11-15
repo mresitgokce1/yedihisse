@@ -32,13 +32,13 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithOne(p => p.PhoneNumber)
                 .HasForeignKey<PhoneNumber>(p => p.PhoneNumberTypeId);
 
-            builder.HasOne<User>(a => a.CreatedByUser)
+            builder.HasOne<User>(p => p.CreatedByUser)
                 .WithMany(u => u.PhoneNumberCreatedByUserIds)
-                .HasForeignKey(a => a.CreatedByUserId);
+                .HasForeignKey(p => p.CreatedByUserId);
 
-            builder.HasOne<User>(a => a.ModifiedByUser)
+            builder.HasOne<User>(p => p.ModifiedByUser)
                 .WithMany(u => u.PhoneNumberModifiedByUserIds)
-                .HasForeignKey(a => a.ModifiedByUserId);
+                .HasForeignKey(p => p.ModifiedByUserId);
 
             //builder.HasData(new PhoneNumber()
             //{

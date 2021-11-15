@@ -17,7 +17,7 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(c => c.Id).ValueGeneratedOnAdd().HasColumnName("CarId");
 
             builder.Property(c => c.CarName).HasMaxLength(50).IsRequired(true);
-            builder.Property(c => c.CarNumberPlate).IsRequired().HasMaxLength(20);
+            builder.Property(c => c.CarNumberPlate).IsRequired(false).HasMaxLength(20);
 
             builder.Property(c => c.CarTypeId).IsRequired(true);
             builder.Property(c => c.PhoneNumberId).IsRequired(false);
@@ -42,13 +42,13 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithOne(s => s.Car)
                 .HasForeignKey<Car>(c => c.ShippingId);
 
-            builder.HasOne<User>(a => a.CreatedByUser)
+            builder.HasOne<User>(c => c.CreatedByUser)
                 .WithMany(u => u.CarCreatedByUserIds)
-                .HasForeignKey(a => a.CreatedByUserId);
+                .HasForeignKey(c => c.CreatedByUserId);
 
-            builder.HasOne<User>(a => a.ModifiedByUser)
+            builder.HasOne<User>(c => c.ModifiedByUser)
                 .WithMany(u => u.CarModifiedByUserIds)
-                .HasForeignKey(a => a.ModifiedByUserId);
+                .HasForeignKey(c => c.ModifiedByUserId);
 
             //builder.HasData(new Car()
             //{

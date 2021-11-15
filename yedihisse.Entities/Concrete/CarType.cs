@@ -9,7 +9,7 @@ namespace yedihisse.Entities.Concrete
 {
     public class CarType : EntityBase, IEntity
     {
-        public string Name { get; set; }
+        public string CarTypeName { get; set; }
         public string Description { get; set; }
 
         public ICollection<Car> Cars { get; set; }

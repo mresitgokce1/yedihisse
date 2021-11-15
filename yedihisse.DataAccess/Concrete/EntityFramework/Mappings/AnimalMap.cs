@@ -16,11 +16,11 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.HasKey(a => a.Id);
             builder.Property(a => a.Id).ValueGeneratedOnAdd().HasColumnName("AnimalId");
 
-            builder.Property(a => a.Age).IsRequired(false).HasDefaultValue(0).HasPrecision(2, 2);
-            builder.Property(a => a.Kilo).IsRequired(false).HasDefaultValue(0).HasPrecision(4, 4);
+            builder.Property(a => a.Age).IsRequired(false).HasPrecision(2, 2);
+            builder.Property(a => a.Kilo).IsRequired(false).HasPrecision(4, 4);
             builder.Property(a => a.Code).IsRequired(true).HasMaxLength(250);
-            builder.Property(a => a.Cost).IsRequired(false).HasDefaultValue(0).HasPrecision(4, 4);
-            builder.Property(a => a.Gain).IsRequired(false).HasDefaultValue(0).HasPrecision(4, 4);
+            builder.Property(a => a.Cost).IsRequired(false).HasPrecision(4, 4);
+            builder.Property(a => a.Gain).IsRequired(false).HasPrecision(4, 4);
             builder.Property(a => a.EarCode).HasMaxLength(250);
             builder.Property(a => a.BaitCode).HasMaxLength(250);
 

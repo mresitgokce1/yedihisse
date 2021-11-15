@@ -37,17 +37,17 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithOne(a => a.Branch)
                 .HasForeignKey<Branch>(b => b.AddressId);
 
-            builder.HasOne<PhoneNumber>(p => p.PhoneNumber)
+            builder.HasOne<PhoneNumber>(b => b.PhoneNumber)
                 .WithMany(p => p.Branches)
                 .HasForeignKey(b => b.PhoneNumberId);
 
-            builder.HasOne<User>(a => a.CreatedByUser)
+            builder.HasOne<User>(b => b.CreatedByUser)
                 .WithMany(u => u.BranchCreatedByUserIds)
-                .HasForeignKey(a => a.CreatedByUserId);
+                .HasForeignKey(b => b.CreatedByUserId);
 
-            builder.HasOne<User>(a => a.ModifiedByUser)
+            builder.HasOne<User>(b => b.ModifiedByUser)
                 .WithMany(u => u.BranchModifiedByUserIds)
-                .HasForeignKey(a => a.ModifiedByUserId);
+                .HasForeignKey(b => b.ModifiedByUserId);
 
             //builder.HasData(new Branch()
             //{

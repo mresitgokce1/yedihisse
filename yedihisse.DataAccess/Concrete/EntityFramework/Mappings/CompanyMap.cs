@@ -28,21 +28,21 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
             builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
-            builder.HasOne<Address>(b => b.Address)
+            builder.HasOne<Address>(c => c.Address)
                 .WithOne(a => a.Company)
-                .HasForeignKey<Company>(b => b.AddressId);
+                .HasForeignKey<Company>(c => c.AddressId);
 
             builder.HasOne<PhoneNumber>(c => c.PhoneNumber)
                 .WithMany(p => p.Companies)
                 .HasForeignKey(c => c.PhoneNumberId);
 
-            builder.HasOne<User>(a => a.CreatedByUser)
+            builder.HasOne<User>(c => c.CreatedByUser)
                 .WithMany(u => u.CompanyCreatedByUserIds)
-                .HasForeignKey(a => a.CreatedByUserId);
+                .HasForeignKey(c => c.CreatedByUserId);
 
-            builder.HasOne<User>(a => a.ModifiedByUser)
+            builder.HasOne<User>(c => c.ModifiedByUser)
                 .WithMany(u => u.CompanyModifiedByUserIds)
-                .HasForeignKey(a => a.ModifiedByUserId);
+                .HasForeignKey(c => c.ModifiedByUserId);
 
             //builder.HasData(new Company()
             //{

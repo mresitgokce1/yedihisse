@@ -11,9 +11,13 @@ namespace yedihisse.Entities.Concrete
     {
         public string PaymentMade { get; set; }
         public string ReceiptNumber { get; set; }
+        public string Description { get; set; }
 
         public int PaymentTypeId { get; set; }
         public PaymentType PaymentType { get; set; }
+
+        public int PaymentOptionId { get; set; }
+        public PaymentOption PaymentOption { get; set; }
 
         public int AllotmentId { get; set; }
         public Allotment Allotment { get; set; }

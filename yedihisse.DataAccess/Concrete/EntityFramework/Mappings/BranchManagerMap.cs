@@ -16,7 +16,7 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.HasKey(b => b.Id);
             builder.Property(b => b.Id).ValueGeneratedOnAdd().HasColumnName("ManagerId");
 
-            builder.Property(b => b.Description).IsRequired(false).HasMaxLength(50);
+            builder.Property(b => b.Description).IsRequired(false).HasMaxLength(100);
 
             builder.Property(b => b.UserId).IsRequired(true);
             builder.Property(b => b.BranchId).IsRequired(true);
@@ -36,13 +36,13 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(b => b.BranchManagers)
                 .HasForeignKey(b => b.BranchId);
 
-            builder.HasOne<User>(a => a.CreatedByUser)
+            builder.HasOne<User>(b => b.CreatedByUser)
                 .WithMany(u => u.BranchManagerCreatedByUserIds)
-                .HasForeignKey(a => a.CreatedByUserId);
+                .HasForeignKey(b => b.CreatedByUserId);
 
-            builder.HasOne<User>(a => a.ModifiedByUser)
+            builder.HasOne<User>(b => b.ModifiedByUser)
                 .WithMany(u => u.BranchManagerModifiedByUserIds)
-                .HasForeignKey(a => a.ModifiedByUserId);
+                .HasForeignKey(b => b.ModifiedByUserId);
 
             //builder.HasData(new BranchManager()
             //{
