@@ -10,6 +10,7 @@ namespace yedihisse.DataAccess.Abstract
     {
         IAddressRepository Addresses { get; }
         IAddressTypeRepository AddressTypes { get; }
+        IAllotmentJoinCarRepository AllotmentJoinCar { get; }
         IAllotmentRepository Allotments { get; }
         IAnimalRepository Animals { get; }
         IAnimalTypeRepository AnimalTypes { get; }
@@ -18,16 +19,18 @@ namespace yedihisse.DataAccess.Abstract
         IApplicationStatusTypeRepository ApplicationStatusTypes { get; }
         IBranchManagerRepository BranchManagers { get; }
         IBranchRepository Brances { get; }
+        ICarManagerRepository CarManager { get; }
         ICarRepository Cars { get; }
         ICarTypeRepository CarTypes { get; }
         ICompanyManagerRepository CompanyManagers { get; }
         ICompanyRepository Companies { get; }
         IFirmManagerRepository FirmManager { get; }
         IFirmRepository Firms { get; }
+        IPaymentOptionRepository PaymentOption { get; }
+        IPaymentTypeRepository PaymentType { get; }
+        IPaymentRepository PaymentRepository { get; }
         IPhoneNumberRepository PhoneNumbers { get; }
         IPhoneNumberTypeRepository PhoneNumberTypes { get; }
-        IShippingManagerRepository ShippingManagers { get; }
-        IShippingRepository Shippings { get; }
         ISlaughterhouseJoinAnimalRepository SlaughterhouseJoinAnimals { get; }
         ISlaughterhouseJoinTypeRepository SlaughterhouseJoinTypes { get; }
         ISlaughterhouseManagerRepository SlaughterhouseManagers { get; }

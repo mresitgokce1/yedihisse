@@ -36,7 +36,7 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .HasForeignKey(p => p.AllotmentId);
 
             builder.HasOne<PaymentType>(p => p.PaymentType)
-                .WithMany(ap => p.Payments)
+                .WithMany(p => p.Payments)
                 .HasForeignKey(p => p.PaymentTypeId);
 
             builder.HasOne<PaymentOption>(p => p.PaymentOption)

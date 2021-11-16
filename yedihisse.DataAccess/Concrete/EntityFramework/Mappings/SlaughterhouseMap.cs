@@ -17,7 +17,7 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(s => s.Id).ValueGeneratedOnAdd().HasColumnName("SlaughterhouseId");
 
             builder.Property(s => s.SlaughterhouseName).IsRequired(true).HasMaxLength(50);
-            builder.Property(s => s.Description).HasMaxLength(250);
+            builder.Property(s => s.Description).IsRequired(false).HasMaxLength(250);
 
             builder.Property(s => s.AddressId).IsRequired(false);
             builder.Property(s => s.PhoneNumberId).IsRequired(false);

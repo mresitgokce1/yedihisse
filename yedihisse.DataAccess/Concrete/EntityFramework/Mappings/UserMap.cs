@@ -20,7 +20,7 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(u => u.LastName).IsRequired(true).HasMaxLength(50);
             builder.Property(u => u.UserPhoneNumber).IsRequired(true).HasMaxLength(25);
             builder.HasIndex(u => u.UserPhoneNumber).IsUnique();
-            builder.Property(u => u.EmailAddress).IsRequired(true).HasMaxLength(100);
+            builder.Property(u => u.EmailAddress).IsRequired(false).HasMaxLength(100);
             builder.HasIndex(u => u.EmailAddress).IsUnique();
             builder.Property(u => u.Sex).IsRequired(false).HasDefaultValue(null);
             builder.Property(u => u.PasswordHash).IsRequired();

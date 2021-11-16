@@ -9,15 +9,17 @@ using yedihisse.Entities.Concrete;
 
 namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 {
-    public class ShippingMap : IEntityTypeConfiguration<Shipping>
+    public class AllotmentJoinCarMap : IEntityTypeConfiguration<AllotmentJoinCar>
     {
-        public void Configure(EntityTypeBuilder<Shipping> builder)
+        public void Configure(EntityTypeBuilder<AllotmentJoinCar> builder)
         {
-            builder.HasKey(s => s.Id);
-            builder.Property(s => s.Id).ValueGeneratedOnAdd().HasColumnName("ShippingId");
+            builder.HasKey(a => a.Id);
+            builder.Property(a => a.Id).ValueGeneratedOnAdd().HasColumnName("JoinCarId");
 
-            builder.Property(s => s.Name).IsRequired().HasMaxLength(50);
-            builder.Property(s => s.Description).HasMaxLength(250);
+            builder.Property(a => a.Description).HasMaxLength(250).IsRequired(false);
+
+            builder.Property(c => c.CarId).IsRequired(true);
+            builder.Property(c => c.AllotmentId).IsRequired(true);
 
             builder.Property(a => a.CreatedByUserId).IsRequired(true);
             builder.Property(a => a.CreatedDate).IsRequired(true);
@@ -26,27 +28,23 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
             builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
+            builder.HasOne<Car>(a => a.Car)
+                .WithMany(c => c.AllotmentJoinCars)
+                .HasForeignKey(a => a.CarId);
+
+            builder.HasOne<Allotment>(a => a.Allotment)
+                .WithMany(a => a.AllotmentJoinCars)
+                .HasForeignKey(a => a.AllotmentId);
+
             builder.HasOne<User>(a => a.CreatedByUser)
-                .WithMany(u => u.ShippingCreatedByUserIds)
+                .WithMany(u => u.AllotmentJoinCarCreatedByUserIds)
                 .HasForeignKey(a => a.CreatedByUserId);
 
             builder.HasOne<User>(a => a.ModifiedByUser)
-                .WithMany(u => u.ShippingModifiedByUserIds)
+                .WithMany(u => u.AllotmentJoinCarModifiedByUserIds)
                 .HasForeignKey(a => a.ModifiedByUserId);
 
-            //builder.HasData(new Shipping()
-            //{
-            //    Id = 1,
-            //    Name = "Taşıyıcı adı",
-            //    Description = "Taşıyıcı acıklaması",
-            //    CreatedById = 1,
-            //    CreatedDate = DateTime.Now,
-            //    ModifiedById = 1,
-            //    ModifiedDate = DateTime.Now,
-            //    IsActive = true,
-            //});
-
-            builder.ToTable("Shipping.Shipping");
+            builder.ToTable("Allotment.JoinCar");
         }
     }
 }

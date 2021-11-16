@@ -21,7 +21,6 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.Property(c => c.CarTypeId).IsRequired(true);
             builder.Property(c => c.PhoneNumberId).IsRequired(false);
-            builder.Property(c => c.ShippingId).IsRequired(false);
 
             builder.Property(a => a.CreatedByUserId).IsRequired(true);
             builder.Property(a => a.CreatedDate).IsRequired(true);
@@ -37,10 +36,6 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.HasOne<PhoneNumber>(c => c.PhoneNumber)
                 .WithMany(p => p.Cars)
                 .HasForeignKey(c => c.PhoneNumberId);
-
-            builder.HasOne<Shipping>(c => c.Shipping)
-                .WithOne(s => s.Car)
-                .HasForeignKey<Car>(c => c.ShippingId);
 
             builder.HasOne<User>(c => c.CreatedByUser)
                 .WithMany(u => u.CarCreatedByUserIds)

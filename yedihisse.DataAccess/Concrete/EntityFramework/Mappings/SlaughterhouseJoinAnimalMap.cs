@@ -16,7 +16,7 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.HasKey(s => s.Id);
             builder.Property(s => s.Id).ValueGeneratedOnAdd().HasColumnName("JoinAnimalId");
 
-            builder.Property(s => s.KillingNumber).IsRequired(true);
+            builder.Property(s => s.KillingNumber).IsRequired(true).HasMaxLength(1000);
             builder.HasIndex(s => s.KillingNumber).IsUnique(true);
             builder.Property(s => s.KillingComplate).IsRequired(true).HasDefaultValue(false);
 

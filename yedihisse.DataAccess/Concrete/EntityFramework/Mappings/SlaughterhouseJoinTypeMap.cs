@@ -16,9 +16,9 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.HasKey(s => s.Id);
             builder.Property(s => s.Id).ValueGeneratedOnAdd().HasColumnName("JoinTypeId");
 
-            builder.Property(s => s.HoldingCapacity).IsRequired(true).HasDefaultValue(0);
-            builder.Property(s => s.KillingCapacity).IsRequired(true).HasDefaultValue(0);
-            builder.Property(s => s.ShreddingCapacity).IsRequired(true).HasDefaultValue(0);
+            builder.Property(s => s.HoldingCapacity).IsRequired(false).HasMaxLength(2500);
+            builder.Property(s => s.KillingCapacity).IsRequired(false).HasMaxLength(250);
+            builder.Property(s => s.ShreddingCapacity).IsRequired(false).HasMaxLength(250);
 
             builder.Property(s => s.SlaughterhouseId).IsRequired(true);
             builder.Property(s => s.SlaughterhouseTypeId).IsRequired(true);

@@ -13,8 +13,9 @@ namespace yedihisse.Entities.Concrete
         public string LastName { get; set; }
         public string UserPhoneNumber { get; set; }
         public string EmailAddress { get; set; }
-        public string Sex { get; set; }
+        public bool Sex { get; set; }
         public byte[] PasswordHash { get; set; }
+
         public int AddressId { get; set; }
         public Address Address { get; set; }
 
@@ -27,7 +28,7 @@ namespace yedihisse.Entities.Concrete
         public ICollection<CompanyManager> CompanyManagers { get; set; }
         public ICollection<FirmManager> FirmManagers { get; set; }
         public ICollection<BranchManager> BranchManagers { get; set; }
-        public ICollection<ShippingManager> ShippingManagers { get; set; }
+        public ICollection<CarManager> CarManagers { get; set; }
         public ICollection<Application> Applications { get; set; }
 
         public ICollection<Address> AddressCreatedByUserIds { get; set; }
@@ -84,12 +85,6 @@ namespace yedihisse.Entities.Concrete
         public ICollection<PhoneNumberType> PhoneNumberTypeCreatedByUserIds { get; set; }
         public ICollection<PhoneNumberType> PhoneNumberTypeModifiedByUserIds { get; set; }
 
-        public ICollection<Shipping> ShippingCreatedByUserIds { get; set; }
-        public ICollection<Shipping> ShippingModifiedByUserIds { get; set; }
-
-        public ICollection<ShippingManager> ShippingManagerCreatedByUserIds { get; set; }
-        public ICollection<ShippingManager> ShippingManagerModifiedByUserIds { get; set; }
-
         public ICollection<Slaughterhouse> SlaughterhouseCreatedByUserIds { get; set; }
         public ICollection<Slaughterhouse> SlaughterhouseModifiedByUserIds { get; set; }
 
@@ -131,6 +126,12 @@ namespace yedihisse.Entities.Concrete
 
         public ICollection<PaymentOption> PaymentOptionCreatedByUserIds { get; set; }
         public ICollection<PaymentOption> PaymentOptionModifiedByUserIds { get; set; }
+
+        public ICollection<CarManager> CarManagerCreatedByUserIds { get; set; }
+        public ICollection<CarManager> CarManagerModifiedByUserIds { get; set; }
+
+        public ICollection<AllotmentJoinCar> AllotmentJoinCarCreatedByUserIds { get; set; }
+        public ICollection<AllotmentJoinCar> AllotmentJoinCarModifiedByUserIds { get; set; }
 
         public int CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }

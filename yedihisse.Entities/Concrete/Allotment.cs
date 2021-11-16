@@ -14,15 +14,12 @@ namespace yedihisse.Entities.Concrete
         public decimal AllotmentPayment { get; set; }
         public decimal AllotmentKillingPrice { get; set; }
 
-
         public int AnimalId { get; set; }
         public Animal Animal { get; set; }
 
-        public int ShippingId { get; set; }
-        public Shipping Shipping { get; set; }
-
         public ICollection<Application> Applications { get; set; }
         public ICollection<Payment> Payments { get; set; }
+        public ICollection<AllotmentJoinCar> AllotmentJoinCars { get; set; }
 
         public int CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }

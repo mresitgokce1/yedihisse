@@ -16,7 +16,7 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.HasKey(s => s.Id);
             builder.Property(s => s.Id).ValueGeneratedOnAdd().HasColumnName("ManagerId");
 
-            builder.Property(s => s.Description).HasMaxLength(50);
+            builder.Property(s => s.Description).HasMaxLength(250).IsRequired(false);
 
             builder.Property(s => s.UserId).IsRequired(true);
             builder.Property(s => s.SupplierId).IsRequired(true);

@@ -12,14 +12,14 @@ namespace yedihisse.Entities.Concrete
         public string CarName { get; set; }
         public string CarNumberPlate { get; set; }
 
+        public ICollection<CarManager> CarManagers { get; set; }
+        public ICollection<AllotmentJoinCar> AllotmentJoinCars { get; set; }
+
         public int CarTypeId { get; set; }
         public CarType CarType { get; set; }
 
         public int PhoneNumberId { get; set; }
         public PhoneNumber PhoneNumber { get; set; }
-
-        public int ShippingId { get; set; }
-        public Shipping Shipping { get; set; }
 
         public int CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }

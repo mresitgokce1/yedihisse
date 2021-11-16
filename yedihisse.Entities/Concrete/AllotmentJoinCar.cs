@@ -7,13 +7,15 @@ using yedihisse.Shared.Entities.Abstract;
 
 namespace yedihisse.Entities.Concrete
 {
-    public class ShippingManager : EntityBase, IEntity
+    public class AllotmentJoinCar : EntityBase, IEntity
     {
-        public int UserId { get; set; }
-        public User User { get; set; }
+        public string Description { get; set; }
 
-        public int ShippingId { get; set; }
-        public Shipping Shipping { get; set; }
+        public int CarId { get; set; }
+        public Car Car { get; set; }
+
+        public int AllotmentId { get; set; }
+        public Allotment Allotment { get; set; }
 
         public int CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }

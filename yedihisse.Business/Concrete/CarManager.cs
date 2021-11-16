@@ -61,7 +61,7 @@ namespace yedihisse.Business.Concrete
                 IsActive = carAddDto.IsActive,
                 CarTypeId = carAddDto.CarTypeId,
                 PhoneNumberId = carAddDto.PhoneNumberId,
-                ShippingId = carAddDto.ShippingId,
+                //ShippingId = carAddDto.ShippingId,
                 CreatedByUserId = createdByUserId,
                 ModifiedByUserId = createdByUserId,
                 CreatedDate = DateTime.Now,
@@ -82,7 +82,7 @@ namespace yedihisse.Business.Concrete
                 car.IsActive = carUpdateDto.IsActive;
                 car.CarTypeId = carUpdateDto.CarTypeId;
                 car.PhoneNumberId = carUpdateDto.PhoneNumberId;
-                car.ShippingId = carUpdateDto.ShippingId;
+                //car.ShippingId = carUpdateDto.ShippingId;
                 car.ModifiedByUserId = modifiedByUserId;
                 car.ModifiedDate = DateTime.Now;
                 await _unitOfWork.Cars.UpdateAsync(car).ContinueWith(t => _unitOfWork.SaveAsync());

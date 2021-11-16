@@ -8,7 +8,7 @@ using yedihisse.Shared.Data.Abstract;
 
 namespace yedihisse.DataAccess.Abstract
 {
-    public interface IShippingManagerRepository : IEntityRepository<ShippingManager>
+    public interface ICarManagerRepository : IEntityRepository<CarManager>
     {
     }
 }

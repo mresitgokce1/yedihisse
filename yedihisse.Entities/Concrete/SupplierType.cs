@@ -9,7 +9,7 @@ namespace yedihisse.Entities.Concrete
 {
     public class SupplierType : EntityBase, IEntity
     {
-        public string Name { get; set; }
+        public string SupplierTypeName { get; set; }
 
         public Supplier Supplier { get; set; }
 

@@ -10,9 +10,9 @@ using yedihisse.Shared.Data.Concrete.EntityFramework;
 
 namespace yedihisse.DataAccess.Concrete.EntityFramework.Repositories
 {
-    public class EfShippingManagerRepository : EfEntityRepositoryBase<ShippingManager>, IShippingManagerRepository
+    public class EfPaymentTypeRepository : EfEntityRepositoryBase<PaymentType> , IPaymentTypeRepository
     {
-        public EfShippingManagerRepository(DbContext context) : base(context)
+        public EfPaymentTypeRepository(DbContext context) : base(context)
         {
         }
     }

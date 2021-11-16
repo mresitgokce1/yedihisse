@@ -22,7 +22,6 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.AllotmentKillingPrice).IsRequired(false).HasPrecision(4, 4);
 
             builder.Property(a => a.AnimalId).IsRequired(false);
-            builder.Property(a => a.ShippingId).IsRequired(false);
 
             builder.Property(a => a.CreatedByUserId).IsRequired(true);
             builder.Property(a => a.CreatedDate).IsRequired(true);
@@ -34,10 +33,6 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.HasOne<Animal>(a => a.Animal)
                 .WithOne(a => a.Allotment)
                 .HasForeignKey<Allotment>(a => a.AnimalId);
-
-            builder.HasOne<Shipping>(a => a.Shipping)
-                .WithMany(s => s.Allotments)
-                .HasForeignKey(a => a.ShippingId);
 
             builder.HasOne<User>(a => a.CreatedByUser)
                 .WithMany(u => u.AllotmentCreatedByUserIds)

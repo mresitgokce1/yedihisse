@@ -27,8 +27,6 @@
     <Folder Include="Dtos\SlaughterhouseJoinTypeDto\" />
     <Folder Include="Dtos\SlaughterhouseJoinAnimalDto\" />
     <Folder Include="Dtos\SlaughterhouseDto\" />
-    <Folder Include="Dtos\ShippingManagerDto\" />
-    <Folder Include="Dtos\ShippingDto\" />
     <Folder Include="Dtos\PhoneNumberTypeDto\" />
     <Folder Include="Dtos\PhoneNumberDto\" />
   </ItemGroup>

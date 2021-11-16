@@ -9,9 +9,9 @@ namespace yedihisse.Entities.Concrete
 {
     public class SlaughterhouseJoinType : EntityBase, IEntity
     {
-        public int HoldingCapacity { get; set; }
-        public int KillingCapacity { get; set; }
-        public int ShreddingCapacity { get; set; }
+        public ushort HoldingCapacity { get; set; }
+        public ushort KillingCapacity { get; set; }
+        public ushort ShreddingCapacity { get; set; }
 
         public int SlaughterhouseId { get; set; }
         public Slaughterhouse Slaughterhouse { get; set; }

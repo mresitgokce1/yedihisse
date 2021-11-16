@@ -16,7 +16,7 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.HasKey(s => s.Id);
             builder.Property(s => s.Id).ValueGeneratedOnAdd().HasColumnName("TypeId");
 
-            builder.Property(s => s.Name).IsRequired(true).HasMaxLength(50);
+            builder.Property(s => s.SlaughterhouseTypeName).IsRequired(true).HasMaxLength(50);
 
             builder.Property(a => a.CreatedByUserId).IsRequired(true);
             builder.Property(a => a.CreatedDate).IsRequired(true);

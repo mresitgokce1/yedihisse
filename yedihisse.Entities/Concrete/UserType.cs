@@ -9,7 +9,7 @@ namespace yedihisse.Entities.Concrete
 {
     public class UserType : EntityBase, IEntity
     {
-        public string Name { get; set; }
+        public string UserTypeName { get; set; }
 
         public ICollection<UserJoinType> UserJoinTypes { get; set; }
 
