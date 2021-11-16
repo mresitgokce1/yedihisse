@@ -16,7 +16,7 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.HasKey(a => a.Id);
             builder.Property(a => a.Id).ValueGeneratedOnAdd().HasColumnName("PaymentId");
 
-            builder.Property(a => a.PaymentMade).IsRequired(true).HasPrecision(4, 4);
+            builder.Property(a => a.PaymentMade).IsRequired(true).HasPrecision(4, 4).HasDefaultValue(0);
             builder.Property(a => a.ReceiptNumber).IsRequired(false).HasMaxLength(100);
             builder.Property(a => a.Description).IsRequired(false).HasMaxLength(250);
             

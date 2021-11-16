@@ -22,12 +22,12 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.HasIndex(u => u.UserPhoneNumber).IsUnique();
             builder.Property(u => u.EmailAddress).IsRequired(false).HasMaxLength(100);
             builder.HasIndex(u => u.EmailAddress).IsUnique();
-            builder.Property(u => u.Sex).IsRequired(false).HasDefaultValue(null);
+            builder.Property(u => u.Sex).IsRequired(true).HasDefaultValue(true);
             builder.Property(u => u.PasswordHash).IsRequired();
             builder.Property(u => u.PasswordHash).HasColumnType("BYTEA");
 
-            builder.Property(u => u.AddressId).IsRequired(false);
-            builder.Property(u => u.PhoneNumberId).IsRequired(false);
+            builder.Property(u => u.AddressId).IsRequired(true);
+            builder.Property(u => u.PhoneNumberId).IsRequired(true);
 
             builder.Property(a => a.CreatedByUserId).IsRequired(true);
             builder.Property(a => a.CreatedDate).IsRequired(true);

@@ -20,7 +20,7 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(c => c.CarNumberPlate).IsRequired(false).HasMaxLength(20);
 
             builder.Property(c => c.CarTypeId).IsRequired(true);
-            builder.Property(c => c.PhoneNumberId).IsRequired(false);
+            builder.Property(c => c.PhoneNumberId).IsRequired(true);
 
             builder.Property(a => a.CreatedByUserId).IsRequired(true);
             builder.Property(a => a.CreatedDate).IsRequired(true);

@@ -17,11 +17,11 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.Id).ValueGeneratedOnAdd().HasColumnName("AllotmentId");
 
             builder.Property(a => a.Description).IsRequired(false).HasMaxLength(250);
-            builder.Property(a => a.AllotmentPrePay).IsRequired(false).HasPrecision(4, 4);
-            builder.Property(a => a.AllotmentPayment).IsRequired(false).HasPrecision(4, 4);
-            builder.Property(a => a.AllotmentKillingPrice).IsRequired(false).HasPrecision(4, 4);
+            builder.Property(a => a.AllotmentPrePay).IsRequired(true).HasPrecision(4, 4).HasDefaultValue(0);
+            builder.Property(a => a.AllotmentPayment).IsRequired(true).HasPrecision(4, 4).HasDefaultValue(0);
+            builder.Property(a => a.AllotmentKillingPrice).IsRequired(true).HasPrecision(4, 4).HasDefaultValue(0);
 
-            builder.Property(a => a.AnimalId).IsRequired(false);
+            builder.Property(a => a.AnimalId).IsRequired(true);
 
             builder.Property(a => a.CreatedByUserId).IsRequired(true);
             builder.Property(a => a.CreatedDate).IsRequired(true);

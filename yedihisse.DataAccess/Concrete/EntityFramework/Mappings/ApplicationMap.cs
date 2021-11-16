@@ -21,7 +21,7 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.Property(a => a.UserId).IsRequired(true);
             builder.Property(a => a.BranchId).IsRequired(true);
-            builder.Property(a => a.AllotmentId).IsRequired(false);
+            builder.Property(a => a.AllotmentId).IsRequired(true);
             builder.Property(a => a.AnimalTypeId).IsRequired(true);
 
             builder.Property(a => a.CreatedByUserId).IsRequired(true);
