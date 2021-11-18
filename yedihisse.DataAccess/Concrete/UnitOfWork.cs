@@ -41,9 +41,6 @@ namespace yedihisse.DataAccess.Concrete
         private EfSlaughterhouseManagerRepository _slaughterhouseManagerRepository;
         private EfSlaughterhouseRepository _slaughterhouseRepository;
         private EfSlaughterhouseTypeRepository _slaughterhouseTypeRepository;
-        private EfSupplierManagerRepository _supplierManagerRepository;
-        private EfSupplierRepository _supplierRepository;
-        private EfSupplierTypeRepository _supplierTypeRepository;
         private EfUserJoinTypeRepository _userJoinTypeRepository;
         private EfUserRepository _userRepository;
         private EfUserTypeRepository _userTypeRepository;
@@ -81,9 +78,6 @@ namespace yedihisse.DataAccess.Concrete
         public ISlaughterhouseManagerRepository SlaughterhouseManagers => _slaughterhouseManagerRepository ?? new EfSlaughterhouseManagerRepository(_context);
         public ISlaughterhouseRepository Slaughterhouses => _slaughterhouseRepository ?? new EfSlaughterhouseRepository(_context);
         public ISlaughterhouseTypeRepository SlaughterhouseTypes => _slaughterhouseTypeRepository ?? new EfSlaughterhouseTypeRepository(_context);
-        public ISupplierManagerRepository SupplierManagers => _supplierManagerRepository ?? new EfSupplierManagerRepository(_context);
-        public ISupplierRepository Suppliers => _supplierRepository ?? new EfSupplierRepository(_context);
-        public ISupplierTypeRepository SupplierTypes => _supplierTypeRepository ?? new EfSupplierTypeRepository(_context);
         public IUserJoinTypeRepository UserJoinTypes => _userJoinTypeRepository ?? new EfUserJoinTypeRepository(_context);
         public IUserRepository Users => _userRepository ?? new EfUserRepository(_context);
         public IUserTypeRepository UserTypes => _userTypeRepository ?? new EfUserTypeRepository(_context);

@@ -10,22 +10,25 @@ namespace yedihisse.Entities.Dtos.AnimalTypeDto
 {
     public class AnimalTypeUpdateDto
     {
+        [DisplayName("Id")]
         [Required]
         public int Id { get; set; }
 
         [DisplayName("Hayvan Tip Adı")]
         [Required(ErrorMessage = "{0} boş olmamalıdır.")]
         [MaxLength(50, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
-        [MinLength(2, ErrorMessage = "{0} {1} karakterden küçük olmamalıdır.")]
-        public string Name { get; set; }
+        public string AnimalTypeName { get; set; }
 
-        [DisplayName("Hayvan Tipi Hisse Edilebilir Mi?")]
+        [DisplayName("Hayvan Hisse Edilebilir Mi?")]
+        [Required(ErrorMessage = "{0} boş olmamalıdır.")]
         public bool CanAllotment { get; set; }
 
         [DisplayName("Hayvan Tipi Aktif Mi?")]
+        [Required]
         public bool IsActive { get; set; }
 
         [DisplayName("Hayvan Tipi Silindi Mi?")]
+        [Required]
         public bool IsDeleted { get; set; }
     }
 }

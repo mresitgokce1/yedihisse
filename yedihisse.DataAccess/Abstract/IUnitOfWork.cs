@@ -36,9 +36,6 @@ namespace yedihisse.DataAccess.Abstract
         ISlaughterhouseManagerRepository SlaughterhouseManagers { get; }
         ISlaughterhouseRepository Slaughterhouses { get; }
         ISlaughterhouseTypeRepository SlaughterhouseTypes { get; }
-        ISupplierManagerRepository SupplierManagers { get; }
-        ISupplierRepository Suppliers { get; }
-        ISupplierTypeRepository SupplierTypes { get; }
         IUserJoinTypeRepository UserJoinTypes { get; }
         IUserRepository Users { get; }
         IUserTypeRepository UserTypes { get; }

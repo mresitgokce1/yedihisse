@@ -11,12 +11,12 @@ namespace yedihisse.Entities.Concrete
     {
         public string ApplicationStatusTypeName { get; set; }
 
-        public ICollection<ApplicationStatus> ApplicationStatuses { get; set; }
-
         public int CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }
 
         public int ModifiedByUserId { get; set; }
         public User ModifiedByUser { get; set; }
+
+        public ICollection<ApplicationStatus> ApplicationStatuses { get; set; }
     }
 }

@@ -12,10 +12,11 @@ namespace yedihisse.Entities.Dtos.AddressTypeDto
     {
         [DisplayName("Adres Tip Adı")]
         [Required(ErrorMessage = "{0} boş olmamalıdır.")]
-        [MaxLength(50, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır. ")]
+        [MaxLength(50, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
         public string AddressTypeName { get; set; }
 
         [DisplayName("Adres Tipi Aktif Mi?")]
+        [Required]
         public bool IsActive { get; set; }
     }
 }

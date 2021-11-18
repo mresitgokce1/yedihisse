@@ -15,6 +15,12 @@ namespace yedihisse.Entities.Concrete
         public int PhoneNumberTypeId { get; set; }
         public PhoneNumberType PhoneNumberType { get; set; }
 
+        public int CreatedByUserId { get; set; }
+        public User CreatedByUser { get; set; }
+
+        public int ModifiedByUserId { get; set; }
+        public User ModifiedByUser { get; set; }
+
         public ICollection<Branch> Branches { get; set; }
         public ICollection<Company> Companies { get; set; }
         public ICollection<Firm> Firms { get; set; }
@@ -22,11 +28,5 @@ namespace yedihisse.Entities.Concrete
         public ICollection<Supplier> Suppliers { get; set; }
         public ICollection<User> Users { get; set; }
         public ICollection<Car> Cars { get; set; }
-
-        public int CreatedByUserId { get; set; }
-        public User CreatedByUser { get; set; }
-
-        public int ModifiedByUserId { get; set; }
-        public User ModifiedByUser { get; set; }
     }
 }

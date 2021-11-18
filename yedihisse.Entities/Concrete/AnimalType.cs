@@ -12,14 +12,13 @@ namespace yedihisse.Entities.Concrete
         public string AnimalTypeName { get; set; }
         public bool CanAllotment { get; set; }
 
-        public ICollection<Animal> Animals { get; set; }
-
-        public ICollection<Application> Applications { get; set; }
-
         public int CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }
 
         public int ModifiedByUserId { get; set; }
         public User ModifiedByUser { get; set; }
+
+        public ICollection<Animal> Animals { get; set; }
+        public ICollection<Application> Applications { get; set; }
     }
 }

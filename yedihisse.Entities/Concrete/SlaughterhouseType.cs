@@ -10,12 +10,13 @@ namespace yedihisse.Entities.Concrete
     public class SlaughterhouseType : EntityBase, IEntity
     {
         public string SlaughterhouseTypeName { get; set; }
-        public ICollection<SlaughterhouseJoinType> SlaughterhouseJoinTypes { get; set; }
 
         public int CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }
 
         public int ModifiedByUserId { get; set; }
         public User ModifiedByUser { get; set; }
+
+        public ICollection<SlaughterhouseJoinType> SlaughterhouseJoinTypes { get; set; }
     }
 }

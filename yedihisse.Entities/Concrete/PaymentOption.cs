@@ -11,12 +11,12 @@ namespace yedihisse.Entities.Concrete
     {
         public string PaymentOptionName { get; set; }
 
-        public ICollection<Payment> Payments { get; set; }
-
         public int CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }
 
         public int ModifiedByUserId { get; set; }
         public User ModifiedByUser { get; set; }
+
+        public ICollection<Payment> Payments { get; set; }
     }
 }

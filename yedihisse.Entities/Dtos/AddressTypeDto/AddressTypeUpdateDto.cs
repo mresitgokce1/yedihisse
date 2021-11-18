@@ -10,18 +10,22 @@ namespace yedihisse.Entities.Dtos.AddressTypeDto
 {
     public class AddressTypeUpdateDto
     {
+        [DisplayName("Id")]
         [Required]
         public int Id { get; set; }
 
         [DisplayName("Adres Tip Adı")]
         [Required(ErrorMessage = "{0} boş olmamalıdır.")]
-        [MaxLength(50, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır. ")]
+        [MaxLength(50, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
         public string AddressTypeName { get; set; }
 
         [DisplayName("Adres Tipi Aktif Mi?")]
+        [Required]
         public bool IsActive { get; set; }
 
         [DisplayName("Adres Tipi Silindi Mi?")]
+        [Required]
         public bool IsDeleted { get; set; }
+
     }
 }

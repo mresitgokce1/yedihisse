@@ -12,9 +12,6 @@ namespace yedihisse.Entities.Concrete
         public string CarName { get; set; }
         public string CarNumberPlate { get; set; }
 
-        public ICollection<CarManager> CarManagers { get; set; }
-        public ICollection<AllotmentJoinCar> AllotmentJoinCars { get; set; }
-
         public int CarTypeId { get; set; }
         public CarType CarType { get; set; }
 
@@ -26,5 +23,8 @@ namespace yedihisse.Entities.Concrete
 
         public int ModifiedByUserId { get; set; }
         public User ModifiedByUser { get; set; }
+
+        public ICollection<CarManager> CarManagers { get; set; }
+        public ICollection<AllotmentJoinCar> AllotmentJoinCars { get; set; }
     }
 }

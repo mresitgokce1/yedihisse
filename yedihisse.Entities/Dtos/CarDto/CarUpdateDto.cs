@@ -10,37 +10,34 @@ namespace yedihisse.Entities.Dtos.CarDto
 {
     public class CarUpdateDto
     {
+        [DisplayName("Id")]
         [Required]
         public int Id { get; set; }
 
         [DisplayName("Araç Adı")]
         [Required(ErrorMessage = "{0} boş olmamalıdır.")]
         [MaxLength(50, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
-        [MinLength(3, ErrorMessage = "{0} {1} karakterden küçük olmamalıdır.")]
         public string CarName { get; set; }
 
         [DisplayName("Araç Plakası")]
-        [Required(ErrorMessage = "{0} boş olmamalıdır.")]
         [MaxLength(20, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
-        [MinLength(6, ErrorMessage = "{0} {1} karakterden küçük olmamalıdır.")]
         public string CarNumberPlate { get; set; }
 
+        [DisplayName("Araç Tipi")]
+        [Required]
+        public int CarTypeId { get; set; }
+
+        [DisplayName("Araç Telefonu")]
+        [Required]
+        public int PhoneNumberId { get; set; }
+
         [DisplayName("Araç Aktif Mi?")]
-        [Required(ErrorMessage = "{0} boş olmamalıdır.")]
+        [Required]
         public bool IsActive { get; set; }
 
         [DisplayName("Araç Silindi Mi?")]
-        [Required(ErrorMessage = "{0} boş olmamalıdır.")]
+        [Required]
         public bool IsDeleted { get; set; }
-
-        [DisplayName("Araç Tipi")]
-        public int CarTypeId { get; set; }
-
-        [DisplayName("Araç Telefon Numarası")]
-        public int PhoneNumberId { get; set; }
-
-        [DisplayName("Araç Şoförü")]
-        public int ShippingId { get; set; }
     }
 }
 

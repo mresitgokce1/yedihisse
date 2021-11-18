@@ -20,13 +20,13 @@ namespace yedihisse.Entities.Concrete
         public int AddressId { get; set; }
         public Address Address { get; set; }
 
-        public ICollection<BranchManager> BranchManagers { get; set; }
-        public ICollection<Application> Applications { get; set; }
-
         public int CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }
 
         public int ModifiedByUserId { get; set; }
         public User ModifiedByUser { get; set; }
+
+        public ICollection<BranchManager> BranchManagers { get; set; }
+        public ICollection<Application> Applications { get; set; }
     }
 }

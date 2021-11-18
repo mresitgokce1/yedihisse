@@ -12,27 +12,23 @@ namespace yedihisse.Entities.Dtos.CarDto
     {
         [DisplayName("Araç Adı")]
         [Required(ErrorMessage = "{0} boş olmamalıdır.")]
-        [MaxLength(50,ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
-        [MinLength(3,ErrorMessage = "{0} {1} karakterden küçük olmamalıdır.")]
+        [MaxLength(50, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
         public string CarName { get; set; }
 
         [DisplayName("Araç Plakası")]
-        [Required(ErrorMessage = "{0} boş olmamalıdır.")]
         [MaxLength(20, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
-        [MinLength(6, ErrorMessage = "{0} {1} karakterden küçük olmamalıdır.")]
         public string CarNumberPlate { get; set; }
 
-        [DisplayName("Araç Aktif Mi?")]
-        [Required(ErrorMessage = "{0} boş olmamalıdır.")]
-        public bool IsActive { get; set; }
-
         [DisplayName("Araç Tipi")]
+        [Required]
         public int CarTypeId { get; set; }
 
-        [DisplayName("Araç Telefon Numarası")]
+        [DisplayName("Araç Telefonu")]
+        [Required]
         public int PhoneNumberId { get; set; }
 
-        [DisplayName("Araç Şoförü")]
-        public int ShippingId { get; set; }
+        [DisplayName("Araç Aktif Mi?")]
+        [Required]
+        public bool IsActive { get; set; }
     }
 }

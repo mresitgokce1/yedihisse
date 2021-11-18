@@ -26,17 +26,17 @@ namespace yedihisse.Entities.Concrete
         public int AddressTypeId { get; set; }
         public AddressType AddressType { get; set; }
 
+        public int CreatedByUserId { get; set; }
+        public User CreatedByUser { get; set; }
+
+        public int ModifiedByUserId { get; set; }
+        public User ModifiedByUser { get; set; }
+
         public User User { get; set; }
         public Slaughterhouse Slaughterhouse { get; set; }
         public Company Company { get; set; }
         public Firm Firm { get; set; }
         public Branch Branch { get; set; }
         public Supplier Supplier { get; set; }
-
-        public int CreatedByUserId { get; set; }
-        public User CreatedByUser { get; set; }
-
-        public int ModifiedByUserId { get; set; }
-        public User ModifiedByUser { get; set; }
     }
 }

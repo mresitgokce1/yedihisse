@@ -18,14 +18,14 @@ namespace yedihisse.Entities.Concrete
         public int AddressId { get; set; }
         public Address Address { get; set; }
 
-        public ICollection<SlaughterhouseJoinType> SlaughterhouseJoinTypes { get; set; }
-        public ICollection<SlaughterhouseManager> SlaughterhouseManagers { get; set; }
-        public ICollection<SlaughterhouseJoinAnimal> SlaughterhouseJoinAnimals { get; set; }
-
         public int CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }
 
         public int ModifiedByUserId { get; set; }
         public User ModifiedByUser { get; set; }
+
+        public ICollection<SlaughterhouseJoinType> SlaughterhouseJoinTypes { get; set; }
+        public ICollection<SlaughterhouseManager> SlaughterhouseManagers { get; set; }
+        public ICollection<SlaughterhouseJoinAnimal> SlaughterhouseJoinAnimals { get; set; }
     }
 }

@@ -17,17 +17,16 @@ namespace yedihisse.Entities.Concrete
         public string EarCode { get; set; }
         public string BaitCode{ get; set; }
 
-        public Allotment Allotment { get; set; }
-
         public int AnimalTypeId { get; set; }
         public AnimalType AnimalType { get; set; }
-
-        public SlaughterhouseJoinAnimal SlaughterhouseJoinAnimal { get; set; }
 
         public int CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }
 
         public int ModifiedByUserId { get; set; }
         public User ModifiedByUser { get; set; }
+
+        public Allotment Allotment { get; set; }
+        public SlaughterhouseJoinAnimal SlaughterhouseJoinAnimal { get; set; }
     }
 }
