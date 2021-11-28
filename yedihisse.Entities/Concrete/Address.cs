@@ -37,6 +37,5 @@ namespace yedihisse.Entities.Concrete
         public Company Company { get; set; }
         public Firm Firm { get; set; }
         public Branch Branch { get; set; }
-        public Supplier Supplier { get; set; }
     }
 }

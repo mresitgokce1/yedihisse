@@ -30,7 +30,6 @@ namespace yedihisse.Entities.Concrete
 
         public ICollection<UserJoinType> UserJoinTypes { get; set; }
         public ICollection<SlaughterhouseManager> SlaughterhouseManagers { get; set; }
-        public ICollection<SupplierManager> SupplierManagers { get; set; }
         public ICollection<CompanyManager> CompanyManagers { get; set; }
         public ICollection<FirmManager> FirmManagers { get; set; }
         public ICollection<BranchManager> BranchManagers { get; set; }
@@ -105,15 +104,6 @@ namespace yedihisse.Entities.Concrete
 
         public ICollection<SlaughterhouseType> SlaughterhouseTypeCreatedByUserIds { get; set; }
         public ICollection<SlaughterhouseType> SlaughterhouseTypeModifiedByUserIds { get; set; }
-
-        public ICollection<Supplier> SupplierCreatedByUserIds { get; set; }
-        public ICollection<Supplier> SupplierModifiedByUserIds { get; set; }
-
-        public ICollection<SupplierManager> SupplierManagerCreatedByUserIds { get; set; }
-        public ICollection<SupplierManager> SupplierManagerModifiedByUserIds { get; set; }
-
-        public ICollection<SupplierType> SupplierTypeCreatedByUserIds { get; set; }
-        public ICollection<SupplierType> SupplierTypeModifiedByUserIds { get; set; }
 
         public ICollection<UserJoinType> UserJoinTypeCreatedByUserIds { get; set; }
         public ICollection<UserJoinType> UserJoinTypeModifiedByUserIds { get; set; }

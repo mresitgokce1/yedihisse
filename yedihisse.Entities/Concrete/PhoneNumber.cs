@@ -25,7 +25,6 @@ namespace yedihisse.Entities.Concrete
         public ICollection<Company> Companies { get; set; }
         public ICollection<Firm> Firms { get; set; }
         public ICollection<Slaughterhouse> Slaughterhouses { get; set; }
-        public ICollection<Supplier> Suppliers { get; set; }
         public ICollection<User> Users { get; set; }
         public ICollection<Car> Cars { get; set; }
     }

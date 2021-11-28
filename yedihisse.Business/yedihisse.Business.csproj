@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\yedihisse.DataAccess\yedihisse.DataAccess.csproj" />
     <ProjectReference Include="..\yedihisse.Entities\yedihisse.Entities.csproj" />
     <ProjectReference Include="..\yedihisse.Shared\yedihisse.Shared.csproj" />
