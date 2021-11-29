@@ -15,6 +15,9 @@ namespace yedihisse.Entities.Concrete
         public int CarTypeId { get; set; }
         public CarType CarType { get; set; }
 
+        public int CarMissionTypeId { get; set; }
+        public CarMissionType CarMissionType { get; set; }
+
         public int PhoneNumberId { get; set; }
         public PhoneNumber PhoneNumber { get; set; }
 

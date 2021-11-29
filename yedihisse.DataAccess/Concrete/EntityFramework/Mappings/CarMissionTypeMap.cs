@@ -9,19 +9,15 @@ using yedihisse.Entities.Concrete;
 
 namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 {
-    public class CarMap : IEntityTypeConfiguration<Car>
+    public class CarMissionTypeMap : IEntityTypeConfiguration<CarMissionType>
     {
-        public void Configure(EntityTypeBuilder<Car> builder)
+        public void Configure(EntityTypeBuilder<CarMissionType> builder)
         {
             builder.HasKey(c => c.Id);
-            builder.Property(c => c.Id).ValueGeneratedOnAdd().HasColumnName("CarId");
+            builder.Property(c => c.Id).ValueGeneratedOnAdd().HasColumnName("CarMissionTypeId");
 
-            builder.Property(c => c.CarName).HasMaxLength(50).IsRequired(true);
-            builder.Property(c => c.CarNumberPlate).IsRequired(false).HasMaxLength(20);
-
-            builder.Property(c => c.CarTypeId).IsRequired(true);
-            builder.Property(c => c.PhoneNumberId).IsRequired(true);
-            builder.Property(c => c.CarMissionTypeId).IsRequired(true);
+            builder.Property(c => c.CarMissionTypeName).HasMaxLength(50).IsRequired(true);
+            builder.Property(c => c.Description).HasMaxLength(250).IsRequired(true);
 
             builder.Property(a => a.CreatedByUserId).IsRequired(true);
             builder.Property(a => a.CreatedDate).IsRequired(true);
@@ -30,24 +26,12 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
             builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
-            builder.HasOne<CarType>(c => c.CarType)
-                .WithMany(c => c.Cars)
-                .HasForeignKey(c => c.CarTypeId);
-
-            builder.HasOne<CarMissionType>(c => c.CarMissionType)
-                .WithMany(c => c.Cars)
-                .HasForeignKey(c => c.CarMissionTypeId);
-
-            builder.HasOne<PhoneNumber>(c => c.PhoneNumber)
-                .WithMany(p => p.Cars)
-                .HasForeignKey(c => c.PhoneNumberId);
-
             builder.HasOne<User>(c => c.CreatedByUser)
-                .WithMany(u => u.CarCreatedByUserIds)
+                .WithMany(u => u.CarMissionTypeCreatedByUserIds)
                 .HasForeignKey(c => c.CreatedByUserId);
 
             builder.HasOne<User>(c => c.ModifiedByUser)
-                .WithMany(u => u.CarModifiedByUserIds)
+                .WithMany(u => u.CarMissionTypeModifiedByUserIds)
                 .HasForeignKey(c => c.ModifiedByUserId);
 
             //builder.HasData(new Car()
@@ -64,7 +48,7 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             //    PhoneNumberId = 1
             //});
 
-            builder.ToTable("Car.Car");
+            builder.ToTable("Car.MissionType");
         }
     }
 }

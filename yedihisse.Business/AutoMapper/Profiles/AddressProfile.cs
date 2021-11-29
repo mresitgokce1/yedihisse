@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using yedihisse.Entities.Concrete;
-using yedihisse.Entities.Dtos.AddressDto;
+using yedihisse.Entities.Dtos;
 
 namespace yedihisse.Business.AutoMapper.Profiles
 {

@@ -8,7 +8,7 @@ using yedihisse.Business.Abstract;
 using yedihisse.Business.Utilities;
 using yedihisse.DataAccess.Abstract;
 using yedihisse.Entities.Concrete;
-using yedihisse.Entities.Dtos.AddressDto;
+using yedihisse.Entities.Dtos;
 using yedihisse.Shared.Utilities.Results.Abstratct;
 using yedihisse.Shared.Utilities.Results.Complex_Type;
 using yedihisse.Shared.Utilities.Results.Concrete;
@@ -34,8 +34,7 @@ namespace yedihisse.Business.Concrete
             {
                 return new DataResult<AddressDto>(ResultStatus.Success, new AddressDto
                 {
-                    Address = address,
-                    ResultStatus = ResultStatus.Success
+                    Address = address
                 });
             }
 
@@ -64,8 +63,7 @@ namespace yedihisse.Business.Concrete
             {
                 return new DataResult<AddressListDto>(ResultStatus.Success, new AddressListDto
                 {
-                    Addresses = addresses,
-                    ResultStatus = ResultStatus.Success
+                    Addresses = addresses
                 });
             }
 
@@ -80,8 +78,7 @@ namespace yedihisse.Business.Concrete
             {
                 return new DataResult<AddressListDto>(ResultStatus.Success, new AddressListDto
                 {
-                    Addresses = addresses,
-                    ResultStatus = ResultStatus.Success
+                    Addresses = addresses
                 });
             }
 
@@ -96,8 +93,7 @@ namespace yedihisse.Business.Concrete
             {
                 return new DataResult<AddressListDto>(ResultStatus.Success, new AddressListDto
                 {
-                    Addresses = addresses,
-                    ResultStatus = ResultStatus.Success
+                    Addresses = addresses
                 });
             }
 
@@ -116,8 +112,7 @@ namespace yedihisse.Business.Concrete
                 {
                     return new DataResult<AddressListDto>(ResultStatus.Success, new AddressListDto
                     {
-                        Addresses = addresses,
-                        ResultStatus = ResultStatus.Success
+                        Addresses = addresses
                     });
                 }
 
@@ -137,9 +132,7 @@ namespace yedihisse.Business.Concrete
 
             return new DataResult<AddressDto>(ResultStatus.Success, Messages.Address.Add(addedAddress.AddressName), new AddressDto
             {
-                Address = addedAddress,
-                ResultStatus = ResultStatus.Success,
-                Message = Messages.Address.Add(addedAddress.AddressName)
+                Address = addedAddress
             });
         }
 
@@ -156,9 +149,7 @@ namespace yedihisse.Business.Concrete
 
                 return new DataResult<AddressDto>(ResultStatus.Success, Messages.Address.Update(updatedAddress.AddressName), new AddressDto
                 {
-                    Address = updatedAddress,
-                    ResultStatus = ResultStatus.Success,
-                    Message = Messages.Address.Update(updatedAddress.AddressName)
+                    Address = updatedAddress
                 });
             }
 

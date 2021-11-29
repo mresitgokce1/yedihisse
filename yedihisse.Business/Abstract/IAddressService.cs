@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using yedihisse.Entities.Concrete;
-using yedihisse.Entities.Dtos.AddressDto;
+using yedihisse.Entities.Dtos;
 using yedihisse.Shared.Utilities.Results.Abstratct;
 
 namespace yedihisse.Business.Abstract

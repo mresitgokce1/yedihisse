@@ -72,6 +72,9 @@ namespace yedihisse.Entities.Concrete
         public ICollection<CarType> CarTypeCreatedByUserIds { get; set; }
         public ICollection<CarType> CarTypeModifiedByUserIds { get; set; }
 
+        public ICollection<CarMissionType> CarMissionTypeCreatedByUserIds { get; set; }
+        public ICollection<CarMissionType> CarMissionTypeModifiedByUserIds { get; set; }
+
         public ICollection<Company> CompanyCreatedByUserIds { get; set; }
         public ICollection<Company> CompanyModifiedByUserIds { get; set; }
 

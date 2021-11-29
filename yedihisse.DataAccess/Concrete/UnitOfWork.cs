@@ -27,6 +27,7 @@ namespace yedihisse.DataAccess.Concrete
         private EfCarManagerRepository _carManagerRepository;
         private EfCarRepository _carRepository;
         private EfCarTypeRepository _carTypeRepository;
+        private EfCarMissionTypeRepository _carMissionTypeRepository;
         private EfCompanyManagerRepository _companyManagerRepository;
         private EfCompanyRepository _companyRepository;
         private EfFirmManagerRepository _firmManagerRepository;
@@ -64,6 +65,7 @@ namespace yedihisse.DataAccess.Concrete
         public ICarManagerRepository CarManager => _carManagerRepository ?? new EfCarManagerRepository(_context);
         public ICarRepository Cars => _carRepository ?? new EfCarRepository(_context);
         public ICarTypeRepository CarTypes => _carTypeRepository ?? new EfCarTypeRepository(_context);
+        public ICarMissionTypeRepository CarMissionTypes => _carMissionTypeRepository ?? new EfCarMissionTypeRepository(_context);
         public ICompanyManagerRepository CompanyManagers => _companyManagerRepository ?? new EfCompanyManagerRepository(_context);
         public ICompanyRepository Companies => _companyRepository ?? new EfCompanyRepository(_context);
         public IFirmManagerRepository FirmManager => _firmManagerRepository ?? new EfFirmManagerRepository(_context);
