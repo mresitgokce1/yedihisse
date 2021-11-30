@@ -12,7 +12,6 @@ namespace yedihisse.Entities.Dtos
     public class BranchManagerDto
     {
         public BranchManager BranchManager { get; set; }
-        public string Message { get; set; }
     }
 
     public class BranchManagerListDto
