@@ -12,12 +12,12 @@ namespace yedihisse.Business.Abstract
     public interface IAddressService
     {
         Task<IDataResult<AddressDto>> Get(int addressId);
-        Task<IDataResult<AddressUpdateDto>> GetAddressUpdateDto(int addressId);
         Task<IDataResult<AddressListDto>> GetAll();
         Task<IDataResult<AddressListDto>> GetAllByNonDeleted();
         Task<IDataResult<AddressListDto>> GetAllByNonDeletedAndActive();
         Task<IDataResult<AddressListDto>> GetAllByType(int addressTypeId);
         Task<IDataResult<AddressDto>> Add(AddressAddDto addressAddDto, int createdByUserId);
+        Task<IDataResult<AddressUpdateDto>> GetAddressUpdateDto(int addressId);
         Task<IDataResult<AddressDto>> Update(AddressUpdateDto addressUpdateDto, int modifiedByUserId);
         Task<IResult> Delete(int addressId, int modifiedByUserId);
         Task<IResult> HardDelete(int addressId);
