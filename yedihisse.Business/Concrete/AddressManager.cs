@@ -28,85 +28,52 @@ namespace yedihisse.Business.Concrete
 
         public async Task<IDataResult<AddressDto>> Get(int addressId)
         {
-            var address = await _unitOfWork.Addresses.GetAsync(a => a.Id == addressId);
-
-            if (address != null)
+            try
             {
-                return new DataResult<AddressDto>(ResultStatus.Success, new AddressDto
-                {
-                    Address = address
-                });
-            }
+                var address = await _unitOfWork.Addresses.GetAsync(a => a.Id == addressId);
 
-            return new DataResult<AddressDto>(ResultStatus.Error, Messages.Address.NotFound(false), null);
+                if (address != null)
+                {
+                    return new DataResult<AddressDto>(ResultStatus.Success, new AddressDto
+                    {
+                        Address = address
+                    });
+                }
+
+                return new DataResult<AddressDto>(ResultStatus.Error, Messages.Address.NotFound(false), null);
+            }
+            catch (Exception exMessage)
+            {
+                return new DataResult<AddressDto>(ResultStatus.Error, Messages.ExceptionMessage.Get("Adres"), null, exMessage);
+            }
         }
 
         public async Task<IDataResult<AddressUpdateDto>> GetAddressUpdateDto(int addressId)
         {
-            var address = await _unitOfWork.Addresses.GetAsync(a => a.Id == addressId);
-
-            if (address != null)
+            try
             {
-                var addressUpdateDto = _mapper.Map<AddressUpdateDto>(address);
+                var address = await _unitOfWork.Addresses.GetAsync(a => a.Id == addressId);
 
-                return new DataResult<AddressUpdateDto>(ResultStatus.Success, addressUpdateDto);
+                if (address != null)
+                {
+                    var addressUpdateDto = _mapper.Map<AddressUpdateDto>(address);
+
+                    return new DataResult<AddressUpdateDto>(ResultStatus.Success, addressUpdateDto);
+                }
+
+                return new DataResult<AddressUpdateDto>(ResultStatus.Error,Messages.Address.NotFound(false) ,null);
             }
-
-            return new DataResult<AddressUpdateDto>(ResultStatus.Error,Messages.Address.NotFound(false) ,null);
+            catch (Exception exMessage)
+            {
+                return new DataResult<AddressUpdateDto>(ResultStatus.Error, Messages.ExceptionMessage.Get("Adres"), null, exMessage);
+            }
         }
 
         public async Task<IDataResult<AddressListDto>> GetAll()
         {
-            var addresses = await _unitOfWork.Addresses.GetAllAsync();
-
-            if (addresses.Count > -1)
+            try
             {
-                return new DataResult<AddressListDto>(ResultStatus.Success, new AddressListDto
-                {
-                    Addresses = addresses
-                });
-            }
-
-            return new DataResult<AddressListDto>(ResultStatus.Error, Messages.Address.NotFound(true), null);
-        }
-
-        public async Task<IDataResult<AddressListDto>> GetAllByNonDeleted()
-        {
-            var addresses = await _unitOfWork.Addresses.GetAllAsync(a => !a.IsDeleted);
-
-            if (addresses.Count > -1)
-            {
-                return new DataResult<AddressListDto>(ResultStatus.Success, new AddressListDto
-                {
-                    Addresses = addresses
-                });
-            }
-
-            return new DataResult<AddressListDto>(ResultStatus.Error, Messages.Address.NotFound(true), null);
-        }
-
-        public async Task<IDataResult<AddressListDto>> GetAllByNonDeletedAndActive()
-        {
-            var addresses = await _unitOfWork.Addresses.GetAllAsync(a => !a.IsDeleted && a.IsActive == true);
-
-            if (addresses.Count > -1)
-            {
-                return new DataResult<AddressListDto>(ResultStatus.Success, new AddressListDto
-                {
-                    Addresses = addresses
-                });
-            }
-
-            return new DataResult<AddressListDto>(ResultStatus.Error, Messages.Address.NotFound(true), null);
-        }
-
-        public async Task<IDataResult<AddressListDto>> GetAllByType(int addressTypeId)
-        {
-            var addressType = await _unitOfWork.AddressTypes.AnyAsync(a => a.Id == addressTypeId);
-
-            if (addressType)
-            {
-                var addresses = await _unitOfWork.Addresses.GetAllAsync(a => !a.IsDeleted && a.IsActive == true && a.AddressTypeId == addressTypeId);
+                var addresses = await _unitOfWork.Addresses.GetAllAsync();
 
                 if (addresses.Count > -1)
                 {
@@ -118,98 +85,216 @@ namespace yedihisse.Business.Concrete
 
                 return new DataResult<AddressListDto>(ResultStatus.Error, Messages.Address.NotFound(true), null);
             }
+            catch (Exception exMessage)
+            {
+                return new DataResult<AddressListDto>(ResultStatus.Error, Messages.ExceptionMessage.List("Adres"), null, exMessage);
+            }
+        }
 
-            return new DataResult<AddressListDto>(ResultStatus.Error, Messages.Address.NotFoundType(), null);
+        public async Task<IDataResult<AddressListDto>> GetAllByNonDeleted()
+        {
+            try
+            {
+                var addresses = await _unitOfWork.Addresses.GetAllAsync(a => !a.IsDeleted);
+
+                if (addresses.Count > -1)
+                {
+                    return new DataResult<AddressListDto>(ResultStatus.Success, new AddressListDto
+                    {
+                        Addresses = addresses
+                    });
+                }
+
+                return new DataResult<AddressListDto>(ResultStatus.Error, Messages.Address.NotFound(true), null);
+            }
+            catch (Exception exMessage)
+            {
+                return new DataResult<AddressListDto>(ResultStatus.Error, Messages.ExceptionMessage.List("Adres"), null, exMessage);
+            }
+        }
+
+        public async Task<IDataResult<AddressListDto>> GetAllByNonDeletedAndActive()
+        {
+            try
+            {
+                var addresses = await _unitOfWork.Addresses.GetAllAsync(a => !a.IsDeleted && a.IsActive == true);
+
+                if (addresses.Count > -1)
+                {
+                    return new DataResult<AddressListDto>(ResultStatus.Success, new AddressListDto
+                    {
+                        Addresses = addresses
+                    });
+                }
+
+                return new DataResult<AddressListDto>(ResultStatus.Error, Messages.Address.NotFound(true), null);
+            }
+            catch (Exception exMessage)
+            {
+                return new DataResult<AddressListDto>(ResultStatus.Error, Messages.ExceptionMessage.List("Adres"), null, exMessage);
+            }
+        }
+
+        public async Task<IDataResult<AddressListDto>> GetAllByType(int addressTypeId)
+        {
+            try
+            {
+                var addressType = await _unitOfWork.AddressTypes.AnyAsync(a => a.Id == addressTypeId);
+
+                if (addressType)
+                {
+                    var addresses = await _unitOfWork.Addresses.GetAllAsync(a => !a.IsDeleted && a.IsActive == true && a.AddressTypeId == addressTypeId);
+
+                    if (addresses.Count > -1)
+                    {
+                        return new DataResult<AddressListDto>(ResultStatus.Success, new AddressListDto
+                        {
+                            Addresses = addresses
+                        });
+                    }
+
+                    return new DataResult<AddressListDto>(ResultStatus.Error, Messages.Address.NotFound(true), null);
+                }
+
+                return new DataResult<AddressListDto>(ResultStatus.Error, Messages.Address.NotFoundType(), null);
+            }
+            catch (Exception exMessage)
+            {
+                return new DataResult<AddressListDto>(ResultStatus.Error, Messages.ExceptionMessage.List("Adres"), null, exMessage);
+            }
         }
 
         public async Task<IDataResult<AddressDto>> Add(AddressAddDto addressAddDto, int createdByUserId)
         {
-            var address = _mapper.Map<Address>(addressAddDto);
-            address.CreatedByUserId = createdByUserId;
-
-            var addedAddress = await _unitOfWork.Addresses.AddAsync(address);
-            await _unitOfWork.SaveAsync();
-
-            return new DataResult<AddressDto>(ResultStatus.Success, Messages.Address.Add(addedAddress.AddressName), new AddressDto
+            try
             {
-                Address = addedAddress
-            });
+                var address = _mapper.Map<Address>(addressAddDto);
+                address.CreatedByUserId = createdByUserId;
+
+                var addedAddress = await _unitOfWork.Addresses.AddAsync(address);
+                await _unitOfWork.SaveAsync();
+
+                return new DataResult<AddressDto>(ResultStatus.Success, Messages.Address.Add(addedAddress.AddressName), new AddressDto
+                {
+                    Address = addedAddress
+                });
+            }
+            catch (Exception exMessage)
+            {
+                return new DataResult<AddressDto>(ResultStatus.Success, Messages.ExceptionMessage.Add("Adres"), null, exMessage);
+            }
         }
 
         public async Task<IDataResult<AddressDto>> Update(AddressUpdateDto addressUpdateDto, int modifiedByUserId)
         {
-            var oldAddress = await _unitOfWork.Addresses.GetAsync(a => a.Id == addressUpdateDto.Id);
-
-            if (oldAddress != null)
+            try
             {
-                var address = _mapper.Map<AddressUpdateDto, Address>(addressUpdateDto, oldAddress);
-                address.ModifiedByUserId = modifiedByUserId;
-                var updatedAddress = await _unitOfWork.Addresses.UpdateAsync(address);
-                await _unitOfWork.SaveAsync();
+                var oldAddress = await _unitOfWork.Addresses.GetAsync(a => a.Id == addressUpdateDto.Id);
 
-                return new DataResult<AddressDto>(ResultStatus.Success, Messages.Address.Update(updatedAddress.AddressName), new AddressDto
+                if (oldAddress != null)
                 {
-                    Address = updatedAddress
-                });
-            }
+                    var address = _mapper.Map<AddressUpdateDto, Address>(addressUpdateDto, oldAddress);
+                    address.ModifiedByUserId = modifiedByUserId;
+                    var updatedAddress = await _unitOfWork.Addresses.UpdateAsync(address);
+                    await _unitOfWork.SaveAsync();
 
-            return new DataResult<AddressDto>(ResultStatus.Success, Messages.Address.NotFound(false), null);
+                    return new DataResult<AddressDto>(ResultStatus.Success, Messages.Address.Update(updatedAddress.AddressName), new AddressDto
+                    {
+                        Address = updatedAddress
+                    });
+                }
+
+                return new DataResult<AddressDto>(ResultStatus.Success, Messages.Address.NotFound(false), null);
+            }
+            catch (Exception exMessage)
+            {
+                return new DataResult<AddressDto>(ResultStatus.Success, Messages.ExceptionMessage.Update("Adres"), null, exMessage);
+            }
         }
 
         public async Task<IResult> Delete(int addressId, int modifiedByUserId)
         {
-            var address = await _unitOfWork.Addresses.GetAsync(a => a.Id == addressId);
-
-            if (address != null)
+            try
             {
-                address.IsDeleted = true;
-                address.ModifiedByUserId = modifiedByUserId;
-                address.ModifiedDate = DateTime.Now;
+                var address = await _unitOfWork.Addresses.GetAsync(a => a.Id == addressId);
 
-                await _unitOfWork.Addresses.UpdateAsync(address);
-                await _unitOfWork.SaveAsync();
+                if (address != null)
+                {
+                    address.IsDeleted = true;
+                    address.ModifiedByUserId = modifiedByUserId;
+                    address.ModifiedDate = DateTime.Now;
 
-                return new Result(ResultStatus.Success, Messages.Address.Delete(address.AddressName, false));
+                    await _unitOfWork.Addresses.UpdateAsync(address);
+                    await _unitOfWork.SaveAsync();
+
+                    return new Result(ResultStatus.Success, Messages.Address.Delete(address.AddressName, false));
+                }
+                return new Result(ResultStatus.Error, Messages.Address.NotFound(false));
             }
-            return new Result(ResultStatus.Error, Messages.Address.NotFound(false));
+            catch (Exception exMessage)
+            {
+                return new Result(ResultStatus.Error, Messages.ExceptionMessage.Delete("Adres"), exMessage);
+            }
         }
 
         public async Task<IResult> HardDelete(int addressId)
         {
-            var address = await _unitOfWork.Addresses.GetAsync(a => a.Id == addressId);
-
-            if (address != null)
+            try
             {
-                await _unitOfWork.Addresses.DeleteAsync(address);
-                await _unitOfWork.SaveAsync();
+                var address = await _unitOfWork.Addresses.GetAsync(a => a.Id == addressId);
 
-                return new Result(ResultStatus.Success, Messages.Address.Delete(address.AddressName, true));
+                if (address != null)
+                {
+                    await _unitOfWork.Addresses.DeleteAsync(address);
+                    await _unitOfWork.SaveAsync();
+
+                    return new Result(ResultStatus.Success, Messages.Address.Delete(address.AddressName, true));
+                }
+
+                return new Result(ResultStatus.Error, Messages.Address.NotFound(false));
             }
-            return new Result(ResultStatus.Error, Messages.Address.NotFound(false));
+            catch (Exception exMessage)
+            {
+                return new Result(ResultStatus.Error, Messages.ExceptionMessage.HardDelete("Adres"), exMessage);
+            }
         }
 
         public async Task<IDataResult<int>> Count()
         {
-            var addressCount = await _unitOfWork.Addresses.CountAsync();
-
-            if (addressCount > -1)
+            try
             {
-                return new DataResult<int>(ResultStatus.Success, addressCount);
+                var addressCount = await _unitOfWork.Addresses.CountAsync();
+
+                if (addressCount > -1)
+                {
+                    return new DataResult<int>(ResultStatus.Success, addressCount);
+                }
+
+                return new DataResult<int>(ResultStatus.Error, Messages.Address.Count("Adres"), -1);
             }
-            
-            return new DataResult<int>(ResultStatus.Error, $"Beklenmeyen bir hata ile karşılaşıldı.", -1);
+            catch (Exception exMessage)
+            {
+                return new DataResult<int>(ResultStatus.Error, Messages.ExceptionMessage.Count("Adres"), -1, exMessage);
+            }
         }
 
         public async Task<IDataResult<int>> CountByIsNonDeleted()
         {
-            var addressCount = await _unitOfWork.Addresses.CountAsync(a => !a.IsDeleted);
-
-            if (addressCount > -1)
+            try
             {
-                return new DataResult<int>(ResultStatus.Success, addressCount);
-            }
+                var addressCount = await _unitOfWork.Addresses.CountAsync(a => !a.IsDeleted);
 
-            return new DataResult<int>(ResultStatus.Error, $"Beklenmeyen bir hata ile karşılaşıldı.", -1);
+                if (addressCount > -1)
+                {
+                    return new DataResult<int>(ResultStatus.Success, addressCount);
+                }
+
+                return new DataResult<int>(ResultStatus.Error, Messages.Address.Count("Adres"), -1);
+            }
+            catch (Exception exMessage)
+            {
+                return new DataResult<int>(ResultStatus.Error, Messages.ExceptionMessage.Count("Adres"), -1, exMessage);
+            }
         }
     }
 }
