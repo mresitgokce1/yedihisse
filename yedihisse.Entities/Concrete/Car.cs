@@ -28,6 +28,6 @@ namespace yedihisse.Entities.Concrete
         public User ModifiedByUser { get; set; }
 
         public ICollection<CarManager> CarManagers { get; set; }
-        public ICollection<AllotmentJoinCar> AllotmentJoinCars { get; set; }
+        public ICollection<Animal> Animals { get; set; }
     }
 }

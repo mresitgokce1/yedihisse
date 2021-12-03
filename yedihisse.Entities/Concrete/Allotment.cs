@@ -25,6 +25,5 @@ namespace yedihisse.Entities.Concrete
 
         public ICollection<Application> Applications { get; set; }
         public ICollection<Payment> Payments { get; set; }
-        public ICollection<AllotmentJoinCar> AllotmentJoinCars { get; set; }
     }
 }

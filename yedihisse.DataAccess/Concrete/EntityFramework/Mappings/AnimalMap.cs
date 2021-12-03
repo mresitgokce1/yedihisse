@@ -37,6 +37,10 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(a => a.Animals)
                 .HasForeignKey(a => a.AnimalTypeId);
 
+            builder.HasOne<Car>(c => c.Car)
+                .WithMany(a => a.Animals)
+                .HasForeignKey(c=>c.CarId);
+
             builder.HasOne<User>(a => a.CreatedByUser)
                 .WithMany(u => u.AnimalCreatedByUserIds)
                 .HasForeignKey(a => a.CreatedByUserId);

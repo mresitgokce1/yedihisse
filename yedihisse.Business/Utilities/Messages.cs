@@ -128,11 +128,6 @@ namespace yedihisse.Business.Utilities
             }
         }
 
-        public static class AllotmentJoinCar
-        {
-            
-        }
-
         public static class Animal
         {
             public static string NotFound(bool isPlural)

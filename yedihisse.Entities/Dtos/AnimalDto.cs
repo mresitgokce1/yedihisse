@@ -62,6 +62,10 @@ namespace yedihisse.Entities.Dtos
         [Required]
         public int AnimalTypeId { get; set; }
 
+        [DisplayName("Hayvanın Aracı")]
+        [Required]
+        public int CarId { get; set; }
+
         [DisplayName("Hayvan Aktif Mi?")]
         [Required]
         public bool IsActive { get; set; }
@@ -113,6 +117,10 @@ namespace yedihisse.Entities.Dtos
         [DisplayName("Hayvan Tipi")]
         [Required]
         public int AnimalTypeId { get; set; }
+
+        [DisplayName("Hayvanın Aracı")]
+        [Required]
+        public int CarId { get; set; }
 
         [DisplayName("Hayvan Aktif Mi?")]
         [Required]
