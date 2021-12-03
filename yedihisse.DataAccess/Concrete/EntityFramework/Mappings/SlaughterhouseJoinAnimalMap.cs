@@ -22,6 +22,7 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.Property(s => s.SlaughterhouseId).IsRequired(true);
             builder.Property(s => s.AnimalId).IsRequired(true);
+            builder.HasIndex(s => s.AnimalId).IsUnique(true);
 
             builder.Property(a => a.CreatedByUserId).IsRequired(true);
             builder.Property(a => a.CreatedDate).IsRequired(true);
