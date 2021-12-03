@@ -16,7 +16,6 @@ namespace yedihisse.DataAccess.Concrete
         private EfAddressRepository _addressRepository;
         private EfAddressTypeRepository _addressTypeRepository;
         private EfAllotmentRepository _allotmentRepository;
-        private EfAllotmentJoinCarRepository _allotmentJoinCarRepository;
         private EfAnimalRepository _animalRepository;
         private EfAnimalTypeRepository _animalTypeRepository;
         private EfApplicationRepository _applicationRepository;
@@ -53,7 +52,6 @@ namespace yedihisse.DataAccess.Concrete
 
         public IAddressRepository Addresses => _addressRepository ?? new EfAddressRepository(_context);
         public IAddressTypeRepository AddressTypes => _addressTypeRepository ?? new EfAddressTypeRepository(_context);
-        public IAllotmentJoinCarRepository AllotmentJoinCar => _allotmentJoinCarRepository ?? new EfAllotmentJoinCarRepository(_context);
         public IAllotmentRepository Allotments => _allotmentRepository ?? new EfAllotmentRepository(_context);
         public IAnimalRepository Animals => _animalRepository ?? new EfAnimalRepository(_context);
         public IAnimalTypeRepository AnimalTypes => _animalTypeRepository ?? new EfAnimalTypeRepository(_context);

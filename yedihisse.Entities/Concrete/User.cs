@@ -128,8 +128,5 @@ namespace yedihisse.Entities.Concrete
 
         public ICollection<CarManager> CarManagerCreatedByUserIds { get; set; }
         public ICollection<CarManager> CarManagerModifiedByUserIds { get; set; }
-
-        public ICollection<AllotmentJoinCar> AllotmentJoinCarCreatedByUserIds { get; set; }
-        public ICollection<AllotmentJoinCar> AllotmentJoinCarModifiedByUserIds { get; set; }
     }
 }

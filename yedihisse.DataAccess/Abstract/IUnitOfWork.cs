@@ -10,7 +10,6 @@ namespace yedihisse.DataAccess.Abstract
     {
         IAddressRepository Addresses { get; }
         IAddressTypeRepository AddressTypes { get; }
-        IAllotmentJoinCarRepository AllotmentJoinCar { get; }
         IAllotmentRepository Allotments { get; }
         IAnimalRepository Animals { get; }
         IAnimalTypeRepository AnimalTypes { get; }
