@@ -10,9 +10,9 @@ using yedihisse.Shared.Data.Concrete.EntityFramework;
 
 namespace yedihisse.DataAccess.Concrete.EntityFramework.Repositories
 {
-    public class EfSlaughterhouseJoinAnimalRepository : EfEntityRepositoryBase<SlaughterhouseJoinAnimal>, ISlaughterhouseJoinAnimalRepository
+    public class EfKillingGroupRepository : EfEntityRepositoryBase<KillingGroup>, IKillingGroupRepository
     {
-        public EfSlaughterhouseJoinAnimalRepository(DbContext context) : base(context)
+        public EfKillingGroupRepository(DbContext context) : base(context)
         {
         }
     }

@@ -30,6 +30,18 @@ namespace yedihisse.Entities.Dtos
         [MaxLength(20, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
         public string CarNumberPlate { get; set; }
 
+        [DisplayName("Büyükbaş Kapasitesi")]
+        [MaxLength(1000, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
+        public ushort CattleCapacity { get; set; }
+        
+        [DisplayName("Küçükbaş Kapasitesi")]
+        [MaxLength(1000, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
+        public ushort OvineCapacity { get; set; }
+        
+        [DisplayName("Araç Tenteli Mi?")]
+        [Required(ErrorMessage = "{0} boş olmamalıdır.")]
+        public bool IsAwning { get; set; }
+        
         [DisplayName("Araç Tipi")]
         [Required]
         public int CarTypeId { get; set; }
@@ -60,6 +72,18 @@ namespace yedihisse.Entities.Dtos
         [DisplayName("Araç Plakası")]
         [MaxLength(20, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
         public string CarNumberPlate { get; set; }
+
+        [DisplayName("Büyükbaş Kapasitesi")]
+        [MaxLength(1000, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
+        public ushort CattleCapacity { get; set; }
+
+        [DisplayName("Küçükbaş Kapasitesi")]
+        [MaxLength(1000, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
+        public ushort OvineCapacity { get; set; }
+
+        [DisplayName("Araç Tenteli Mi?")]
+        [Required(ErrorMessage = "{0} boş olmamalıdır.")]
+        public bool IsAwning { get; set; }
 
         [DisplayName("Araç Tipi")]
         [Required]

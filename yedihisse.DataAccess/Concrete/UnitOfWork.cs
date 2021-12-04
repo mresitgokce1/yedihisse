@@ -36,7 +36,9 @@ namespace yedihisse.DataAccess.Concrete
         private EfPaymentTypeRepository _paymentTypeRepository;
         private EfPhoneNumberRepository _phoneNumberRepository;
         private EfPhoneNumberTypeRepository _phoneNumberTypeRepository;
-        private EfSlaughterhouseJoinAnimalRepository _slaughterhouseJoinAnimalRepository;
+        private EfKillingGroupRepository _killingGroupRepository;
+        private EfKillingGroupTypeRepository _efKillingGroupTypeRepository;
+        private EfKillingJoinAnimalRepository _killingJoinAnimalRepository;
         private EfSlaughterhouseJoinTypeRepository _slaughterhouseJoinTypeRepository;
         private EfSlaughterhouseManagerRepository _slaughterhouseManagerRepository;
         private EfSlaughterhouseRepository _slaughterhouseRepository;
@@ -73,7 +75,7 @@ namespace yedihisse.DataAccess.Concrete
         public IPaymentRepository PaymentRepository => _paymentRepository ?? new EfPaymentRepository(_context);
         public IPhoneNumberRepository PhoneNumbers => _phoneNumberRepository ?? new EfPhoneNumberRepository(_context);
         public IPhoneNumberTypeRepository PhoneNumberTypes => _phoneNumberTypeRepository ?? new EfPhoneNumberTypeRepository(_context);
-        public ISlaughterhouseJoinAnimalRepository SlaughterhouseJoinAnimals => _slaughterhouseJoinAnimalRepository ?? new EfSlaughterhouseJoinAnimalRepository(_context);
+        public IKillingJoinAnimalRepository KillingJoinAnimals => _killingJoinAnimalRepository ?? new EfKillingJoinAnimalRepository(_context);
         public ISlaughterhouseJoinTypeRepository SlaughterhouseJoinTypes => _slaughterhouseJoinTypeRepository ?? new EfSlaughterhouseJoinTypeRepository(_context);
         public ISlaughterhouseManagerRepository SlaughterhouseManagers => _slaughterhouseManagerRepository ?? new EfSlaughterhouseManagerRepository(_context);
         public ISlaughterhouseRepository Slaughterhouses => _slaughterhouseRepository ?? new EfSlaughterhouseRepository(_context);
@@ -81,11 +83,14 @@ namespace yedihisse.DataAccess.Concrete
         public IUserJoinTypeRepository UserJoinTypes => _userJoinTypeRepository ?? new EfUserJoinTypeRepository(_context);
         public IUserRepository Users => _userRepository ?? new EfUserRepository(_context);
         public IUserTypeRepository UserTypes => _userTypeRepository ?? new EfUserTypeRepository(_context);
+        public IKillingGroupRepository KillingGroupRepository => _killingGroupRepository ?? new EfKillingGroupRepository(_context);
+        public IKillingGroupTypeRepository KillingGroupTypeRepository => _efKillingGroupTypeRepository ?? new EfKillingGroupTypeRepository(_context);
 
         public async Task<int> SaveAsync()
         {
             return await _context.SaveChangesAsync();
         }
+
         public async ValueTask DisposeAsync()
         {
             await _context.DisposeAsync();

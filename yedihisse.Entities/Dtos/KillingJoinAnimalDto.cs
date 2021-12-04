@@ -9,17 +9,17 @@ using yedihisse.Entities.Concrete;
 
 namespace yedihisse.Entities.Dtos
 {
-    public class SlaughterhouseJoinAnimalDto
+    public class KillingJoinAnimalDto
     {
-        public SlaughterhouseJoinAnimal SlaughterhouseJoinAnimal { get; set; }
+        public KillingJoinAnimal KillingJoinAnimal { get; set; }
     }
 
-    public class SlaughterhouseJoinAnimalListDto
+    public class KillingJoinAnimalListDto
     {
-        public IList<SlaughterhouseJoinAnimal> SlaughterhouseJoinAnimals { get; set; }
+        public IList<KillingJoinAnimal> KillingJoinAnimals { get; set; }
     }
 
-    public class SlaughterhouseJoinAnimalAddDto
+    public class KillingJoinAnimalAddDto
     {
         [DisplayName("Kesim Sıra Numarası")]
         [Required(ErrorMessage = "{0} boş olmamalıdır.")]
@@ -30,20 +30,20 @@ namespace yedihisse.Entities.Dtos
         [Required(ErrorMessage = "{0} boş olmamalıdır.")]
         public bool KillingComplate { get; set; }
 
-        [DisplayName("Hayvanın Kesileceği Kesimhane")]
+        [DisplayName("Hayvanın Kesileceği Grup")]
         [Required]
-        public int SlaughterhouseId { get; set; }
+        public int KillingGroupId { get; set; }
 
-        [DisplayName("Kesimhaneye Bağlanan Hayvan")]
+        [DisplayName("Kesime Alınan Hayvan")]
         [Required]
         public int AnimalId { get; set; }
 
-        [DisplayName("Kesimhaneye Bağlı Hayvan Aktif Mi?")]
+        [DisplayName("Kesim Aktif Mi?? ")]
         [Required]
         public bool IsActive { get; set; }
     }
 
-    public class SlaughterhouseJoinAnimalUpdateDto
+    public class KillingJoinAnimalUpdateDto
     {
         [DisplayName("Id")]
         [Required]
@@ -58,19 +58,19 @@ namespace yedihisse.Entities.Dtos
         [Required(ErrorMessage = "{0} boş olmamalıdır.")]
         public bool KillingComplate { get; set; }
 
-        [DisplayName("Hayvanın Kesileceği Kesimhane")]
+        [DisplayName("Hayvanın Kesileceği Grup")]
         [Required]
-        public int SlaughterhouseId { get; set; }
+        public int KillingGroupId { get; set; }
 
-        [DisplayName("Kesimhaneye Bağlanan Hayvan")]
+        [DisplayName("Kesime Alınan Hayvan")]
         [Required]
         public int AnimalId { get; set; }
 
-        [DisplayName("Kesimhaneye Bağlı Hayvan Aktif Mi?")]
+        [DisplayName("Kesim Aktif Mi?? ")]
         [Required]
         public bool IsActive { get; set; }
 
-        [DisplayName("Kesimhaneye Bağlı Hayvan Silindi Mi?")]
+        [DisplayName("Kesim Silindi Mi?")]
         [Required]
         public bool IsDeleted { get; set; }
     }

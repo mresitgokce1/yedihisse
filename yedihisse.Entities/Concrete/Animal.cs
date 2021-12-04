@@ -30,6 +30,6 @@ namespace yedihisse.Entities.Concrete
         public User ModifiedByUser { get; set; }
 
         public Allotment Allotment { get; set; }
-        public SlaughterhouseJoinAnimal SlaughterhouseJoinAnimal { get; set; }
+        public KillingJoinAnimal KillingJoinAnimal { get; set; }
     }
 }

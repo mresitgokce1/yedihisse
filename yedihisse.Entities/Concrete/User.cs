@@ -96,8 +96,14 @@ namespace yedihisse.Entities.Concrete
         public ICollection<Slaughterhouse> SlaughterhouseCreatedByUserIds { get; set; }
         public ICollection<Slaughterhouse> SlaughterhouseModifiedByUserIds { get; set; }
 
-        public ICollection<SlaughterhouseJoinAnimal> SlaughterhouseJoinAnimalCreatedByUserIds { get; set; }
-        public ICollection<SlaughterhouseJoinAnimal> SlaughterhouseJoinAnimalModifiedByUserIds { get; set; }
+        public ICollection<KillingJoinAnimal> KillingJoinAnimalCreatedByUserIds { get; set; }
+        public ICollection<KillingJoinAnimal> KillingJoinAnimalModifiedByUserIds { get; set; }
+
+        public ICollection<KillingGroup> KillingGroupCreatedByUserIds { get; set; }
+        public ICollection<KillingGroup> KillingGroupModifiedByUserIds { get; set; }
+
+        public ICollection<KillingGroupType> KillingGroupTypeCreatedByUserIds { get; set; }
+        public ICollection<KillingGroupType> KillingGroupTypeModifiedByUserIds { get; set; }
 
         public ICollection<SlaughterhouseJoinType> SlaughterhouseJoinTypeCreatedByUserIds { get; set; }
         public ICollection<SlaughterhouseJoinType> SlaughterhouseJoinTypeModifiedByUserIds { get; set; }

@@ -18,6 +18,9 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.Property(c => c.CarName).HasMaxLength(50).IsRequired(true);
             builder.Property(c => c.CarNumberPlate).IsRequired(false).HasMaxLength(20);
+            builder.Property(c => c.CattleCapacity).IsRequired(false).HasMaxLength(1000);
+            builder.Property(c => c.OvineCapacity).IsRequired(false).HasMaxLength(1000);
+            builder.Property(c => c.IsAwning).IsRequired(true).HasDefaultValue(false);
 
             builder.Property(c => c.CarTypeId).IsRequired(true);
             builder.Property(c => c.PhoneNumberId).IsRequired(true);

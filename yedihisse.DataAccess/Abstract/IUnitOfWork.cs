@@ -30,7 +30,9 @@ namespace yedihisse.DataAccess.Abstract
         IPaymentRepository PaymentRepository { get; }
         IPhoneNumberRepository PhoneNumbers { get; }
         IPhoneNumberTypeRepository PhoneNumberTypes { get; }
-        ISlaughterhouseJoinAnimalRepository SlaughterhouseJoinAnimals { get; }
+        IKillingGroupRepository KillingGroupRepository { get; }
+        IKillingGroupTypeRepository KillingGroupTypeRepository { get; }
+        IKillingJoinAnimalRepository KillingJoinAnimals { get; }
         ISlaughterhouseJoinTypeRepository SlaughterhouseJoinTypes { get; }
         ISlaughterhouseManagerRepository SlaughterhouseManagers { get; }
         ISlaughterhouseRepository Slaughterhouses { get; }

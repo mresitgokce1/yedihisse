@@ -576,7 +576,7 @@ namespace yedihisse.Business.Utilities
             }
         }
 
-        public static class SlaughterhouseJoinAnimal
+        public static class KillingJoinAnimal
         {
         }
 

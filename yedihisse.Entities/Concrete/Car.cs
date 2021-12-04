@@ -11,6 +11,9 @@ namespace yedihisse.Entities.Concrete
     {
         public string CarName { get; set; }
         public string CarNumberPlate { get; set; }
+        public ushort CattleCapacity { get; set; }
+        public ushort OvineCapacity { get; set; }
+        public bool IsAwning { get; set; }
 
         public int CarTypeId { get; set; }
         public CarType CarType { get; set; }

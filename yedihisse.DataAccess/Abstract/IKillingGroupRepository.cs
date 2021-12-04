@@ -8,7 +8,7 @@ using yedihisse.Shared.Data.Abstract;
 
 namespace yedihisse.DataAccess.Abstract
 {
-    public interface ISlaughterhouseJoinAnimalRepository : IEntityRepository<SlaughterhouseJoinAnimal>
+    public interface IKillingGroupRepository : IEntityRepository<KillingGroup>
     {
     }
 }

@@ -9,11 +9,11 @@ using yedihisse.Entities.Dtos;
 
 namespace yedihisse.Business.AutoMapper.Profiles
 {
-    public class SlaughterhouseJoinAnimalProfile : Profile
+    public class KillingJoinAnimalProfile : Profile
     {
-        public SlaughterhouseJoinAnimalProfile()
+        public KillingJoinAnimalProfile()
         {
-            CreateMap<SlaughterhouseJoinAnimalAddDto, SlaughterhouseJoinAnimal>()
+            CreateMap<KillingJoinAnimalAddDto, KillingJoinAnimal>()
                 .ForMember(
                     dest => dest.CreatedDate,
                     opt => opt.MapFrom(x => DateTime.Now))
@@ -24,12 +24,12 @@ namespace yedihisse.Business.AutoMapper.Profiles
                     dest => dest.IsDeleted,
                     opt => opt.MapFrom(x => false));
 
-            CreateMap<SlaughterhouseJoinAnimalUpdateDto, SlaughterhouseJoinAnimal>()
+            CreateMap<KillingJoinAnimalUpdateDto, KillingJoinAnimal>()
                 .ForMember(
                     dest => dest.ModifiedDate,
                     opt => opt.MapFrom(x => DateTime.Now));
 
-            CreateMap<SlaughterhouseJoinAnimal, SlaughterhouseJoinAnimalUpdateDto>();
+            CreateMap<KillingJoinAnimal, KillingJoinAnimalUpdateDto>();
         }
     }
 }
