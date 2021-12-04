@@ -25,7 +25,7 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.BaitCode).HasMaxLength(250);
 
             builder.Property(a => a.AnimalTypeId).IsRequired(true);
-            builder.Property(a => a.CarId).IsRequired(true);
+            builder.Property(a => a.CarId).IsRequired(false);
 
             builder.Property(a => a.CreatedByUserId).IsRequired(true);
             builder.Property(a => a.CreatedDate).IsRequired(true);

@@ -27,11 +27,9 @@ namespace yedihisse.Entities.Dtos
         public string CompanyName { get; set; }
 
         [DisplayName("Şirket Adresi")]
-        [Required]
         public int AddressId { get; set; }
 
         [DisplayName("Şirket Telefonu")]
-        [Required]
         public int PhoneNumberId { get; set; }
 
         [DisplayName("Şirket Aktif Mi?")]
@@ -51,11 +49,9 @@ namespace yedihisse.Entities.Dtos
         public string CompanyName { get; set; }
 
         [DisplayName("Şirket Adresi")]
-        [Required]
         public int AddressId { get; set; }
 
         [DisplayName("Şirket Telefonu")]
-        [Required]
         public int PhoneNumberId { get; set; }
 
         [DisplayName("Şirket Aktif Mi?")]

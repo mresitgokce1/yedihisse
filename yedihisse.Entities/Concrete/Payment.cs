@@ -19,8 +19,8 @@ namespace yedihisse.Entities.Concrete
         public int PaymentOptionId { get; set; }
         public PaymentOption PaymentOption { get; set; }
 
-        public int AllotmentId { get; set; }
-        public Allotment Allotment { get; set; }
+        public int ApplicationId { get; set; }
+        public Application Application { get; set; }
 
         public int CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }

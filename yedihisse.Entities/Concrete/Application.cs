@@ -11,6 +11,9 @@ namespace yedihisse.Entities.Concrete
     {
         public byte AllotmentRate { get; set; }
         public string Description { get; set; }
+        public decimal RemainingPrice { get; set; }
+        public decimal RemainingPrePay { get; set; }
+        public decimal RemainingKillingPrice { get; set; }
 
         public int UserId { get; set; }
         public User User { get; set; }
@@ -31,5 +34,6 @@ namespace yedihisse.Entities.Concrete
         public User ModifiedByUser { get; set; }
 
         public ICollection<ApplicationStatus> ApplicationStatuses { get; set; }
+        public ICollection<Payment> Payments { get; set; }
     }
 }

@@ -18,10 +18,13 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.Property(a => a.AllotmentRate).IsRequired(true).HasDefaultValue(1).HasMaxLength(7);
             builder.Property(a => a.Description).IsRequired(false).HasMaxLength(250);
+            builder.Property(a=>a.RemainingPrice).IsRequired(true).HasPrecision(4, 4).HasDefaultValue(0);
+            builder.Property(a=>a.RemainingPrePay).IsRequired(true).HasPrecision(4, 4).HasDefaultValue(0);
+            builder.Property(a=>a.RemainingKillingPrice).IsRequired(true).HasPrecision(4, 4).HasDefaultValue(0);
 
             builder.Property(a => a.UserId).IsRequired(true);
             builder.Property(a => a.BranchId).IsRequired(true);
-            builder.Property(a => a.AllotmentId).IsRequired(true);
+            builder.Property(a => a.AllotmentId).IsRequired(false);
             builder.Property(a => a.AnimalTypeId).IsRequired(true);
 
             builder.Property(a => a.CreatedByUserId).IsRequired(true);

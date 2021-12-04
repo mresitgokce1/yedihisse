@@ -26,8 +26,8 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(u => u.PasswordHash).IsRequired();
             builder.Property(u => u.PasswordHash).HasColumnType("BYTEA");
 
-            builder.Property(u => u.AddressId).IsRequired(true);
-            builder.Property(u => u.PhoneNumberId).IsRequired(true);
+            builder.Property(u => u.AddressId).IsRequired(false);
+            builder.Property(u => u.PhoneNumberId).IsRequired(false);
 
             builder.Property(a => a.CreatedByUserId).IsRequired(true);
             builder.Property(a => a.CreatedDate).IsRequired(true);

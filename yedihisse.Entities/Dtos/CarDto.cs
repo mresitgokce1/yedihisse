@@ -38,6 +38,9 @@ namespace yedihisse.Entities.Dtos
         [Required]
         public int PhoneNumberId { get; set; }
 
+        [DisplayName("Araç Görev Tipi")]
+        public int CarMissionTypeId { get; set; }
+
         [DisplayName("Araç Aktif Mi?")]
         [Required]
         public bool IsActive { get; set; }
@@ -65,6 +68,9 @@ namespace yedihisse.Entities.Dtos
         [DisplayName("Araç Telefonu")]
         [Required]
         public int PhoneNumberId { get; set; }
+
+        [DisplayName("Araç Görev Tipi")]
+        public int CarMissionTypeId { get; set; }
 
         [DisplayName("Araç Aktif Mi?")]
         [Required]

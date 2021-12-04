@@ -49,11 +49,9 @@ namespace yedihisse.Entities.Dtos
         public byte[] PasswordHash { get; set; }
 
         [DisplayName("Kullanıcının Adresi")]
-        [Required]
         public int AddressId { get; set; }
 
         [DisplayName("Kullanıcının Telefonu")]
-        [Required]
         public int PhoneNumberId { get; set; }
 
         [DisplayName("Kullanıcı Aktif Mi?")]
@@ -95,11 +93,9 @@ namespace yedihisse.Entities.Dtos
         public byte[] PasswordHash { get; set; }
 
         [DisplayName("Kullanıcının Adresi")]
-        [Required]
         public int AddressId { get; set; }
 
         [DisplayName("Kullanıcının Telefonu")]
-        [Required]
         public int PhoneNumberId { get; set; }
 
         [DisplayName("Kullanıcı Aktif Mi?")]

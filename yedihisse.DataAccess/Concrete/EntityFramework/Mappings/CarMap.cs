@@ -21,7 +21,7 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.Property(c => c.CarTypeId).IsRequired(true);
             builder.Property(c => c.PhoneNumberId).IsRequired(true);
-            builder.Property(c => c.CarMissionTypeId).IsRequired(true);
+            builder.Property(c => c.CarMissionTypeId).IsRequired(false);
 
             builder.Property(a => a.CreatedByUserId).IsRequired(true);
             builder.Property(a => a.CreatedDate).IsRequired(true);

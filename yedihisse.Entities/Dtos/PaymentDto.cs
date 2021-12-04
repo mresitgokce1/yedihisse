@@ -35,9 +35,9 @@ namespace yedihisse.Entities.Dtos
         [MaxLength(250, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
         public string Description { get; set; }
 
-        [DisplayName("Ödemeye Ait Hisse")]
+        [DisplayName("Ödemeye Ait Başvuru")]
         [Required]
-        public int AllotmentId { get; set; }
+        public int ApplicationtId { get; set; }
 
         [DisplayName("Ödeme Tipi")]
         [Required]
@@ -72,9 +72,9 @@ namespace yedihisse.Entities.Dtos
         [MaxLength(250, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
         public string Description { get; set; }
 
-        [DisplayName("Ödemeye Ait Hisse")]
+        [DisplayName("Ödemeye Ait Başvuru")]
         [Required]
-        public int AllotmentId { get; set; }
+        public int ApplicationtId { get; set; }
 
         [DisplayName("Ödeme Tipi")]
         [Required]

@@ -31,11 +31,9 @@ namespace yedihisse.Entities.Dtos
         public int FirmId { get; set; }
 
         [DisplayName("Şube Addresi")]
-        [Required]
         public int AddressId { get; set; }
 
         [DisplayName("Şube Telefonu")]
-        [Required]
         public int PhonenumberId { get; set; }
 
         [DisplayName("Şube Aktif Mi?")]
@@ -59,11 +57,9 @@ namespace yedihisse.Entities.Dtos
         public int FirmId { get; set; }
 
         [DisplayName("Şube Addresi")]
-        [Required]
         public int AddressId { get; set; }
 
         [DisplayName("Şube Telefonu")]
-        [Required]
         public int PhonenumberId { get; set; }
 
         [DisplayName("Şube Aktif Mi?")]

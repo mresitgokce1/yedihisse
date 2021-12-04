@@ -19,8 +19,8 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(b => b.BranchName).IsRequired(true).HasMaxLength(50);
 
             builder.Property(b => b.FirmId).IsRequired(true);
-            builder.Property(b => b.AddressId).IsRequired(true);
-            builder.Property(b => b.PhoneNumberId).IsRequired(true);
+            builder.Property(b => b.AddressId).IsRequired(false);
+            builder.Property(b => b.PhoneNumberId).IsRequired(false);
 
             builder.Property(a => a.CreatedByUserId).IsRequired(true);
             builder.Property(a => a.CreatedDate).IsRequired(true);

@@ -63,7 +63,6 @@ namespace yedihisse.Entities.Dtos
         public int AnimalTypeId { get; set; }
 
         [DisplayName("Hayvanın Aracı")]
-        [Required]
         public int CarId { get; set; }
 
         [DisplayName("Hayvan Aktif Mi?")]
@@ -119,7 +118,6 @@ namespace yedihisse.Entities.Dtos
         public int AnimalTypeId { get; set; }
 
         [DisplayName("Hayvanın Aracı")]
-        [Required]
         public int CarId { get; set; }
 
         [DisplayName("Hayvan Aktif Mi?")]

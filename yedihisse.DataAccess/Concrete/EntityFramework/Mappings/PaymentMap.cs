@@ -20,7 +20,7 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.ReceiptNumber).IsRequired(false).HasMaxLength(100);
             builder.Property(a => a.Description).IsRequired(false).HasMaxLength(250);
             
-            builder.Property(p => p.AllotmentId).IsRequired(true);
+            builder.Property(p => p.ApplicationId).IsRequired(true);
             builder.Property(p => p.PaymentTypeId).IsRequired(true);
             builder.Property(p => p.PaymentOptionId).IsRequired(true);
 
@@ -31,9 +31,9 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
             builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
-            builder.HasOne<Allotment>(p => p.Allotment)
+            builder.HasOne<Application>(p => p.Application)
                 .WithMany(a => a.Payments)
-                .HasForeignKey(p => p.AllotmentId);
+                .HasForeignKey(p => p.ApplicationId);
 
             builder.HasOne<PaymentType>(p => p.PaymentType)
                 .WithMany(p => p.Payments)

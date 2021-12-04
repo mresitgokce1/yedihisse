@@ -30,6 +30,24 @@ namespace yedihisse.Entities.Dtos
         [MaxLength(250, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
         public string Description { get; set; }
 
+        [DisplayName("Kalan Hisse Borcu")]
+        [Required(ErrorMessage = "{0} boş olmamalıdır.")]
+        [RegularExpression(@"^\d+(\.\d{1,2})?$")]
+        [Range(0, 9999.9999, ErrorMessage = "{0} {1} ile {2} aralığında olmalıdır.")]
+        public decimal RemainingPrice { get; set; }
+        
+        [DisplayName("Kalan Ön Ödeme Borcu")]
+        [Required(ErrorMessage = "{0} boş olmamalıdır.")]
+        [RegularExpression(@"^\d+(\.\d{1,2})?$")]
+        [Range(0, 9999.9999, ErrorMessage = "{0} {1} ile {2} aralığında olmalıdır.")]
+        public decimal RemainingPrePay { get; set; }
+
+        [DisplayName("Kalan Kesim Borcu")]
+        [Required(ErrorMessage = "{0} boş olmamalıdır.")]
+        [RegularExpression(@"^\d+(\.\d{1,2})?$")]
+        [Range(0, 9999.9999, ErrorMessage = "{0} {1} ile {2} aralığında olmalıdır.")]
+        public decimal RemainingKillingPrice { get; set; }
+        
         [DisplayName("Başvuran Kullanıcı")]
         [Required]
         public int UserId { get; set; }
@@ -39,7 +57,6 @@ namespace yedihisse.Entities.Dtos
         public int BranchId { get; set; }
 
         [DisplayName("Bağlı Hisse")]
-        [Required]
         public int AllotmentId { get; set; }
 
         [DisplayName("Başvurulan Hayvan Tipi")]
@@ -66,6 +83,24 @@ namespace yedihisse.Entities.Dtos
         [MaxLength(250, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
         public string Description { get; set; }
 
+        [DisplayName("Kalan Hisse Borcu")]
+        [Required(ErrorMessage = "{0} boş olmamalıdır.")]
+        [RegularExpression(@"^\d+(\.\d{1,2})?$")]
+        [Range(0, 9999.9999, ErrorMessage = "{0} {1} ile {2} aralığında olmalıdır.")]
+        public decimal RemainingPrice { get; set; }
+
+        [DisplayName("Kalan Ön Ödeme Borcu")]
+        [Required(ErrorMessage = "{0} boş olmamalıdır.")]
+        [RegularExpression(@"^\d+(\.\d{1,2})?$")]
+        [Range(0, 9999.9999, ErrorMessage = "{0} {1} ile {2} aralığında olmalıdır.")]
+        public decimal RemainingPrePay { get; set; }
+
+        [DisplayName("Kalan Kesim Borcu")]
+        [Required(ErrorMessage = "{0} boş olmamalıdır.")]
+        [RegularExpression(@"^\d+(\.\d{1,2})?$")]
+        [Range(0, 9999.9999, ErrorMessage = "{0} {1} ile {2} aralığında olmalıdır.")]
+        public decimal RemainingKillingPrice { get; set; }
+
         [DisplayName("Başvuran Kullanıcı")]
         [Required]
         public int UserId { get; set; }
@@ -75,7 +110,6 @@ namespace yedihisse.Entities.Dtos
         public int BranchId { get; set; }
 
         [DisplayName("Bağlı Hisse")]
-        [Required]
         public int AllotmentId { get; set; }
 
         [DisplayName("Başvurulan Hayvan Tipi")]

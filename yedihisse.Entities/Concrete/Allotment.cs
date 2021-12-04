@@ -24,6 +24,5 @@ namespace yedihisse.Entities.Concrete
         public User ModifiedByUser { get; set; }
 
         public ICollection<Application> Applications { get; set; }
-        public ICollection<Payment> Payments { get; set; }
     }
 }
