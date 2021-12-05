@@ -21,7 +21,7 @@ namespace yedihisse.Entities.Concrete
         public int BranchId { get; set; }
         public Branch Branch { get; set; }
 
-        public int AllotmentId { get; set; }
+        public int? AllotmentId { get; set; }
         public Allotment Allotment { get; set; }
 
         public int AnimalTypeId { get; set; }

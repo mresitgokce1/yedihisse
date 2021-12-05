@@ -20,7 +20,7 @@ namespace yedihisse.Entities.Concrete
         public int AnimalTypeId { get; set; }
         public AnimalType AnimalType { get; set; }
 
-        public int CarId { get; set; }
+        public int? CarId { get; set; }
         public Car Car { get; set; }
 
         public int CreatedByUserId { get; set; }

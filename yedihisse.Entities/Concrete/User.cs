@@ -16,10 +16,10 @@ namespace yedihisse.Entities.Concrete
         public bool Sex { get; set; }
         public byte[] PasswordHash { get; set; }
 
-        public int AddressId { get; set; }
+        public int? AddressId { get; set; }
         public Address Address { get; set; }
 
-        public int PhoneNumberId { get; set; }
+        public int? PhoneNumberId { get; set; }
         public PhoneNumber PhoneNumber { get; set; }
 
         public int CreatedByUserId { get; set; }

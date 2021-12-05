@@ -11,13 +11,13 @@ namespace yedihisse.Entities.Concrete
     {
         public string FirmName { get; set; }
 
-        public int PhoneNumberId { get; set; }
-        public PhoneNumber PhoneNumber { get; set; }
-
         public int CompanyId { get; set; }
         public Company Company { get; set; }
 
-        public int AddressId { get; set; }
+        public int? PhoneNumberId { get; set; }
+        public PhoneNumber PhoneNumber { get; set; }
+
+        public int? AddressId { get; set; }
         public Address Address { get; set; }
 
         public int CreatedByUserId { get; set; }
