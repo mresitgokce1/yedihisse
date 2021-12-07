@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\yedihisse.DataAccess\yedihisse.DataAccess.csproj" />
+    <ProjectReference Include="..\yedihisse.Business\yedihisse.Business.csproj" />
   </ItemGroup>
 
 </Project>

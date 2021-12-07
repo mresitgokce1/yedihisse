@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace yedihisse.DataAccess.Concrete.EntityFramework.Contexts
 {
-    public class BloggingContextFactory : IDesignTimeDbContextFactory<YediHisseContext>
+    public class Factory : IDesignTimeDbContextFactory<YediHisseContext>
     {
         public YediHisseContext CreateDbContext(string[] args)
         {
