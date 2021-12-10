@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,10 +35,7 @@ namespace yedihisse.Business.Concrete
 
                 if (address != null)
                 {
-                    return new DataResult<AddressDto>(ResultStatus.Success, new AddressDto
-                    {
-                        Address = address
-                    });
+                    return new DataResult<AddressDto>(ResultStatus.Success, _mapper.Map<AddressDto>(address));
                 }
 
                 return new DataResult<AddressDto>(ResultStatus.Error, Messages.Address.NotFound(false), null);
@@ -79,8 +77,8 @@ namespace yedihisse.Business.Concrete
                 {
                     return new DataResult<AddressListDto>(ResultStatus.Success, new AddressListDto
                     {
-                        Addresses = addresses
-                    });
+                        Addresses = _mapper.Map<IList<AddressDto>>(addresses)
+                });
                 }
 
                 return new DataResult<AddressListDto>(ResultStatus.Error, Messages.Address.NotFound(true), null);
@@ -101,7 +99,7 @@ namespace yedihisse.Business.Concrete
                 {
                     return new DataResult<AddressListDto>(ResultStatus.Success, new AddressListDto
                     {
-                        Addresses = addresses
+                        Addresses = _mapper.Map<IList<AddressDto>>(addresses)
                     });
                 }
 
@@ -123,7 +121,7 @@ namespace yedihisse.Business.Concrete
                 {
                     return new DataResult<AddressListDto>(ResultStatus.Success, new AddressListDto
                     {
-                        Addresses = addresses
+                        Addresses = _mapper.Map<IList<AddressDto>>(addresses)
                     });
                 }
 
@@ -149,7 +147,7 @@ namespace yedihisse.Business.Concrete
                     {
                         return new DataResult<AddressListDto>(ResultStatus.Success, new AddressListDto
                         {
-                            Addresses = addresses
+                            Addresses = _mapper.Map<IList<AddressDto>>(addresses)
                         });
                     }
 
@@ -174,10 +172,7 @@ namespace yedihisse.Business.Concrete
                 var addedAddress = await _unitOfWork.Addresses.AddAsync(address);
                 await _unitOfWork.SaveAsync();
 
-                return new DataResult<AddressDto>(ResultStatus.Success, Messages.Address.Add(addedAddress.AddressName), new AddressDto
-                {
-                    Address = addedAddress
-                });
+                return new DataResult<AddressDto>(ResultStatus.Success, Messages.Address.Add(addedAddress.AddressName),_mapper.Map<AddressDto>(addedAddress));
             }
             catch (Exception exMessage)
             {
@@ -198,10 +193,7 @@ namespace yedihisse.Business.Concrete
                     var updatedAddress = await _unitOfWork.Addresses.UpdateAsync(address);
                     await _unitOfWork.SaveAsync();
 
-                    return new DataResult<AddressDto>(ResultStatus.Success, Messages.Address.Update(updatedAddress.AddressName), new AddressDto
-                    {
-                        Address = updatedAddress
-                    });
+                    return new DataResult<AddressDto>(ResultStatus.Success, Messages.Address.Update(updatedAddress.AddressName), _mapper.Map<AddressDto>(address));
                 }
 
                 return new DataResult<AddressDto>(ResultStatus.Success, Messages.Address.NotFound(false), null);

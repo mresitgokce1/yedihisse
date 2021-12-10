@@ -34,7 +34,7 @@ namespace yedihisse.API.Controllers
         public async Task<IActionResult> Get(int addressId)
         {
             var address = await _addressService.Get(addressId);
-            return Ok(address.Data.Address);
+            return Ok(address.Data);
         }
 
         [HttpPost]
