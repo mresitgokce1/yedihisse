@@ -11,12 +11,17 @@ namespace yedihisse.Entities.Dtos
 {
     public class PhoneNumberDto
     {
-        public PhoneNumber PhoneNumber { get; set; }
+        [DisplayName("Telefon Açıklaması")]
+        public string Description { get; set; }
+        [DisplayName("Telefon Numarası")]
+        public string Number { get; set; }
+        [DisplayName("Telefon Tipi")]
+        public PhoneNumberType PhoneNumberType { get; set; }
     }
 
     public class PhoneNumberListDto
     {
-        public IList<PhoneNumber> PhoneNumbers { get; set; }
+        public IList<PhoneNumberDto> PhoneNumbers { get; set; }
     }
 
     public class PhoneNumberAddDto

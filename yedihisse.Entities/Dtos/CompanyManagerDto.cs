@@ -11,13 +11,17 @@ namespace yedihisse.Entities.Dtos
 {
     public class CompanyManagerDto
     {
-        public CompanyManager CompanyManager { get; set; }
-        public string Message { get; set; }
+        [DisplayName("Şirket Yönetici Açıklaması")]
+        public string Description { get; set; }
+        [DisplayName("Şirket Yöneticisi")]
+        public User User { get; set; }
+        [DisplayName("Yönetilen Şirket")]
+        public Company Company { get; set; }
     }
 
     public class CompanyManagerListDto
     {
-        public IList<CompanyManager> CompanyManagers { get; set; }
+        public IList<CompanyManagerDto> CompanyManagers { get; set; }
     }
 
     public class CompanyManagerAddDto

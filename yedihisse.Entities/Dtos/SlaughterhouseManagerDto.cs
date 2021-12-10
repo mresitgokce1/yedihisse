@@ -11,12 +11,17 @@ namespace yedihisse.Entities.Dtos
 {
     public class SlaughterhouseManagerDto
     {
-        public SlaughterhouseManager SlaughterhouseManager { get; set; }
+        [DisplayName("Yönetici Açıklaması")]
+        public string Description { get; set; }
+        [DisplayName("Kesimhane Yöneticisi")]
+        public User User { get; set; }
+        [DisplayName("Yöneticinin Kesimhanesi")]
+        public Slaughterhouse Slaughterhouse { get; set; }
     }
 
     public class SlaughterhouseManagerListDto
     {
-        public IList<SlaughterhouseManager> SlaughterhouseManagers { get; set; }
+        public IList<SlaughterhouseManagerDto> SlaughterhouseManagers { get; set; }
     }
 
     public class SlaughterhouseManagerAddDto

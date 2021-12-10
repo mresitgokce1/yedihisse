@@ -11,12 +11,21 @@ namespace yedihisse.Entities.Dtos
 {
     public class AllotmentDto
     {
-        public Allotment Allotment { get; set; }
+        [DisplayName("Hisse Açıklama")]
+        public string Description { get; set; }
+        [DisplayName("Hisse Ön Ödeme Fiyatı")]
+        public decimal AllotmentPrePay { get; set; }
+        [DisplayName("Hisse Fiyatı")]
+        public decimal AllotmentPayment { get; set; }
+        [DisplayName("Hisse Kesim Fiyatı")]
+        public decimal AllotmentKillingPrice { get; set; }
+        [DisplayName("Hisse Hayvanı")] 
+        public Animal Animal { get; set; }
     }
 
     public class AllotmentListDto
     {
-        public IList<Allotment> Allotments { get; set; }
+        public IList<AllotmentDto> Allotments { get; set; }
     }
 
     public class AllotmentAddDto

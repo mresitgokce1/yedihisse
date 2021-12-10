@@ -11,12 +11,13 @@ namespace yedihisse.Entities.Dtos
 {
     public class AddressTypeDto
     {
-        public AddressType AddressType { get; set; }
+        [DisplayName("Adres Tip Adı")]
+        public string AddressTypeName { get; set; }
     }
 
     public class AddressTypeListDto
     {
-        public IList<AddressType> AddressTypes { get; set; }
+        public IList<AddressTypeDto> AddressTypes { get; set; }
     }
 
     public class AddressTypeAddDto

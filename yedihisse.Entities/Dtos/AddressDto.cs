@@ -11,12 +11,39 @@ namespace yedihisse.Entities.Dtos
 {
     public class AddressDto
     {
-        public Address Address { get; set; }
+        [DisplayName("Adres Adı")]
+        public string AddressName { get; set; }
+        [DisplayName("Ülke")]
+        public string Country { get; set; }
+        [DisplayName("Şehir")]
+        public string City { get; set; }
+        [DisplayName("İlçe")]
+        public string District { get; set; }
+        [DisplayName("Mahalle")]
+        public string Parish { get; set; }
+        [DisplayName("Cadde")]
+        public string Street { get; set; }
+        [DisplayName("Apartman Adı")]
+        public string ApartmentName { get; set; }
+        [DisplayName("Apartman No")]
+        public string ApartmentNo { get; set; }
+        [DisplayName("Apartman Blok Adı")]
+        public string ApartmentBlokName { get; set; }
+        [DisplayName("Kat No")]
+        public string FloorNo { get; set; }
+        [DisplayName("Daire No")]
+        public string FlatNo { get; set; }
+        [DisplayName("Adres Detayı")]
+        public string AddressDetail { get; set; }
+        [DisplayName("Adres Tarifi")]
+        public string AddressDirection { get; set; }
+        [DisplayName("Adres Tipi")]
+        public AddressType AddressType { get; set; }
     }
 
     public class AddressListDto
     {
-        public IList<Address> Addresses { get; set; }
+        public IList<AddressDto> Addresses { get; set; }
     }
 
     public class AddressAddDto

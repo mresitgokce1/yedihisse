@@ -11,13 +11,13 @@ namespace yedihisse.Entities.Dtos
 {
     public class SlaughterhouseTypeDto
     {
-        public SlaughterhouseType SlaughterhouseType { get; set; }
-        public string Message { get; set; }
+        [DisplayName("Kesimhane Tip Adı")]
+        public string SlaughterhouseTypeName { get; set; }
     }
 
     public class SlaughterhouseTypeListDto
     {
-        public IList<SlaughterhouseType> SlaughterhouseTypes { get; set; }
+        public IList<SlaughterhouseTypeDto> SlaughterhouseTypes { get; set; }
     }
 
     public class SlaughterhouseTypeAddDto

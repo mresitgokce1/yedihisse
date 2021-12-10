@@ -11,12 +11,19 @@ namespace yedihisse.Entities.Dtos
 {
     public class KillingJoinAnimalDto
     {
-        public KillingJoinAnimal KillingJoinAnimal { get; set; }
+        [DisplayName("Kesim Sıra Numarası")]
+        public ushort KillingNumber { get; set; }
+        [DisplayName("Kesim Tamamlandı Mı?")]
+        public bool KillingComplate { get; set; }
+        [DisplayName("Hayvanın Kesileceği Grup")]
+        public KillingGroup KillingGroup { get; set; }
+        [DisplayName("Kesime Alınan Hayvan")]
+        public Animal Animal { get; set; }
     }
 
     public class KillingJoinAnimalListDto
     {
-        public IList<KillingJoinAnimal> KillingJoinAnimals { get; set; }
+        public IList<KillingJoinAnimalDto> KillingJoinAnimals { get; set; }
     }
 
     public class KillingJoinAnimalAddDto

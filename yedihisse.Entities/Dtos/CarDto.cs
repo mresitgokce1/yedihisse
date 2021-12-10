@@ -11,12 +11,27 @@ namespace yedihisse.Entities.Dtos
 {
     public class CarDto
     {
-        public Car Car { get; set; }
+        [DisplayName("Araç Adı")]
+        public string CarName { get; set; }
+        [DisplayName("Araç Plakası")]
+        public string CarNumberPlate { get; set; }
+        [DisplayName("Büyükbaş Kapasitesi")]
+        public ushort CattleCapacity { get; set; }
+        [DisplayName("Küçükbaş Kapasitesi")]
+        public ushort OvineCapacity { get; set; }
+        [DisplayName("Araç Tenteli Mi?")]
+        public bool IsAwning { get; set; }
+        [DisplayName("Araç Tipi")]
+        public CarType CarType { get; set; }
+        [DisplayName("Araç Telefonu")]
+        public PhoneNumber PhoneNumber { get; set; }
+        [DisplayName("Araç Görev Tipi")]
+        public CarMissionType CarMissionType { get; set; }
     }
 
     public class CarListDto
     {
-        public IList<Car> Cars { get; set; }
+        public IList<CarDto> Cars { get; set; }
     }
 
     public class CarAddDto

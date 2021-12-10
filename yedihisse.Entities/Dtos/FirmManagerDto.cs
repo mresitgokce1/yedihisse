@@ -11,12 +11,17 @@ namespace yedihisse.Entities.Dtos
 {
     public class FirmManagerDto
     {
-        public FirmManager FirmManager { get; set; }
+        [DisplayName("Firma Yönetici Açıklaması")]
+        public string Description { get; set; }
+        [DisplayName("Firma Yöneticisi")]
+        public User User { get; set; }
+        [DisplayName("Yönetilecek Firma")]
+        public Firm Firm { get; set; }
     }
 
     public class FirmManagerListDto
     {
-        public IList<FirmManager> FirmManagers { get; set; }
+        public IList<FirmManagerDto> FirmManagers { get; set; }
     }
 
     public class FirmManagerAddDto

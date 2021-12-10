@@ -11,12 +11,19 @@ namespace yedihisse.Entities.Dtos
 {
     public class SlaughterhouseDto
     {
-        public Slaughterhouse Slaughterhouse { get; set; }
+        [DisplayName("Kesimhane Adı")]
+        public string SlaughterhouseName { get; set; }
+        [DisplayName("Kesimhane Açıklaması")]
+        public string Description { get; set; }
+        [DisplayName("Kesimhane Adresi")]
+        public Address Address { get; set; }
+        [DisplayName("Kesimhane Telefonu")]
+        public PhoneNumber PhoneNumber { get; set; }
     }
 
     public class SlaughterhouseListDto
     {
-        public IList<Slaughterhouse> Slaughterhouses { get; set; }
+        public IList<SlaughterhouseDto> Slaughterhouses { get; set; }
     }
 
     public class SlaughterhouseAddDto

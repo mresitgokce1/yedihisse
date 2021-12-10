@@ -11,12 +11,15 @@ namespace yedihisse.Entities.Dtos
 {
     public class AnimalTypeDto
     {
-        public AnimalType AnimalType { get; set; }
+        [DisplayName("Hayvan Tip Adı")]
+        public string AnimalTypeName { get; set; }
+        [DisplayName("Hayvan Hisse Edilebilir Mi?")]
+        public bool CanAllotment { get; set; }
     }
 
     public class AnimalTypeListDto
     {
-        public IList<AnimalType> AnimalTypes { get; set; }
+        public IList<AnimalTypeDto> AnimalTypes { get; set; }
     }
 
     public class AnimalTypeAddDto

@@ -11,12 +11,21 @@ namespace yedihisse.Entities.Dtos
 {
     public class SlaughterhouseJoinTypeDto
     {
-        public SlaughterhouseJoinType SlaughterhouseJoinType { get; set; }
+        [DisplayName("Hayvan Tutma Kapasitesi")]
+        public ushort HoldingCapacity { get; set; }
+        [DisplayName("Aynı Anda Kesim Kapasitesi")]
+        public ushort KillingCapacity { get; set; }
+        [DisplayName("Aynı Anda Parçalama Kapasitesi")]
+        public ushort ShreddingCapacity { get; set; }
+        [DisplayName("Kesimhane")]
+        public Slaughterhouse Slaughterhouse { get; set; }
+        [DisplayName("Kesimhanenin Tipi")]
+        public SlaughterhouseType SlaughterhouseType { get; set; }
     }
 
     public class SlaughterhouseJoinTypeListDto
     {
-        public IList<SlaughterhouseJoinType> SlaughterhouseJoinTypes { get; set; }
+        public IList<SlaughterhouseJoinTypeDto> SlaughterhouseJoinTypes { get; set; }
     }
 
     public class SlaughterhouseJoinTypeAddDto

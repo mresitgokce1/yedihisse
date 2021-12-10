@@ -11,12 +11,15 @@ namespace yedihisse.Entities.Dtos
 {
     public class CarMissionTypeDto
     {
-        public CarMissionType CarMissionType { get; set; }
+        [DisplayName("Araç Görev Tip Adı")]
+        public string CarMissionTypeName { get; set; }
+        [DisplayName("Açıklama")]
+        public string Description { get; set; }
     }
 
     public class CarMissionTypeListDto
     {
-        public IList<CarMissionType> CarMissionTypes { get; set; }
+        public IList<CarMissionTypeDto> CarMissionTypes { get; set; }
     }
 
     public class CarMissionTypeAddDto

@@ -11,12 +11,13 @@ namespace yedihisse.Entities.Dtos
 {
     public class PaymentTypeDto
     {
-        public PaymentType PaymentType { get; set; }
+        [DisplayName("Ödeme Tipi Adı")]
+        public string PaymentTypeName { get; set; }
     }
 
     public class PaymentTypeListDto
     {
-        public IList<PaymentType> PaymentTypes { get; set; }
+        public IList<PaymentTypeDto> PaymentTypes { get; set; }
     }
 
     public class PaymentTypeAddDto

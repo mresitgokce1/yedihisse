@@ -11,12 +11,29 @@ namespace yedihisse.Entities.Dtos
 {
     public class AnimalDto
     {
-        public Animal Animal { get; set; }
+        [DisplayName("Hayvan Yaşı")]
+        public float Age { get; set; }
+        [DisplayName("Hayvan Kilosu")]
+        public float Kilo { get; set; }
+        [DisplayName("Hayvan Kodu")]
+        public string Code { get; set; }
+        [DisplayName("Hayvan Maliyeti")]
+        public decimal Cost { get; set; }
+        [DisplayName("Hayvan Karı")]
+        public decimal Gain { get; set; }
+        [DisplayName("Hayvan Kulak Kodu")]
+        public string EarCode { get; set; }
+        [DisplayName("Hayvan Yem Kodu")]
+        public string BaitCode { get; set; }
+        [DisplayName("Hayvan Tipi")]
+        public AnimalType AnimalType { get; set; }
+        [DisplayName("Hayvanın Aracı")]
+        public Car Car { get; set; }
     }
 
     public class AnimalListDto
     {
-        public IList<Animal> Animals { get; set; }
+        public IList<AnimalDto> Animals { get; set; }
     }
 
     public class AnimalAddDto

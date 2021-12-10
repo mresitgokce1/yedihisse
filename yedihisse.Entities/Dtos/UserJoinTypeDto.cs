@@ -11,12 +11,15 @@ namespace yedihisse.Entities.Dtos
 {
     public class UserJoinTypeDto
     {
-        public UserJoinType UserJoinType { get; set; }
+        [DisplayName("Kullanıcı")]
+        public User User { get; set; }
+        [DisplayName("Kullanıcının Tipi")]
+        public UserType UserType { get; set; }
     }
 
     public class UserJoinTypeListDto
     {
-        public IList<UserJoinType> UserJoinTypes { get; set; }
+        public IList<UserJoinTypeDto> UserJoinTypes { get; set; }
     }
 
     public class UserJoinTypeAddDto
@@ -33,6 +36,7 @@ namespace yedihisse.Entities.Dtos
         [Required]
         public bool IsActive { get; set; }
     }
+
     public class UserJoinTypeUpdateDto
     {
         [DisplayName("Id")]

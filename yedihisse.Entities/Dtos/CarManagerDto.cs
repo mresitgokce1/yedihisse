@@ -11,12 +11,17 @@ namespace yedihisse.Entities.Dtos
 {
     public class CarManagerDto
     {
-        public CarManager CarManager { get; set; }
+        [DisplayName("Açıklama")]
+        public string Description { get; set; }
+        [DisplayName("Araç Şoförü")]
+        public User User { get; set; }
+        [DisplayName("Şoförün Aracı")]
+        public Car Car { get; set; }
     }
 
     public class CarManagerListDto
     {
-        public IList<CarManager> CarManagers { get; set; }
+        public IList<CarManagerDto> CarManagers { get; set; }
     }
 
     public class CarManagerAddDto

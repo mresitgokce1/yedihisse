@@ -11,12 +11,17 @@ namespace yedihisse.Entities.Dtos
 {
     public class CompanyDto
     {
-        public Company Company { get; set; }
+        [DisplayName("Şirket Adı")]
+        public string CompanyName { get; set; }
+        [DisplayName("Şirket Adresi")]
+        public Address Address { get; set; }
+        [DisplayName("Şirket Telefonu")]
+        public PhoneNumber PhoneNumber { get; set; }
     }
 
     public class CompanyListDto
     {
-        public IList<Company> Companies { get; set; }
+        public IList<CompanyDto> Companies { get; set; }
     }
 
     public class CompanyAddDto

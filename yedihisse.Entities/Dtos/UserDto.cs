@@ -11,12 +11,27 @@ namespace yedihisse.Entities.Dtos
 {
     public class UserDto
     {
-        public User User { get; set; }
+        [DisplayName("Adı")]
+        public string FirstName { get; set; }
+        [DisplayName("Soyadı")]
+        public string LastName { get; set; }
+        [DisplayName("Kullanıcı Birincil Telefonu")]
+        public string UserPhoneNumber { get; set; }
+        [DisplayName("Eposta")]
+        public string EmailAddress { get; set; }
+        [DisplayName("Cinsiyeti")]
+        public bool Sex { get; set; }
+        [DisplayName("Şifresi")]
+        public byte[] PasswordHash { get; set; }
+        [DisplayName("Kullanıcının Adresi")]
+        public Address Address { get; set; }
+        [DisplayName("Kullanıcının Telefonu")]
+        public PhoneNumber PhoneNumber { get; set; }
     }
 
     public class UserListDto
     {
-        public IList<User> Users { get; set; }
+        public IList<UserDto> Users { get; set; }
     }
 
     public class UserAddDto

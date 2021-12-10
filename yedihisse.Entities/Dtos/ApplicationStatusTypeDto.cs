@@ -11,12 +11,13 @@ namespace yedihisse.Entities.Dtos
 {
     public class ApplicationStatusTypeDto
     {
-        public ApplicationStatusType ApplicationStatusType { get; set; }
+        [DisplayName("Başvuru Statü Tip Adı")]
+        public string ApplicationStatusTypeName { get; set; }
     }
 
     public class ApplicationStatusTypeListDto
     {
-        public IList<ApplicationStatusType> ApplicationStatusTypes { get; set; }
+        public IList<ApplicationStatusTypeDto> ApplicationStatusTypes { get; set; }
     }
 
     public class ApplicationStatusTypeAddDto

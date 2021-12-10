@@ -11,12 +11,19 @@ namespace yedihisse.Entities.Dtos
 {
     public class BranchDto
     {
-        public Branch Branch { get; set; }
+        [DisplayName("Şube Adı")]
+        public string BranchName { get; set; }
+        [DisplayName("Bağlı Firma")]
+        public Firm Firm { get; set; }
+        [DisplayName("Şube Addresi")]
+        public Address Address { get; set; }
+        [DisplayName("Şube Telefonu")]
+        public PhoneNumber PhoneNumber { get; set; }
     }
 
     public class BranchListDto
     {
-        public IList<Branch> Branches { get; set; }
+        public IList<BranchDto> Branches { get; set; }
     }
 
     public class BranchAddDto

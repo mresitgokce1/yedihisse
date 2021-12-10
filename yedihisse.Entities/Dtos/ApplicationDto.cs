@@ -11,12 +11,29 @@ namespace yedihisse.Entities.Dtos
 {
     public class ApplicationDto
     {
-        public Application Application { get; set; }
+        [DisplayName("Başvuru Açıklama")]
+        public string Description { get; set; }
+        [DisplayName("Hisse Oranı")]
+        public byte AllotmentRate { get; set; }
+        [DisplayName("Kalan Hisse Borcu")]
+        public decimal RemainingPrice { get; set; }
+        [DisplayName("Kalan Ön Ödeme Borcu")]
+        public decimal RemainingPrePay { get; set; }
+        [DisplayName("Kalan Kesim Borcu")]
+        public decimal RemainingKillingPrice { get; set; }
+        [DisplayName("Başvuran Kullanıcı")]
+        public User User { get; set; }
+        [DisplayName("Başvurulan Şube")]
+        public Branch Branch { get; set; }
+        [DisplayName("Bağlı Hisse")]
+        public Allotment Allotment { get; set; }
+        [DisplayName("Başvurulan Hayvan Tipi")]
+        public AnimalType AnimalType { get; set; }
     }
 
     public class ApplicationListDto
     {
-        public IList<Application> Applications { get; set; }
+        public IList<ApplicationDto> Applications { get; set; }
     }
 
     public class ApplicationAddDto

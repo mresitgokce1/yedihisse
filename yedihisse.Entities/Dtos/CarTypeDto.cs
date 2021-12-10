@@ -11,12 +11,15 @@ namespace yedihisse.Entities.Dtos
 {
     public class CarTypeDto
     {
-        public CarType CarType { get; set; }
+        [DisplayName("Araç Tip Adı")]
+        public string CarTypeName { get; set; }
+        [DisplayName("Araç Tip Açıklaması")]
+        public string Description { get; set; }
     }
 
     public class CarTypeListDto
     {
-        public IList<CarType> CarTypes { get; set; }
+        public IList<CarTypeDto> CarTypes { get; set; }
     }
 
     public class CarTypeAddDto

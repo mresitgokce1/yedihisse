@@ -11,12 +11,21 @@ namespace yedihisse.Entities.Dtos
 {
     public class KillingGroupDto
     {
-        public KillingGroup KillingGroup { get; set; }
+        [DisplayName("Kesim Grubu Adı")]
+        public string KillingGroupName { get; set; }
+        [DisplayName("Kesim Grubu Açıklaması")]
+        public string Description { get; set; }
+        [DisplayName("Kesim Grubunun Kesimhanesi")]
+        public Slaughterhouse Slaughterhouse { get; set; }
+        [DisplayName("Kesim Grubu Tipi")]
+        public KillingGroupType KillingGroupType { get; set; }
     }
+
     public class KillingGroupListDto
     {
-        public IList<KillingGroup> KillingGroups { get; set; }
+        public IList<KillingGroupDto> KillingGroups { get; set; }
     }
+
     public class KillingGroupAddDto
     {
         [DisplayName("Kesim Grubu Adı")]
@@ -40,6 +49,7 @@ namespace yedihisse.Entities.Dtos
         [Required]
         public bool IsActive { get; set; }
     }
+
     public class KillingGroupUpdateDto
     {
         [DisplayName("Id")]

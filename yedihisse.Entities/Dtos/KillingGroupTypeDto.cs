@@ -11,12 +11,15 @@ namespace yedihisse.Entities.Dtos
 {
     public class KillingGroupTypeDto
     {
-        public KillingGroupType KillingGroupType { get; set; }
+        [DisplayName("Kesim Grubu Tip Adı")]
+        public string KillingGroupTypeName { get; set; }
     }
+
     public class KillingGroupTypeListDto
     {
-        public IList<KillingGroupType> KillingGroupTypes { get; set; }
+        public IList<KillingGroupTypeDto> KillingGroupTypes { get; set; }
     }
+
     public class KillingGroupTypeAddDto
     {
         [DisplayName("Kesim Grubu Tip Adı")]
@@ -28,6 +31,7 @@ namespace yedihisse.Entities.Dtos
         [Required]
         public bool IsActive { get; set; }
     }
+
     public class KillingGroupTypeUpdateDto
     {
         [DisplayName("Id")]

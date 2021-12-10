@@ -11,12 +11,23 @@ namespace yedihisse.Entities.Dtos
 {
     public class PaymentDto
     {
-        public Payment Payment { get; set; }
+        [DisplayName("Yapılan Ödeme")]
+        public decimal PaymentMade { get; set; }
+        [DisplayName("Ödeme Dekontu")]
+        public string ReceiptNumber { get; set; }
+        [DisplayName("Ödeme Açıklaması")]
+        public string Description { get; set; }
+        [DisplayName("Ödemeye Ait Başvuru")]
+        public Application Application { get; set; }
+        [DisplayName("Ödeme Tipi")]
+        public PaymentType PaymentType { get; set; }
+        [DisplayName("Ödeme Türü")]
+        public PaymentOption PaymentOption { get; set; }
     }
 
     public class PaymentListDto
     {
-        public IList<Payment> Payments { get; set; }
+        public IList<PaymentDto> Payments { get; set; }
     }
 
     public class PaymentAddDto

@@ -11,12 +11,17 @@ namespace yedihisse.Entities.Dtos
 {
     public class BranchManagerDto
     {
-        public BranchManager BranchManager { get; set; }
+        [DisplayName("Şube Sorumlu Açıklaması")]
+        public string Description { get; set; }
+        [DisplayName("Sorumlu Kullanıcı")]
+        public User User { get; set; }
+        [DisplayName("Sorumlu Olduğu Şube")]
+        public Branch Branch { get; set; }
     }
 
     public class BranchManagerListDto
     {
-        public IList<BranchManager> BranchManagers { get; set; }
+        public IList<BranchManagerDto> BranchManagers { get; set; }
     }
 
     public class BranchManagerAddDto

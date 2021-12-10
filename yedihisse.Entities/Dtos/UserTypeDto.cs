@@ -11,12 +11,13 @@ namespace yedihisse.Entities.Dtos
 {
     public class UserTypeDto
     {
-        public UserType UserType { get; set; }
+        [DisplayName("Kullanıcı Tip Adı")]
+        public string UserTypeName { get; set; }
     }
 
     public class UserTypeListDto
     {
-        public IList<UserType> UserTypes { get; set; }
+        public IList<UserTypeDto> UserTypes { get; set; }
     }
 
     public class UserTypeAddDto
