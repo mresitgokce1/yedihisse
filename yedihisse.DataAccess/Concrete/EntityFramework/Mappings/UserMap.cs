@@ -52,24 +52,6 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.UserModifiedByUserIds)
                 .HasForeignKey(a => a.ModifiedByUserId);
 
-            //builder.HasData(new User()
-            //{
-            //    Id = 1,
-            //    FirstName = "Raşit",
-            //    LastName = "Yılmaz",
-            //    UserPhoneNumber = "8524569",
-            //    EmailAddress = "mrasitgokce@gmail.com",
-            //    Sex = "Erkek",
-            //    PasswordHash = Encoding.ASCII.GetBytes("64152c11e5870b7ba692a3d68be40349"), //rasit123
-            //    CreatedById = 1,
-            //    CreatedDate = DateTime.Now,
-            //    ModifiedById = 1,
-            //    ModifiedDate = DateTime.Now,
-            //    IsActive = true,
-            //    AddressId = 1,
-            //    PhoneNumberId = 1
-            //});
-
             builder.ToTable("User.User");
         }
     }

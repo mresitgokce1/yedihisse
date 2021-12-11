@@ -40,8 +40,8 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<AddressType>(a => a.AddressType)
-                .WithOne(a => a.Address)
-                .HasForeignKey<Address>(a => a.AddressTypeId);
+                .WithMany(a => a.Addresses)
+                .HasForeignKey(a => a.AddressTypeId);
 
             builder.HasOne<User>(a => a.CreatedByUser)
                 .WithMany(u => u.AddressCreatedByUserIds)

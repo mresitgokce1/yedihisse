@@ -17,6 +17,6 @@ namespace yedihisse.Entities.Concrete
         public int ModifiedByUserId { get; set; }
         public User ModifiedByUser { get; set; }
 
-        public Address Address { get; set; }
+        public ICollection<Address> Addresses { get; set; }
     }
 }

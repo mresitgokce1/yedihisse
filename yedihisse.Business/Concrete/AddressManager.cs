@@ -31,7 +31,7 @@ namespace yedihisse.Business.Concrete
         {
             try
             {
-                var address = await _unitOfWork.Addresses.GetAsync(a => a.Id == addressId);
+                var address = await _unitOfWork.Addresses.GetAsync(a => a.Id == addressId, a=>a.AddressType);
 
                 if (address != null)
                 {
