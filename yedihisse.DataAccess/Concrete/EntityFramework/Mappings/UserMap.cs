@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -53,6 +54,33 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .HasForeignKey(a => a.ModifiedByUserId);
 
             builder.ToTable("User.User");
+
+            // SEED DATA
+            byte[] salt;
+            new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
+            var pbkdf2 = new Rfc2898DeriveBytes("dsa13542010", salt, 100000);
+            byte[] hash = pbkdf2.GetBytes(20);
+            byte[] hashBytes = new byte[36];
+            Array.Copy(salt, 0, hashBytes, 0, 16);
+            Array.Copy(hash, 0, hashBytes, 16, 20);
+
+            builder.HasData(new User
+            {
+                FirstName = "Muhammed Reşit",
+                LastName = "Gökce",
+                UserPhoneNumber = "0553 770 16 09",
+                EmailAddress = "mrgokce@yandex.com",
+                Sex = true,
+                PasswordHash = hashBytes,
+                AddressId = 1,
+                PhoneNumberId = 1,
+                CreatedByUserId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedByUserId = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            });
         }
     }
 }

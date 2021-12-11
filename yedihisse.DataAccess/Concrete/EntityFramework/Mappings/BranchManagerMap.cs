@@ -44,20 +44,20 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.BranchManagerModifiedByUserIds)
                 .HasForeignKey(b => b.ModifiedByUserId);
 
-            //builder.HasData(new BranchManager()
-            //{
-            //    Id = 1,
-            //    Description = "Birim Sorumlusu",
-            //    CreatedById = 1,
-            //    CreatedDate = DateTime.Now,
-            //    ModifiedById = 1,
-            //    ModifiedDate = DateTime.Now,
-            //    IsActive = true,
-            //    BranchId = 1,
-            //    UserId = 1
-            //});
-
             builder.ToTable("Branch.Manager");
+
+            builder.HasData(new BranchManager
+            {
+                Description = "Bu Şube Yöneticisi Hayvanlardan Sorumludur.",
+                UserId = 1,
+                BranchId = 1,
+                CreatedByUserId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedByUserId = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            });
         }
     }
 }

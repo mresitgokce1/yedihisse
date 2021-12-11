@@ -52,6 +52,22 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .HasForeignKey(p => p.ModifiedByUserId);
 
             builder.ToTable("Payment.Payment");
+
+            builder.HasData(new Payment
+            {
+                PaymentMade = 300,
+                ReceiptNumber = "ASD23123",
+                Description = "Açıklama",
+                ApplicationId = 1,
+                PaymentTypeId = 1,
+                PaymentOptionId = 1,
+                CreatedByUserId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedByUserId = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            });
         }
     }
 }

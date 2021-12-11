@@ -51,30 +51,31 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.AddressModifiedByUserIds)
                 .HasForeignKey(a => a.ModifiedByUserId);
 
-            //builder.HasData(new Address
-            //{
-            //    Id = 1,
-            //    AddressName = "Ev Adresi",
-            //    Country = "Türkiye",
-            //    City = "İstanbul",
-            //    Parish = "Körüklü Mahallesi",
-            //    Street = "Ateş Caddesi",
-            //    ApartmentName = "Fırın Apt",
-            //    ApartmentNo = "25",
-            //    ApartmentBlokName = "B Blok",
-            //    FloorNo = "5",
-            //    FlatNo = "3",
-            //    AddressDetail = "Köşem Kuruyemişin Yan Tarafı",
-            //    AddressDirection = null,
-            //    CreatedDate = DateTime.Now,
-            //    ModifiedDate = DateTime.Now,
-            //    CreatedById = 1,
-            //    ModifiedById = 1,
-            //    AddressTypeId = 1,
-            //    IsActive = true
-            //});
-
             builder.ToTable("Address.Address");
+
+            builder.HasData(new Address
+            {
+                AddressName = "Evimin Adresi",
+                Country = "Türkiye",
+                City = "İstanbul",
+                District = "Gökalp Mh.",
+                Parish = "X Sokak",
+                Street = "X Caddesi",
+                ApartmentName = "X Apartmanı",
+                ApartmentNo = "25",
+                ApartmentBlokName = "A-BLOK",
+                FloorNo = "3",
+                FlatNo = "25",
+                AddressDetail = "X Dükkanının Üstü",
+                AddressDirection = "X Penceresinin Sağı",
+                AddressTypeId = 1,
+                CreatedByUserId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedByUserId = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            });
         }
     }
 }

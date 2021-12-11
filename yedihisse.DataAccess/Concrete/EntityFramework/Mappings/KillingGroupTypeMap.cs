@@ -34,6 +34,17 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .HasForeignKey(k => k.ModifiedByUserId);
 
             builder.ToTable("Killing.GroupType");
+
+            builder.HasData(new KillingGroupType
+            {
+                KillingGroupTypeName = "Büyükbaş",
+                CreatedByUserId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedByUserId = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            });
         }
     }
 }

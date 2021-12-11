@@ -47,6 +47,20 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .HasForeignKey(k => k.ModifiedByUserId);
 
             builder.ToTable("Killing.JoinAnimal");
+
+            builder.HasData(new KillingJoinAnimal
+            {
+                KillingNumber = 25,
+                KillingComplate = false,
+                KillingGroupId = 1,
+                AnimalId = 1,
+                CreatedByUserId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedByUserId = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            });
         }
     }
 }

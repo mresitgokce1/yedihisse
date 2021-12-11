@@ -45,21 +45,21 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.SlaughterhouseModifiedByUserIds)
                 .HasForeignKey(a => a.ModifiedByUserId);
 
-            //builder.HasData(new Slaughterhouse()
-            //{
-            //    Id = 1,
-            //    SlaughterhouseName = "Kesimhane İsmi",
-            //    Description = "Kesimhane açıklama",
-            //    CreatedById = 1,
-            //    CreatedDate = DateTime.Now,
-            //    ModifiedById = 1,
-            //    ModifiedDate = DateTime.Now,
-            //    IsActive = true,
-            //    AddressId = 1,
-            //    PhoneNumberId = 1
-            //});
-
             builder.ToTable("Slaughterhouse.Slaughterhouse");
+
+            builder.HasData(new Slaughterhouse
+            {
+                SlaughterhouseName = "Kardeşler Kesim",
+                Description = "Kesimhane açıklaması.",
+                AddressId = 1,
+                PhoneNumberId = 1,
+                CreatedByUserId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedByUserId = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            });
         }
     }
 }

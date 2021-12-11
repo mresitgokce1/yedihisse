@@ -33,18 +33,18 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.SlaughterhouseTypeModifiedByUserIds)
                 .HasForeignKey(a => a.ModifiedByUserId);
 
-            //builder.HasData(new SlaughterhouseType()
-            //{
-            //    Id = 1,
-            //    Name = "Büyükbaş Kesimhanesi",
-            //    CreatedById = 1,
-            //    CreatedDate = DateTime.Now,
-            //    ModifiedById = 1,
-            //    ModifiedDate = DateTime.Now,
-            //    IsActive = true
-            //});
-
             builder.ToTable("Slaughterhouse.Type");
+
+            builder.HasData(new SlaughterhouseType
+            {
+                SlaughterhouseTypeName = "Büyükbaş",
+                CreatedByUserId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedByUserId = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            });
         }
     }
 }

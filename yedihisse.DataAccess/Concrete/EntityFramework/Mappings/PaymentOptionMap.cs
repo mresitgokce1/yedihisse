@@ -34,6 +34,17 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .HasForeignKey(p => p.ModifiedByUserId);
 
             builder.ToTable("Payment.Option");
+
+            builder.HasData(new PaymentOption
+            {
+                PaymentOptionName = "Ön Ödeme",
+                CreatedByUserId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedByUserId = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            });
         }
     }
 }

@@ -33,18 +33,18 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.PhoneNumberTypeModifiedByUserIds)
                 .HasForeignKey(p => p.ModifiedByUserId);
 
-            //builder.HasData(new PhoneNumberType()
-            //{
-            //    Id = 1,
-            //    Name = "Ev Telefonu",
-            //    CreatedById = 1,
-            //    CreatedDate = DateTime.Now,
-            //    ModifiedById = 1,
-            //    ModifiedDate = DateTime.Now,
-            //    IsActive = true
-            //});
-
             builder.ToTable("PhoneNumber.Type");
+
+            builder.HasData(new PhoneNumberType
+            {
+                PhoneNumberTypeName = "Ev Telefonu",
+                CreatedByUserId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedByUserId = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            });
         }
     }
 }

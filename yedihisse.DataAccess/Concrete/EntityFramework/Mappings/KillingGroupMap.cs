@@ -46,6 +46,20 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .HasForeignKey(k => k.ModifiedByUserId);
 
             builder.ToTable("Killing.Group");
+
+            builder.HasData(new KillingGroup
+            {
+                KillingGroupName = "X11 Grubu",
+                Description = "Grup açıklaması",
+                SlaughterhouseId = 1,
+                KillingGroupTypeId = 1,
+                CreatedByUserId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedByUserId = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            });
         }
     }
 }

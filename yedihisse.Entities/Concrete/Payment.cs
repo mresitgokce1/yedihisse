@@ -9,7 +9,7 @@ namespace yedihisse.Entities.Concrete
 {
     public class Payment : EntityBase, IEntity
     {
-        public string PaymentMade { get; set; }
+        public decimal PaymentMade { get; set; }
         public string ReceiptNumber { get; set; }
         public string Description { get; set; }
 

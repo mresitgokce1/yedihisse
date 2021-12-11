@@ -49,21 +49,21 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.BranchModifiedByUserIds)
                 .HasForeignKey(b => b.ModifiedByUserId);
 
-            //builder.HasData(new Branch()
-            //{
-            //    Id = 1,
-            //    BranchName = "Zeytinburnu Şubesi",
-            //    CreatedById = 1,
-            //    CreatedDate = DateTime.Now,
-            //    ModifiedById = 1,
-            //    ModifiedDate = DateTime.Now,
-            //    IsActive = true,
-            //    FirmId = 1,
-            //    AddressId = 1,
-            //    PhoneNumberId = 1
-            //});
-
             builder.ToTable("Branch.Branch");
+
+            builder.HasData(new Branch
+            {
+                BranchName = "X Şubesi",
+                FirmId = 1,
+                AddressId = 1,
+                PhoneNumberId = 1,
+                CreatedByUserId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedByUserId = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            });
         }
     }
 }

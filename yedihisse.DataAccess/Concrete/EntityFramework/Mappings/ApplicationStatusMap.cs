@@ -42,18 +42,19 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.ApplicationStatusModifiedByUserIds)
                 .HasForeignKey(a => a.ModifiedByUserId);
 
-            //builder.HasData(new ApplicationStatus()
-            //{
-            //    Id = 1,
-            //    CreatedById = 1,
-            //    ModifiedById = 1,
-            //    CreatedDate = DateTime.Now,
-            //    ModifiedDate = DateTime.Now,
-            //    ApplicationId = 1,
-            //    ApplicationStatusTypeId = 1
-            //});
-
             builder.ToTable("Application.Status");
+
+            builder.HasData(new ApplicationStatus
+            {
+                ApplicationId = 1,
+                ApplicationStatusTypeId = 1,
+                CreatedByUserId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedByUserId = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            });
         }
     }
 }

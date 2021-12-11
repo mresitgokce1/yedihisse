@@ -34,19 +34,19 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.AnimalTypeModifiedByUserIds)
                 .HasForeignKey(a => a.ModifiedByUserId);
 
-            //builder.HasData(new AnimalType()
-            //{
-            //    Id = 1,
-            //    Name = "Büyükbaş",
-            //    CanAllotment = true,
-            //    CreatedById = 1,
-            //    ModifiedById = 1,
-            //    CreatedDate = DateTime.Now,
-            //    ModifiedDate = DateTime.Now,
-            //    IsActive = true
-            //});
-
             builder.ToTable("Animal.Type");
+
+            builder.HasData(new AnimalType
+            {
+                AnimalTypeName = "Keçi",
+                CanAllotment = false,
+                CreatedByUserId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedByUserId = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            });
         }
     }
 }

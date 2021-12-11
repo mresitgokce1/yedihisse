@@ -58,22 +58,26 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.ApplicationModifiedByUserIds)
                 .HasForeignKey(a => a.ModifiedByUserId);
 
-            //builder.HasData(new Application()
-            //{
-            //    Id = 1,
-            //    AllotmentRate = 1,
-            //    CreatedDate = DateTime.Now,
-            //    ModifiedDate = DateTime.Now,
-            //    CreatedById = 1,
-            //    ModifiedById = 1,
-            //    IsActive = true,
-            //    BranchId = 1,
-            //    AllotmentId = 1,
-            //    UserId = 1,
-            //    AnimalTypeId = 1
-            //});
-
             builder.ToTable("Application.Application");
+
+            builder.HasData(new Application
+            {
+                Description = "Başvuru açıklaması.",
+                AllotmentRate = 2,
+                RemainingPrice = 350,
+                RemainingPrePay = 250,
+                RemainingKillingPrice = 250,
+                UserId = 1,
+                BranchId = 1,
+                AllotmentId = 1,
+                AnimalTypeId = 1,
+                CreatedByUserId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedByUserId = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            });
         }
     }
 }

@@ -44,20 +44,20 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.CompanyModifiedByUserIds)
                 .HasForeignKey(c => c.ModifiedByUserId);
 
-            //builder.HasData(new Company()
-            //{
-            //    Id = 1,
-            //    CompanyName = "Şirket İsmi",
-            //    CreatedById = 1,
-            //    CreatedDate = DateTime.Now,
-            //    ModifiedById = 1,
-            //    ModifiedDate = DateTime.Now,
-            //    IsActive = true,
-            //    AddressId = 1,
-            //    PhoneNumberId = 1
-            //});
-
             builder.ToTable("Company.Company");
+
+            builder.HasData(new Company
+            {
+                CompanyName = "X Şirketi",
+                AddressId = 1,
+                PhoneNumberId = 1,
+                CreatedByUserId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedByUserId = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            });
         }
     }
 }

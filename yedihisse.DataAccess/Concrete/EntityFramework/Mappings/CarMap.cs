@@ -53,21 +53,25 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.CarModifiedByUserIds)
                 .HasForeignKey(c => c.ModifiedByUserId);
 
-            //builder.HasData(new Car()
-            //{
-            //    Id = 1,
-            //    CarName = "Araba Adı",
-            //    CarNumberPlate = "34-B23-11",
-            //    CreatedById = 1,
-            //    CreatedDate = DateTime.Now,
-            //    ModifiedById = 1,
-            //    ModifiedDate = DateTime.Now,
-            //    CarTypeId = 1,
-            //    ShippingId = 1,
-            //    PhoneNumberId = 1
-            //});
-
             builder.ToTable("Car.Car");
+
+            builder.HasData(new Car
+            {
+                CarName = "Şubenin Sabit Aracı",
+                CarNumberPlate = "34 XX 1234",
+                CattleCapacity = 25,
+                OvineCapacity = 5,
+                IsAwning = true,
+                CarTypeId = 1,
+                PhoneNumberId = 1,
+                CarMissionTypeId = 1,
+                CreatedByUserId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedByUserId = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            });
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,25 +51,26 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.AnimalModifiedByUserIds)
                 .HasForeignKey(a => a.ModifiedByUserId);
 
-            //builder.HasData(new Animal()
-            //{
-            //    Id = 1,
-            //    Age = 3,
-            //    Kilo = 300,
-            //    Code = "A73",
-            //    Cost = 1250,
-            //    Gain = 1700,
-            //    EarCode = "A33",
-            //    BaitCode = "FF12",
-            //    CreatedById = 1,
-            //    ModifiedById = 1,
-            //    CreatedDate = DateTime.Now,
-            //    ModifiedDate = DateTime.Now,
-            //    IsActive = true,
-            //    AnimalTypeId = 1
-            //});
-
             builder.ToTable("Animal.Animal");
+
+            builder.HasData(new Animal
+            {
+                Age = float.Parse("3.5"),
+                Kilo = 125,
+                Code = "AXBJ",
+                Cost = 3000,
+                Gain = 1000,
+                EarCode = "Kulak Kodu",
+                BaitCode = "Yem Kodu",
+                AnimalTypeId = 1,
+                CarId = 1,
+                CreatedByUserId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedByUserId = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            });
         }
     }
 }

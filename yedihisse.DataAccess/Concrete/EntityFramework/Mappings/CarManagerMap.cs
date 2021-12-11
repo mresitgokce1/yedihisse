@@ -45,6 +45,19 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .HasForeignKey(c => c.ModifiedByUserId);
 
             builder.ToTable("Car.Manager");
+
+            builder.HasData(new CarManager
+            {
+                Description = "Bu Araç Yöneticisi Bakımdan Sorumludur",
+                UserId = 1,
+                CarId = 1,
+                CreatedByUserId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedByUserId = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            });
         }
     }
 }

@@ -34,6 +34,17 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .HasForeignKey(p => p.ModifiedByUserId);
 
             builder.ToTable("Payment.Type");
+
+            builder.HasData(new PaymentType
+            {
+                PaymentTypeName = "Nakit",
+                CreatedByUserId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedByUserId = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            });
         }
     }
 }

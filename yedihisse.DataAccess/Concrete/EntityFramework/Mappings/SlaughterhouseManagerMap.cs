@@ -44,20 +44,20 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
                 .WithMany(u => u.SlaughterhouseManagerModifiedByUserIds)
                 .HasForeignKey(a => a.ModifiedByUserId);
 
-            //builder.HasData(new SlaughterhouseManager()
-            //{
-            //    Id = 1,
-            //    Description = "Kesimhane Yöneticisi",
-            //    CreatedById = 1,
-            //    CreatedDate = DateTime.Now,
-            //    ModifiedById = 1,
-            //    ModifiedDate = DateTime.Now,
-            //    IsActive = true,
-            //    SlaughterhouseId = 1,
-            //    UserId = 1
-            //});
-
             builder.ToTable("Slaughterhouse.Manager");
+
+            builder.HasData(new SlaughterhouseManager
+            {
+                Description = "Kesimhane Yöneticisi Açıklama",
+                UserId = 1,
+                SlaughterhouseId = 1,
+                CreatedByUserId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedByUserId = 1,
+                ModifiedDate = DateTime.Now,
+                IsActive = true,
+                IsDeleted = false
+            });
         }
     }
 }
