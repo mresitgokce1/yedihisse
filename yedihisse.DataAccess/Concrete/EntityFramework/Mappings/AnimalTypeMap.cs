@@ -19,9 +19,9 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.AnimalTypeName).IsRequired(true).HasMaxLength(50);
             builder.Property(a => a.CanAllotment).IsRequired(true).HasDefaultValue(false);
 
-            builder.Property(a => a.CreatedByUserId).IsRequired(true);
+            builder.Property(a => a.CreatedByUserId);
             builder.Property(a => a.CreatedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
+            builder.Property(a => a.ModifiedByUserId);
             builder.Property(a => a.ModifiedDate).IsRequired(true);
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
             builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
@@ -36,17 +36,18 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Animal.Type");
 
-            builder.HasData(new AnimalType
-            {
-                AnimalTypeName = "Keçi",
-                CanAllotment = false,
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new AnimalType
+            //{
+            //    Id = 1,
+            //    AnimalTypeName = "Keçi",
+            //    CanAllotment = false,
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

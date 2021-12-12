@@ -22,7 +22,7 @@ namespace yedihisse.Entities.Dtos
         [DisplayName("Cinsiyeti")]
         public bool Sex { get; set; }
         [DisplayName("Şifresi")]
-        public byte[] PasswordHash { get; set; }
+        public string PasswordHash { get; set; }
         [DisplayName("Kullanıcının Adresi")]
         public Address Address { get; set; }
         [DisplayName("Kullanıcının Telefonu")]
@@ -61,7 +61,7 @@ namespace yedihisse.Entities.Dtos
 
         [DisplayName("Şifresi")]
         [Required(ErrorMessage = "{0} boş olmamalıdır.")]
-        public byte[] PasswordHash { get; set; }
+        public string PasswordHash { get; set; }
 
         [DisplayName("Kullanıcının Adresi")]
         public int AddressId { get; set; }
@@ -105,7 +105,7 @@ namespace yedihisse.Entities.Dtos
 
         [DisplayName("Şifresi")]
         [Required(ErrorMessage = "{0} boş olmamalıdır.")]
-        public byte[] PasswordHash { get; set; }
+        public string PasswordHash { get; set; }
 
         [DisplayName("Kullanıcının Adresi")]
         public int AddressId { get; set; }

@@ -24,18 +24,17 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(u => u.EmailAddress).IsRequired(false).HasMaxLength(100);
             builder.HasIndex(u => u.EmailAddress).IsUnique();
             builder.Property(u => u.Sex).IsRequired(true).HasDefaultValue(true);
-            builder.Property(u => u.PasswordHash).IsRequired();
-            builder.Property(u => u.PasswordHash).HasColumnType("BYTEA");
+            builder.Property(u => u.PasswordHash).IsRequired().HasMaxLength(48);
 
             builder.Property(u => u.AddressId).IsRequired(false);
             builder.Property(u => u.PhoneNumberId).IsRequired(false);
 
-            builder.Property(a => a.CreatedByUserId).IsRequired(true);
-            builder.Property(a => a.CreatedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
-            builder.Property(a => a.ModifiedDate).IsRequired(true);
-            builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
-            builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
+            builder.Property(u => u.CreatedByUserId);
+            builder.Property(u => u.CreatedDate).IsRequired(true);
+            builder.Property(u => u.ModifiedByUserId);
+            builder.Property(u => u.ModifiedDate).IsRequired(true);
+            builder.Property(u => u.IsActive).IsRequired(true).HasDefaultValue(true);
+            builder.Property(u => u.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<Address>(b => b.Address)
                 .WithOne(a => a.User)
@@ -55,32 +54,33 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("User.User");
 
-            // SEED DATA
-            byte[] salt;
-            new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
-            var pbkdf2 = new Rfc2898DeriveBytes("dsa13542010", salt, 100000);
-            byte[] hash = pbkdf2.GetBytes(20);
-            byte[] hashBytes = new byte[36];
-            Array.Copy(salt, 0, hashBytes, 0, 16);
-            Array.Copy(hash, 0, hashBytes, 16, 20);
+            //// SEED DATA
+            //byte[] salt;
+            //new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
+            //var pbkdf2 = new Rfc2898DeriveBytes("dsa13542010", salt, 100000);
+            //byte[] hash = pbkdf2.GetBytes(20);
+            //byte[] hashBytes = new byte[36];
+            //Array.Copy(salt, 0, hashBytes, 0, 16);
+            //Array.Copy(hash, 0, hashBytes, 16, 20);
 
-            builder.HasData(new User
-            {
-                FirstName = "Muhammed Reşit",
-                LastName = "Gökce",
-                UserPhoneNumber = "0553 770 16 09",
-                EmailAddress = "mrgokce@yandex.com",
-                Sex = true,
-                PasswordHash = hashBytes,
-                AddressId = 1,
-                PhoneNumberId = 1,
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new User
+            //{
+            //    Id = 1,
+            //    FirstName = "Muhammed Reşit",
+            //    LastName = "Gökce",
+            //    UserPhoneNumber = "0553 770 16 09",
+            //    EmailAddress = "mrgokce@yandex.com",
+            //    Sex = true,
+            //    PasswordHash = hashBytes,
+            //    AddressId = 1,
+            //    PhoneNumberId = 1,
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

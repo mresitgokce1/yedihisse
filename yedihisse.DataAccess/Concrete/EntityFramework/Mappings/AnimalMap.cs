@@ -28,9 +28,9 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.AnimalTypeId).IsRequired(true);
             builder.Property(a => a.CarId).IsRequired(false);
 
-            builder.Property(a => a.CreatedByUserId).IsRequired(true);
+            builder.Property(a => a.CreatedByUserId);
             builder.Property(a => a.CreatedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
+            builder.Property(a => a.ModifiedByUserId);
             builder.Property(a => a.ModifiedDate).IsRequired(true);
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
             builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
@@ -53,24 +53,25 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Animal.Animal");
 
-            builder.HasData(new Animal
-            {
-                Age = float.Parse("3.5"),
-                Kilo = 125,
-                Code = "AXBJ",
-                Cost = 3000,
-                Gain = 1000,
-                EarCode = "Kulak Kodu",
-                BaitCode = "Yem Kodu",
-                AnimalTypeId = 1,
-                CarId = 1,
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new Animal
+            //{
+            //    Id = 1,
+            //    Age = float.Parse("3.5"),
+            //    Kilo = 125,
+            //    Code = "AXBJ",
+            //    Cost = 3000,
+            //    Gain = 1000,
+            //    EarCode = "Kulak Kodu",
+            //    BaitCode = "Yem Kodu",
+            //    AnimalTypeId = 1,
+            //    CarId = 1,
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

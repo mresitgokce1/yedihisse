@@ -24,9 +24,9 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(p => p.PaymentTypeId).IsRequired(true);
             builder.Property(p => p.PaymentOptionId).IsRequired(true);
 
-            builder.Property(a => a.CreatedByUserId).IsRequired(true);
+            builder.Property(a => a.CreatedByUserId);
             builder.Property(a => a.CreatedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
+            builder.Property(a => a.ModifiedByUserId);
             builder.Property(a => a.ModifiedDate).IsRequired(true);
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
             builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
@@ -53,21 +53,22 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Payment.Payment");
 
-            builder.HasData(new Payment
-            {
-                PaymentMade = 300,
-                ReceiptNumber = "ASD23123",
-                Description = "Açıklama",
-                ApplicationId = 1,
-                PaymentTypeId = 1,
-                PaymentOptionId = 1,
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new Payment
+            //{
+            //    Id = 1,
+            //    PaymentMade = 300,
+            //    ReceiptNumber = "ASD23123",
+            //    Description = "Açıklama",
+            //    ApplicationId = 1,
+            //    PaymentTypeId = 1,
+            //    PaymentOptionId = 1,
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

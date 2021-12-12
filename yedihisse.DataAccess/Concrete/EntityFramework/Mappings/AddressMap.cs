@@ -32,9 +32,9 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.Property(a => a.AddressTypeId).IsRequired(true);
 
-            builder.Property(a => a.CreatedByUserId).IsRequired(true);
+            builder.Property(a => a.CreatedByUserId);
             builder.Property(a => a.CreatedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
+            builder.Property(a => a.ModifiedByUserId);
             builder.Property(a => a.ModifiedDate).IsRequired(true);
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
             builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
@@ -53,29 +53,30 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Address.Address");
 
-            builder.HasData(new Address
-            {
-                AddressName = "Evimin Adresi",
-                Country = "Türkiye",
-                City = "İstanbul",
-                District = "Gökalp Mh.",
-                Parish = "X Sokak",
-                Street = "X Caddesi",
-                ApartmentName = "X Apartmanı",
-                ApartmentNo = "25",
-                ApartmentBlokName = "A-BLOK",
-                FloorNo = "3",
-                FlatNo = "25",
-                AddressDetail = "X Dükkanının Üstü",
-                AddressDirection = "X Penceresinin Sağı",
-                AddressTypeId = 1,
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new Address
+            //{
+            //    Id = 1,
+            //    AddressName = "Evimin Adresi",
+            //    Country = "Türkiye",
+            //    City = "İstanbul",
+            //    District = "Gökalp Mh.",
+            //    Parish = "X Sokak",
+            //    Street = "X Caddesi",
+            //    ApartmentName = "X Apartmanı",
+            //    ApartmentNo = "25",
+            //    ApartmentBlokName = "A-BLOK",
+            //    FloorNo = "3",
+            //    FlatNo = "25",
+            //    AddressDetail = "X Dükkanının Üstü",
+            //    AddressDirection = "X Penceresinin Sağı",
+            //    AddressTypeId = 1,
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

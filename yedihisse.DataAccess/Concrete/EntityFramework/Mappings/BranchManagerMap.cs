@@ -21,12 +21,12 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(b => b.UserId).IsRequired(true);
             builder.Property(b => b.BranchId).IsRequired(true);
 
-            builder.Property(a => a.CreatedByUserId).IsRequired(true);
-            builder.Property(a => a.CreatedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
-            builder.Property(a => a.ModifiedDate).IsRequired(true);
-            builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
-            builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
+            builder.Property(b => b.CreatedByUserId);
+            builder.Property(b => b.CreatedDate).IsRequired(true);
+            builder.Property(b => b.ModifiedByUserId);
+            builder.Property(b => b.ModifiedDate).IsRequired(true);
+            builder.Property(b => b.IsActive).IsRequired(true).HasDefaultValue(true);
+            builder.Property(b => b.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<User>(b => b.User)
                 .WithMany(u => u.BranchManagers)
@@ -46,18 +46,19 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Branch.Manager");
 
-            builder.HasData(new BranchManager
-            {
-                Description = "Bu Şube Yöneticisi Hayvanlardan Sorumludur.",
-                UserId = 1,
-                BranchId = 1,
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new BranchManager
+            //{
+            //    Id = 1,
+            //    Description = "Bu Şube Yöneticisi Hayvanlardan Sorumludur.",
+            //    UserId = 1,
+            //    BranchId = 1,
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

@@ -22,12 +22,12 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(s => s.AddressId).IsRequired(false);
             builder.Property(s => s.PhoneNumberId).IsRequired(false);
 
-            builder.Property(a => a.CreatedByUserId).IsRequired(true);
-            builder.Property(a => a.CreatedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
-            builder.Property(a => a.ModifiedDate).IsRequired(true);
-            builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
-            builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
+            builder.Property(s => s.CreatedByUserId);
+            builder.Property(s => s.CreatedDate).IsRequired(true);
+            builder.Property(s => s.ModifiedByUserId);
+            builder.Property(s => s.ModifiedDate).IsRequired(true);
+            builder.Property(s => s.IsActive).IsRequired(true).HasDefaultValue(true);
+            builder.Property(s => s.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<Address>(b => b.Address)
                 .WithOne(a => a.Slaughterhouse)
@@ -47,19 +47,20 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Slaughterhouse.Slaughterhouse");
 
-            builder.HasData(new Slaughterhouse
-            {
-                SlaughterhouseName = "Kardeşler Kesim",
-                Description = "Kesimhane açıklaması.",
-                AddressId = 1,
-                PhoneNumberId = 1,
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new Slaughterhouse
+            //{
+            //    Id = 1,
+            //    SlaughterhouseName = "Kardeşler Kesim",
+            //    Description = "Kesimhane açıklaması.",
+            //    AddressId = 1,
+            //    PhoneNumberId = 1,
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

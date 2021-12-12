@@ -18,12 +18,12 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.Property(s => s.SlaughterhouseTypeName).IsRequired(true).HasMaxLength(50);
 
-            builder.Property(a => a.CreatedByUserId).IsRequired(true);
-            builder.Property(a => a.CreatedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
-            builder.Property(a => a.ModifiedDate).IsRequired(true);
-            builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
-            builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
+            builder.Property(s => s.CreatedByUserId);
+            builder.Property(s => s.CreatedDate).IsRequired(true);
+            builder.Property(s => s.ModifiedByUserId);
+            builder.Property(s => s.ModifiedDate).IsRequired(true);
+            builder.Property(s => s.IsActive).IsRequired(true).HasDefaultValue(true);
+            builder.Property(s => s.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<User>(a => a.CreatedByUser)
                 .WithMany(u => u.SlaughterhouseTypeCreatedByUserIds)
@@ -35,16 +35,17 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Slaughterhouse.Type");
 
-            builder.HasData(new SlaughterhouseType
-            {
-                SlaughterhouseTypeName = "Büyükbaş",
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new SlaughterhouseType
+            //{
+            //    Id = 1,
+            //    SlaughterhouseTypeName = "Büyükbaş",
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

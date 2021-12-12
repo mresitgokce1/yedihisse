@@ -53,11 +53,7 @@ namespace yedihisse.Business.Concrete
                 var address = await _unitOfWork.Addresses.GetAsync(a => a.Id == addressId);
 
                 if (address != null)
-                {
-                    var addressUpdateDto = _mapper.Map<AddressUpdateDto>(address);
-
-                    return new DataResult<AddressUpdateDto>(ResultStatus.Success, addressUpdateDto);
-                }
+                    return new DataResult<AddressUpdateDto>(ResultStatus.Success, _mapper.Map<AddressUpdateDto>(address));
 
                 return new DataResult<AddressUpdateDto>(ResultStatus.Error,Messages.Address.NotFound(false) ,null);
             }
@@ -215,7 +211,6 @@ namespace yedihisse.Business.Concrete
                     address.IsDeleted = true;
                     address.ModifiedByUserId = modifiedByUserId;
                     address.ModifiedDate = DateTime.Now;
-
                     await _unitOfWork.Addresses.UpdateAsync(address);
                     await _unitOfWork.SaveAsync();
 

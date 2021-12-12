@@ -23,12 +23,12 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(s => s.SlaughterhouseId).IsRequired(true);
             builder.Property(s => s.SlaughterhouseTypeId).IsRequired(true);
 
-            builder.Property(a => a.CreatedByUserId).IsRequired(true);
-            builder.Property(a => a.CreatedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
-            builder.Property(a => a.ModifiedDate).IsRequired(true);
-            builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
-            builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
+            builder.Property(s => s.CreatedByUserId);
+            builder.Property(s => s.CreatedDate).IsRequired(true);
+            builder.Property(s => s.ModifiedByUserId);
+            builder.Property(s => s.ModifiedDate).IsRequired(true);
+            builder.Property(s => s.IsActive).IsRequired(true).HasDefaultValue(true);
+            builder.Property(s => s.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<Slaughterhouse>(s => s.Slaughterhouse)
                 .WithMany(s => s.SlaughterhouseJoinTypes)
@@ -48,20 +48,21 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Slaughterhouse.JoinType");
 
-            builder.HasData(new SlaughterhouseJoinType
-            {
-                HoldingCapacity = 52,
-                KillingCapacity = 25,
-                ShreddingCapacity = 33,
-                SlaughterhouseId = 1,
-                SlaughterhouseTypeId = 1,
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new SlaughterhouseJoinType
+            //{
+            //    Id = 1,
+            //    HoldingCapacity = 52,
+            //    KillingCapacity = 25,
+            //    ShreddingCapacity = 33,
+            //    SlaughterhouseId = 1,
+            //    SlaughterhouseTypeId = 1,
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

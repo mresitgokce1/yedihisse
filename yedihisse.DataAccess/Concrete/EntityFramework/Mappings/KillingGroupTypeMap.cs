@@ -18,9 +18,9 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.Property(k => k.KillingGroupTypeName).IsRequired(true).HasMaxLength(50);
 
-            builder.Property(k => k.CreatedByUserId).IsRequired(true);
+            builder.Property(k => k.CreatedByUserId);
             builder.Property(k => k.CreatedDate).IsRequired(true);
-            builder.Property(k => k.ModifiedByUserId).IsRequired(true);
+            builder.Property(k => k.ModifiedByUserId);
             builder.Property(k => k.ModifiedDate).IsRequired(true);
             builder.Property(k => k.IsActive).IsRequired(true).HasDefaultValue(true);
             builder.Property(k => k.IsDeleted).IsRequired(true).HasDefaultValue(false);
@@ -35,16 +35,17 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Killing.GroupType");
 
-            builder.HasData(new KillingGroupType
-            {
-                KillingGroupTypeName = "Büyükbaş",
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new KillingGroupType
+            //{
+            //    Id = 1,
+            //    KillingGroupTypeName = "Büyükbaş",
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

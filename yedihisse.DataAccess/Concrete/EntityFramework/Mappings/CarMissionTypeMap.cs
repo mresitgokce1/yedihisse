@@ -19,12 +19,12 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(c => c.CarMissionTypeName).HasMaxLength(50).IsRequired(true);
             builder.Property(c => c.Description).HasMaxLength(250).IsRequired(true);
 
-            builder.Property(a => a.CreatedByUserId).IsRequired(true);
-            builder.Property(a => a.CreatedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
-            builder.Property(a => a.ModifiedDate).IsRequired(true);
-            builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
-            builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
+            builder.Property(c => c.CreatedByUserId);
+            builder.Property(c => c.CreatedDate).IsRequired(true);
+            builder.Property(c => c.ModifiedByUserId);
+            builder.Property(c => c.ModifiedDate).IsRequired(true);
+            builder.Property(c => c.IsActive).IsRequired(true).HasDefaultValue(true);
+            builder.Property(c => c.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<User>(c => c.CreatedByUser)
                 .WithMany(u => u.CarMissionTypeCreatedByUserIds)
@@ -36,17 +36,18 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Car.MissionType");
 
-            builder.HasData(new CarMissionType
-            {
-                CarMissionTypeName = "Taşıyıcı",
-                Description = "Depodan Kesimhaneye Araç Taşır",
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new CarMissionType
+            //{
+            //    Id = 1,
+            //    CarMissionTypeName = "Taşıyıcı",
+            //    Description = "Depodan Kesimhaneye Araç Taşır",
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

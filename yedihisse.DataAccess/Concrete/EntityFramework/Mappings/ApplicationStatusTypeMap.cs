@@ -18,9 +18,9 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.Property(a => a.ApplicationStatusTypeName).IsRequired(true).HasMaxLength(100);
 
-            builder.Property(a => a.CreatedByUserId).IsRequired(true);
+            builder.Property(a => a.CreatedByUserId);
             builder.Property(a => a.CreatedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
+            builder.Property(a => a.ModifiedByUserId);
             builder.Property(a => a.ModifiedDate).IsRequired(true);
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
             builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
@@ -35,16 +35,17 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Application.StatusType");
 
-            builder.HasData(new ApplicationStatusType
-            {
-                ApplicationStatusTypeName = "Başvuru Alındı",
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new ApplicationStatusType
+            //{
+            //    Id = 1,
+            //    ApplicationStatusTypeName = "Başvuru Alındı",
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

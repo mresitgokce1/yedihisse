@@ -15,10 +15,10 @@ namespace yedihisse.Entities.Concrete
         public int UserTypeId { get; set; }
         public UserType UserType { get; set; }
 
-        public int CreatedByUserId { get; set; }
+        public int? CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }
 
-        public int ModifiedByUserId { get; set; }
+        public int? ModifiedByUserId { get; set; }
         public User ModifiedByUser { get; set; }
     }
 }

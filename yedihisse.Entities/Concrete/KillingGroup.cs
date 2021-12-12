@@ -18,10 +18,10 @@ namespace yedihisse.Entities.Concrete
         public int KillingGroupTypeId { get; set; }
         public KillingGroupType KillingGroupType { get; set; }
 
-        public int CreatedByUserId { get; set; }
+        public int? CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }
 
-        public int ModifiedByUserId { get; set; }
+        public int? ModifiedByUserId { get; set; }
         public User ModifiedByUser { get; set; }
 
         public ICollection<KillingJoinAnimal> KillingJoinAnimals { get; set; }

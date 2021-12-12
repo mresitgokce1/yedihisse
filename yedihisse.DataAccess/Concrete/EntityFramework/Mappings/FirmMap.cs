@@ -22,9 +22,9 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(f => f.AddressId).IsRequired(false);
             builder.Property(f => f.PhoneNumberId).IsRequired(false);
 
-            builder.Property(a => a.CreatedByUserId).IsRequired(true);
+            builder.Property(a => a.CreatedByUserId);
             builder.Property(a => a.CreatedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
+            builder.Property(a => a.ModifiedByUserId);
             builder.Property(a => a.ModifiedDate).IsRequired(true);
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
             builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
@@ -51,19 +51,20 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Firm.Firm");
 
-            builder.HasData(new Firm
-            {
-                FirmName = "X Firması",
-                CompanyId = 1,
-                AddressId = 1,
-                PhoneNumberId = 1,
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new Firm
+            //{
+            //    Id = 1,
+            //    FirmName = "X Firması",
+            //    CompanyId = 1,
+            //    AddressId = 1,
+            //    PhoneNumberId = 1,
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

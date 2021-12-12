@@ -21,9 +21,9 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.Property(p => p.PhoneNumberTypeId).IsRequired(true);
 
-            builder.Property(a => a.CreatedByUserId).IsRequired(true);
+            builder.Property(a => a.CreatedByUserId);
             builder.Property(a => a.CreatedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
+            builder.Property(a => a.ModifiedByUserId);
             builder.Property(a => a.ModifiedDate).IsRequired(true);
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
             builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
@@ -42,18 +42,19 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("PhoneNumber.PhoneNumber");
 
-            builder.HasData(new PhoneNumber
-            {
-                Description = "Telefon açıklaması",
-                Number = "0553 770 16 09",
-                PhoneNumberTypeId = 1,
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new PhoneNumber
+            //{
+            //    Id = 1,
+            //    Description = "Telefon açıklaması",
+            //    Number = "0553 770 16 09",
+            //    PhoneNumberTypeId = 1,
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

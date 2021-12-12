@@ -21,12 +21,12 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(s => s.UserId).IsRequired(true);
             builder.Property(s => s.SlaughterhouseId).IsRequired(true);
 
-            builder.Property(a => a.CreatedByUserId).IsRequired(true);
-            builder.Property(a => a.CreatedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
-            builder.Property(a => a.ModifiedDate).IsRequired(true);
-            builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
-            builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
+            builder.Property(s => s.CreatedByUserId);
+            builder.Property(s => s.CreatedDate).IsRequired(true);
+            builder.Property(s => s.ModifiedByUserId);
+            builder.Property(s => s.ModifiedDate).IsRequired(true);
+            builder.Property(s => s.IsActive).IsRequired(true).HasDefaultValue(true);
+            builder.Property(s => s.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<User>(s => s.User)
                 .WithMany(u => u.SlaughterhouseManagers)
@@ -46,18 +46,19 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Slaughterhouse.Manager");
 
-            builder.HasData(new SlaughterhouseManager
-            {
-                Description = "Kesimhane Yöneticisi Açıklama",
-                UserId = 1,
-                SlaughterhouseId = 1,
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new SlaughterhouseManager
+            //{
+            //    Id = 1,
+            //    Description = "Kesimhane Yöneticisi Açıklama",
+            //    UserId = 1,
+            //    SlaughterhouseId = 1,
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

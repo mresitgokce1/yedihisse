@@ -19,12 +19,12 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(u => u.UserId).IsRequired(true);
             builder.Property(u => u.UserTypeId).IsRequired(true);
 
-            builder.Property(a => a.CreatedByUserId).IsRequired(true);
-            builder.Property(a => a.CreatedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
-            builder.Property(a => a.ModifiedDate).IsRequired(true);
-            builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
-            builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
+            builder.Property(u => u.CreatedByUserId);
+            builder.Property(u => u.CreatedDate).IsRequired(true);
+            builder.Property(u => u.ModifiedByUserId);
+            builder.Property(u => u.ModifiedDate).IsRequired(true);
+            builder.Property(u => u.IsActive).IsRequired(true).HasDefaultValue(true);
+            builder.Property(u => u.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<User>(u => u.User)
                 .WithMany(u => u.UserJoinTypes)
@@ -44,17 +44,18 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("User.JoinType");
 
-            builder.HasData(new UserJoinType
-            {
-                UserId = 1,
-                UserTypeId = 1,
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new UserJoinType
+            //{
+            //    Id = 1,
+            //    UserId = 1,
+            //    UserTypeId = 1,
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

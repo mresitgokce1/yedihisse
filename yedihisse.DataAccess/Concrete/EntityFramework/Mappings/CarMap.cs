@@ -26,12 +26,12 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(c => c.PhoneNumberId).IsRequired(true);
             builder.Property(c => c.CarMissionTypeId).IsRequired(false);
 
-            builder.Property(a => a.CreatedByUserId).IsRequired(true);
-            builder.Property(a => a.CreatedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
-            builder.Property(a => a.ModifiedDate).IsRequired(true);
-            builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
-            builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
+            builder.Property(c => c.CreatedByUserId);
+            builder.Property(c => c.CreatedDate).IsRequired(true);
+            builder.Property(c => c.ModifiedByUserId);
+            builder.Property(c => c.ModifiedDate).IsRequired(true);
+            builder.Property(c => c.IsActive).IsRequired(true).HasDefaultValue(true);
+            builder.Property(c => c.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<CarType>(c => c.CarType)
                 .WithMany(c => c.Cars)
@@ -55,23 +55,24 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Car.Car");
 
-            builder.HasData(new Car
-            {
-                CarName = "Şubenin Sabit Aracı",
-                CarNumberPlate = "34 XX 1234",
-                CattleCapacity = 25,
-                OvineCapacity = 5,
-                IsAwning = true,
-                CarTypeId = 1,
-                PhoneNumberId = 1,
-                CarMissionTypeId = 1,
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new Car
+            //{
+            //    Id = 1,
+            //    CarName = "Şubenin Sabit Aracı",
+            //    CarNumberPlate = "34 XX 1234",
+            //    CattleCapacity = 25,
+            //    OvineCapacity = 5,
+            //    IsAwning = true,
+            //    CarTypeId = 1,
+            //    PhoneNumberId = 1,
+            //    CarMissionTypeId = 1,
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

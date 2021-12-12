@@ -22,12 +22,12 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(b => b.AddressId).IsRequired(false);
             builder.Property(b => b.PhoneNumberId).IsRequired(false);
 
-            builder.Property(a => a.CreatedByUserId).IsRequired(true);
-            builder.Property(a => a.CreatedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
-            builder.Property(a => a.ModifiedDate).IsRequired(true);
-            builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
-            builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
+            builder.Property(b => b.CreatedByUserId);
+            builder.Property(b => b.CreatedDate).IsRequired(true);
+            builder.Property(b => b.ModifiedByUserId);
+            builder.Property(b => b.ModifiedDate).IsRequired(true);
+            builder.Property(b => b.IsActive).IsRequired(true).HasDefaultValue(true);
+            builder.Property(b => b.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<Firm>(b => b.Firm)
                 .WithMany(f => f.Branches)
@@ -51,19 +51,20 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Branch.Branch");
 
-            builder.HasData(new Branch
-            {
-                BranchName = "X Şubesi",
-                FirmId = 1,
-                AddressId = 1,
-                PhoneNumberId = 1,
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new Branch
+            //{
+            //    Id = 1,
+            //    BranchName = "X Şubesi",
+            //    FirmId = 1,
+            //    AddressId = 1,
+            //    PhoneNumberId = 1,
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

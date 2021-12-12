@@ -14,7 +14,7 @@ namespace yedihisse.Entities.Concrete
         public string UserPhoneNumber { get; set; }
         public string EmailAddress { get; set; }
         public bool Sex { get; set; }
-        public byte[] PasswordHash { get; set; }
+        public string PasswordHash { get; set; }
 
         public int? AddressId { get; set; }
         public Address Address { get; set; }
@@ -22,10 +22,10 @@ namespace yedihisse.Entities.Concrete
         public int? PhoneNumberId { get; set; }
         public PhoneNumber PhoneNumber { get; set; }
 
-        public int CreatedByUserId { get; set; }
+        public int? CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }
 
-        public int ModifiedByUserId { get; set; }
+        public int? ModifiedByUserId { get; set; }
         public User ModifiedByUser { get; set; }
 
         public ICollection<UserJoinType> UserJoinTypes { get; set; }

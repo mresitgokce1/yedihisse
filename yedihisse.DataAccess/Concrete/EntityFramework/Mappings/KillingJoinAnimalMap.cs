@@ -23,9 +23,9 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(k => k.AnimalId).IsRequired(true);
             builder.HasIndex(k => k.AnimalId).IsUnique(true);
 
-            builder.Property(k => k.CreatedByUserId).IsRequired(true);
+            builder.Property(k => k.CreatedByUserId);
             builder.Property(k => k.CreatedDate).IsRequired(true);
-            builder.Property(k => k.ModifiedByUserId).IsRequired(true);
+            builder.Property(k => k.ModifiedByUserId);
             builder.Property(k => k.ModifiedDate).IsRequired(true);
             builder.Property(k => k.IsActive).IsRequired(true).HasDefaultValue(true);
             builder.Property(k => k.IsDeleted).IsRequired(true).HasDefaultValue(false);
@@ -48,19 +48,20 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Killing.JoinAnimal");
 
-            builder.HasData(new KillingJoinAnimal
-            {
-                KillingNumber = 25,
-                KillingComplate = false,
-                KillingGroupId = 1,
-                AnimalId = 1,
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new KillingJoinAnimal
+            //{
+            //    Id = 1,
+            //    KillingNumber = 25,
+            //    KillingComplate = false,
+            //    KillingGroupId = 1,
+            //    AnimalId = 1,
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

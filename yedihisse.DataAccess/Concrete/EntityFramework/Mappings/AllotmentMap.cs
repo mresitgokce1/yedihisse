@@ -23,9 +23,9 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.Property(a => a.AnimalId).IsRequired(true);
 
-            builder.Property(a => a.CreatedByUserId).IsRequired(true);
+            builder.Property(a => a.CreatedByUserId);
             builder.Property(a => a.CreatedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
+            builder.Property(a => a.ModifiedByUserId);
             builder.Property(a => a.ModifiedDate).IsRequired(true);
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
             builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
@@ -44,20 +44,21 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Allotment.Allotment");
 
-            builder.HasData(new Allotment
-            {
-                Description = "Hisse açıklaması",
-                AllotmentPrePay = 250,
-                AllotmentPayment = decimal.Parse("4000.550"),
-                AllotmentKillingPrice = 500,
-                AnimalId = 1,
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new Allotment
+            //{
+            //    Id = 1,
+            //    Description = "Hisse açıklaması",
+            //    AllotmentPrePay = 250,
+            //    AllotmentPayment = decimal.Parse("4000.550"),
+            //    AllotmentKillingPrice = 500,
+            //    AnimalId = 1,
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

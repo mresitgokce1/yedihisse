@@ -11,10 +11,10 @@ namespace yedihisse.Entities.Concrete
     {
         public string AddressTypeName { get; set; }
 
-        public int CreatedByUserId { get; set; }
+        public int? CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }
 
-        public int ModifiedByUserId { get; set; }
+        public int? ModifiedByUserId { get; set; }
         public User ModifiedByUser { get; set; }
 
         public ICollection<Address> Addresses { get; set; }

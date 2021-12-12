@@ -21,12 +21,12 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(c => c.UserId).IsRequired(true);
             builder.Property(c => c.CompanyId).IsRequired(true);
 
-            builder.Property(a => a.CreatedByUserId).IsRequired(true);
-            builder.Property(a => a.CreatedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
-            builder.Property(a => a.ModifiedDate).IsRequired(true);
-            builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
-            builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
+            builder.Property(c => c.CreatedByUserId);
+            builder.Property(c => c.CreatedDate).IsRequired(true);
+            builder.Property(c => c.ModifiedByUserId);
+            builder.Property(c => c.ModifiedDate).IsRequired(true);
+            builder.Property(c => c.IsActive).IsRequired(true).HasDefaultValue(true);
+            builder.Property(c => c.IsDeleted).IsRequired(true).HasDefaultValue(false);
 
             builder.HasOne<User>(c => c.User)
                 .WithMany(u => u.CompanyManagers)
@@ -46,18 +46,19 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Company.Manager");
 
-            builder.HasData(new CompanyManager
-            {
-                Description = "Şirketin tüm işlerinden sorumludur",
-                UserId = 1,
-                CompanyId = 1,
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new CompanyManager
+            //{
+            //    Id = 1,
+            //    Description = "Şirketin tüm işlerinden sorumludur",
+            //    UserId = 1,
+            //    CompanyId = 1,
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

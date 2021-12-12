@@ -15,10 +15,10 @@ namespace yedihisse.Entities.Concrete
         public int PhoneNumberTypeId { get; set; }
         public PhoneNumberType PhoneNumberType { get; set; }
 
-        public int CreatedByUserId { get; set; }
+        public int? CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }
 
-        public int ModifiedByUserId { get; set; }
+        public int? ModifiedByUserId { get; set; }
         public User ModifiedByUser { get; set; }
 
         public ICollection<Branch> Branches { get; set; }

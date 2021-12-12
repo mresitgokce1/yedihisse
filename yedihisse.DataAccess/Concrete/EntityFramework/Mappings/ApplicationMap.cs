@@ -27,9 +27,9 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(a => a.AllotmentId).IsRequired(false);
             builder.Property(a => a.AnimalTypeId).IsRequired(true);
 
-            builder.Property(a => a.CreatedByUserId).IsRequired(true);
+            builder.Property(a => a.CreatedByUserId);
             builder.Property(a => a.CreatedDate).IsRequired(true);
-            builder.Property(a => a.ModifiedByUserId).IsRequired(true);
+            builder.Property(a => a.ModifiedByUserId);
             builder.Property(a => a.ModifiedDate).IsRequired(true);
             builder.Property(a => a.IsActive).IsRequired(true).HasDefaultValue(true);
             builder.Property(a => a.IsDeleted).IsRequired(true).HasDefaultValue(false);
@@ -60,24 +60,25 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Application.Application");
 
-            builder.HasData(new Application
-            {
-                Description = "Başvuru açıklaması.",
-                AllotmentRate = 2,
-                RemainingPrice = 350,
-                RemainingPrePay = 250,
-                RemainingKillingPrice = 250,
-                UserId = 1,
-                BranchId = 1,
-                AllotmentId = 1,
-                AnimalTypeId = 1,
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new Application
+            //{
+            //    Id = 1,
+            //    Description = "Başvuru açıklaması.",
+            //    AllotmentRate = 2,
+            //    RemainingPrice = 350,
+            //    RemainingPrePay = 250,
+            //    RemainingKillingPrice = 250,
+            //    UserId = 1,
+            //    BranchId = 1,
+            //    AllotmentId = 1,
+            //    AnimalTypeId = 1,
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

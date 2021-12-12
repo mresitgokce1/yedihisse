@@ -22,10 +22,10 @@ namespace yedihisse.Entities.Concrete
         public int ApplicationId { get; set; }
         public Application Application { get; set; }
 
-        public int CreatedByUserId { get; set; }
+        public int? CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }
 
-        public int ModifiedByUserId { get; set; }
+        public int? ModifiedByUserId { get; set; }
         public User ModifiedByUser { get; set; }
 
     }

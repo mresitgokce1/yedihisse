@@ -21,9 +21,9 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(c => c.UserId).IsRequired(true);
             builder.Property(c => c.CarId).IsRequired(true);
 
-            builder.Property(c => c.CreatedByUserId).IsRequired(true);
+            builder.Property(c => c.CreatedByUserId);
             builder.Property(c => c.CreatedDate).IsRequired(true);
-            builder.Property(c => c.ModifiedByUserId).IsRequired(true);
+            builder.Property(c => c.ModifiedByUserId);
             builder.Property(c => c.ModifiedDate).IsRequired(true);
             builder.Property(c => c.IsActive).IsRequired(true).HasDefaultValue(true);
             builder.Property(c => c.IsDeleted).IsRequired(true).HasDefaultValue(false);
@@ -46,18 +46,19 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Car.Manager");
 
-            builder.HasData(new CarManager
-            {
-                Description = "Bu Araç Yöneticisi Bakımdan Sorumludur",
-                UserId = 1,
-                CarId = 1,
-                CreatedByUserId = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedByUserId = 1,
-                ModifiedDate = DateTime.Now,
-                IsActive = true,
-                IsDeleted = false
-            });
+            //builder.HasData(new CarManager
+            //{
+            //    Id = 1,
+            //    Description = "Bu Araç Yöneticisi Bakımdan Sorumludur",
+            //    UserId = 1,
+            //    CarId = 1,
+            //    CreatedByUserId = 1,
+            //    CreatedDate = DateTime.Now,
+            //    ModifiedByUserId = 1,
+            //    ModifiedDate = DateTime.Now,
+            //    IsActive = true,
+            //    IsDeleted = false
+            //});
         }
     }
 }

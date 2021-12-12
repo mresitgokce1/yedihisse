@@ -10,8 +10,8 @@ using yedihisse.DataAccess.Concrete.EntityFramework.Contexts;
 namespace yedihisse.DataAccess.Migrations
 {
     [DbContext(typeof(YediHisseContext))]
-    [Migration("20211205153928_MyFirstMigration")]
-    partial class MyFirstMigration
+    [Migration("20211212130001_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,7 +67,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -96,7 +96,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -113,8 +113,7 @@ namespace yedihisse.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressTypeId")
-                        .IsUnique();
+                    b.HasIndex("AddressTypeId");
 
                     b.HasIndex("CreatedByUserId");
 
@@ -136,7 +135,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -152,7 +151,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -196,7 +195,7 @@ namespace yedihisse.DataAccess.Migrations
                     b.Property<int>("AnimalId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -216,7 +215,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -269,7 +268,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("numeric(4,4)")
                         .HasDefaultValue(0m);
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -301,7 +300,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("real")
                         .HasDefaultValue(0f);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -338,7 +337,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -354,7 +353,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -392,7 +391,7 @@ namespace yedihisse.DataAccess.Migrations
                     b.Property<int>("BranchId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -412,7 +411,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -470,7 +469,7 @@ namespace yedihisse.DataAccess.Migrations
                     b.Property<int>("ApplicationStatusTypeId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -486,7 +485,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -518,7 +517,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -534,7 +533,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -565,7 +564,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -584,7 +583,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -620,7 +619,7 @@ namespace yedihisse.DataAccess.Migrations
                     b.Property<int>("BranchId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -640,7 +639,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -689,7 +688,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("integer");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -710,7 +709,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -749,7 +748,7 @@ namespace yedihisse.DataAccess.Migrations
                     b.Property<int>("CarId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -769,7 +768,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -804,7 +803,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -825,7 +824,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -853,7 +852,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -873,7 +872,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -904,7 +903,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -920,7 +919,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -954,7 +953,7 @@ namespace yedihisse.DataAccess.Migrations
                     b.Property<int>("CompanyId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -974,7 +973,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -1010,7 +1009,7 @@ namespace yedihisse.DataAccess.Migrations
                     b.Property<int>("CompanyId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1031,7 +1030,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -1064,7 +1063,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnName("ManagerId")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1087,7 +1086,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -1117,7 +1116,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnName("GroupId")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1145,7 +1144,7 @@ namespace yedihisse.DataAccess.Migrations
                     b.Property<int>("KillingGroupTypeId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -1175,7 +1174,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnName("GroupTypeId")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1196,7 +1195,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -1222,7 +1221,7 @@ namespace yedihisse.DataAccess.Migrations
                     b.Property<int>("AnimalId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1250,7 +1249,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("integer");
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -1281,7 +1280,7 @@ namespace yedihisse.DataAccess.Migrations
                     b.Property<int>("ApplicationId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1301,18 +1300,17 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("PaymentMade")
-                        .IsRequired()
+                    b.Property<decimal>("PaymentMade")
                         .ValueGeneratedOnAdd()
                         .HasPrecision(4, 4)
-                        .HasColumnType("text")
-                        .HasDefaultValue("0");
+                        .HasColumnType("numeric(4,4)")
+                        .HasDefaultValue(0m);
 
                     b.Property<int>("PaymentOptionId")
                         .HasColumnType("integer");
@@ -1347,7 +1345,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnName("PaymentOptionId")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1363,7 +1361,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -1391,7 +1389,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnName("PaymentTypeId")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1407,7 +1405,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -1435,7 +1433,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnName("PhoneNumberId")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1455,7 +1453,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -1489,7 +1487,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnName("TypeId")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1505,7 +1503,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -1536,7 +1534,7 @@ namespace yedihisse.DataAccess.Migrations
                     b.Property<int?>("AddressId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1556,7 +1554,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -1592,7 +1590,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnName("JoinTypeId")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1620,7 +1618,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("integer")
                         .HasDefaultValue(0);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -1659,7 +1657,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnName("ManagerId")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1679,7 +1677,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -1712,7 +1710,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnName("TypeId")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1728,7 +1726,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -1759,7 +1757,7 @@ namespace yedihisse.DataAccess.Migrations
                     b.Property<int?>("AddressId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1789,7 +1787,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -1840,7 +1838,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnName("JoinTypeId")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1856,7 +1854,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -1889,7 +1887,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnName("TypeId")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("CreatedByUserId")
+                    b.Property<int?>("CreatedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1905,7 +1903,7 @@ namespace yedihisse.DataAccess.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ModifiedByUserId")
+                    b.Property<int?>("ModifiedByUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("ModifiedDate")
@@ -1928,22 +1926,18 @@ namespace yedihisse.DataAccess.Migrations
             modelBuilder.Entity("yedihisse.Entities.Concrete.Address", b =>
                 {
                     b.HasOne("yedihisse.Entities.Concrete.AddressType", "AddressType")
-                        .WithOne("Address")
-                        .HasForeignKey("yedihisse.Entities.Concrete.Address", "AddressTypeId")
+                        .WithMany("Addresses")
+                        .HasForeignKey("AddressTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("AddressCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("AddressModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.Navigation("AddressType");
 
@@ -1956,15 +1950,11 @@ namespace yedihisse.DataAccess.Migrations
                 {
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("AddressTypeCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("AddressTypeModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.Navigation("CreatedByUser");
 
@@ -1981,15 +1971,11 @@ namespace yedihisse.DataAccess.Migrations
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("AllotmentCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("AllotmentModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.Navigation("Animal");
 
@@ -2012,15 +1998,11 @@ namespace yedihisse.DataAccess.Migrations
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("AnimalCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("AnimalModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.Navigation("AnimalType");
 
@@ -2035,15 +2017,11 @@ namespace yedihisse.DataAccess.Migrations
                 {
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("AnimalTypeCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("AnimalTypeModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.Navigation("CreatedByUser");
 
@@ -2070,15 +2048,11 @@ namespace yedihisse.DataAccess.Migrations
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("ApplicationCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("ApplicationModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "User")
                         .WithMany("Applications")
@@ -2115,15 +2089,11 @@ namespace yedihisse.DataAccess.Migrations
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("ApplicationStatusCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("ApplicationStatusModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.Navigation("Application");
 
@@ -2138,15 +2108,11 @@ namespace yedihisse.DataAccess.Migrations
                 {
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("ApplicationStatusTypeCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("ApplicationStatusTypeModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.Navigation("CreatedByUser");
 
@@ -2161,9 +2127,7 @@ namespace yedihisse.DataAccess.Migrations
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("BranchCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.Firm", "Firm")
                         .WithMany("Branches")
@@ -2173,9 +2137,7 @@ namespace yedihisse.DataAccess.Migrations
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("BranchModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.PhoneNumber", "PhoneNumber")
                         .WithMany("Branches")
@@ -2202,15 +2164,11 @@ namespace yedihisse.DataAccess.Migrations
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("BranchManagerCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("BranchManagerModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "User")
                         .WithMany("BranchManagers")
@@ -2241,15 +2199,11 @@ namespace yedihisse.DataAccess.Migrations
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("CarCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("CarModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.PhoneNumber", "PhoneNumber")
                         .WithMany("Cars")
@@ -2278,15 +2232,11 @@ namespace yedihisse.DataAccess.Migrations
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("CarManagerCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("CarManagerModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "User")
                         .WithMany("CarManagers")
@@ -2307,15 +2257,11 @@ namespace yedihisse.DataAccess.Migrations
                 {
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("CarMissionTypeCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("CarMissionTypeModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.Navigation("CreatedByUser");
 
@@ -2326,15 +2272,11 @@ namespace yedihisse.DataAccess.Migrations
                 {
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("CarTypeCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("CarTypeModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.Navigation("CreatedByUser");
 
@@ -2349,15 +2291,11 @@ namespace yedihisse.DataAccess.Migrations
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("CompanyCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("CompanyModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.PhoneNumber", "PhoneNumber")
                         .WithMany("Companies")
@@ -2382,15 +2320,11 @@ namespace yedihisse.DataAccess.Migrations
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("CompanyManagerCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("CompanyManagerModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "User")
                         .WithMany("CompanyManagers")
@@ -2421,15 +2355,11 @@ namespace yedihisse.DataAccess.Migrations
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("FirmCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("FirmModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.PhoneNumber", "PhoneNumber")
                         .WithMany("Firms")
@@ -2450,9 +2380,7 @@ namespace yedihisse.DataAccess.Migrations
                 {
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("FirmManagerCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.Firm", "Firm")
                         .WithMany("FirmManagers")
@@ -2462,9 +2390,7 @@ namespace yedihisse.DataAccess.Migrations
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("FirmManagerModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "User")
                         .WithMany("FirmManagers")
@@ -2485,9 +2411,7 @@ namespace yedihisse.DataAccess.Migrations
                 {
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("KillingGroupCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.KillingGroupType", "KillingGroupType")
                         .WithMany("KillingGroups")
@@ -2497,9 +2421,7 @@ namespace yedihisse.DataAccess.Migrations
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("KillingGroupModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.Slaughterhouse", "Slaughterhouse")
                         .WithMany("KillingGroups")
@@ -2520,15 +2442,11 @@ namespace yedihisse.DataAccess.Migrations
                 {
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("KillingGroupTypeCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("KillingGroupTypeModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.Navigation("CreatedByUser");
 
@@ -2545,9 +2463,7 @@ namespace yedihisse.DataAccess.Migrations
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("KillingJoinAnimalCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.KillingGroup", "KillingGroup")
                         .WithMany("KillingJoinAnimals")
@@ -2557,9 +2473,7 @@ namespace yedihisse.DataAccess.Migrations
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("KillingJoinAnimalModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.Navigation("Animal");
 
@@ -2580,15 +2494,11 @@ namespace yedihisse.DataAccess.Migrations
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("PaymentCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("PaymentModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.PaymentOption", "PaymentOption")
                         .WithMany("Payments")
@@ -2617,15 +2527,11 @@ namespace yedihisse.DataAccess.Migrations
                 {
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("PaymentOptionCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("PaymentOptionModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.Navigation("CreatedByUser");
 
@@ -2636,15 +2542,11 @@ namespace yedihisse.DataAccess.Migrations
                 {
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("PaymentTypeCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("PaymentTypeModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.Navigation("CreatedByUser");
 
@@ -2655,15 +2557,11 @@ namespace yedihisse.DataAccess.Migrations
                 {
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("PhoneNumberCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("PhoneNumberModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.PhoneNumberType", "PhoneNumberType")
                         .WithOne("PhoneNumber")
@@ -2682,15 +2580,11 @@ namespace yedihisse.DataAccess.Migrations
                 {
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("PhoneNumberTypeCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("PhoneNumberTypeModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.Navigation("CreatedByUser");
 
@@ -2705,15 +2599,11 @@ namespace yedihisse.DataAccess.Migrations
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("SlaughterhouseCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("SlaughterhouseModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.PhoneNumber", "PhoneNumber")
                         .WithMany("Slaughterhouses")
@@ -2732,15 +2622,11 @@ namespace yedihisse.DataAccess.Migrations
                 {
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("SlaughterhouseJoinTypeCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("SlaughterhouseJoinTypeModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.Slaughterhouse", "Slaughterhouse")
                         .WithMany("SlaughterhouseJoinTypes")
@@ -2767,15 +2653,11 @@ namespace yedihisse.DataAccess.Migrations
                 {
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("SlaughterhouseManagerCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("SlaughterhouseManagerModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.Slaughterhouse", "Slaughterhouse")
                         .WithMany("SlaughterhouseManagers")
@@ -2802,15 +2684,11 @@ namespace yedihisse.DataAccess.Migrations
                 {
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("SlaughterhouseTypeCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("SlaughterhouseTypeModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.Navigation("CreatedByUser");
 
@@ -2825,15 +2703,11 @@ namespace yedihisse.DataAccess.Migrations
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("UserCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("UserModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.PhoneNumber", "PhoneNumber")
                         .WithMany("Users")
@@ -2852,15 +2726,11 @@ namespace yedihisse.DataAccess.Migrations
                 {
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("UserJoinTypeCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("UserJoinTypeModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "User")
                         .WithMany("UserJoinTypes")
@@ -2887,15 +2757,11 @@ namespace yedihisse.DataAccess.Migrations
                 {
                     b.HasOne("yedihisse.Entities.Concrete.User", "CreatedByUser")
                         .WithMany("UserTypeCreatedByUserIds")
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByUserId");
 
                     b.HasOne("yedihisse.Entities.Concrete.User", "ModifiedByUser")
                         .WithMany("UserTypeModifiedByUserIds")
-                        .HasForeignKey("ModifiedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModifiedByUserId");
 
                     b.Navigation("CreatedByUser");
 
@@ -2917,7 +2783,7 @@ namespace yedihisse.DataAccess.Migrations
 
             modelBuilder.Entity("yedihisse.Entities.Concrete.AddressType", b =>
                 {
-                    b.Navigation("Address");
+                    b.Navigation("Addresses");
                 });
 
             modelBuilder.Entity("yedihisse.Entities.Concrete.Allotment", b =>
