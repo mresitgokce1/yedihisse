@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace yedihisse.Business.Extensions
+namespace yedihisse.Business.Utilities
 {
     public class Cryptolog
     {

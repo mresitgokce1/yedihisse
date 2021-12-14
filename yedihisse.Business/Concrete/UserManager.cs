@@ -115,6 +115,8 @@ namespace yedihisse.Business.Concrete
             {
                 var user = _mapper.Map<User>(userAddDto);
                 user.CreatedByUserId = createdByUserId;
+                user.ModifiedByUserId = createdByUserId;
+                user.PasswordHash = Cryptolog.CreateHashPassword(userAddDto.PasswordHash);
 
                 var addedUser = await _unitOfWork.Users.AddAsync(user);
                 await _unitOfWork.SaveAsync();
@@ -163,7 +165,7 @@ namespace yedihisse.Business.Concrete
             }
             catch (Exception exMessage)
             {
-                return new DataResult<UserDto>(ResultStatus.Error, Messages.ExceptionMessage.Get("User"), null);
+                return new DataResult<UserDto>(ResultStatus.Error, Messages.ExceptionMessage.Get("User"), null, exMessage);
             }
             
         }

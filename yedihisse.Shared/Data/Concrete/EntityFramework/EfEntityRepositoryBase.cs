@@ -42,7 +42,8 @@ namespace yedihisse.Shared.Data.Concrete.EntityFramework
         public async Task<IList<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null, params Expression<Func<TEntity, object>>[] includeProperties)
         {
             IQueryable<TEntity> query = _context.Set<TEntity>();
-            query = query.Where(predicate);
+            if(predicate != null)
+                query = query.Where(predicate);
 
             if (includeProperties.Any())
             {

@@ -64,14 +64,10 @@ namespace yedihisse.Entities.Dtos
         public string PasswordHash { get; set; }
 
         [DisplayName("Kullanıcının Adresi")]
-        public int AddressId { get; set; }
+        public int? AddressId { get; set; }
 
         [DisplayName("Kullanıcının Telefonu")]
-        public int PhoneNumberId { get; set; }
-
-        [DisplayName("Kullanıcı Aktif Mi?")]
-        [Required]
-        public bool IsActive { get; set; }
+        public int? PhoneNumberId { get; set; }
     }
 
     public class UserUpdateDto
@@ -108,10 +104,10 @@ namespace yedihisse.Entities.Dtos
         public string PasswordHash { get; set; }
 
         [DisplayName("Kullanıcının Adresi")]
-        public int AddressId { get; set; }
+        public int? AddressId { get; set; }
 
         [DisplayName("Kullanıcının Telefonu")]
-        public int PhoneNumberId { get; set; }
+        public int? PhoneNumberId { get; set; }
 
         [DisplayName("Kullanıcı Aktif Mi?")]
         [Required]
