@@ -156,6 +156,7 @@ namespace yedihisse.Business.Concrete
                 {
                     var user = _mapper.Map<UserUpdateDto, User>(userUpdateDto, oldUser);
                     user.ModifiedByUserId = modifiedByUserId;
+                    user.PasswordHash = Cryptolog.CreateHashPassword(userUpdateDto.PasswordHash);
                     var updatedUser = await _unitOfWork.Users.UpdateAsync(user);
                     await _unitOfWork.SaveAsync();
                     return new DataResult<UserDto>(ResultStatus.Success, Messages.User.Update(updatedUser.FirstName + " " + updatedUser.LastName), _mapper.Map<UserDto>(updatedUser));
