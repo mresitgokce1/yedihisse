@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using yedihisse.Business.Abstract;
 using yedihisse.Business.Utilities;
 using yedihisse.DataAccess.Abstract;
@@ -12,6 +16,8 @@ using yedihisse.Entities.Dtos;
 using yedihisse.Shared.Utilities.Results.Abstratct;
 using yedihisse.Shared.Utilities.Results.Complex_Type;
 using yedihisse.Shared.Utilities.Results.Concrete;
+using yedihisse.Shared.Utilities.Security.Token;
+using yedihisse.Shared.Utilities.Security.Token.Abstract;
 
 namespace yedihisse.Business.Concrete
 {
@@ -19,11 +25,13 @@ namespace yedihisse.Business.Concrete
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly ITokenService _tokenService;
 
-        public UserManager(IUnitOfWork unitOfWork, IMapper mapper)
+        public UserManager(IUnitOfWork unitOfWork, IMapper mapper, ITokenService tokenService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _tokenService = tokenService;
         }
 
         public async Task<IDataResult<UserDto>> GetAsync(int userId)
@@ -69,7 +77,7 @@ namespace yedihisse.Business.Concrete
         {
             try
             {
-                var users = await _unitOfWork.Users.GetAllAsync(u=>u.IsDeleted == false);
+                var users = await _unitOfWork.Users.GetAllAsync(u => u.IsDeleted == false);
 
                 if (users.Count > -1)
                 {
@@ -116,7 +124,7 @@ namespace yedihisse.Business.Concrete
                 var user = _mapper.Map<User>(userAddDto);
                 user.CreatedByUserId = createdByUserId;
                 user.ModifiedByUserId = createdByUserId;
-                user.PasswordHash = Cryptolog.CreateHashPassword(userAddDto.PasswordHash);
+                user.PasswordHash = Shared.Utilities.Encrytpions.PasswordEncryption.CreateHashPassword(userAddDto.PasswordHash);
 
                 var addedUser = await _unitOfWork.Users.AddAsync(user);
                 await _unitOfWork.SaveAsync();
@@ -156,7 +164,7 @@ namespace yedihisse.Business.Concrete
                 {
                     var user = _mapper.Map<UserUpdateDto, User>(userUpdateDto, oldUser);
                     user.ModifiedByUserId = modifiedByUserId;
-                    user.PasswordHash = Cryptolog.CreateHashPassword(userUpdateDto.PasswordHash);
+                    user.PasswordHash = Shared.Utilities.Encrytpions.PasswordEncryption.CreateHashPassword(userUpdateDto.PasswordHash);
                     var updatedUser = await _unitOfWork.Users.UpdateAsync(user);
                     await _unitOfWork.SaveAsync();
                     return new DataResult<UserDto>(ResultStatus.Success, Messages.User.Update(updatedUser.FirstName + " " + updatedUser.LastName), _mapper.Map<UserDto>(updatedUser));
@@ -168,7 +176,7 @@ namespace yedihisse.Business.Concrete
             {
                 return new DataResult<UserDto>(ResultStatus.Error, Messages.ExceptionMessage.Get("User"), null, exMessage);
             }
-            
+
         }
 
         public async Task<IResult> DeleteAsync(int userId, int modifiedByUserId)
@@ -254,6 +262,32 @@ namespace yedihisse.Business.Concrete
             {
                 return new DataResult<int>(ResultStatus.Error, Messages.ExceptionMessage.Count("User"), -1, exMessage);
             }
+        }
+
+        public async Task<IDataResult<AccessToken>> Authenticate(UserLoginDto userLoginDto)
+        {
+            try
+            {
+                var user = default(User);
+
+                if (userLoginDto.UserName.Contains("@"))
+                    user = await _unitOfWork.Users.GetAsync(u => u.EmailAddress == userLoginDto.UserName);
+                else
+                    user = await _unitOfWork.Users.GetAsync(u => u.UserPhoneNumber == userLoginDto.UserName);
+
+                if (user == null)
+                    return new DataResult<AccessToken>(ResultStatus.Error, "Kullanıcı adı hatalı", null, null);
+
+                if (!Shared.Utilities.Encrytpions.PasswordEncryption.VerifyHashPassword(user.PasswordHash, userLoginDto.Password))
+                    return new DataResult<AccessToken>(ResultStatus.Error, "Şifre hatalı", null, null);
+
+                return new DataResult<AccessToken>(ResultStatus.Success, "Kullanıcı bilgileri doğru", _tokenService.CreateToken(user.Id, userLoginDto.UserName), null);
+            }
+            catch (Exception exMessage)
+            {
+                return new DataResult<AccessToken>(ResultStatus.Error, "Kullanıcı doğrulaması sırasında bir hata oluştu", null, exMessage);
+            }
+
         }
     }
 }

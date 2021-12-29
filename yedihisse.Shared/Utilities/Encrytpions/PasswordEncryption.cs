@@ -5,9 +5,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace yedihisse.Business.Utilities
+namespace yedihisse.Shared.Utilities.Encrytpions
 {
-    public class Cryptolog
+    public class PasswordEncryption
     {
         public static string CreateHashPassword(string password)
         {

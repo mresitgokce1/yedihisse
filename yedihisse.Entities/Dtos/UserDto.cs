@@ -117,4 +117,12 @@ namespace yedihisse.Entities.Dtos
         [Required]
         public bool IsDeleted { get; set; }
     }
+
+    public class UserLoginDto
+    {
+        [DisplayName("Kullanıcı Adı")]
+        public string UserName { get; set; }
+        [DisplayName("Şifresi")]
+        public string Password { get; set; }
+    }
 }

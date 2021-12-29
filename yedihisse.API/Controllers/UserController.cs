@@ -4,14 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
-using Newtonsoft.Json;
 using yedihisse.Business.Abstract;
 using yedihisse.Entities.Dtos;
 using yedihisse.Shared.Utilities.Results.Complex_Type;
 
 namespace yedihisse.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("MyCorsPolicy")]
@@ -41,15 +42,27 @@ namespace yedihisse.API.Controllers
         [HttpPost()]
         public async Task<IActionResult> Add([FromBody] UserAddDto userAddDto)
         {
-            var addedAddress = await _userService.AddAsync(userAddDto, 1);
-            return Ok(addedAddress);
+            var user = await _userService.AddAsync(userAddDto, 1);
+            return Ok(user);
         }
 
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UserUpdateDto userUpdateDto)
         {
-            var updatedAddress = await _userService.UpdateAsync(userUpdateDto, 1);
-            return Ok(updatedAddress);
+            var user = await _userService.UpdateAsync(userUpdateDto, 1);
+            return Ok(user);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("token")]
+        public async Task<IActionResult> Authenticate([FromBody] UserLoginDto userLoginDto)
+        {
+            var result = await _userService.Authenticate(userLoginDto);
+
+            if (result.ResultStatus == ResultStatus.Success)
+                return Ok(result.Data);
+            else
+                return BadRequest(result.Message);
         }
     }
 }

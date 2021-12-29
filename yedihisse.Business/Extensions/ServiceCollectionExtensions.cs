@@ -18,7 +18,6 @@ namespace yedihisse.Business.Extensions
         {
             serviceCollection.AddDbContext<YediHisseContext>();
             serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
-            serviceCollection.AddScoped<IAddressService, AddressManager>();
             serviceCollection.AddScoped<IUserService, UserManager>();
             return serviceCollection;
         }

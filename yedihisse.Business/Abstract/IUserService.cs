@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using yedihisse.Entities.Dtos;
 using yedihisse.Shared.Utilities.Results.Abstratct;
+using yedihisse.Shared.Utilities.Security.Token;
 
 namespace yedihisse.Business.Abstract
 {
@@ -21,5 +22,6 @@ namespace yedihisse.Business.Abstract
         Task<IResult> HardDeleteAsync(int userId);
         Task<IDataResult<int>> CountAsync();
         Task<IDataResult<int>> CountByIsNonDeletedAsync();
+        Task<IDataResult<AccessToken>> Authenticate(UserLoginDto userLoginDto);
     }
 }
