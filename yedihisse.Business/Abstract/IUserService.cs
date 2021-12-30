@@ -22,6 +22,6 @@ namespace yedihisse.Business.Abstract
         Task<IResult> HardDeleteAsync(int userId);
         Task<IDataResult<int>> CountAsync();
         Task<IDataResult<int>> CountByIsNonDeletedAsync();
-        Task<IDataResult<AccessToken>> Authenticate(UserLoginDto userLoginDto);
+        Task<IDataResult<string>> Authenticate(UserLoginDto userLoginDto);
     }
 }

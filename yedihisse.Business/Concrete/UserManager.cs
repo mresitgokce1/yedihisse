@@ -265,7 +265,7 @@ namespace yedihisse.Business.Concrete
             }
         }
 
-        public async Task<IDataResult<AccessToken>> Authenticate(UserLoginDto userLoginDto)
+        public async Task<IDataResult<string>> Authenticate(UserLoginDto userLoginDto)
         {
             try
             {
@@ -276,10 +276,10 @@ namespace yedihisse.Business.Concrete
                     .ThenInclude(y=>y.UserType));
 
                 if (user == null)
-                    return new DataResult<AccessToken>(ResultStatus.Error, "Kullanıcı adı hatalı", null, null);
+                    return new DataResult<string>(ResultStatus.Error, "Kullanıcı adı hatalı", null, null);
 
                 if (!Shared.Utilities.Encrytpions.PasswordEncryption.VerifyHashPassword(user.PasswordHash, userLoginDto.Password))
-                    return new DataResult<AccessToken>(ResultStatus.Error, "Şifre hatalı", null, null);
+                    return new DataResult<string>(ResultStatus.Error, "Şifre hatalı", null, null);
 
                 var userLoggedinDto = new UserLoggedinDto
                 {
@@ -290,16 +290,11 @@ namespace yedihisse.Business.Concrete
                     UserJoinTypes = user.UserJoinTypes
                 };
 
-                var accessToken = new AccessToken
-                {
-                    Token = _tokenService.GenerateToken(userLoggedinDto)
-                };
-
-                return new DataResult<AccessToken>(ResultStatus.Success, "Kullanıcı bilgileri doğru", accessToken, null);
+                return new DataResult<string>(ResultStatus.Success, "Kullanıcı bilgileri doğru", _tokenService.GenerateToken(userLoggedinDto), null);
             }
             catch (Exception exMessage)
             {
-                return new DataResult<AccessToken>(ResultStatus.Error, "Kullanıcı doğrulaması sırasında bir hata oluştu", null, exMessage);
+                return new DataResult<string>(ResultStatus.Error, "Kullanıcı doğrulaması sırasında bir hata oluştu", null, exMessage);
             }
 
         }

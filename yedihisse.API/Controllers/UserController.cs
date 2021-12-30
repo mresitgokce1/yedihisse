@@ -54,17 +54,5 @@ namespace yedihisse.API.Controllers
             var user = await _userService.UpdateAsync(userUpdateDto, 1);
             return Ok(user);
         }
-
-        [AllowAnonymous]
-        [HttpPost("token")]
-        public async Task<IActionResult> Authenticate([FromBody] UserLoginDto userLoginDto)
-        {
-            var result = await _userService.Authenticate(userLoginDto);
-
-            if (result.ResultStatus == ResultStatus.Success)
-                return Ok(result.Data);
-            else
-                return BadRequest(result.Message);
-        }
     }
 }
