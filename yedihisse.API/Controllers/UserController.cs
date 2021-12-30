@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using yedihisse.Business.Abstract;
@@ -26,6 +27,7 @@ namespace yedihisse.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Seller")]
         public async Task<IActionResult> GetAll()
         {
             var users = await _userService.GetAllAsync();

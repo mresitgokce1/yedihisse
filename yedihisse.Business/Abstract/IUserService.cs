@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using yedihisse.Business.Utilities.Security.Token;
 using yedihisse.Entities.Dtos;
 using yedihisse.Shared.Utilities.Results.Abstratct;
-using yedihisse.Shared.Utilities.Security.Token;
 
 namespace yedihisse.Business.Abstract
 {

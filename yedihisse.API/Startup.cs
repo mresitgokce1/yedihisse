@@ -1,28 +1,16 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using yedihisse.Business.Abstract;
 using yedihisse.Business.AutoMapper.Profiles;
-using yedihisse.Business.Concrete;
 using yedihisse.Business.Extensions;
 using yedihisse.DataAccess.Concrete.EntityFramework.Contexts;
-using yedihisse.Shared.Utilities.Security.Token;
-using yedihisse.Shared.Utilities.Security.Token.Abstract;
-using yedihisse.Shared.Utilities.Security.Token.Concrete;
 
 namespace yedihisse.API
 {
@@ -48,29 +36,24 @@ namespace yedihisse.API
 
             #region JWT
 
-            var appSettingsSection = Configuration.GetSection("AppSettings");
-            services.Configure<AppSettings>(appSettingsSection);
-            var appSettings = appSettingsSection.Get<AppSettings>();
-            var key = Encoding.ASCII.GetBytes(appSettings.JwtTokenSecurityKey);
-
-            services.AddAuthentication(a =>
-            {
-                a.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                a.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(a =>
-            {
-                a.RequireHttpsMetadata = false;
-                a.SaveToken = true;
-                a.TokenValidationParameters = new TokenValidationParameters
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
                 {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-            });
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = Configuration["Jwt:Issuer"],
+                        ValidAudience = Configuration["Jwt:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                    };
+                });
 
             #endregion
+
+            #region SWAGGER
 
             services.AddSwaggerGen(c =>
             {
@@ -100,9 +83,10 @@ namespace yedihisse.API
                 });
             });
 
+            #endregion
+
             services.AddDbContext<YediHisseContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("yedihisse.DataAccess")));
             services.LoadMyServiceCollection();
-            services.AddScoped<ITokenService, JwtTokenManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace yedihisse.Shared.Utilities.Security.Token
+namespace yedihisse.Business.Utilities.Security.Token
 {
     public class AccessToken
     {

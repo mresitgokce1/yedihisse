@@ -6,18 +6,19 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using yedihisse.Business.Abstract;
 using yedihisse.Business.Utilities;
+using yedihisse.Business.Utilities.Security.Token;
+using yedihisse.Business.Utilities.Security.Token.Abstract;
 using yedihisse.DataAccess.Abstract;
 using yedihisse.Entities.Concrete;
 using yedihisse.Entities.Dtos;
 using yedihisse.Shared.Utilities.Results.Abstratct;
 using yedihisse.Shared.Utilities.Results.Complex_Type;
 using yedihisse.Shared.Utilities.Results.Concrete;
-using yedihisse.Shared.Utilities.Security.Token;
-using yedihisse.Shared.Utilities.Security.Token.Abstract;
 
 namespace yedihisse.Business.Concrete
 {
@@ -268,12 +269,11 @@ namespace yedihisse.Business.Concrete
         {
             try
             {
-                var user = default(User);
-
-                if (userLoginDto.UserName.Contains("@"))
-                    user = await _unitOfWork.Users.GetAsync(u => u.EmailAddress == userLoginDto.UserName);
-                else
-                    user = await _unitOfWork.Users.GetAsync(u => u.UserPhoneNumber == userLoginDto.UserName);
+                var user = await _unitOfWork.Users.GetAsync(
+                    u => u.UserPhoneNumber == userLoginDto.UserName, 
+                    u => u
+                    .Include(x=>x.UserJoinTypes)
+                    .ThenInclude(y=>y.UserType));
 
                 if (user == null)
                     return new DataResult<AccessToken>(ResultStatus.Error, "Kullanıcı adı hatalı", null, null);
@@ -281,7 +281,21 @@ namespace yedihisse.Business.Concrete
                 if (!Shared.Utilities.Encrytpions.PasswordEncryption.VerifyHashPassword(user.PasswordHash, userLoginDto.Password))
                     return new DataResult<AccessToken>(ResultStatus.Error, "Şifre hatalı", null, null);
 
-                return new DataResult<AccessToken>(ResultStatus.Success, "Kullanıcı bilgileri doğru", _tokenService.CreateToken(user.Id, userLoginDto.UserName), null);
+                var userLoggedinDto = new UserLoggedinDto
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    EmailAddress = user.EmailAddress,
+                    UserPhoneNumber = user.UserPhoneNumber,
+                    UserJoinTypes = user.UserJoinTypes
+                };
+
+                var accessToken = new AccessToken
+                {
+                    Token = _tokenService.GenerateToken(userLoggedinDto)
+                };
+
+                return new DataResult<AccessToken>(ResultStatus.Success, "Kullanıcı bilgileri doğru", accessToken, null);
             }
             catch (Exception exMessage)
             {

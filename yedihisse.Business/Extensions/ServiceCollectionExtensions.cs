@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using yedihisse.Business.Abstract;
 using yedihisse.Business.Concrete;
+using yedihisse.Business.Utilities.Security.Token.Abstract;
+using yedihisse.Business.Utilities.Security.Token.Concrete;
 using yedihisse.DataAccess.Abstract;
 using yedihisse.DataAccess.Concrete;
 using yedihisse.DataAccess.Concrete.EntityFramework.Contexts;
@@ -19,6 +21,7 @@ namespace yedihisse.Business.Extensions
             serviceCollection.AddDbContext<YediHisseContext>();
             serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
             serviceCollection.AddScoped<IUserService, UserManager>();
+            serviceCollection.AddScoped<ITokenService, TokenManager>();
             return serviceCollection;
         }
     }

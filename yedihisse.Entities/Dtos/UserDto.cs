@@ -125,4 +125,13 @@ namespace yedihisse.Entities.Dtos
         [DisplayName("Şifresi")]
         public string Password { get; set; }
     }
+
+    public class UserLoggedinDto
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string UserPhoneNumber { get; set; }
+        public string EmailAddress { get; set; }
+        public ICollection<UserJoinType> UserJoinTypes { get; set; }
+    }
 }
