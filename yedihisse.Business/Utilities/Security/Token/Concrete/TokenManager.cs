@@ -28,7 +28,8 @@ namespace yedihisse.Business.Utilities.Security.Token.Concrete
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var claimList = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, userLoggedinDto.UserPhoneNumber),
+                new Claim(ClaimTypes.Name, userLoggedinDto.UserPhoneNumber),
+                new Claim(ClaimTypes.NameIdentifier, userLoggedinDto.Id.ToString()),
                 new Claim(ClaimTypes.Email, userLoggedinDto.EmailAddress),
                 new Claim(ClaimTypes.GivenName, userLoggedinDto.FirstName),
                 new Claim(ClaimTypes.Surname, userLoggedinDto.LastName),

@@ -134,7 +134,7 @@ namespace yedihisse.Business.Concrete
             }
             catch (Exception exMessage)
             {
-                return new DataResult<UserDto>(ResultStatus.Success, Messages.ExceptionMessage.Add("User"), null, exMessage);
+                return new DataResult<UserDto>(ResultStatus.Error, Messages.ExceptionMessage.Add("User"), null, exMessage);
             }
         }
 
@@ -177,7 +177,6 @@ namespace yedihisse.Business.Concrete
             {
                 return new DataResult<UserDto>(ResultStatus.Error, Messages.ExceptionMessage.Get("User"), null, exMessage);
             }
-
         }
 
         public async Task<IResult> DeleteAsync(int userId, int modifiedByUserId)
@@ -194,7 +193,7 @@ namespace yedihisse.Business.Concrete
                     await _unitOfWork.Users.UpdateAsync(user);
                     await _unitOfWork.SaveAsync();
 
-                    return new Result(ResultStatus.Success, Messages.Address.Delete(user.FirstName + " " + user.LastName, false));
+                    return new Result(ResultStatus.Success, Messages.User.Delete(user.FirstName + " " + user.LastName, false));
                 }
 
                 return new Result(ResultStatus.Error, Messages.User.NotFound(false));
@@ -283,6 +282,7 @@ namespace yedihisse.Business.Concrete
 
                 var userLoggedinDto = new UserLoggedinDto
                 {
+                    Id = user.Id,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     EmailAddress = user.EmailAddress,

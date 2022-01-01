@@ -35,17 +35,29 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("User.Type");
 
-            //builder.HasData(new UserType
-            //{
-            //    Id = 1,
-            //    UserTypeName = "Admin",
-            //    CreatedByUserId = 1,
-            //    CreatedDate = DateTime.Now,
-            //    ModifiedByUserId = 1,
-            //    ModifiedDate = DateTime.Now,
-            //    IsActive = true,
-            //    IsDeleted = false
-            //});
+            builder.HasData(
+                new UserType
+                {
+                    Id = 1,
+                    UserTypeName = "Admin",
+                    CreatedByUserId = 1,
+                    CreatedDate = DateTime.Now,
+                    ModifiedByUserId = 1,
+                    ModifiedDate = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false
+                },
+                new UserType
+                {
+                    Id = 2,
+                    UserTypeName = "Customer",
+                    CreatedByUserId = 1,
+                    CreatedDate = DateTime.Now,
+                    ModifiedByUserId = 1,
+                    ModifiedDate = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false
+                });
         }
     }
 }

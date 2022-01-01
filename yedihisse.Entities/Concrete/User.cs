@@ -13,7 +13,7 @@ namespace yedihisse.Entities.Concrete
         public string LastName { get; set; }
         public string UserPhoneNumber { get; set; }
         public string EmailAddress { get; set; }
-        public bool Sex { get; set; }
+        public char? Sex { get; set; }
         public string PasswordHash { get; set; }
 
         public int? AddressId { get; set; }

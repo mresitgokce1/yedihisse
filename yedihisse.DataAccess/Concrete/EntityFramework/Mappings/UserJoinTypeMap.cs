@@ -44,18 +44,31 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("User.JoinType");
 
-            //builder.HasData(new UserJoinType
-            //{
-            //    Id = 1,
-            //    UserId = 1,
-            //    UserTypeId = 1,
-            //    CreatedByUserId = 1,
-            //    CreatedDate = DateTime.Now,
-            //    ModifiedByUserId = 1,
-            //    ModifiedDate = DateTime.Now,
-            //    IsActive = true,
-            //    IsDeleted = false
-            //});
+            builder.HasData(
+                new UserJoinType
+                {
+                    Id = 1,
+                    UserId = 1,
+                    UserTypeId = 1,
+                    CreatedByUserId = 1,
+                    CreatedDate = DateTime.Now,
+                    ModifiedByUserId = 1,
+                    ModifiedDate = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false
+                },
+                new UserJoinType
+                {
+                    Id = 2,
+                    UserId = 2,
+                    UserTypeId = 2,
+                    CreatedByUserId = 1,
+                    CreatedDate = DateTime.Now,
+                    ModifiedByUserId = 1,
+                    ModifiedDate = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false
+                });
         }
     }
 }

@@ -23,7 +23,7 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
             builder.HasIndex(u => u.UserPhoneNumber).IsUnique();
             builder.Property(u => u.EmailAddress).IsRequired(false).HasMaxLength(100);
             builder.HasIndex(u => u.EmailAddress).IsUnique();
-            builder.Property(u => u.Sex).IsRequired(true).HasDefaultValue(true);
+            builder.Property(u => u.Sex).IsRequired(false);
             builder.Property(u => u.PasswordHash).IsRequired().HasMaxLength(48);
 
             builder.Property(u => u.AddressId).IsRequired(false);
@@ -54,33 +54,43 @@ namespace yedihisse.DataAccess.Concrete.EntityFramework.Mappings
 
             builder.ToTable("User.User");
 
-            //// SEED DATA
-            //byte[] salt;
-            //new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
-            //var pbkdf2 = new Rfc2898DeriveBytes("dsa13542010", salt, 100000);
-            //byte[] hash = pbkdf2.GetBytes(20);
-            //byte[] hashBytes = new byte[36];
-            //Array.Copy(salt, 0, hashBytes, 0, 16);
-            //Array.Copy(hash, 0, hashBytes, 16, 20);
-
-            //builder.HasData(new User
-            //{
-            //    Id = 1,
-            //    FirstName = "Muhammed Reşit",
-            //    LastName = "Gökce",
-            //    UserPhoneNumber = "0553 770 16 09",
-            //    EmailAddress = "mrgokce@yandex.com",
-            //    Sex = true,
-            //    PasswordHash = hashBytes,
-            //    AddressId = 1,
-            //    PhoneNumberId = 1,
-            //    CreatedByUserId = 1,
-            //    CreatedDate = DateTime.Now,
-            //    ModifiedByUserId = 1,
-            //    ModifiedDate = DateTime.Now,
-            //    IsActive = true,
-            //    IsDeleted = false
-            //});
+            builder.HasData(
+                new User
+                {
+                    Id = 1,
+                    FirstName = "Muhammed Reşit",
+                    LastName = "Gökce",
+                    UserPhoneNumber = "123",
+                    EmailAddress = "mrgokce@yandex.com",
+                    Sex = 'E',
+                    PasswordHash = Shared.Utilities.Encrytpions.PasswordEncryption.CreateHashPassword("123"),
+                    AddressId = null,
+                    PhoneNumberId = null,
+                    CreatedByUserId = 1,
+                    CreatedDate = DateTime.Now,
+                    ModifiedByUserId = 1,
+                    ModifiedDate = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false
+                },
+                new User
+                {
+                    Id = 2,
+                    FirstName = "Ali",
+                    LastName = "Gökce",
+                    UserPhoneNumber = "1234",
+                    EmailAddress = "agokce@yandex.com",
+                    Sex = 'E',
+                    PasswordHash = Shared.Utilities.Encrytpions.PasswordEncryption.CreateHashPassword("1234"),
+                    AddressId = null,
+                    PhoneNumberId = null,
+                    CreatedByUserId = 1,
+                    CreatedDate = DateTime.Now,
+                    ModifiedByUserId = 1,
+                    ModifiedDate = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false
+                });
         }
     }
 }
