@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using yedihisse.Business.Abstract;
 using yedihisse.Business.Utilities;
+using yedihisse.Business.Utilities.Security.Token.Abstract;
 using yedihisse.DataAccess.Abstract;
 using yedihisse.Entities.Concrete;
 using yedihisse.Entities.Dtos;
@@ -19,92 +20,13 @@ namespace yedihisse.Business.Concrete
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly ITokenService _tokenService;
 
-        public UserTypeManager(IUnitOfWork unitOfWork, IMapper mapper)
+        public UserTypeManager(IUnitOfWork unitOfWork, IMapper mapper, ITokenService tokenService)
         {
             _unitOfWork = unitOfWork;
-        }
-        public async Task<IDataResult<UserTypeDto>> GetAsync(int userTypeId)
-        {
-            try
-            {
-                var userType = await _unitOfWork.UserTypes.GetAsync(u => u.Id == userTypeId);
-
-                if (userType != null)
-                    return new DataResult<UserTypeDto>(ResultStatus.Success, _mapper.Map<UserTypeDto>(userType));
-
-                return new DataResult<UserTypeDto>(ResultStatus.Error, Messages.UserType.NotFound(false), null);
-            }
-            catch (Exception exMessage)
-            {
-                return new DataResult<UserTypeDto>(ResultStatus.Error, Messages.ExceptionMessage.Get("UserType"), null, exMessage);
-            }
-        }
-
-        public async Task<IDataResult<UserTypeListDto>> GetAllAsync()
-        {
-            try
-            {
-                var userTypes = await _unitOfWork.UserTypes.GetAllAsync();
-
-                if (userTypes.Count > -1)
-                {
-                    return new DataResult<UserTypeListDto>(ResultStatus.Success, new UserTypeListDto
-                    {
-                        UserTypes = _mapper.Map<IList<UserTypeDto>>(userTypes)
-                    });
-                }
-
-                return new DataResult<UserTypeListDto>(ResultStatus.Error, Messages.UserType.NotFound(true), null);
-            }
-            catch (Exception exMessage)
-            {
-                return new DataResult<UserTypeListDto>(ResultStatus.Error, Messages.ExceptionMessage.Get("UserType"), null, exMessage);
-            }
-        }
-
-        public async Task<IDataResult<UserTypeListDto>> GetAllByNonDeletedAsync()
-        {
-            try
-            {
-                var userTypes = await _unitOfWork.UserTypes.GetAllAsync(u => u.IsDeleted == false);
-
-                if (userTypes.Count > -1)
-                {
-                    return new DataResult<UserTypeListDto>(ResultStatus.Success, new UserTypeListDto
-                    {
-                        UserTypes = _mapper.Map<IList<UserTypeDto>>(userTypes)
-                    });
-                }
-
-                return new DataResult<UserTypeListDto>(ResultStatus.Error, Messages.UserType.NotFound(true), null);
-            }
-            catch (Exception exMessage)
-            {
-                return new DataResult<UserTypeListDto>(ResultStatus.Error, Messages.ExceptionMessage.Get("UserType"), null, exMessage);
-            }
-        }
-
-        public async Task<IDataResult<UserTypeListDto>> GetAllByNonDeletedAndActiveAsync()
-        {
-            try
-            {
-                var userTypes = await _unitOfWork.UserTypes.GetAllAsync(u => u.IsDeleted == false && u.IsActive == true);
-
-                if (userTypes.Count > -1)
-                {
-                    return new DataResult<UserTypeListDto>(ResultStatus.Success, new UserTypeListDto
-                    {
-                        UserTypes = _mapper.Map<IList<UserTypeDto>>(userTypes)
-                    });
-                }
-
-                return new DataResult<UserTypeListDto>(ResultStatus.Error, Messages.UserType.NotFound(true), null);
-            }
-            catch (Exception exMessage)
-            {
-                return new DataResult<UserTypeListDto>(ResultStatus.Error, Messages.ExceptionMessage.Get("UserType"), null, exMessage);
-            }
+            _mapper = mapper;
+            _tokenService = tokenService;
         }
 
         public async Task<IDataResult<UserTypeDto>> AddAsync(UserTypeAddDto userTypeAddDto, int createdByUserId)
@@ -115,18 +37,131 @@ namespace yedihisse.Business.Concrete
                 userType.CreatedByUserId = createdByUserId;
                 userType.ModifiedByUserId = createdByUserId;
 
-                var addedTypeUser = await _unitOfWork.UserTypes.AddAsync(userType);
+                var addedUserType = await _unitOfWork.UserTypes.AddAsync(userType);
                 await _unitOfWork.SaveAsync();
 
-                return new DataResult<UserTypeDto>(ResultStatus.Success, Messages.UserType.Add(addedTypeUser.UserTypeName), _mapper.Map<UserTypeDto>(addedTypeUser));
+                return new DataResult<UserTypeDto>(ResultStatus.Success, Messages.CommonMessage.Add(addedUserType.UserTypeName, "Kullanıcı Tipi"), _mapper.Map<UserTypeDto>(addedUserType));
             }
             catch (Exception exMessage)
             {
-                return new DataResult<UserTypeDto>(ResultStatus.Error, Messages.ExceptionMessage.Add("UserType"), null, exMessage);
+                return new DataResult<UserTypeDto>(ResultStatus.Danger, Messages.ExceptionMessage.Add("Kullanıcı Tipi"), null, exMessage);
             }
         }
 
-        public async Task<IDataResult<UserTypeUpdateDto>> GetUserTypeUpdateDtoAsync(int userTypeId)
+        public async Task<IDataResult<int>> CountAsync(bool? isActive = null, bool? isDeleted = null)
+        {
+            try
+            {
+                int userTypeCount = -1;
+
+                if (isActive != null && isDeleted != null)
+                    userTypeCount = await _unitOfWork.UserTypes.CountAsync(u => u.IsActive == isActive & u.IsDeleted == isDeleted);
+                else if (isActive == null && isDeleted == null)
+                    userTypeCount = await _unitOfWork.UserTypes.CountAsync();
+                if (isActive != null)
+                    userTypeCount = await _unitOfWork.UserTypes.CountAsync(u => u.IsActive == isActive);
+                else
+                    userTypeCount = await _unitOfWork.UserTypes.CountAsync(u => u.IsDeleted == isDeleted);
+
+                if (userTypeCount > -1)
+                {
+                    return new DataResult<int>(ResultStatus.Success, userTypeCount);
+                }
+
+                return new DataResult<int>(ResultStatus.Error, Messages.CommonMessage.Count("Kullanıcı Tipi"), -1);
+            }
+            catch (Exception exMessage)
+            {
+                return new DataResult<int>(ResultStatus.Danger, Messages.ExceptionMessage.Count("Kullanıcı Tipi"), -1, exMessage);
+            }
+        }
+
+        public async Task<IResult> DeleteAsync(int userTypeId, int modifiedByUserId)
+        {
+            try
+            {
+                var userType = await _unitOfWork.UserTypes.GetAsync(u => u.Id == userTypeId);
+
+                if (userType != null)
+                {
+                    if (userType.IsDeleted)
+                        return new Result(ResultStatus.Info, Messages.CommonMessage.AlreadyDeleted(userType.UserTypeName, "Kullanıcı Tipi"));
+
+                    userType.IsDeleted = true;
+                    userType.ModifiedByUserId = modifiedByUserId;
+                    userType.ModifiedDate = DateTime.Now;
+                    await _unitOfWork.UserTypes.UpdateAsync(userType);
+                    await _unitOfWork.SaveAsync();
+
+                    return new Result(ResultStatus.Success, Messages.CommonMessage.Delete(userType.UserTypeName, false, "Kullanıcı Tipi"));
+                }
+
+                return new Result(ResultStatus.Error, Messages.CommonMessage.NotFound(false, "Kullanıcı Tipi"));
+            }
+            catch (Exception exMessage)
+            {
+                return new Result(ResultStatus.Danger, Messages.ExceptionMessage.Delete("Kullanıcı Tipi"), exMessage);
+            }
+        }
+
+        public async Task<IDataResult<UserTypeListDto>> GetAllAsync(bool? isActive = null, bool? isDeleted = null)
+        {
+            try
+            {
+                IList<UserType> userTypes;
+
+                if (isActive != null && isDeleted != null)
+                    userTypes = await _unitOfWork.UserTypes.GetAllAsync(u => u.IsActive == isActive & u.IsDeleted == isDeleted);
+                else if (isActive == null && isDeleted == null)
+                    userTypes = await _unitOfWork.UserTypes.GetAllAsync();
+                else if (isActive != null)
+                    userTypes = await _unitOfWork.UserTypes.GetAllAsync(u => u.IsActive == isActive);
+                else
+                    userTypes = await _unitOfWork.UserTypes.GetAllAsync(u => u.IsDeleted == isDeleted);
+
+                if (userTypes.Count > -1)
+                {
+                    return new DataResult<UserTypeListDto>(ResultStatus.Success, new UserTypeListDto
+                    {
+                        UserTypes = _mapper.Map<IList<UserTypeDto>>(userTypes)
+                    });
+                }
+
+                return new DataResult<UserTypeListDto>(ResultStatus.Error, Messages.CommonMessage.NotFound(true, "Kullanıcı Tipi"), null);
+            }
+            catch (Exception exMessage)
+            {
+                return new DataResult<UserTypeListDto>(ResultStatus.Danger, Messages.ExceptionMessage.Get("Kullanıcı Tipi"), null, exMessage);
+            }
+        }
+
+        public async Task<IDataResult<UserTypeDto>> GetAsync(int userTypeId, bool? isActive = null, bool? isDeleted = null)
+        {
+            try
+            {
+                UserType userType;
+
+                if (isActive != null && isDeleted != null)
+                    userType = await _unitOfWork.UserTypes.GetAsync(u => u.Id == userTypeId & u.IsActive == isActive & u.IsDeleted == isDeleted);
+                else if (isActive == null && isDeleted == null)
+                    userType = await _unitOfWork.UserTypes.GetAsync(u => u.Id == userTypeId);
+                else if (isActive != null)
+                    userType = await _unitOfWork.UserTypes.GetAsync(u => u.Id == userTypeId & u.IsActive == isActive);
+                else
+                    userType = await _unitOfWork.UserTypes.GetAsync(u => u.Id == userTypeId & u.IsDeleted == isDeleted);
+
+                if (userType != null)
+                    return new DataResult<UserTypeDto>(ResultStatus.Success, _mapper.Map<UserTypeDto>(userType));
+
+                return new DataResult<UserTypeDto>(ResultStatus.Error, Messages.CommonMessage.NotFound(false, "Kullanıcı Tii"), null);
+            }
+            catch (Exception exMessage)
+            {
+                return new DataResult<UserTypeDto>(ResultStatus.Danger, Messages.ExceptionMessage.Get("Kullanıcı Tipi"), null, exMessage);
+            }
+        }
+
+        public async Task<IDataResult<UserTypeUpdateDto>> GetUpdateDtoAsync(int userTypeId)
         {
             try
             {
@@ -134,12 +169,34 @@ namespace yedihisse.Business.Concrete
 
                 if (userType != null)
                     return new DataResult<UserTypeUpdateDto>(ResultStatus.Success, _mapper.Map<UserTypeUpdateDto>(userType));
-                return new DataResult<UserTypeUpdateDto>(ResultStatus.Success, Messages.UserType.NotFound(false), null);
+                return new DataResult<UserTypeUpdateDto>(ResultStatus.Success, Messages.CommonMessage.NotFound(false, "Kullanıcı Tipi"), null);
             }
             catch (Exception exMessage)
             {
-                return new DataResult<UserTypeUpdateDto>(ResultStatus.Error, Messages.ExceptionMessage.Update("UserType"), null,
+                return new DataResult<UserTypeUpdateDto>(ResultStatus.Danger, Messages.ExceptionMessage.Update("Kullanıcı Tipi"), null,
                     exMessage);
+            }
+        }
+
+        public async Task<IResult> HardDeleteAsync(int userTypeId)
+        {
+            try
+            {
+                var userType = await _unitOfWork.UserTypes.GetAsync(u => u.Id == userTypeId);
+
+                if (userType != null)
+                {
+                    await _unitOfWork.UserTypes.DeleteAsync(userType);
+                    await _unitOfWork.SaveAsync();
+
+                    return new Result(ResultStatus.Success, Messages.CommonMessage.Delete(userType.UserTypeName, true, "Kullanıcı Tipi"));
+                }
+
+                return new Result(ResultStatus.Error, Messages.CommonMessage.NotFound(false, "Kullanıcı Tipi"));
+            }
+            catch (Exception exMessage)
+            {
+                return new Result(ResultStatus.Danger, Messages.ExceptionMessage.HardDelete("Kullanıcı Tipi"), exMessage);
             }
         }
 
@@ -155,99 +212,14 @@ namespace yedihisse.Business.Concrete
                     userType.ModifiedByUserId = modifiedByUserId;
                     var updatedUserType = await _unitOfWork.UserTypes.UpdateAsync(userType);
                     await _unitOfWork.SaveAsync();
-                    return new DataResult<UserTypeDto>(ResultStatus.Success, Messages.UserType.Update(updatedUserType.UserTypeName), _mapper.Map<UserTypeDto>(updatedUserType));
+                    return new DataResult<UserTypeDto>(ResultStatus.Success, Messages.CommonMessage.Update(updatedUserType.UserTypeName, "Kullanıcı Tipi"), _mapper.Map<UserTypeDto>(updatedUserType));
                 }
 
-                return new DataResult<UserTypeDto>(ResultStatus.Error, Messages.UserType.NotFound(false), null);
+                return new DataResult<UserTypeDto>(ResultStatus.Error, Messages.CommonMessage.NotFound(false, "Kullanıcı Tipi"), null);
             }
             catch (Exception exMessage)
             {
-                return new DataResult<UserTypeDto>(ResultStatus.Error, Messages.ExceptionMessage.Get("UserType"), null, exMessage);
-            }
-        }
-
-        public async Task<IResult> DeleteAsync(int userTypeId, int modifiedByUserId)
-        {
-            try
-            {
-                var userType = await _unitOfWork.UserTypes.GetAsync(u => u.Id == userTypeId);
-
-                if (userType != null)
-                {
-                    userType.IsDeleted = true;
-                    userType.ModifiedByUserId = modifiedByUserId;
-                    userType.ModifiedDate = DateTime.Now;
-                    await _unitOfWork.UserTypes.UpdateAsync(userType);
-                    await _unitOfWork.SaveAsync();
-
-                    return new Result(ResultStatus.Success, Messages.UserType.Delete(userType.UserTypeName, false));
-                }
-
-                return new Result(ResultStatus.Error, Messages.UserType.NotFound(false));
-            }
-            catch (Exception exMessage)
-            {
-                return new Result(ResultStatus.Error, Messages.ExceptionMessage.Delete("UserType"), exMessage);
-            }
-        }
-
-        public async Task<IResult> HardDeleteAsync(int userTypeId)
-        {
-            try
-            {
-                var userType = await _unitOfWork.UserTypes.GetAsync(u => u.Id == userTypeId);
-
-                if (userType != null)
-                {
-                    await _unitOfWork.UserTypes.DeleteAsync(userType);
-                    await _unitOfWork.SaveAsync();
-
-                    return new Result(ResultStatus.Success, Messages.UserType.Delete(userType.UserTypeName, true));
-                }
-
-                return new Result(ResultStatus.Error, Messages.UserType.NotFound(false));
-            }
-            catch (Exception exMessage)
-            {
-                return new Result(ResultStatus.Error, Messages.ExceptionMessage.HardDelete("UserType"), exMessage);
-            }
-        }
-
-        public async Task<IDataResult<int>> CountAsync()
-        {
-            try
-            {
-                var userTypeCount = await _unitOfWork.UserTypes.CountAsync();
-
-                if (userTypeCount > -1)
-                {
-                    return new DataResult<int>(ResultStatus.Success, userTypeCount);
-                }
-
-                return new DataResult<int>(ResultStatus.Error, Messages.UserType.Count("UserType"), -1);
-            }
-            catch (Exception exMessage)
-            {
-                return new DataResult<int>(ResultStatus.Error, Messages.ExceptionMessage.Count("UserType"), -1, exMessage);
-            }
-        }
-
-        public async Task<IDataResult<int>> CountByIsNonDeletedAsync()
-        {
-            try
-            {
-                var userTypeCount = await _unitOfWork.UserTypes.CountAsync(a => !a.IsDeleted);
-
-                if (userTypeCount > -1)
-                {
-                    return new DataResult<int>(ResultStatus.Success, userTypeCount);
-                }
-
-                return new DataResult<int>(ResultStatus.Error, Messages.UserType.Count("UserType"), -1);
-            }
-            catch (Exception exMessage)
-            {
-                return new DataResult<int>(ResultStatus.Error, Messages.ExceptionMessage.Count("UserType"), -1, exMessage);
+                return new DataResult<UserTypeDto>(ResultStatus.Danger, Messages.ExceptionMessage.Get("Kullanıcı Tipi"), null, exMessage);
             }
         }
     }

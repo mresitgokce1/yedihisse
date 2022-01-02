@@ -21,6 +21,7 @@ namespace yedihisse.Business.Extensions
             serviceCollection.AddDbContext<YediHisseContext>();
             serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
             serviceCollection.AddScoped<IUserService, UserManager>();
+            serviceCollection.AddScoped<IUserTypeService, UserTypeManager>();
             serviceCollection.AddScoped<ITokenService, TokenManager>();
             return serviceCollection;
         }

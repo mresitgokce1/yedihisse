@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using yedihisse.Business.Abstract;
 using yedihisse.Business.Utilities;
-using yedihisse.Business.Utilities.Security.Token;
 using yedihisse.Business.Utilities.Security.Token.Abstract;
 using yedihisse.DataAccess.Abstract;
 using yedihisse.Entities.Concrete;
@@ -35,28 +28,46 @@ namespace yedihisse.Business.Concrete
             _tokenService = tokenService;
         }
 
-        public async Task<IDataResult<UserDto>> GetAsync(int userId)
+        public async Task<IDataResult<UserDto>> GetAsync(int userId, bool? isActive = null, bool? isDeleted = null)
         {
             try
             {
-                var user = await _unitOfWork.Users.GetAsync(u => u.Id == userId);
+                User user;
+
+                if (isActive != null && isDeleted != null)
+                    user = await _unitOfWork.Users.GetAsync(u => u.Id == userId & u.IsActive == isActive & u.IsDeleted == isDeleted);
+                else if(isActive == null && isDeleted == null)
+                    user = await _unitOfWork.Users.GetAsync(u => u.Id == userId);
+                else if (isActive != null)
+                    user = await _unitOfWork.Users.GetAsync(u => u.Id == userId & u.IsActive == isActive);
+                else
+                    user = await _unitOfWork.Users.GetAsync(u => u.Id == userId & u.IsDeleted == isDeleted);
 
                 if (user != null)
                     return new DataResult<UserDto>(ResultStatus.Success, _mapper.Map<UserDto>(user));
 
-                return new DataResult<UserDto>(ResultStatus.Error, Messages.User.NotFound(false), null);
+                return new DataResult<UserDto>(ResultStatus.Error, Messages.CommonMessage.NotFound(false,"Kullanıcı"), null);
             }
             catch (Exception exMessage)
             {
-                return new DataResult<UserDto>(ResultStatus.Error, Messages.ExceptionMessage.Get("User"), null, exMessage);
+                return new DataResult<UserDto>(ResultStatus.Danger, Messages.ExceptionMessage.Get("Kullanıcı"), null, exMessage);
             }
         }
 
-        public async Task<IDataResult<UserListDto>> GetAllAsync()
+        public async Task<IDataResult<UserListDto>> GetAllAsync(bool? isActive = null, bool? isDeleted = null)
         {
             try
             {
-                var users = await _unitOfWork.Users.GetAllAsync();
+                IList<User> users;
+
+                if (isActive != null && isDeleted != null)
+                    users = await _unitOfWork.Users.GetAllAsync(u => u.IsActive == isActive & u.IsDeleted == isDeleted);
+                else if (isActive == null && isDeleted == null)
+                    users = await _unitOfWork.Users.GetAllAsync();
+                else if (isActive != null)
+                    users = await _unitOfWork.Users.GetAllAsync(u => u.IsActive == isActive);
+                else
+                    users = await _unitOfWork.Users.GetAllAsync(u => u.IsDeleted == isDeleted);
 
                 if (users.Count > -1)
                 {
@@ -66,55 +77,11 @@ namespace yedihisse.Business.Concrete
                     });
                 }
 
-                return new DataResult<UserListDto>(ResultStatus.Error, Messages.User.NotFound(true), null);
+                return new DataResult<UserListDto>(ResultStatus.Error, Messages.CommonMessage.NotFound(true,"Kullanıcı"), null);
             }
             catch (Exception exMessage)
             {
-                return new DataResult<UserListDto>(ResultStatus.Error, Messages.ExceptionMessage.Get("User"), null, exMessage);
-            }
-        }
-
-        public async Task<IDataResult<UserListDto>> GetAllByNonDeletedAsync()
-        {
-            try
-            {
-                var users = await _unitOfWork.Users.GetAllAsync(u => u.IsDeleted == false);
-
-                if (users.Count > -1)
-                {
-                    return new DataResult<UserListDto>(ResultStatus.Success, new UserListDto
-                    {
-                        Users = _mapper.Map<IList<UserDto>>(users)
-                    });
-                }
-
-                return new DataResult<UserListDto>(ResultStatus.Error, Messages.User.NotFound(true), null);
-            }
-            catch (Exception exMessage)
-            {
-                return new DataResult<UserListDto>(ResultStatus.Error, Messages.ExceptionMessage.Get("User"), null, exMessage);
-            }
-        }
-
-        public async Task<IDataResult<UserListDto>> GetAllByNonDeletedAndActiveAsync()
-        {
-            try
-            {
-                var users = await _unitOfWork.Users.GetAllAsync(u => u.IsDeleted == false && u.IsActive == true);
-
-                if (users.Count > -1)
-                {
-                    return new DataResult<UserListDto>(ResultStatus.Success, new UserListDto
-                    {
-                        Users = _mapper.Map<IList<UserDto>>(users)
-                    });
-                }
-
-                return new DataResult<UserListDto>(ResultStatus.Error, Messages.User.NotFound(true), null);
-            }
-            catch (Exception exMessage)
-            {
-                return new DataResult<UserListDto>(ResultStatus.Error, Messages.ExceptionMessage.Get("User"), null, exMessage);
+                return new DataResult<UserListDto>(ResultStatus.Danger, Messages.ExceptionMessage.Get("Kullanıcı"), null, exMessage);
             }
         }
 
@@ -130,15 +97,15 @@ namespace yedihisse.Business.Concrete
                 var addedUser = await _unitOfWork.Users.AddAsync(user);
                 await _unitOfWork.SaveAsync();
 
-                return new DataResult<UserDto>(ResultStatus.Success, Messages.User.Add(addedUser.FirstName + " " + addedUser.LastName), _mapper.Map<UserDto>(addedUser));
+                return new DataResult<UserDto>(ResultStatus.Success, Messages.CommonMessage.Add(addedUser.FirstName + " " + addedUser.LastName, "Kullanıcı"), _mapper.Map<UserDto>(addedUser));
             }
             catch (Exception exMessage)
             {
-                return new DataResult<UserDto>(ResultStatus.Error, Messages.ExceptionMessage.Add("User"), null, exMessage);
+                return new DataResult<UserDto>(ResultStatus.Danger, Messages.ExceptionMessage.Add("Kullanıcı"), null, exMessage);
             }
         }
 
-        public async Task<IDataResult<UserUpdateDto>> GetUserUpdateDtoAsync(int userId)
+        public async Task<IDataResult<UserUpdateDto>> GetUpdateDtoAsync(int userId)
         {
             try
             {
@@ -146,11 +113,11 @@ namespace yedihisse.Business.Concrete
 
                 if (user != null)
                     return new DataResult<UserUpdateDto>(ResultStatus.Success, _mapper.Map<UserUpdateDto>(user));
-                return new DataResult<UserUpdateDto>(ResultStatus.Success, Messages.User.NotFound(false), null);
+                return new DataResult<UserUpdateDto>(ResultStatus.Success, Messages.CommonMessage.NotFound(false, "Kullanıcı"), null);
             }
             catch (Exception exMessage)
             {
-                return new DataResult<UserUpdateDto>(ResultStatus.Error, Messages.ExceptionMessage.Update("User"), null,
+                return new DataResult<UserUpdateDto>(ResultStatus.Danger, Messages.ExceptionMessage.Update("Kullanıcı"), null,
                     exMessage);
             }
         }
@@ -168,14 +135,14 @@ namespace yedihisse.Business.Concrete
                     user.PasswordHash = Shared.Utilities.Encrytpions.PasswordEncryption.CreateHashPassword(userUpdateDto.PasswordHash);
                     var updatedUser = await _unitOfWork.Users.UpdateAsync(user);
                     await _unitOfWork.SaveAsync();
-                    return new DataResult<UserDto>(ResultStatus.Success, Messages.User.Update(updatedUser.FirstName + " " + updatedUser.LastName), _mapper.Map<UserDto>(updatedUser));
+                    return new DataResult<UserDto>(ResultStatus.Success, Messages.CommonMessage.Update(updatedUser.FirstName + " " + updatedUser.LastName, "Kullanıcı"), _mapper.Map<UserDto>(updatedUser));
                 }
 
-                return new DataResult<UserDto>(ResultStatus.Error, Messages.User.NotFound(false), null);
+                return new DataResult<UserDto>(ResultStatus.Error, Messages.CommonMessage.NotFound(false, "Kullanıcı"), null);
             }
             catch (Exception exMessage)
             {
-                return new DataResult<UserDto>(ResultStatus.Error, Messages.ExceptionMessage.Get("User"), null, exMessage);
+                return new DataResult<UserDto>(ResultStatus.Danger, Messages.ExceptionMessage.Get("Kullanıcı"), null, exMessage);
             }
         }
 
@@ -187,20 +154,23 @@ namespace yedihisse.Business.Concrete
 
                 if (user != null)
                 {
+                    if(user.IsDeleted)
+                        return new Result(ResultStatus.Info, Messages.CommonMessage.AlreadyDeleted(user.FirstName + " " + user.LastName, "Kullanıcı"));
+
                     user.IsDeleted = true;
                     user.ModifiedByUserId = modifiedByUserId;
                     user.ModifiedDate = DateTime.Now;
                     await _unitOfWork.Users.UpdateAsync(user);
                     await _unitOfWork.SaveAsync();
 
-                    return new Result(ResultStatus.Success, Messages.User.Delete(user.FirstName + " " + user.LastName, false));
+                    return new Result(ResultStatus.Success, Messages.CommonMessage.Delete(user.FirstName + " " + user.LastName, false, "Kullanıcı"));
                 }
 
-                return new Result(ResultStatus.Error, Messages.User.NotFound(false));
+                return new Result(ResultStatus.Error, Messages.CommonMessage.NotFound(false, "Kullanıcı"));
             }
             catch (Exception exMessage)
             {
-                return new Result(ResultStatus.Error, Messages.ExceptionMessage.Delete("User"), exMessage);
+                return new Result(ResultStatus.Danger, Messages.ExceptionMessage.Delete("Kullanıcı"), exMessage);
             }
         }
 
@@ -215,52 +185,42 @@ namespace yedihisse.Business.Concrete
                     await _unitOfWork.Users.DeleteAsync(user);
                     await _unitOfWork.SaveAsync();
 
-                    return new Result(ResultStatus.Success, Messages.User.Delete(user.FirstName + " " + user.LastName, true));
+                    return new Result(ResultStatus.Success, Messages.CommonMessage.Delete(user.FirstName + " " + user.LastName, true, "Kullanıcı"));
                 }
 
-                return new Result(ResultStatus.Error, Messages.User.NotFound(false));
+                return new Result(ResultStatus.Error, Messages.CommonMessage.NotFound(false, "Kullanıcı"));
             }
             catch (Exception exMessage)
             {
-                return new Result(ResultStatus.Error, Messages.ExceptionMessage.HardDelete("User"), exMessage);
+                return new Result(ResultStatus.Danger, Messages.ExceptionMessage.HardDelete("Kullanıcı"), exMessage);
             }
         }
 
-        public async Task<IDataResult<int>> CountAsync()
+        public async Task<IDataResult<int>> CountAsync(bool? isActive = null, bool? isDeleted = null)
         {
             try
             {
-                var userCount = await _unitOfWork.Users.CountAsync();
+                int userCount = -1;
+
+                if (isActive != null && isDeleted != null)
+                    userCount = await _unitOfWork.Users.CountAsync(u => u.IsActive == isActive & u.IsDeleted == isDeleted);
+                else if(isActive == null && isDeleted == null)
+                    userCount = await _unitOfWork.Users.CountAsync();
+                if (isActive != null)
+                     userCount = await _unitOfWork.Users.CountAsync(u => u.IsActive == isActive);
+                else
+                    userCount = await _unitOfWork.Users.CountAsync(u => u.IsDeleted == isDeleted);
 
                 if (userCount > -1)
                 {
                     return new DataResult<int>(ResultStatus.Success, userCount);
                 }
 
-                return new DataResult<int>(ResultStatus.Error, Messages.User.Count("User"), -1);
+                return new DataResult<int>(ResultStatus.Error, Messages.CommonMessage.Count("Kullanıcı"), -1);
             }
             catch (Exception exMessage)
             {
-                return new DataResult<int>(ResultStatus.Error, Messages.ExceptionMessage.Count("User"), -1, exMessage);
-            }
-        }
-
-        public async Task<IDataResult<int>> CountByIsNonDeletedAsync()
-        {
-            try
-            {
-                var userCount = await _unitOfWork.Users.CountAsync(a => !a.IsDeleted);
-
-                if (userCount > -1)
-                {
-                    return new DataResult<int>(ResultStatus.Success, userCount);
-                }
-
-                return new DataResult<int>(ResultStatus.Error, Messages.User.Count("User"), -1);
-            }
-            catch (Exception exMessage)
-            {
-                return new DataResult<int>(ResultStatus.Error, Messages.ExceptionMessage.Count("User"), -1, exMessage);
+                return new DataResult<int>(ResultStatus.Danger, Messages.ExceptionMessage.Count("Kullanıcı"), -1, exMessage);
             }
         }
 
@@ -275,10 +235,10 @@ namespace yedihisse.Business.Concrete
                     .ThenInclude(y=>y.UserType));
 
                 if (user == null)
-                    return new DataResult<string>(ResultStatus.Error, "Kullanıcı adı hatalı", null, null);
+                    return new DataResult<string>(ResultStatus.Error, Messages.AuthMessage.ErrorUserName(), null, null);
 
                 if (!Shared.Utilities.Encrytpions.PasswordEncryption.VerifyHashPassword(user.PasswordHash, userLoginDto.Password))
-                    return new DataResult<string>(ResultStatus.Error, "Şifre hatalı", null, null);
+                    return new DataResult<string>(ResultStatus.Error, Messages.AuthMessage.ErrorPassword(), null, null);
 
                 var userLoggedinDto = new UserLoggedinDto
                 {
@@ -290,11 +250,11 @@ namespace yedihisse.Business.Concrete
                     UserJoinTypes = user.UserJoinTypes
                 };
 
-                return new DataResult<string>(ResultStatus.Success, "Kullanıcı bilgileri doğru", _tokenService.GenerateToken(userLoggedinDto), null);
+                return new DataResult<string>(ResultStatus.Success, Messages.AuthMessage.LoginSuccess(), _tokenService.GenerateToken(userLoggedinDto), null);
             }
             catch (Exception exMessage)
             {
-                return new DataResult<string>(ResultStatus.Error, "Kullanıcı doğrulaması sırasında bir hata oluştu", null, exMessage);
+                return new DataResult<string>(ResultStatus.Danger, Messages.ExceptionMessage.Auth(), null, exMessage);
             }
 
         }

@@ -6,11 +6,13 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using yedihisse.Business.AutoMapper.Profiles;
 using yedihisse.Business.Extensions;
 using yedihisse.DataAccess.Concrete.EntityFramework.Contexts;
+using yedihisse.Entities.Concrete;
 
 namespace yedihisse.API
 {
@@ -31,7 +33,8 @@ namespace yedihisse.API
                 options.AddPolicy("MyCorsPolicy", builder => builder.WithOrigins("*"));
             });
 
-            services.AddAutoMapper(typeof(UserProfile));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddAutoMapper(typeof(UserProfile), typeof(UserTypeProfile));
             services.AddControllers();
 
             #region JWT

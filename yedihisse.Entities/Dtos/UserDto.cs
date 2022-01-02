@@ -20,7 +20,7 @@ namespace yedihisse.Entities.Dtos
         [DisplayName("Eposta")]
         public string EmailAddress { get; set; }
         [DisplayName("Cinsiyeti")]
-        public bool Sex { get; set; }
+        public char Sex { get; set; }
         [DisplayName("Şifresi")]
         public string PasswordHash { get; set; }
         [DisplayName("Kullanıcının Adresi")]
@@ -57,7 +57,7 @@ namespace yedihisse.Entities.Dtos
 
         [DisplayName("Cinsiyeti")]
         [Required(ErrorMessage = "{0} boş olmamalıdır.")]
-        public bool Sex { get; set; }
+        public char Sex { get; set; }
 
         [DisplayName("Şifresi")]
         [Required(ErrorMessage = "{0} boş olmamalıdır.")]
@@ -97,7 +97,7 @@ namespace yedihisse.Entities.Dtos
 
         [DisplayName("Cinsiyeti")]
         [Required(ErrorMessage = "{0} boş olmamalıdır.")]
-        public bool Sex { get; set; }
+        public char Sex { get; set; }
 
         [DisplayName("Şifresi")]
         [Required(ErrorMessage = "{0} boş olmamalıdır.")]
