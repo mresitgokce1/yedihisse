@@ -24,12 +24,14 @@ namespace yedihisse.API.Controllers
     {
         private readonly IUserService _userService;
         private readonly IUserTypeService _userTypeService;
+        private readonly IUserJoinTypeService _userJoinTypeService;
         private readonly ITokenService _tokenService;
 
-        public UserController(IUserService userService, IUserTypeService userTypeService, ITokenService tokenService)
+        public UserController(IUserService userService, IUserTypeService userTypeService, IUserJoinTypeService userJoinTypeService, ITokenService tokenService)
         {
             _userService = userService;
             _userTypeService = userTypeService;
+            _userJoinTypeService = userJoinTypeService;
             _tokenService = tokenService;
         }
 
@@ -229,6 +231,24 @@ namespace yedihisse.API.Controllers
 
             if (result.ResultStatus == ResultStatus.Success)
                 return Ok(result.Message);
+            else if (result.ResultStatus == ResultStatus.Error)
+                return BadRequest(result.Message);
+            else
+                return BadRequest(result.Message + " " + result.Exception);
+        }
+
+        #endregion
+
+        #region USER TYPE JOIN OPERATION
+
+        [HttpPost("JoinType")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AddUserJoinType([FromBody] UserJoinTypeAddDto userJoinTypeAddDto)
+        {
+            var result = await _userJoinTypeService.AddAsync(userJoinTypeAddDto, _tokenService.DecodeToken().Id);
+
+            if (result.ResultStatus == ResultStatus.Success)
+                return Ok(result.Data);
             else if (result.ResultStatus == ResultStatus.Error)
                 return BadRequest(result.Message);
             else

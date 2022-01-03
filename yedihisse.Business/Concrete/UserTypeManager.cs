@@ -25,7 +25,6 @@ namespace yedihisse.Business.Concrete
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-            _tokenService = tokenService;
         }
 
         public async Task<IDataResult<UserTypeDto>> AddAsync(UserTypeAddDto userTypeAddDto, int createdByUserId)

@@ -22,6 +22,7 @@ namespace yedihisse.Business.Extensions
             serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
             serviceCollection.AddScoped<IUserService, UserManager>();
             serviceCollection.AddScoped<IUserTypeService, UserTypeManager>();
+            serviceCollection.AddScoped<IUserJoinTypeService, UserJoinTypeManager>();
             serviceCollection.AddScoped<ITokenService, TokenManager>();
             return serviceCollection;
         }
