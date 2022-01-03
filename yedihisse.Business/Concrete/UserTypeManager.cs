@@ -20,7 +20,6 @@ namespace yedihisse.Business.Concrete
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly ITokenService _tokenService;
 
         public UserTypeManager(IUnitOfWork unitOfWork, IMapper mapper, ITokenService tokenService)
         {

@@ -34,7 +34,7 @@ namespace yedihisse.API
             });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddAutoMapper(typeof(UserProfile), typeof(UserTypeProfile));
+            services.AddAutoMapper(typeof(UserProfile), typeof(UserTypeProfile), typeof(UserJoinTypeProfile));
             services.AddControllers();
 
             #region JWT

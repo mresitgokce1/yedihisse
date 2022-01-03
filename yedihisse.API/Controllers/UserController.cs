@@ -33,7 +33,9 @@ namespace yedihisse.API.Controllers
             _tokenService = tokenService;
         }
 
-        [HttpGet()]
+        #region USER OPERATION
+
+        [HttpGet]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllUser()
         {
@@ -49,7 +51,7 @@ namespace yedihisse.API.Controllers
 
         [HttpGet("{userId}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Get(int userId)
+        public async Task<IActionResult> GetUser(int userId)
         {
             var result = await _userService.GetAsync(userId,true,false);
 
@@ -63,7 +65,7 @@ namespace yedihisse.API.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Add([FromBody] UserAddDto userAddDto)
+        public async Task<IActionResult> AddUser([FromBody] UserAddDto userAddDto)
         {
             var result = await _userService.AddAsync(userAddDto, _tokenService.DecodeToken().Id);
 
@@ -77,7 +79,7 @@ namespace yedihisse.API.Controllers
 
         [HttpPut]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Update([FromBody] UserUpdateDto userUpdateDto)
+        public async Task<IActionResult> UpdateUser([FromBody] UserUpdateDto userUpdateDto)
         {
             var result = await _userService.UpdateAsync(userUpdateDto, _tokenService.DecodeToken().Id);
 
@@ -89,7 +91,7 @@ namespace yedihisse.API.Controllers
                 return BadRequest(result.Message + " " + result.Exception);
         }
 
-        [HttpGet("count")]
+        [HttpGet("Count")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CountAllUser()
         {
@@ -105,7 +107,7 @@ namespace yedihisse.API.Controllers
 
         [HttpDelete("{userId}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Delete(int userId)
+        public async Task<IActionResult> DeleteUser(int userId)
         {
             var result = await _userService.DeleteAsync(userId, _tokenService.DecodeToken().Id);
 
@@ -117,9 +119,9 @@ namespace yedihisse.API.Controllers
                 return BadRequest(result.Message + " " + result.Exception);
         }
 
-        [HttpDelete("harddelete/{userId}")]
+        [HttpDelete("HardDelete/{userId}")]
         [Authorize(Roles ="Admin")]
-        public async Task<IActionResult> HardDelete(int userId)
+        public async Task<IActionResult> HardDeleteUser(int userId)
         {
             var result = await _userService.HardDeleteAsync(userId);
 
@@ -131,9 +133,41 @@ namespace yedihisse.API.Controllers
                 return BadRequest(result.Message + " " + result.Exception);
         }
 
-        [HttpPost("type")]
+        #endregion
+
+        #region USER TYPE OPERATION
+
+        [HttpGet("Type")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AddType([FromBody] UserTypeAddDto userTypeAddDto)
+        public async Task<IActionResult> GetAllUserType()
+        {
+            var result = await _userTypeService.GetAllAsync();
+
+            if (result.ResultStatus == ResultStatus.Success)
+                return Ok(result.Data);
+            else if (result.ResultStatus == ResultStatus.Error)
+                return BadRequest(result.Message);
+            else
+                return BadRequest(result.Message + " " + result.Exception);
+        }
+
+        [HttpGet("Type/{userId}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetUserType(int userTypeId)
+        {
+            var result = await _userTypeService.GetAsync(userTypeId, true, false);
+
+            if (result.ResultStatus == ResultStatus.Success)
+                return Ok(result.Data);
+            else if (result.ResultStatus == ResultStatus.Error)
+                return BadRequest(result.Message);
+            else
+                return BadRequest(result.Message + " " + result.Exception);
+        }
+
+        [HttpPost("Type")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AddUserType([FromBody] UserTypeAddDto userTypeAddDto)
         {
             var result = await _userTypeService.AddAsync(userTypeAddDto, _tokenService.DecodeToken().Id);
 
@@ -144,5 +178,63 @@ namespace yedihisse.API.Controllers
             else
                 return BadRequest(result.Message + " " + result.Exception);
         }
+
+        [HttpPut("Type")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> UpdateUserType([FromBody] UserTypeUpdateDto userTypeUpdateDto)
+        {
+            var result = await _userTypeService.UpdateAsync(userTypeUpdateDto, _tokenService.DecodeToken().Id);
+
+            if (result.ResultStatus == ResultStatus.Success)
+                return Ok(result.Data);
+            else if (result.ResultStatus == ResultStatus.Error)
+                return BadRequest(result.Message);
+            else
+                return BadRequest(result.Message + " " + result.Exception);
+        }
+
+        [HttpGet("Type/Count")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> CountAllUserType()
+        {
+            var result = await _userTypeService.CountAsync(true, false);
+
+            if (result.ResultStatus == ResultStatus.Success)
+                return Ok(result.Data);
+            else if (result.ResultStatus == ResultStatus.Error)
+                return BadRequest(result.Message);
+            else
+                return BadRequest(result.Message + " " + result.Exception);
+        }
+
+        [HttpDelete("Type/{userId}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteUserType(int userTypeId)
+        {
+            var result = await _userTypeService.DeleteAsync(userTypeId, _tokenService.DecodeToken().Id);
+
+            if (result.ResultStatus == ResultStatus.Success)
+                return Ok(result.Message);
+            else if (result.ResultStatus == ResultStatus.Error)
+                return BadRequest(result.Message);
+            else
+                return BadRequest(result.Message + " " + result.Exception);
+        }
+
+        [HttpDelete("Type/HardDelete/{userId}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> HardDeleteUserType(int userTypeId)
+        {
+            var result = await _userTypeService.HardDeleteAsync(userTypeId);
+
+            if (result.ResultStatus == ResultStatus.Success)
+                return Ok(result.Message);
+            else if (result.ResultStatus == ResultStatus.Error)
+                return BadRequest(result.Message);
+            else
+                return BadRequest(result.Message + " " + result.Exception);
+        }
+
+        #endregion
     }
 }
