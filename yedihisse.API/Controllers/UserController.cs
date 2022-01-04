@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
+using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper.Configuration;
 using Microsoft.AspNetCore.Authorization;
@@ -241,6 +242,34 @@ namespace yedihisse.API.Controllers
 
         #region USER TYPE JOIN OPERATION
 
+        [HttpGet("JoinType/{userJoinTypeId}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetUserJoinType(int userJoinTypeId)
+        {
+            var result = await _userJoinTypeService.GetAsync(userJoinTypeId);
+
+            if (result.ResultStatus == ResultStatus.Success)
+                return Ok(result.Data);
+            else if (result.ResultStatus == ResultStatus.Error)
+                return BadRequest(result.Message);
+            else
+                return BadRequest(result.Message + " " + result.Exception);
+        }
+
+        [HttpGet("JoinType")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetAllUserJoinType()
+        {
+            var result = await _userJoinTypeService.GetAllAsync();
+
+            if (result.ResultStatus == ResultStatus.Success)
+                return Ok(result.Data);
+            else if (result.ResultStatus == ResultStatus.Error)
+                return BadRequest(result.Message);
+            else
+                return BadRequest(result.Message + " " + result.Exception);
+        }
+
         [HttpPost("JoinType")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddUserJoinType([FromBody] UserJoinTypeAddDto userJoinTypeAddDto)
@@ -249,6 +278,48 @@ namespace yedihisse.API.Controllers
 
             if (result.ResultStatus == ResultStatus.Success)
                 return Ok(result.Data);
+            else if (result.ResultStatus == ResultStatus.Error)
+                return BadRequest(result.Message);
+            else
+                return BadRequest(result.Message + " " + result.Exception);
+        }
+
+        [HttpPut("JoinType")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> UpdateUserJoinType([FromBody] UserJoinTypeUpdateDto userJoinTypeUpdateDto)
+        {
+            var result = await _userJoinTypeService.UpdateAsync(userJoinTypeUpdateDto, _tokenService.DecodeToken().Id);
+
+            if (result.ResultStatus == ResultStatus.Success)
+                return Ok(result.Data);
+            else if (result.ResultStatus == ResultStatus.Error)
+                return BadRequest(result.Message);
+            else
+                return BadRequest(result.Message + " " + result.Exception);
+        }
+
+        [HttpDelete("JoinType/{userJoinTypeId}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteUserJoinType(int userJoinTypeId)
+        {
+            var result = await _userJoinTypeService.DeleteAsync(userJoinTypeId, _tokenService.DecodeToken().Id);
+
+            if (result.ResultStatus == ResultStatus.Success)
+                return Ok(result.Message);
+            else if (result.ResultStatus == ResultStatus.Error)
+                return BadRequest(result.Message);
+            else
+                return BadRequest(result.Message + " " + result.Exception);
+        }
+
+        [HttpDelete("JoinType/HardDelete/{userJoinTypeId}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> HardDeleteUserJoinType(int userJoinTypeId)
+        {
+            var result = await _userJoinTypeService.HardDeleteAsync(userJoinTypeId);
+
+            if (result.ResultStatus == ResultStatus.Success)
+                return Ok(result.Message);
             else if (result.ResultStatus == ResultStatus.Error)
                 return BadRequest(result.Message);
             else

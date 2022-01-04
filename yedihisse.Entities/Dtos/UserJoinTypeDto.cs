@@ -12,9 +12,9 @@ namespace yedihisse.Entities.Dtos
     public class UserJoinTypeDto
     {
         [DisplayName("Kullanıcı")]
-        public User User { get; set; }
+        public UserDto User { get; set; }
         [DisplayName("Kullanıcının Tipi")]
-        public UserType UserType { get; set; }
+        public UserTypeDto UserType { get; set; }
     }
 
     public class UserJoinTypeListDto

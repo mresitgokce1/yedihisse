@@ -78,6 +78,11 @@ namespace yedihisse.Business.Utilities
                 return $"{userName} adlı {entityName} daha önce silinmiştir";
             }
 
+            public static string AlreadyExists(string entityName)
+            {
+                return $"Eklemek istediğiniz {entityName} zaten var.";
+            }
+
             public static string Count(string entityName)
             {
                 return $"Hiç {entityName} bulunamadı.";
@@ -99,6 +104,19 @@ namespace yedihisse.Business.Utilities
             public static string LoginSuccess()
             {
                 return "Kullanıcı doğrulandı";
+            }
+        }
+
+        public static class UserJoinTypeMessage
+        {
+            public static string HardDelete(string userName, string userTypeName)
+            {
+                return $"{userName} adlı kullanıcının {userTypeName} tipi veritabanından kaldırılmıştır.";
+            }
+
+            public static string Delete(string userName, string userTypeName)
+            {
+                return $"{userName} adlı kullanıcının {userTypeName} tipi kaldırılmıştır.";
             }
         }
     }

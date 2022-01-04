@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using yedihisse.Business.Abstract;
 using yedihisse.Business.Utilities;
 using yedihisse.DataAccess.Abstract;
@@ -33,13 +34,21 @@ namespace yedihisse.Business.Concrete
                 UserJoinType userJoinType;
 
                 if (isActive != null && isDeleted != null)
-                    userJoinType = await _unitOfWork.UserJoinTypes.GetAsync(u => u.Id == userJoinTypeId & u.IsActive == isActive & u.IsDeleted == isDeleted);
+                    userJoinType = await _unitOfWork.UserJoinTypes.GetAsync(u => u.Id == userJoinTypeId & u.IsActive == isActive & u.IsDeleted == isDeleted, u => u
+                        .Include(u => u.UserType)
+                        .Include(u => u.User));
                 else if (isActive == null && isDeleted == null)
-                    userJoinType = await _unitOfWork.UserJoinTypes.GetAsync(u => u.Id == userJoinTypeId);
+                    userJoinType = await _unitOfWork.UserJoinTypes.GetAsync(u => u.Id == userJoinTypeId, u => u
+                        .Include(u => u.UserType)
+                        .Include(u => u.User));
                 else if (isActive != null)
-                    userJoinType = await _unitOfWork.UserJoinTypes.GetAsync(u => u.Id == userJoinTypeId & u.IsActive == isActive);
+                    userJoinType = await _unitOfWork.UserJoinTypes.GetAsync(u => u.Id == userJoinTypeId & u.IsActive == isActive, u => u
+                        .Include(u => u.UserType)
+                        .Include(u => u.User));
                 else
-                    userJoinType = await _unitOfWork.UserJoinTypes.GetAsync(u => u.Id == userJoinTypeId & u.IsDeleted == isDeleted);
+                    userJoinType = await _unitOfWork.UserJoinTypes.GetAsync(u => u.Id == userJoinTypeId & u.IsDeleted == isDeleted, u => u
+                        .Include(u => u.UserType)
+                        .Include(u => u.User));
 
                 if (userJoinType != null)
                     return new DataResult<UserJoinTypeDto>(ResultStatus.Success, _mapper.Map<UserJoinTypeDto>(userJoinType));
@@ -59,13 +68,21 @@ namespace yedihisse.Business.Concrete
                 IList<UserJoinType> userJoinTypes;
 
                 if (isActive != null && isDeleted != null)
-                    userJoinTypes = await _unitOfWork.UserJoinTypes.GetAllAsync(u => u.IsActive == isActive & u.IsDeleted == isDeleted);
+                    userJoinTypes = await _unitOfWork.UserJoinTypes.GetAllAsync(u => u.IsActive == isActive & u.IsDeleted == isDeleted, u => u
+                        .Include(u => u.UserType)
+                        .Include(u => u.User));
                 else if (isActive == null && isDeleted == null)
-                    userJoinTypes = await _unitOfWork.UserJoinTypes.GetAllAsync();
+                    userJoinTypes = await _unitOfWork.UserJoinTypes.GetAllAsync(null, u => u
+                        .Include(u => u.UserType)
+                        .Include(u => u.User));
                 else if (isActive != null)
-                    userJoinTypes = await _unitOfWork.UserJoinTypes.GetAllAsync(u => u.IsActive == isActive);
+                    userJoinTypes = await _unitOfWork.UserJoinTypes.GetAllAsync(u => u.IsActive == isActive, u => u
+                        .Include(u => u.UserType)
+                        .Include(u => u.User));
                 else
-                    userJoinTypes = await _unitOfWork.UserJoinTypes.GetAllAsync(u => u.IsDeleted == isDeleted);
+                    userJoinTypes = await _unitOfWork.UserJoinTypes.GetAllAsync(u => u.IsDeleted == isDeleted, u => u
+                        .Include(u => u.UserType)
+                        .Include(u => u.User));
 
                 if (userJoinTypes.Count > -1)
                 {
@@ -87,15 +104,18 @@ namespace yedihisse.Business.Concrete
         {
             try
             {
+                var checkValue = await _unitOfWork.UserJoinTypes.AnyAsync(u => u.UserId == userJoinTypeAddDto.UserId & u.UserTypeId == userJoinTypeAddDto.UserTypeId);
+
+                if (checkValue)
+                    return new DataResult<UserJoinTypeDto>(ResultStatus.Danger, Messages.CommonMessage.AlreadyExists(" Kullanıcı Tipi tanımlama"), null);
+
                 var userJoinType = _mapper.Map<UserJoinType>(userJoinTypeAddDto);
                 userJoinType.CreatedByUserId = createdByUserId;
                 userJoinType.ModifiedByUserId = createdByUserId;
-
                 var addedUserJoinType = await _unitOfWork.UserJoinTypes.AddAsync(userJoinType);
                 await _unitOfWork.SaveAsync();
-
                 var addedUserOfType = await _unitOfWork.Users.GetAsync(u => u.Id == userJoinType.UserId);
-                var addedTypeOfUser = await _unitOfWork.UserTypes.GetAsync(u=>u.Id == userJoinType.UserTypeId);
+                var addedTypeOfUser = await _unitOfWork.UserTypes.GetAsync(u => u.Id == userJoinType.UserTypeId);
 
                 return new DataResult<UserJoinTypeDto>(ResultStatus.Success, Messages.CommonMessage.Add(addedUserOfType.FirstName + " " + addedUserOfType.LastName + " kullanıcısına " + addedTypeOfUser.UserTypeName + " tipi tanımlanmıştır.", "Kullanıcı Tipi Tanımlama"), _mapper.Map<UserJoinTypeDto>(addedUserJoinType));
             }
@@ -159,7 +179,7 @@ namespace yedihisse.Business.Concrete
                 {
                     var deletedUserOfType = await _unitOfWork.Users.GetAsync(u => u.Id == userJoinType.UserId);
                     var deletedTypeOfUser = await _unitOfWork.UserTypes.GetAsync(u => u.Id == userJoinType.UserTypeId);
-                    
+
                     if (userJoinType.IsDeleted)
                         return new Result(ResultStatus.Info, Messages.CommonMessage.AlreadyDeleted(deletedUserOfType.FirstName + " " + deletedUserOfType.LastName + " kullanıcısından" + deletedTypeOfUser.UserTypeName + " tipi daha önce silinmiştir.", "Kullanıcı Tipi Belirleme"));
 
@@ -169,7 +189,7 @@ namespace yedihisse.Business.Concrete
                     await _unitOfWork.UserJoinTypes.UpdateAsync(userJoinType);
                     await _unitOfWork.SaveAsync();
 
-                    return new Result(ResultStatus.Success, Messages.CommonMessage.Delete(deletedUserOfType.FirstName + " " + deletedUserOfType.LastName + " kullanıcısından " + deletedTypeOfUser.UserTypeName + " başarıyla tipi silinmiştir." , false, "Kullanıcı Tipi Belirleme"));
+                    return new Result(ResultStatus.Success, Messages.UserJoinTypeMessage.Delete(deletedUserOfType.FirstName + " " + deletedUserOfType.LastName, deletedTypeOfUser.UserTypeName));
                 }
 
                 return new Result(ResultStatus.Error, Messages.CommonMessage.NotFound(false, "Kullanıcı Tipi Belirleme"));
@@ -194,7 +214,7 @@ namespace yedihisse.Business.Concrete
                     await _unitOfWork.UserJoinTypes.DeleteAsync(userJoinType);
                     await _unitOfWork.SaveAsync();
 
-                    return new Result(ResultStatus.Success, Messages.CommonMessage.Delete(hardDeletedUserOfType.FirstName + " " + hardDeletedUserOfType.LastName + " kullanıcısından " + hardDeletedTypeOfUser.UserTypeName + " kullanıcı tipi veritabanından kaldırılmıştır." , true, "Kullanıcı Tipi Birleştirme"));
+                    return new Result(ResultStatus.Success, Messages.UserJoinTypeMessage.HardDelete(hardDeletedUserOfType.FirstName + " " + hardDeletedUserOfType.LastName, hardDeletedTypeOfUser.UserTypeName));
                 }
 
                 return new Result(ResultStatus.Error, Messages.CommonMessage.NotFound(false, "Kullanıcı Tipi Birleştirme"));
