@@ -22,7 +22,11 @@ namespace yedihisse.Business.AutoMapper.Profiles
                     opt => opt.MapFrom(x => DateTime.Now))
                 .ForMember(
                     dest => dest.IsDeleted,
-                    opt => opt.MapFrom(x => false));
+                    opt => opt.MapFrom(x => false))
+                .ForMember(dest => dest.IsActive,
+                    opt => opt.MapFrom(x => true))
+                .ForMember(dest => dest.IsActive,
+                    opt => opt.MapFrom(x => true));
 
             CreateMap<AnimalUpdateDto, Animal>()
                 .ForMember(
@@ -30,6 +34,7 @@ namespace yedihisse.Business.AutoMapper.Profiles
                     opt => opt.MapFrom(x => DateTime.Now));
 
             CreateMap<Animal, AnimalUpdateDto>();
+            CreateMap<Animal, AnimalDto>();
         }
     }
 }

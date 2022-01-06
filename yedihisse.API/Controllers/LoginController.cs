@@ -18,18 +18,18 @@ namespace yedihisse.API.Controllers
     [EnableCors("MyCorsPolicy")]
     public class LoginController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly ILoginService _loginService;
 
-        public LoginController(IUserService userService)
+        public LoginController(ILoginService loginService)
         {
-            _userService = userService;
+            _loginService = loginService;
         }
 
         [AllowAnonymous]
         [HttpPost("token")]
         public async Task<IActionResult> Authenticate([FromBody] UserLoginDto userLoginDto)
         {
-            var result = await _userService.Authenticate(userLoginDto);
+            var result = await _loginService.Authenticate(userLoginDto);
 
             if (result.ResultStatus == ResultStatus.Success)
                 return Ok(result.Data);

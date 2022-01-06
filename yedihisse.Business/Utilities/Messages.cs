@@ -51,31 +51,31 @@ namespace yedihisse.Business.Utilities
             {
                 if (isPlural)
                     return $"Hiç bir {entityName.ToLower()} bulunamadı.";
-                else
-                    return $"Böyle bir {entityName.ToLower()} bulunamadı.";
+
+                return $"Böyle bir {entityName.ToLower()} bulunamadı.";
             }
 
-            public static string Add(string addressName, string entityName)
+            public static string Add(string addedText, string entityName)
             {
-                return $"{addressName} adlı {entityName.ToLower()} başarıyla eklenmiştir.";
+                return $"{addedText} adlı {entityName.ToLower()} başarıyla eklenmiştir.";
             }
 
-            public static string Update(string addressName, string entityName)
+            public static string Update(string updatedText, string entityName)
             {
-                return $"{addressName} adlı {entityName.ToLower()} başarıyla güncellenmiştir.";
+                return $"{updatedText} adlı {entityName.ToLower()} başarıyla güncellenmiştir.";
             }
 
-            public static string Delete(string addressName, bool isHard, string entityName)
+            public static string Delete(string deletedText, bool isHard, string entityName)
             {
                 if (isHard)
-                    return $"{addressName} adlı {entityName} başarıyla veritabanından silinmiştir";
+                    return $"{deletedText} adlı {entityName} başarıyla veritabanından silinmiştir";
                 else
-                    return $"{addressName} adlı {entityName} başarıyla silinmiştir";
+                    return $"{deletedText} adlı {entityName} başarıyla silinmiştir";
             }
 
-            public static string AlreadyDeleted(string userName, string entityName)
+            public static string AlreadyDeleted(string alreadyDeletedText, string entityName)
             {
-                return $"{userName} adlı {entityName} daha önce silinmiştir";
+                return $"{alreadyDeletedText} adlı {entityName} daha önce silinmiştir";
             }
 
             public static string AlreadyExists(string entityName)

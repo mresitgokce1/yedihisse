@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using yedihisse.Business.Abstract;
 using yedihisse.Business.Utilities;
 using yedihisse.Business.Utilities.Security.Token.Abstract;
@@ -19,34 +18,23 @@ namespace yedihisse.Business.Concrete
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly ITokenService _tokenService;
 
         public UserManager(IUnitOfWork unitOfWork, IMapper mapper, ITokenService tokenService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-            _tokenService = tokenService;
         }
 
-        public async Task<IDataResult<UserDto>> GetAsync(int userId, bool? isActive = null, bool? isDeleted = null)
+        public async Task<IDataResult<UserDto>> GetAsync(int userId)
         {
             try
             {
-                User user;
-
-                if (isActive != null && isDeleted != null)
-                    user = await _unitOfWork.Users.GetAsync(u => u.Id == userId & u.IsActive == isActive & u.IsDeleted == isDeleted);
-                else if(isActive == null && isDeleted == null)
-                    user = await _unitOfWork.Users.GetAsync(u => u.Id == userId);
-                else if (isActive != null)
-                    user = await _unitOfWork.Users.GetAsync(u => u.Id == userId & u.IsActive == isActive);
-                else
-                    user = await _unitOfWork.Users.GetAsync(u => u.Id == userId & u.IsDeleted == isDeleted);
+                var user = await _unitOfWork.Users.GetAsync(u => u.Id == userId);
 
                 if (user != null)
                     return new DataResult<UserDto>(ResultStatus.Success, _mapper.Map<UserDto>(user));
 
-                return new DataResult<UserDto>(ResultStatus.Error, Messages.CommonMessage.NotFound(false,"Kullanıcı"), null);
+                return new DataResult<UserDto>(ResultStatus.Error, Messages.CommonMessage.NotFound(false, "Kullanıcı"), null);
             }
             catch (Exception exMessage)
             {
@@ -54,20 +42,11 @@ namespace yedihisse.Business.Concrete
             }
         }
 
-        public async Task<IDataResult<UserListDto>> GetAllAsync(bool? isActive = null, bool? isDeleted = null)
+        public async Task<IDataResult<UserListDto>> GetAllAsync()
         {
             try
             {
-                IList<User> users;
-
-                if (isActive != null && isDeleted != null)
-                    users = await _unitOfWork.Users.GetAllAsync(u => u.IsActive == isActive & u.IsDeleted == isDeleted);
-                else if (isActive == null && isDeleted == null)
-                    users = await _unitOfWork.Users.GetAllAsync();
-                else if (isActive != null)
-                    users = await _unitOfWork.Users.GetAllAsync(u => u.IsActive == isActive);
-                else
-                    users = await _unitOfWork.Users.GetAllAsync(u => u.IsDeleted == isDeleted);
+                var users = await _unitOfWork.Users.GetAllAsync();
 
                 if (users.Count > -1)
                 {
@@ -77,7 +56,7 @@ namespace yedihisse.Business.Concrete
                     });
                 }
 
-                return new DataResult<UserListDto>(ResultStatus.Error, Messages.CommonMessage.NotFound(true,"Kullanıcı"), null);
+                return new DataResult<UserListDto>(ResultStatus.Error, Messages.CommonMessage.NotFound(true, "Kullanıcı"), null);
             }
             catch (Exception exMessage)
             {
@@ -113,6 +92,7 @@ namespace yedihisse.Business.Concrete
 
                 if (user != null)
                     return new DataResult<UserUpdateDto>(ResultStatus.Success, _mapper.Map<UserUpdateDto>(user));
+
                 return new DataResult<UserUpdateDto>(ResultStatus.Success, Messages.CommonMessage.NotFound(false, "Kullanıcı"), null);
             }
             catch (Exception exMessage)
@@ -154,7 +134,7 @@ namespace yedihisse.Business.Concrete
 
                 if (user != null)
                 {
-                    if(user.IsDeleted)
+                    if (user.IsDeleted)
                         return new Result(ResultStatus.Info, Messages.CommonMessage.AlreadyDeleted(user.FirstName + " " + user.LastName, "Kullanıcı"));
 
                     user.IsDeleted = true;
@@ -196,20 +176,11 @@ namespace yedihisse.Business.Concrete
             }
         }
 
-        public async Task<IDataResult<int>> CountAsync(bool? isActive = null, bool? isDeleted = null)
+        public async Task<IDataResult<int>> CountAsync()
         {
             try
             {
-                int userCount = -1;
-
-                if (isActive != null && isDeleted != null)
-                    userCount = await _unitOfWork.Users.CountAsync(u => u.IsActive == isActive & u.IsDeleted == isDeleted);
-                else if(isActive == null && isDeleted == null)
-                    userCount = await _unitOfWork.Users.CountAsync();
-                if (isActive != null)
-                     userCount = await _unitOfWork.Users.CountAsync(u => u.IsActive == isActive);
-                else
-                    userCount = await _unitOfWork.Users.CountAsync(u => u.IsDeleted == isDeleted);
+                var userCount = await _unitOfWork.Users.CountAsync();
 
                 if (userCount > -1)
                 {
@@ -222,41 +193,6 @@ namespace yedihisse.Business.Concrete
             {
                 return new DataResult<int>(ResultStatus.Danger, Messages.ExceptionMessage.Count("Kullanıcı"), -1, exMessage);
             }
-        }
-
-        public async Task<IDataResult<string>> Authenticate(UserLoginDto userLoginDto)
-        {
-            try
-            {
-                var user = await _unitOfWork.Users.GetAsync(
-                    u => u.UserPhoneNumber == userLoginDto.UserName, 
-                    u => u
-                    .Include(x=>x.UserJoinTypes)
-                    .ThenInclude(y=>y.UserType));
-
-                if (user == null)
-                    return new DataResult<string>(ResultStatus.Error, Messages.AuthMessage.ErrorUserName(), null, null);
-
-                if (!Shared.Utilities.Encrytpions.PasswordEncryption.VerifyHashPassword(user.PasswordHash, userLoginDto.Password))
-                    return new DataResult<string>(ResultStatus.Error, Messages.AuthMessage.ErrorPassword(), null, null);
-
-                var userLoggedinDto = new UserLoggedinDto
-                {
-                    Id = user.Id,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    EmailAddress = user.EmailAddress,
-                    UserPhoneNumber = user.UserPhoneNumber,
-                    UserJoinTypes = user.UserJoinTypes
-                };
-
-                return new DataResult<string>(ResultStatus.Success, Messages.AuthMessage.LoginSuccess(), _tokenService.GenerateToken(userLoggedinDto), null);
-            }
-            catch (Exception exMessage)
-            {
-                return new DataResult<string>(ResultStatus.Danger, Messages.ExceptionMessage.Auth(), null, exMessage);
-            }
-
         }
     }
 }

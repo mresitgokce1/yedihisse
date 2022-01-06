@@ -1,13 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Security.Principal;
-using System.Text.Json;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using AutoMapper.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using yedihisse.Business.Abstract;
@@ -56,7 +48,7 @@ namespace yedihisse.API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetUser(int userId)
         {
-            var result = await _userService.GetAsync(userId,true,false);
+            var result = await _userService.GetAsync(userId);
 
             if (result.ResultStatus == ResultStatus.Success)
                 return Ok(result.Data);
@@ -98,7 +90,7 @@ namespace yedihisse.API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CountAllUser()
         {
-            var result = await _userService.CountAsync(true,false);
+            var result = await _userService.CountAsync();
 
             if (result.ResultStatus == ResultStatus.Success)
                 return Ok(result.Data);
@@ -158,7 +150,7 @@ namespace yedihisse.API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetUserType(int userTypeId)
         {
-            var result = await _userTypeService.GetAsync(userTypeId, true, false);
+            var result = await _userTypeService.GetAsync(userTypeId);
 
             if (result.ResultStatus == ResultStatus.Success)
                 return Ok(result.Data);
@@ -200,7 +192,7 @@ namespace yedihisse.API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CountAllUserType()
         {
-            var result = await _userTypeService.CountAsync(true, false);
+            var result = await _userTypeService.CountAsync();
 
             if (result.ResultStatus == ResultStatus.Success)
                 return Ok(result.Data);

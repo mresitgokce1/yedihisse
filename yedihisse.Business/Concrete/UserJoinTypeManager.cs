@@ -27,28 +27,13 @@ namespace yedihisse.Business.Concrete
             _mapper = mapper;
         }
 
-        public async Task<IDataResult<UserJoinTypeDto>> GetAsync(int userJoinTypeId, bool? isActive = null, bool? isDeleted = null)
+        public async Task<IDataResult<UserJoinTypeDto>> GetAsync(int userJoinTypeId)
         {
             try
             {
-                UserJoinType userJoinType;
-
-                if (isActive != null && isDeleted != null)
-                    userJoinType = await _unitOfWork.UserJoinTypes.GetAsync(u => u.Id == userJoinTypeId & u.IsActive == isActive & u.IsDeleted == isDeleted, u => u
-                        .Include(u => u.UserType)
-                        .Include(u => u.User));
-                else if (isActive == null && isDeleted == null)
-                    userJoinType = await _unitOfWork.UserJoinTypes.GetAsync(u => u.Id == userJoinTypeId, u => u
-                        .Include(u => u.UserType)
-                        .Include(u => u.User));
-                else if (isActive != null)
-                    userJoinType = await _unitOfWork.UserJoinTypes.GetAsync(u => u.Id == userJoinTypeId & u.IsActive == isActive, u => u
-                        .Include(u => u.UserType)
-                        .Include(u => u.User));
-                else
-                    userJoinType = await _unitOfWork.UserJoinTypes.GetAsync(u => u.Id == userJoinTypeId & u.IsDeleted == isDeleted, u => u
-                        .Include(u => u.UserType)
-                        .Include(u => u.User));
+                var userJoinType = await _unitOfWork.UserJoinTypes.GetAsync(u => u.Id == userJoinTypeId, u => u
+                    .Include(u => u.UserType)
+                    .Include(u => u.User));
 
                 if (userJoinType != null)
                     return new DataResult<UserJoinTypeDto>(ResultStatus.Success, _mapper.Map<UserJoinTypeDto>(userJoinType));
@@ -61,28 +46,13 @@ namespace yedihisse.Business.Concrete
             }
         }
 
-        public async Task<IDataResult<UserJoinTypeListDto>> GetAllAsync(bool? isActive = null, bool? isDeleted = null)
+        public async Task<IDataResult<UserJoinTypeListDto>> GetAllAsync()
         {
             try
             {
-                IList<UserJoinType> userJoinTypes;
-
-                if (isActive != null && isDeleted != null)
-                    userJoinTypes = await _unitOfWork.UserJoinTypes.GetAllAsync(u => u.IsActive == isActive & u.IsDeleted == isDeleted, u => u
-                        .Include(u => u.UserType)
-                        .Include(u => u.User));
-                else if (isActive == null && isDeleted == null)
-                    userJoinTypes = await _unitOfWork.UserJoinTypes.GetAllAsync(null, u => u
-                        .Include(u => u.UserType)
-                        .Include(u => u.User));
-                else if (isActive != null)
-                    userJoinTypes = await _unitOfWork.UserJoinTypes.GetAllAsync(u => u.IsActive == isActive, u => u
-                        .Include(u => u.UserType)
-                        .Include(u => u.User));
-                else
-                    userJoinTypes = await _unitOfWork.UserJoinTypes.GetAllAsync(u => u.IsDeleted == isDeleted, u => u
-                        .Include(u => u.UserType)
-                        .Include(u => u.User));
+                var userJoinTypes = await _unitOfWork.UserJoinTypes.GetAllAsync(null, u => u
+                    .Include(u => u.UserType)
+                    .Include(u => u.User));
 
                 if (userJoinTypes.Count > -1)
                 {

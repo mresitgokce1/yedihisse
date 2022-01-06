@@ -46,20 +46,11 @@ namespace yedihisse.Business.Concrete
             }
         }
 
-        public async Task<IDataResult<int>> CountAsync(bool? isActive = null, bool? isDeleted = null)
+        public async Task<IDataResult<int>> CountAsync()
         {
             try
             {
-                int userTypeCount = -1;
-
-                if (isActive != null && isDeleted != null)
-                    userTypeCount = await _unitOfWork.UserTypes.CountAsync(u => u.IsActive == isActive & u.IsDeleted == isDeleted);
-                else if (isActive == null && isDeleted == null)
-                    userTypeCount = await _unitOfWork.UserTypes.CountAsync();
-                if (isActive != null)
-                    userTypeCount = await _unitOfWork.UserTypes.CountAsync(u => u.IsActive == isActive);
-                else
-                    userTypeCount = await _unitOfWork.UserTypes.CountAsync(u => u.IsDeleted == isDeleted);
+                var userTypeCount = await _unitOfWork.UserTypes.CountAsync();
 
                 if (userTypeCount > -1)
                 {
@@ -102,20 +93,11 @@ namespace yedihisse.Business.Concrete
             }
         }
 
-        public async Task<IDataResult<UserTypeListDto>> GetAllAsync(bool? isActive = null, bool? isDeleted = null)
+        public async Task<IDataResult<UserTypeListDto>> GetAllAsync()
         {
             try
             {
-                IList<UserType> userTypes;
-
-                if (isActive != null && isDeleted != null)
-                    userTypes = await _unitOfWork.UserTypes.GetAllAsync(u => u.IsActive == isActive & u.IsDeleted == isDeleted);
-                else if (isActive == null && isDeleted == null)
-                    userTypes = await _unitOfWork.UserTypes.GetAllAsync();
-                else if (isActive != null)
-                    userTypes = await _unitOfWork.UserTypes.GetAllAsync(u => u.IsActive == isActive);
-                else
-                    userTypes = await _unitOfWork.UserTypes.GetAllAsync(u => u.IsDeleted == isDeleted);
+                var userTypes = await _unitOfWork.UserTypes.GetAllAsync();
 
                 if (userTypes.Count > -1)
                 {
@@ -133,25 +115,16 @@ namespace yedihisse.Business.Concrete
             }
         }
 
-        public async Task<IDataResult<UserTypeDto>> GetAsync(int userTypeId, bool? isActive = null, bool? isDeleted = null)
+        public async Task<IDataResult<UserTypeDto>> GetAsync(int userTypeId)
         {
             try
             {
-                UserType userType;
-
-                if (isActive != null && isDeleted != null)
-                    userType = await _unitOfWork.UserTypes.GetAsync(u => u.Id == userTypeId & u.IsActive == isActive & u.IsDeleted == isDeleted);
-                else if (isActive == null && isDeleted == null)
-                    userType = await _unitOfWork.UserTypes.GetAsync(u => u.Id == userTypeId);
-                else if (isActive != null)
-                    userType = await _unitOfWork.UserTypes.GetAsync(u => u.Id == userTypeId & u.IsActive == isActive);
-                else
-                    userType = await _unitOfWork.UserTypes.GetAsync(u => u.Id == userTypeId & u.IsDeleted == isDeleted);
+                var userType = await _unitOfWork.UserTypes.GetAsync(u => u.Id == userTypeId);
 
                 if (userType != null)
                     return new DataResult<UserTypeDto>(ResultStatus.Success, _mapper.Map<UserTypeDto>(userType));
 
-                return new DataResult<UserTypeDto>(ResultStatus.Error, Messages.CommonMessage.NotFound(false, "Kullanıcı Tii"), null);
+                return new DataResult<UserTypeDto>(ResultStatus.Error, Messages.CommonMessage.NotFound(false, "Kullanıcı Tipi"), null);
             }
             catch (Exception exMessage)
             {
