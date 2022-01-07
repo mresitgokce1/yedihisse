@@ -14,7 +14,7 @@ namespace yedihisse.Business.Abstract
         Task<IDataResult<AnimalTypeListDto>> GetAllAsync();
         Task<IDataResult<int>> CountAsync();
         Task<IDataResult<AnimalTypeDto>> AddAsync(AnimalTypeAddDto animalTypeAddDto, int createdByUserId);
-        Task<IDataResult<AnimalTypeUpdateDto>> GetUpdateDtoAsync(int animalTypeId);
+        Task<IDataResult<AnimalTypeUpdateDto>> GetDetailAsync(int animalTypeId);
         Task<IDataResult<AnimalTypeDto>> UpdateAsync(AnimalTypeUpdateDto animalTypeUpdateDto, int modifiedByUserId);
         Task<IResult> DeleteAsync(int animalTypeId, int modifiedByUserId);
         Task<IResult> HardDeleteAsync(int animalTypeId);

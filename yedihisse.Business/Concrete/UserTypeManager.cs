@@ -132,7 +132,7 @@ namespace yedihisse.Business.Concrete
             }
         }
 
-        public async Task<IDataResult<UserTypeUpdateDto>> GetUpdateDtoAsync(int userTypeId)
+        public async Task<IDataResult<UserTypeUpdateDto>> GetDetailAsync(int userTypeId)
         {
             try
             {

@@ -13,7 +13,7 @@ namespace yedihisse.Business.Abstract
         Task<IDataResult<UserJoinTypeDto>> GetAsync(int userJoinTypeId);
         Task<IDataResult<UserJoinTypeListDto>> GetAllAsync();
         Task<IDataResult<UserJoinTypeDto>> AddAsync(UserJoinTypeAddDto userJoinTypeAddDto, int createdByUserId);
-        Task<IDataResult<UserJoinTypeUpdateDto>> GetUpdateDtoAsync(int userJoinTypeId);
+        Task<IDataResult<UserJoinTypeUpdateDto>> GetDetailAsync(int userJoinTypeId);
         Task<IDataResult<UserJoinTypeDto>> UpdateAsync(UserJoinTypeUpdateDto userJoinTypeUpdateDto, int modifiedByUserId);
         Task<IResult> DeleteAsync(int userJoinTypeId, int modifiedByUserId);
         Task<IResult> HardDeleteAsync(int userJoinTypeId);

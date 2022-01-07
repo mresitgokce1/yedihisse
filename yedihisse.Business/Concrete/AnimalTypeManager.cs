@@ -129,7 +129,7 @@ namespace yedihisse.Business.Concrete
             }
         }
 
-        public async Task<IDataResult<AnimalTypeUpdateDto>> GetUpdateDtoAsync(int animalTypeId)
+        public async Task<IDataResult<AnimalTypeUpdateDto>> GetDetailAsync(int animalTypeId)
         {
             try
             {

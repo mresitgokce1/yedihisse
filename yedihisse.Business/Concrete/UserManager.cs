@@ -84,7 +84,7 @@ namespace yedihisse.Business.Concrete
             }
         }
 
-        public async Task<IDataResult<UserUpdateDto>> GetUpdateDtoAsync(int userId)
+        public async Task<IDataResult<UserUpdateDto>> GetDetailAsync(int userId)
         {
             try
             {

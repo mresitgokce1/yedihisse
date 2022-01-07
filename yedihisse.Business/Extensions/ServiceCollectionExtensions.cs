@@ -20,11 +20,13 @@ namespace yedihisse.Business.Extensions
         {
             serviceCollection.AddDbContext<YediHisseContext>();
             serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
+            serviceCollection.AddScoped<ITokenService, TokenManager>();
+            serviceCollection.AddScoped<ILoginService, LoginManager>();
             serviceCollection.AddScoped<IUserService, UserManager>();
             serviceCollection.AddScoped<IUserTypeService, UserTypeManager>();
             serviceCollection.AddScoped<IUserJoinTypeService, UserJoinTypeManager>();
-            serviceCollection.AddScoped<ILoginService, LoginManager>();
-            serviceCollection.AddScoped<ITokenService, TokenManager>();
+            serviceCollection.AddScoped<IAnimalService, AnimalManager>();
+            serviceCollection.AddScoped<IAnimalTypeService, AnimalTypeManager>();
             return serviceCollection;
         }
     }

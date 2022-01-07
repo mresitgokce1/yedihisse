@@ -9,7 +9,7 @@ namespace yedihisse.Business.Abstract
         Task<IDataResult<UserDto>> GetAsync(int userId);
         Task<IDataResult<UserListDto>> GetAllAsync();
         Task<IDataResult<UserDto>> AddAsync(UserAddDto userAddDto, int createdByUserId);
-        Task<IDataResult<UserUpdateDto>> GetUpdateDtoAsync(int userId);
+        Task<IDataResult<UserUpdateDto>> GetDetailAsync(int userId);
         Task<IDataResult<UserDto>> UpdateAsync(UserUpdateDto userUpdateDto, int modifiedByUserId);
         Task<IResult> DeleteAsync(int userId, int modifiedByUserId);
         Task<IResult> HardDeleteAsync(int userId);
