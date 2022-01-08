@@ -58,6 +58,20 @@ namespace yedihisse.API.Controllers
                 return BadRequest(result.Message + " " + result.Exception);
         }
 
+        [HttpGet("Detail/{userDetailId}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetUserDetail(int userDetailId)
+        {
+            var result = await _userService.GetDetailAsync(userDetailId);
+
+            if (result.ResultStatus == ResultStatus.Success)
+                return Ok(result.Data);
+            else if (result.ResultStatus == ResultStatus.Error)
+                return BadRequest(result.Message);
+            else
+                return BadRequest(result.Message + " " + result.Exception);
+        }
+
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddUser([FromBody] UserAddDto userAddDto)
@@ -146,11 +160,25 @@ namespace yedihisse.API.Controllers
                 return BadRequest(result.Message + " " + result.Exception);
         }
 
-        [HttpGet("Type/{userId}")]
+        [HttpGet("Type/{userTypeId}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetUserType(int userTypeId)
         {
             var result = await _userTypeService.GetAsync(userTypeId);
+
+            if (result.ResultStatus == ResultStatus.Success)
+                return Ok(result.Data);
+            else if (result.ResultStatus == ResultStatus.Error)
+                return BadRequest(result.Message);
+            else
+                return BadRequest(result.Message + " " + result.Exception);
+        }
+
+        [HttpGet("Type/Detail/{userTypeId}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetUserTypeDetail(int userTypeId)
+        {
+            var result = await _userTypeService.GetDetailAsync(userTypeId);
 
             if (result.ResultStatus == ResultStatus.Success)
                 return Ok(result.Data);
@@ -202,7 +230,7 @@ namespace yedihisse.API.Controllers
                 return BadRequest(result.Message + " " + result.Exception);
         }
 
-        [HttpDelete("Type/{userId}")]
+        [HttpDelete("Type/{userTypeId}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteUserType(int userTypeId)
         {
@@ -216,7 +244,7 @@ namespace yedihisse.API.Controllers
                 return BadRequest(result.Message + " " + result.Exception);
         }
 
-        [HttpDelete("Type/HardDelete/{userId}")]
+        [HttpDelete("Type/HardDelete/{userTypeId}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> HardDeleteUserType(int userTypeId)
         {
@@ -239,6 +267,20 @@ namespace yedihisse.API.Controllers
         public async Task<IActionResult> GetUserJoinType(int userJoinTypeId)
         {
             var result = await _userJoinTypeService.GetAsync(userJoinTypeId);
+
+            if (result.ResultStatus == ResultStatus.Success)
+                return Ok(result.Data);
+            else if (result.ResultStatus == ResultStatus.Error)
+                return BadRequest(result.Message);
+            else
+                return BadRequest(result.Message + " " + result.Exception);
+        }
+
+        [HttpGet("JoinType/Detail/{userJoinTypeId}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetUserJoinTypeDetail(int userJoinTypeId)
+        {
+            var result = await _userJoinTypeService.GetDetailAsync(userJoinTypeId);
 
             if (result.ResultStatus == ResultStatus.Success)
                 return Ok(result.Data);
