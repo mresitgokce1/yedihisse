@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using yedihisse.DataAccess.Concrete.EntityFramework.Contexts;
@@ -9,9 +10,10 @@ using yedihisse.DataAccess.Concrete.EntityFramework.Contexts;
 namespace yedihisse.DataAccess.Migrations
 {
     [DbContext(typeof(YediHisseContext))]
-    partial class YediHisseContextModelSnapshot : ModelSnapshot
+    [Migration("20220108151501_forHerokuMig")]
+    partial class forHerokuMig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1831,15 +1833,15 @@ namespace yedihisse.DataAccess.Migrations
                         {
                             Id = 1,
                             CreatedByUserId = 1,
-                            CreatedDate = new DateTime(2022, 1, 8, 19, 12, 54, 54, DateTimeKind.Local).AddTicks(3023),
+                            CreatedDate = new DateTime(2022, 1, 8, 18, 15, 0, 867, DateTimeKind.Local).AddTicks(3675),
                             EmailAddress = "mrgokce@yandex.com",
                             FirstName = "Muhammed Reşit",
                             IsActive = true,
                             IsDeleted = false,
                             LastName = "Gökce",
                             ModifiedByUserId = 1,
-                            ModifiedDate = new DateTime(2022, 1, 8, 19, 12, 54, 54, DateTimeKind.Local).AddTicks(3308),
-                            PasswordHash = "2y5r4AoNCi3XT3tYW+2vc4Q3yM+wDp6IkFAErKTE+Hcw+l+h",
+                            ModifiedDate = new DateTime(2022, 1, 8, 18, 15, 0, 867, DateTimeKind.Local).AddTicks(3953),
+                            PasswordHash = "B69mYHLfWTcsTEQSRZkGiUEMWIOPRTEJkn80B5jZ5E9laCTL",
                             Sex = 'E',
                             UserPhoneNumber = "123"
                         },
@@ -1847,15 +1849,15 @@ namespace yedihisse.DataAccess.Migrations
                         {
                             Id = 2,
                             CreatedByUserId = 1,
-                            CreatedDate = new DateTime(2022, 1, 8, 19, 12, 54, 90, DateTimeKind.Local).AddTicks(7744),
+                            CreatedDate = new DateTime(2022, 1, 8, 18, 15, 0, 902, DateTimeKind.Local).AddTicks(865),
                             EmailAddress = "agokce@yandex.com",
                             FirstName = "Ali",
                             IsActive = true,
                             IsDeleted = false,
                             LastName = "Gökce",
                             ModifiedByUserId = 1,
-                            ModifiedDate = new DateTime(2022, 1, 8, 19, 12, 54, 90, DateTimeKind.Local).AddTicks(7771),
-                            PasswordHash = "9ywTe/OLkaRVMTxGjRKyGnTfZjp+rQwVMRE2ezz6+TsYXZRl",
+                            ModifiedDate = new DateTime(2022, 1, 8, 18, 15, 0, 902, DateTimeKind.Local).AddTicks(892),
+                            PasswordHash = "XFxL46s2cPMG8QMGuVwtp/VFgzaJYOFd03kWXiJgwNFHXPU5",
                             Sex = 'E',
                             UserPhoneNumber = "1234"
                         });
@@ -1914,11 +1916,11 @@ namespace yedihisse.DataAccess.Migrations
                         {
                             Id = 1,
                             CreatedByUserId = 1,
-                            CreatedDate = new DateTime(2022, 1, 8, 19, 12, 53, 998, DateTimeKind.Local).AddTicks(3282),
+                            CreatedDate = new DateTime(2022, 1, 8, 18, 15, 0, 805, DateTimeKind.Local).AddTicks(2830),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByUserId = 1,
-                            ModifiedDate = new DateTime(2022, 1, 8, 19, 12, 53, 998, DateTimeKind.Local).AddTicks(4074),
+                            ModifiedDate = new DateTime(2022, 1, 8, 18, 15, 0, 805, DateTimeKind.Local).AddTicks(3303),
                             UserId = 1,
                             UserTypeId = 1
                         },
@@ -1926,11 +1928,11 @@ namespace yedihisse.DataAccess.Migrations
                         {
                             Id = 2,
                             CreatedByUserId = 1,
-                            CreatedDate = new DateTime(2022, 1, 8, 19, 12, 53, 998, DateTimeKind.Local).AddTicks(5333),
+                            CreatedDate = new DateTime(2022, 1, 8, 18, 15, 0, 805, DateTimeKind.Local).AddTicks(3947),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByUserId = 1,
-                            ModifiedDate = new DateTime(2022, 1, 8, 19, 12, 53, 998, DateTimeKind.Local).AddTicks(5334),
+                            ModifiedDate = new DateTime(2022, 1, 8, 18, 15, 0, 805, DateTimeKind.Local).AddTicks(3948),
                             UserId = 2,
                             UserTypeId = 2
                         });
@@ -1984,22 +1986,22 @@ namespace yedihisse.DataAccess.Migrations
                         {
                             Id = 1,
                             CreatedByUserId = 1,
-                            CreatedDate = new DateTime(2022, 1, 8, 19, 12, 54, 100, DateTimeKind.Local).AddTicks(2254),
+                            CreatedDate = new DateTime(2022, 1, 8, 18, 15, 0, 910, DateTimeKind.Local).AddTicks(3110),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByUserId = 1,
-                            ModifiedDate = new DateTime(2022, 1, 8, 19, 12, 54, 100, DateTimeKind.Local).AddTicks(2627),
+                            ModifiedDate = new DateTime(2022, 1, 8, 18, 15, 0, 910, DateTimeKind.Local).AddTicks(3407),
                             UserTypeName = "Admin"
                         },
                         new
                         {
                             Id = 2,
                             CreatedByUserId = 1,
-                            CreatedDate = new DateTime(2022, 1, 8, 19, 12, 54, 100, DateTimeKind.Local).AddTicks(2657),
+                            CreatedDate = new DateTime(2022, 1, 8, 18, 15, 0, 910, DateTimeKind.Local).AddTicks(3434),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByUserId = 1,
-                            ModifiedDate = new DateTime(2022, 1, 8, 19, 12, 54, 100, DateTimeKind.Local).AddTicks(2658),
+                            ModifiedDate = new DateTime(2022, 1, 8, 18, 15, 0, 910, DateTimeKind.Local).AddTicks(3435),
                             UserTypeName = "Customer"
                         });
                 });

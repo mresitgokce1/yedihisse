@@ -12,7 +12,6 @@ using Microsoft.IdentityModel.Tokens;
 using yedihisse.Business.AutoMapper.Profiles;
 using yedihisse.Business.Extensions;
 using yedihisse.DataAccess.Concrete.EntityFramework.Contexts;
-using yedihisse.Entities.Concrete;
 
 namespace yedihisse.API
 {
@@ -88,7 +87,9 @@ namespace yedihisse.API
 
             #endregion
 
-            services.AddDbContext<YediHisseContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("yedihisse.DataAccess")));
+            services.AddDbContext<YediHisseContext>(
+                options => options.UseNpgsql(Configuration.GetConnectionString("HerokuConnection"), 
+                b => b.MigrationsAssembly("yedihisse.DataAccess")));
             services.LoadMyServiceCollection();
         }
 

@@ -7,6 +7,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using yedihisse.Business.Abstract;
 using yedihisse.Business.Utilities;
+using yedihisse.Business.Utilities.Security.Token.Abstract;
 using yedihisse.DataAccess.Abstract;
 using yedihisse.Entities.Concrete;
 using yedihisse.Entities.Dtos;
@@ -20,11 +21,13 @@ namespace yedihisse.Business.Concrete
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly ITokenService _tokenService;
 
-        public UserJoinTypeManager(IUnitOfWork unitOfWork, IMapper mapper)
+        public UserJoinTypeManager(IUnitOfWork unitOfWork, IMapper mapper, ITokenService tokenService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _tokenService = tokenService;
         }
 
         public async Task<IDataResult<UserJoinTypeDto>> GetAsync(int userJoinTypeId)
@@ -86,6 +89,16 @@ namespace yedihisse.Business.Concrete
                 await _unitOfWork.SaveAsync();
                 var addedUserOfType = await _unitOfWork.Users.GetAsync(u => u.Id == userJoinType.UserId);
                 var addedTypeOfUser = await _unitOfWork.UserTypes.GetAsync(u => u.Id == userJoinType.UserTypeId);
+
+                var token = _tokenService.GenerateToken(new UserLoggedinDto
+                {
+                    Id = addedUserOfType.Id,
+                    UserPhoneNumber = addedUserOfType.UserPhoneNumber,
+                    EmailAddress = addedUserOfType.EmailAddress,
+                    FirstName = addedUserOfType.FirstName,
+                    LastName = addedUserOfType.LastName,
+                    UserJoinTypes = addedUserOfType.UserJoinTypes
+                });
 
                 return new DataResult<UserJoinTypeDto>(ResultStatus.Success, Messages.CommonMessage.Add(addedUserOfType.FirstName + " " + addedUserOfType.LastName + " kullanıcısına " + addedTypeOfUser.UserTypeName + " tipi tanımlanmıştır.", "Kullanıcı Tipi Tanımlama"), _mapper.Map<UserJoinTypeDto>(addedUserJoinType));
             }

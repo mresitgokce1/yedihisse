@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using yedihisse.Entities.Concrete;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace yedihisse.DataAccess.Concrete.EntityFramework.Contexts
 {
