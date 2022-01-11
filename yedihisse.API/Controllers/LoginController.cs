@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Cors;
 using yedihisse.Business.Abstract;
 using yedihisse.Entities.Dtos;
 using yedihisse.Shared.Utilities.Results.Complex_Type;
+using System.Net;
 
 namespace yedihisse.API.Controllers
 {
@@ -32,7 +33,11 @@ namespace yedihisse.API.Controllers
             var result = await _loginService.Authenticate(userLoginDto);
 
             if (result.ResultStatus == ResultStatus.Success)
+            {
+                Response.Headers.Add("Content-Type", "application/json");
+                Response.Headers.Add("Authorization", "Bearer " + result.Data);
                 return Ok(result.Data);
+            }
             else
                 return BadRequest(result.Message);
         }
