@@ -119,5 +119,18 @@ namespace yedihisse.Business.Utilities
                 return $"{userName} adlı kullanıcının {userTypeName} tipi kaldırılmıştır.";
             }
         }
+
+        public static class UserMessage
+        {
+            public static string UserPhoneAlreadyExists()
+            {
+                return "Eklemek istediğiniz telefon numarası zaten başkası tarafından kullanılıyor.";
+            }
+
+            public static string UserMailAlreadyExists()
+            {
+                return "Eklemek istediğiniz mail zaten başkası tarafından kullanılıyor.";
+            }
+        }
     }
 }

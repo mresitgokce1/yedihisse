@@ -73,6 +73,12 @@ namespace yedihisse.Business.Concrete
                 user.ModifiedByUserId = createdByUserId;
                 user.PasswordHash = Shared.Utilities.Encrytpions.PasswordEncryption.CreateHashPassword(userAddDto.PasswordHash);
 
+                if (await _unitOfWork.Users.AnyAsync(u => u.UserPhoneNumber == user.UserPhoneNumber))
+                    return new DataResult<UserDto>(ResultStatus.Error, Messages.UserMessage.UserPhoneAlreadyExists(), null, null);
+                
+                if (await _unitOfWork.Users.AnyAsync(u => u.EmailAddress == user.EmailAddress))
+                    return new DataResult<UserDto>(ResultStatus.Error, Messages.UserMessage.UserMailAlreadyExists(), null, null);
+                
                 var addedUser = await _unitOfWork.Users.AddAsync(user);
                 await _unitOfWork.SaveAsync();
 

@@ -13,7 +13,7 @@ using yedihisse.Shared.Utilities.Results.Complex_Type;
 
 namespace yedihisse.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("MyCorsPolicy")]

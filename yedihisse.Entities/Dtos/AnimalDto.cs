@@ -80,7 +80,7 @@ namespace yedihisse.Entities.Dtos
         public int AnimalTypeId { get; set; }
 
         [DisplayName("Hayvanın Aracı")]
-        public int CarId { get; set; }
+        public int? CarId { get; set; }
 
         [DisplayName("Hayvan Aktif Mi?")]
         [Required]
